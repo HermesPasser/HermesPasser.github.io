@@ -37,6 +37,11 @@ p {
     font-size: 1.2em;
 }
 
+img {
+    display: block;
+    margin: 0 auto;
+}
+
 #cross-column{
 	/* background-color: yellow; */
 	text-align: center;
