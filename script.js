@@ -1,4 +1,5 @@
-function changeHeight() {
-	var temp = document.getElementById('content').clientHeight;
-	document.getElementById('sidebar-right').setAttribute("style","height:" + temp + "px");
+function load(){
+	
+	// Change main height - set the size of main as the same as content
+	document.getElementById('main').setAttribute("style","height:" + document.getElementById('content').clientHeight+ "px");
 }

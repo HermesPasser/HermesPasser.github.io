@@ -1,19 +1,40 @@
-header, #cross-column, #content, #sidebar-right, footer{
+header, #cross-column, main, #sidebar, footer{
 	background-color: #444444;
 	width: 90%;
+}
+
+img, picture, video, embed {
+    max-width: 100%;
 }
 
 body{
 	background-image: url("images/background.gif");
 	margin-left: calc(15%);
+    line-height: 1;
+	font-size: 80%;
+	height: 100%;
+    color: white;
 }
 
 header{ 
 	background-position: center bottom;
 	background-repeat: 	 no-repeat;
 	background-image: 	 url("images/header.gif");
-	height: 200px;
-	width: 90%;
+	height:	   200px;
+	width: 	   90%;
+}
+
+a {
+    color: red;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+p {
+    font-size: 1.2em;
 }
 
 #cross-column{
@@ -22,18 +43,16 @@ header{
 }
 
 #cross-column a{
-	margin: 0 2cm 0 0;
+	margin: 0 1em 0 0;
 	color: white;
-	
 }
 
 #content{ 
-	/* background-color: #441545; */
 	float: left;
 	width: 70%;
 } 
 
-#sidebar-right{
+#sidebar{
 	/* background-color: green; */
 	margin-right: 10%;
 	text-align: center;
@@ -45,4 +64,41 @@ footer{
 	/* background-color: green; */
 	text-align: center;
 	float: left;
+}
+
+@media screen and (max-width: 768px) {
+	/* #content{  background-color: black; } */
+}
+
+@media screen and (max-width: 718px) {
+	body{  }
+}
+
+@media screen and (max-width: 640px) {	
+	header{ width: 100%; }
+		
+	body{ margin: 0 0 0 0; }
+		
+	#cross-column{ width: 100%; }
+	
+	main{ width: 100%; }
+	
+	#content{ width: 100%; } 
+
+	#sidebar{
+		float: left;
+		width: 100%;
+	}
+	
+	footer{ width: 100%; }
+}
+
+
+@media screen and (max-width: 520px) {	
+	#content{ 
+		/* float: left; */
+		/* width: 100%; */
+	} 
+
+	footer{ width: 100%; }
 }
