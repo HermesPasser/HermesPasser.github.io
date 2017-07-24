@@ -1,0 +1,15 @@
+fonte 12px
+Cor do texto white
+
+cor do link #ff0000
+Cor de itens visitados #660000
+Cor do destaque #999999
+
+postagem titulo 22px
+
+cabeçalho data
+	11px
+	Cor do texto #0000ff
+	Cor do plano de fundo #ffffff	
+
+
