@@ -6,7 +6,7 @@
 #	pieces - contain the code to be pasted in output file
 #	raw_pages - content of page without html structure
 # The first line of a document in raw folder will be the title of page.
-# 
+# ==========================================
 
 VAR_FOLDER = "pieces"
 RAW_FOLDER = "raw_pages"
@@ -15,16 +15,14 @@ import os
 import sys; sys.path.insert(0, "./" + VAR_FOLDER)
 import variables
 
-# print(variables.html)
-
 variables.html = variables.html.format(
-	"../images/favicon.ico",# shortcut ico
-	"../pieces/style.css",	# style
-	"../pieces/script.js",	# script
-	"{0}",					# title
-	variables.cross_column,	# cross-column
-	"{1}",					# content
-	variables.sidebar		# sidebar
+	"../images/favicon.ico",			# shortcut ico
+	"../" + VAR_FOLDER + "/style.css",	# style
+	"../" + VAR_FOLDER + "/script.js",	# script
+	"{0}",								# title
+	variables.cross_column,				# cross-column
+	"{1}",								# content
+	variables.sidebar					# sidebar
 )
 
 print("Gládio Cítrico site constructor.")
