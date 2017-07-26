@@ -1,10 +1,11 @@
 ﻿# Gládio Cítrico site constructor
 
+# ============== sidebar
 sidebar = """
 <br>
 				<a href="http://gladiocitrico.blogspot.com.br/">Brother blog (in portuguese)</a><br>
 				<p>Software</p>
-				<a href="mfd.html">MangaFox Downloader</a><br>
+				<a href="mangafoxdownloader.html">MangaFox Downloader</a><br>
 				<a href="">Manga Host Downloader</a><br>
 				<a href="">Tileset Converter MV</a><br>
 				<a href="">BakaStuki Extractor</a><br>
@@ -22,6 +23,7 @@ sidebar = """
 				<a href="">Unity Mechanics and Utilities</a><br>
 """
 
+# ============== HTML
 html = """
 <html lang="en">
 	<head>

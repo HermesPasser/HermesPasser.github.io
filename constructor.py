@@ -2,8 +2,8 @@
 # by Hermes Passer in 07/2017 with python3
 # ==========================================
 # Folders:
-#	pages  - autogenered completed pages
-#	pieces - contain the code to be pasted in output file
+#	pages  - auto generated completed pages
+#	pieces - contain the code to be pasted in output file and variables
 #	raw_pages - content of page without html structure
 # The first line of a document in raw folder will be the title of page.
 # ==========================================
@@ -26,7 +26,7 @@ for url, name in {
 		'About'		: '#', 
 }.items(): cross_column += "<a href=\"" + name +"\">" + url + "</a>\n\t\t\t"
 
-# ============== Generate base html
+# ============== Format html
 variables.html = variables.html.format(
 	"../images/favicon.ico",			# shortcut ico
 	"../" + VAR_FOLDER + "/style.css",	# style
@@ -44,7 +44,7 @@ for filename in os.listdir(RAW_FOLDER):
 		next(f)
 		content = f.read()
 	with open("pages/{0}".format(filename), 'w+') as f:
-		content = "<h1>" + title + "</h1>\n<br />\n" + content
+		content = "<h1>" + title + "\t\t\t\t</h1><br />\n" + content
 		f.write(variables.html.format(title + " - Gl&#225;dio C&#237;trico", content))
 
 print("Done.")
