@@ -15,18 +15,29 @@ import os
 import sys; sys.path.insert(0, "./" + VAR_FOLDER)
 import variables
 
+print("Gládio Cítrico site constructor.")
+
+# ============== Generate cross column
+cross_column = ""
+for url, name in {
+		'Home'		: 'home.html', 
+		'GitHub'	: 'https://github.com/HermesPasser/', 
+		'Projects'	: '#', 
+		'About'		: '#', 
+}.items(): cross_column += "<a href=\"" + name +"\">" + url + "</a>\n\t\t\t"
+
+# ============== Generate base html
 variables.html = variables.html.format(
 	"../images/favicon.ico",			# shortcut ico
 	"../" + VAR_FOLDER + "/style.css",	# style
 	"../" + VAR_FOLDER + "/script.js",	# script
 	"{0}",								# title
-	variables.cross_column,				# cross-column
+	cross_column,						# cross-column
 	"{1}",								# content
 	variables.sidebar					# sidebar
 )
 
-print("Gládio Cítrico site constructor.")
-
+# ============== Generate the pages
 for filename in os.listdir(RAW_FOLDER):
 	with open("{0}/{1}".format(RAW_FOLDER, filename), 'r') as f: 
 		title = f.readline()

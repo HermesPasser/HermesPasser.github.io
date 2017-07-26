@@ -1,12 +1,5 @@
 ﻿# Gládio Cítrico site constructor
 
-cross_column = """
-			<a href="home.html">Home</a>
-			<a href="https://github.com/HermesPasser/">GitHub</a>
-			<a href="">Projects</a>
-			<a href="">About</a>
-"""
-
 sidebar = """
 <br>
 				<a href="http://gladiocitrico.blogspot.com.br/">Brother blog (in portuguese)</a><br>
