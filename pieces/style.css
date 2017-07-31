@@ -3,8 +3,14 @@ header, #cross-column, main, #sidebar, footer{
 	width: 90%;
 }
 
-img, picture, video, embed {
+img, picture, video, iframe, embed {
     max-width: 100%;
+}
+
+iframe {
+    float: middle;
+	text-align: center;
+
 }
 
 body{

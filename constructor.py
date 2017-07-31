@@ -20,11 +20,11 @@ print("Gládio Cítrico site constructor.")
 # ============== Generate cross column
 cross_column = ""
 for url, name in {
-		'Home'		: 'home.html', 
-		'GitHub'	: 'https://github.com/HermesPasser/', 
-		'Projects'	: '#', 
-		'About'		: '#', 
-}.items(): cross_column += "<a href=\"" + name +"\">" + url + "</a>\n\t\t\t"
+	'Home'		: 'home.html', 
+	'GitHub'	: 'https://github.com/HermesPasser/', 
+	# 'Projects'	: '#', 
+	# 'About'		: '#', 
+}.items(): cross_column += "<a href=\"" + name + "\">" + url + "</a>\n\t\t\t"
 
 # ============== Format html
 variables.html = variables.html.format(

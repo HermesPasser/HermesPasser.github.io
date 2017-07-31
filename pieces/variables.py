@@ -50,7 +50,6 @@ html = """
 			<section id="sidebar">
 				{6}
 			</section>
-			
 		</main>
 		
 		<footer>
