@@ -16,20 +16,12 @@ import sys; sys.path.insert(0, "./" + VAR_FOLDER)
 import variables
 
 def get_mark(text, mark):
-	if mark + '[' in text: 
+	if (mark + '[' in text) or (']' + mark in text): 
 		start = text.index(mark + '[') + 2
-	else:
-		print('Mark [' + mark + ' cannot be found')
-		return ""
-		
-	if ']' + mark in text: 
 		end   = text.index(']' + mark)
+		return text[start:end]
 	else:
-		print ('Mark ' + mark + '] cannot be found')
 		return ""
-	
-	return text[start:end]
-
 
 print("Gládio Cítrico site constructor.")
 
