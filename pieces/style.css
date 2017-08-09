@@ -10,12 +10,11 @@ img, picture, video, iframe, embed {
 iframe {
     float: middle;
 	text-align: center;
-
 }
 
 body{
 	background-image: url("../images/background.gif");
-	margin-left: calc(15%);
+	margin-left: calc(10%);
     line-height: 1;
 	font-size: 80%;
 	height: 100%;
