@@ -1,5 +1,4 @@
 ﻿# Gládio Cítrico site constructor
-				# <a href="">Tileset Converter MV</a><br>
 				# <a href="">Manga Host Downloader</a><br>
 				# <a href="">BakaStuki Extractor</a><br>
 				# <a href="">Duplicate Bookmarks Remover</a><br>
@@ -20,6 +19,8 @@ sidebar = """
 				<p>Software</p>
 				<a href="mangafoxdownloader.html">MangaFox Downloader</a><br>
 				<a href="hermesmangadownloader.html">Hermes Manga(eden) Downloader</a><br>
+				<a href="tilecon">Tileset Converter MV</a><br>
+
 				<a href="updatewp.html">Update by Webpage</a><br>
 """
 
