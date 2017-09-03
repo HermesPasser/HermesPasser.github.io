@@ -32,7 +32,7 @@ for url, name in {
 	'GitHub'	: 'https://github.com/HermesPasser/', 
 	# 'Projects'	: '#', 
 	# 'About'		: '#', 
-}.items(): cross_column += "<a href=\"" + name + "\">" + url + "</a>\n\t\t\t"
+}.items(): cross_column += "<li><a href=\"" + name + "\">" + url + "</a></li>\n\t\t\t"
 
 # ============== Format html
 variables.html = variables.html.replace('#css', 	"../" + VAR_FOLDER + "/style.css")
