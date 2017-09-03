@@ -1,5 +1,18 @@
 ﻿# Gládio Cítrico site constructor
-				# <a href="">Manga Host Downloader</a><br>
+
+# ============== sidebar
+sidebar = """
+<br>
+			<a href="http://gladiocitrico.blogspot.com.br/">Brother blog (in portuguese)</a></li>
+			<h3>Software</h3> 
+			<ul>
+				<li><a href="hermesmangadownloader.html">Hermes Manga Downloader</a></li>
+				<li><a href="mangafoxdownloader.html">MangaFox Downloader</a></li>
+				<li><a href="tilecon.html">Tileset Converter MV</a></li>
+				<!-- Remove soon? -->
+				<li><a href="updatewp.html">Update by Webpage</a></li>
+			</ul>
+"""
 				# <a href="">BakaStuki Extractor</a><br>
 				# <a href="">Duplicate Bookmarks Remover</a><br>
 				
@@ -11,19 +24,7 @@
 				# <a href="">SISEstoque</a><br>
 				# <a href="">TecInfoActivities</a><br>
 				# <a href="">Unity Mechanics and Utilities</a><br>
-
-# ============== sidebar
-sidebar = """
-<br>
-				<a href="http://gladiocitrico.blogspot.com.br/">Brother blog (in portuguese)</a><br>
-				<p>Software</p>
-				<a href="mangafoxdownloader.html">MangaFox Downloader</a><br>
-				<a href="hermesmangadownloader.html">Hermes Manga(eden) Downloader</a><br>
-				<a href="tilecon">Tileset Converter MV</a><br>
-
-				<a href="updatewp.html">Update by Webpage</a><br>
-"""
-
+				
 # ============== HTML
 html = """
 <html lang="en">
@@ -41,23 +42,20 @@ html = """
 	</head>
 	
 	<body onload="load();" onresize="load()">
-		<header></header>
-		
-		<section id="cross-column">
-			#column
-		</section>
+		<header>
+			<ul>
+				#column
+			</ul>
+		</header>
 		
 		<main id="main"></section>
-			<section id="content">
-				<h1>#page</h1>
-				<br />
-				#content
-			</section>
-			
-			<section id="sidebar">
-				#sidebar
-			</section>
+			<h1>#page</h1>
+			#content
 		</main>
+		
+		<aside>
+			#sidebar
+		</aside>
 		
 		<footer>
 			<small id="fooster-text">Gl&#225;dio C&#237;trico by Hermes Passer</small>
