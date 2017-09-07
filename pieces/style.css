@@ -1,20 +1,20 @@
-header, aside, main, footer{
+header, aside, main, footer {
 	background-color: #444444; 
 	margin: auto;
 }
 
-img, picture, video, iframe, embed{
+img, picture, video, iframe, embed {
 	max-width: 100%;
     display: block;
     margin: 0 auto;
 }
 
-body{
+body {
 	background-image: url("../images/background.gif");
 	color: white;
 }
 
-header{
+header {
 	background-position: left bottom;
 	background-repeat: 	 no-repeat;
 	background-image: 	 url("../images/header.gif");
@@ -22,27 +22,27 @@ header{
 	width: 90%;
 }
 
-header a{
+header a {
 	margin: 0 1em 0 0; 
 	color: white;
 }
 
-header a:hover{ color: #cecece; }
+header a:hover { color: #cecece; }
 
-header a:visited{ color: #9e9e9e; }
+header a:visited { color: #9e9e9e; }
 
-header ul{
+header ul {
 	position: relative;
 	padding-top: 120px;
 	padding-left: 100px;
 }
 
-header ul li{
+header ul li {
 	display: inline;
 	list-style: none;
 }
 
-aside{
+aside {
 	margin-right: 5%;
 	float: right;
 	width: 19.99%;
@@ -50,35 +50,46 @@ aside{
 
 aside ul {  padding: 0; }
 
-aside ul li{ list-style: none; }
+aside ul li { list-style: none; }
 
-main{
-	margin-left: 5%;
+main {
+	margin-left: 6%;
+	padding: 2%;
+	width: 65.01%;
 	float: left;
-	width: 70.01%;
 }
 
-footer{
+footer {
 	text-align: center;
 	margin-left: 5%;
+	font-size: 1.1em;
 	float: left;
 	width: 90%;
 }
 
-a{
+a {
     color: #ff0000;
     text-decoration: none;
 }
 
-a:hover{
+a:hover {
     text-decoration: underline;
 	color: #996464;
 }
 
-a:visited{
+a:visited {
 	text-decoration:none;
 	color: #660000;
 }
+
+p {
+	font-size: 0.8em;
+ 	font-family: Arial, Tahoma, Helvetica, FreeSans, sans-serif;
+}
+
+h1 { font-size: 1.5em; }
+
+h2 { font-size: 1em; }
 
 /*
 	@media screen and (max-width: 768px) {}
@@ -86,12 +97,12 @@ a:visited{
 */
 
 @media screen and (max-width: 640px) {	
-	body, header, main, aside, footer{
+	body, header, main, aside, footer {
 		margin: 0 0 0 0; 
 		width: 100%;
 	}
 	
-	aside{ text-align: center; }
+	aside { text-align: center; }
 }
 
 /* @media screen and (max-width: 520px) {} */
