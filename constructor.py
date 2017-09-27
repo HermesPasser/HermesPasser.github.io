@@ -1,15 +1,12 @@
 ﻿# Gládio Cítrico site constructor
-# by Hermes Passer in 07/2017 with python3
+# by Hermes Passer in 09/2017 with python3
 # ==========================================
 # Folders:
 #	pages  - auto generated completed pages
 #	pieces - contain the code to be pasted in output file and variables
-#	raw_pages - content of page without html structure
-# The first line of a document in raw folder will be the title of page.
 # ==========================================
 
-VAR_FOLDER = "pieces"
-RAW_FOLDER = "raw_pages"
+VAR_FOLDER = "config"
 
 import os
 import xml.etree.ElementTree as ET

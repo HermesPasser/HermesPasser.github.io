@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <pages>
 	<page>
 		<title>Home</title>
@@ -8,8 +7,11 @@
 		<keywords>Hermes Passer, Gládio Cítrico</keywords>
 		<content><![CDATA[			
 			<img border="0" height="320" src="https://3.bp.blogspot.com/-zbUCFqxq2yM/WRXwZ2f9lOI/AAAAAAAAHHs/nCzKFHHI_GoxX9kXEA8MXUPIW4pwW2CUgCLcB/s320/Barbaman%2BAACD%2B%2528arte%2BDebora%2BPereira%2Bpintura%2BHermesPasser%2529%2BANIMADO.gif"	/>
-			<p> Looking for me?</p>
+			<p>This site is a repository for my online content.</p>
+			<br / >
+			<p>Looking for me?</p>
 			<ul style="list-style: none;">
+				<li><a href="https://gladiocitrico.glospot.com">Blog (in portuguese)</a></li>
 				<li><a href="https://www.youtube.com/channel/UCqhu61a4NvbPKF5MIufsGlw">YoutTube</a></li>
 				<li><a href="https://twitter.com/HermesPasser">Twitter</a></li>
 				<li><a href="https://forums.rpgmakerweb.com/index.php?members/hermespasser.102676/">RM Web</a></li>
