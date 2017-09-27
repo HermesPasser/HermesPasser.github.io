@@ -12,16 +12,9 @@ VAR_FOLDER = "pieces"
 RAW_FOLDER = "raw_pages"
 
 import os
+import xml.etree.ElementTree as ET
 import sys; sys.path.insert(0, "./" + VAR_FOLDER)
 import variables
-
-def get_mark(text, mark):
-	if (mark + '[' in text) or (']' + mark in text): 
-		start = text.index(mark + '[') + 2
-		end   = text.index(']' + mark)
-		return text[start:end]
-	else:
-		return ""
 
 print("Gládio Cítrico site constructor.")
 
@@ -42,20 +35,22 @@ variables.html = variables.html.replace('#sidebar', variables.sidebar)
 variables.html = variables.html.replace('#column', 	cross_column)
 
 # ============== Generate the pages
-for filename in os.listdir(RAW_FOLDER):
-	with open("{0}/{1}".format(RAW_FOLDER, filename), 'r') as f: 
-		content = f.read()
-		key   = get_mark(content, "k")
-		desc  = get_mark(content, "d")
-		title = get_mark(content, "t") 
-		content = get_mark(content, "c")
-	with open("pages/{0}".format(filename), 'w+') as f:
+pages = ET.parse(VAR_FOLDER + "/pages.xml").getroot()
+pages = pages.findall(".//page")
+
+for c in pages:
+	title = c.find("title").text
+	desc  = c.find("description").text
+	key   = c.find("keywords").text
+	cont  = c.find("content").text
+	
+	with open("pages/" + c.find("linkname").text + ".html", 'w+') as f:
 		html = variables.html
 		html = html.replace('#desc', desc)
 		html = html.replace('#keys', key)
 		html = html.replace('#title', title + " - Gl&#225;dio C&#237;trico")
 		html = html.replace('#page', title)
-		html = html.replace('#content', content)
+		html = html.replace('#content', cont)
 		f.write(html)
 
 print("Done.")
