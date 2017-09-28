@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <pages>
-	<page>
+	<page> <!-- Home -->
 		<title>Home</title>
 		<linkname>home</linkname>
 		<description>My personal page for the programs I wrote.</description>
@@ -19,7 +19,7 @@
 		]]></content>
 	</page>
 	
-	<page>
+	<page> <!-- Mangafox Downloader -->
 		<title>Mangafox Downloader</title>
 		<linkname>mangafoxdownloader</linkname>
 		<description>How to download manga from mangafox site.</description>
@@ -63,7 +63,7 @@
 		]]></content>
 	</page>
 	
-	<page>
+	<page dont-show-title=""> <!-- Tileset Converter MV -->
 		<title>Tileset Converter MV</title>
 		<linkname>tilecon</linkname>
 		<description>A RPG Maker older versions tilesets converter for RPG Maker MV.</description>
@@ -153,7 +153,7 @@
 		]]></content>
 	</page>
 	
-	<page>
+	<page> <!-- Update by Webpage -->
 		<title>Update by Webpage</title>
 		<linkname>updatewp</linkname>
 		<description>System update for ruby programs that checks on a page specifies whether updates are available.</description>
@@ -188,7 +188,7 @@
 		]]></content>
 	</page>
 	
-	<page>
+	<page> <!-- Hermes Manga Downloader -->
 		<title>Hermes Manga Downloader</title>
 		<linkname>hermesmangadownloader</linkname>
 		<description>How to download manga from mangaeden, hentai2read and other sites.</description>
@@ -205,9 +205,68 @@
 			<p>Downloads: <a href="https://github.com/HermesPasser/Hermes-Manga-Downloader/blob/master/HermesMangaDownloader/bin/Debug/HermesMangaDownloader.exe?raw=true">0.3</a></p>
 			<p>Source code at <a href="https://github.com/HermesPasser/Hermes-Manga-Downloader">GitHub</a></p>
 			<p><a href=https://www.youtube.com/watch?v=xhPP_7Jmmr8&feature=youtu.be">How to download manga from mangaeden</a></p>
-			<img alt="Program photo in the main form." src="../images/hmd/main.png"></img>
-			<img alt="Program photo in the mangaeden form." src="../images/hmd/eden.png"></img>
-			<img alt="Program photo in the hentai2read form." src="../images/hmd/hentai.png"></img>
+			<img alt="Program interface in the main form." src="../images/hmd/main.png"></img>
+			<img alt="Program interface in the mangaeden form." src="../images/hmd/eden.png"></img>
+			<img alt="Program interface in the hentai2read form." src="../images/hmd/hentai.png"></img>
+		]]></content>
+	</page>
+	
+	<page> <!-- BakaTsuki Extractor -->
+		<title>BakaTsuki Extractor</title>
+		<linkname>bakatsuki-extractor</linkname>
+		<description>Download the text and images from pages Baka-Tsuki without the page layout to be read anytime.</description>
+		<keywords> </keywords>
+		<content><![CDATA[
+			<p align="center">Download the text and images from pages Baka-Tsuki without the page layout to be read anytime.</p>
+			<p>Baka-Tsuki.org is a site what provide translation of light novels.</p>
+			<p>Source code at <a href="https://github.com/HermesPasser/BakaTsuki-Extractor">GitHub</a></p>
+			<br>
+			<img alt="Program interface." src="../images/bakatsuki-extractor.png"></img>
+		]]></content>
+	</page>
+	
+	<page dont-show-title=""> <!-- Ramu -->
+		<title>Ramu Engine</title>
+		<linkname>ramu</linkname>
+		<description>A simple game engine written in javascript.</description>
+		<keywords> </keywords>
+		<content><![CDATA[
+			<img src="https://camo.githubusercontent.com/1dc58b6bf552c9658f60acb29dc664bd8d38f971/68747470733a2f2f342e62702e626c6f6773706f742e636f6d2f2d387636466d7a7a6139466f2f576276435f524242522d492f41414141414141414866382f7450576c6569624c545a3079776278756f4f3767486d6a4a5f764175574b676251434c63424741732f73313630302f6c6f676f2e706e67" alt="engine icon" />
+			<p align="center">A simple game engine written in javascript.</p>
+			<p>Downloads: <a href="https://github.com/HermesPasser/Ramu/raw/master/Ramu.js">0.5</a></p>
+			<p>Source code at <a href="https://github.com/HermesPasser/Ramu">GitHub</a></p>
+			
+			<h2>Demos</h2>
+			<ul>
+				<li><a href="animation-test.html">animation-test</a></li>
+				<li><a href="collision-test.html">collision-test</a></li>
+				<li><a href="mapping-test.html">mapping-test</a></li>
+				<li><a href="parallax-test.html">parallax-test</a></li>
+				<li><a href="player-control-test.html">player-control-test</a></li>
+				<li><a href="ai-test.html">ai-test</a></li>
+			</ul>
+		]]></content>
+	</page>
+	
+	<!-- Ramu examples -->
+	
+	<!-- END - Ramu example -->
+	
+	<page> <!-- Other Projects -->
+		<title>Other Projects</title>
+		<linkname>other</linkname>
+		<description>Minor programming projects.</description>
+		<keywords>minor projects, projects</keywords>
+		<content><![CDATA[
+			<p align="center"></p>
+			coming soon
+			
+			Manga Host Downloader
+			Duplicate Bookmarks Remover
+			CSPaint
+			SISEstoque
+			Unity Mechanics and Utilities
+			TecInfoActivities
 		]]></content>
 	</page>
 	
@@ -217,8 +276,8 @@
 		<!-- <description></description> -->
 		<!-- <keywords> </keywords> -->
 		<!-- <content><![CDATA[ -->
+			<!-- <p align="center"></p> -->
 			
 		<!-- ]]></content> -->
 	<!-- </page> -->
-
 </pages>

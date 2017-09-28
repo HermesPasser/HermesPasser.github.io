@@ -9,18 +9,18 @@ sidebar = """
 				<li><a href="hermesmangadownloader.html">Hermes Manga Downloader</a></li>
 				<li><a href="mangafoxdownloader.html">MangaFox Downloader</a></li>
 				<li><a href="tilecon.html">Tileset Converter MV</a></li>
+				<li><a href="bakatuski-extractor.html">BakaStuki Extractor</a></li>
+				<li><a href="ramu.html">Ramu</a></li>
 				<!-- Remove soon? -->
 				<li><a href="updatewp.html">Update by Webpage</a></li>
 			</ul>
 """
-				# <a href="">BakaStuki Extractor</a><br>
 				# <a href="">Duplicate Bookmarks Remover</a><br>
 				
 				# <p>Game</p><br>
 				# <a href="">Dev'lusion</a><br>
 				
 				# <p>Other</p><br>
-				# <a href="">Chess js</a><br>
 				# <a href="">SISEstoque</a><br>
 				# <a href="">TecInfoActivities</a><br>
 				# <a href="">Unity Mechanics and Utilities</a><br>

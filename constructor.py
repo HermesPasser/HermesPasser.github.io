@@ -46,8 +46,13 @@ for c in pages:
 		html = html.replace('#desc', desc)
 		html = html.replace('#keys', key)
 		html = html.replace('#title', title + " - Gl&#225;dio C&#237;trico")
-		html = html.replace('#page', title)
 		html = html.replace('#content', cont)
+		
+		if 'dont-show-title' in c.attrib:
+			html = html.replace('#page', "")
+		else:
+			html = html.replace('#page', title)
+		
 		f.write(html)
 
 print("Done.")
