@@ -229,7 +229,7 @@
 		<title>Ramu Engine</title>
 		<linkname>ramu</linkname>
 		<description>A simple game engine written in javascript.</description>
-		<keywords> </keywords>
+		<keywords>engine, game engine, js, javascript</keywords>
 		<content><![CDATA[
 			<img src="https://camo.githubusercontent.com/1dc58b6bf552c9658f60acb29dc664bd8d38f971/68747470733a2f2f342e62702e626c6f6773706f742e636f6d2f2d387636466d7a7a6139466f2f576276435f524242522d492f41414141414141414866382f7450576c6569624c545a3079776278756f4f3767486d6a4a5f764175574b676251434c63424741732f73313630302f6c6f676f2e706e67" alt="engine icon" />
 			<p align="center">A simple game engine written in javascript.</p>
@@ -238,17 +238,57 @@
 			
 			<h2>Demos</h2>
 			<ul>
+	<!-- <li><a href="ramu-player-control-test.html">player-control-test</a></li> -->
 				<li><a href="#">animation-test</a></li>
 				<li><a href="#">collision-test</a></li>
 				<li><a href="#">mapping-test</a></li>
 				<li><a href="#">parallax-test</a></li>
-				<li><a href="#">player-control-test</a></li>
 				<li><a href="#">ai-test</a></li>
 			</ul>
 		]]></content>
 	</page>
 	
 	<!-- Ramu examples -->
+	
+	<page> <!-- Player Control -->
+		<title>Ramu Player Control</title>
+		<linkname>ramu-player-control-test</linkname>
+		<description>A simple player control. Include basic movimentation, physics and full animation.</description>
+		<keywords></keywords>
+		<content><![CDATA[
+			<canvas id="canvas" width="512" height="480" style="border:1px solid #000000;"></canvas>
+
+			<script type="text/javascript">	
+				function getCode(string){
+					var request = new XMLHttpRequest();
+					request.open("GET", string, false);
+					request.send();
+					return request.responseText;
+				}
+			
+				// Get code from github
+				var ramu   = getCode("https://raw.githubusercontent.com/HermesPasser/Ramu/master/Ramu.js");
+				var player = getCode("https://raw.githubusercontent.com/HermesPasser/Ramu/master/demos/player-control-test.js");
+				
+				// Replacing non local images
+				// isso quebra se as imagens não estiverem em outro server
+				player = player.replace("img/potato.png", "https://raw.githubusercontent.com/HermesPasser/Ramu/master/demos/img/potato.png");
+				player = player.replace("lightning.png", "https://raw.githubusercontent.com/HermesPasser/Ramu/master/demos/lightning.png");
+				player = player.replace("lum-rip-by-rojimenez.png", "https://raw.githubusercontent.com/HermesPasser/Ramu/master/demos/lum-rip-by-rojimenez.png");
+				
+				// Put code in a script tag
+				var ramuscript = document.createElement("script");
+				ramuscript.setAttribute("type", "text/javascript");
+				ramuscript.innerHTML = ramu;
+				document.body.appendChild(ramuscript);
+
+				var playerscript = document.createElement("script");
+				playerscript.setAttribute("type", "text/javascript");
+				playerscript.innerHTML = player;
+				document.body.appendChild(playerscript);					
+			</script>
+		]]></content>
+	</page>
 	
 	<!-- END - Ramu example -->
 	
