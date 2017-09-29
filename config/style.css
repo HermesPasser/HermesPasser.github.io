@@ -3,7 +3,7 @@ header, aside, main, footer {
 	margin: auto;
 }
 
-img, picture, video, iframe, embed {
+img, picture, video, iframe, embed, canvas {
 	max-width: 100%;
     display: block;
     margin: 0 auto;
