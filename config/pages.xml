@@ -233,16 +233,16 @@
 		<content><![CDATA[
 			<img src="https://camo.githubusercontent.com/1dc58b6bf552c9658f60acb29dc664bd8d38f971/68747470733a2f2f342e62702e626c6f6773706f742e636f6d2f2d387636466d7a7a6139466f2f576276435f524242522d492f41414141414141414866382f7450576c6569624c545a3079776278756f4f3767486d6a4a5f764175574b676251434c63424741732f73313630302f6c6f676f2e706e67" alt="engine icon" />
 			<p align="center">A simple game engine written in javascript.</p>
-			<p>Downloads: <a href="https://github.com/HermesPasser/Ramu/raw/master/Ramu.js">0.5</a></p>
+			<p>Downloads: <a href="https://github.com/HermesPasser/Ramu/raw/master/Ramu.js">0.5.2</a></p>
 			<p>Source code at <a href="https://github.com/HermesPasser/Ramu">GitHub</a></p>
 			
 			<h2>Demos</h2>
 			<ul>
-				<li><a href="ramu-player-control-test.html">player-control-test</a></li>
-				<li><a href="#">animation-test</a></li>
-				<li><a href="#">collision-test</a></li>
-				<li><a href="#">mapping-test</a></li>
-				<li><a href="#">parallax-test</a></li>
+				<li><a href="ramu-player-control-test.html">Player Control, Gravity and Animation Machine</a></li>
+				<li><a href="collision-test-potato-atack.html">Ramu Collision, Menu and Machine State</a></li>
+				<li><a href="animation-test.html">Game Sprite and Spritesheet Animation</a></li>
+				<li><a href="ramu-parallax-test.html">Parallax</a></li>
+				<br>
 				<li><a href="#">ai-test</a></li>
 			</ul>
 		]]></content>
@@ -259,19 +259,11 @@
 			<canvas id="canvas" width="512" height="480" style="border:1px solid #000000;"></canvas>
 
 			<script type="text/javascript">	
-				function getCode(string){
-					var request = new XMLHttpRequest();
-					request.open("GET", string, false);
-					request.send();
-					return request.responseText;
-				}
-			
 				// Get code from github
 				var ramu   = getCode("https://raw.githubusercontent.com/HermesPasser/Ramu/master/Ramu.js");
 				var player = getCode("https://raw.githubusercontent.com/HermesPasser/Ramu/master/demos/player-control-test.js");
 				
 				// Replacing non local images
-				// isso quebra se as imagens não estiverem em outro server
 				player = player.replace("img/potato.png", "https://raw.githubusercontent.com/HermesPasser/Ramu/master/demos/img/potato.png");
 				player = player.replace("lightning.png", "https://raw.githubusercontent.com/HermesPasser/Ramu/master/demos/lightning.png");
 				player = player.replace("lum-rip-by-rojimenez.png", "https://raw.githubusercontent.com/HermesPasser/Ramu/master/demos/lum-rip-by-rojimenez.png");
@@ -290,7 +282,134 @@
 		]]></content>
 	</page>
 	
-	<!-- END - Ramu example -->
+	<page> <!-- Parallax  Coloquei o codigo na integra pois esta em html e não js -->
+		<title>Ramu Parallax</title>
+		<linkname>ramu-parallax-test</linkname>
+		<description>A demostration of parallax system.</description>
+		<keywords>Ramu test</keywords>
+		<content><![CDATA[
+			<canvas id="canvas" width="500" height="500" style="border:1px solid #000000;"></canvas>
+
+			<script type="text/javascript">		
+				var ramu   = getCode("https://raw.githubusercontent.com/HermesPasser/Ramu/master/Ramu.js");
+
+				// Put code in a script tag
+				var ramuscript = document.createElement("script");
+				ramuscript.setAttribute("type", "text/javascript");
+				ramuscript.innerHTML = ramu;
+				document.body.appendChild(ramuscript);
+
+				var c = "https://raw.githubusercontent.com/HermesPasser/Ramu/master/demos/img/clouds.png";
+				var m = "https://raw.githubusercontent.com/HermesPasser/Ramu/master/demos/img/montains.png";
+				
+				// Parallax Test by Hermes Passer in 09-15-17 using Ramu 0.3
+				class MyGame extends GameObj{
+					start(){
+						var sky = new Parallax(c, 1, 1, 500, 500, -2);
+						var montains = new Parallax(m, 1, 1, 500, 500);
+						sky.setDrawPriority(0)
+					}
+				}
+				new MyGame(0,0,0,0);
+				Ramu.init();	
+			</script>
+		]]></content>
+	</page>
+	
+	<page> <!-- Mapping -->
+		<title>Ramu Mapping</title>
+		<linkname>ramu-mapping-test</linkname>
+		<description>A simple mapping system.</description>
+		<keywords>Ramu test</keywords>
+		<content><![CDATA[
+			<canvas id="canvas" width="500" height="500" style="border:1px solid #000000;"></canvas>
+
+			<script type="text/javascript">	
+				// Get code from github
+				var ramu = getCode("https://raw.githubusercontent.com/HermesPasser/Ramu/master/Ramu.js");
+				var map = getCode("https://raw.githubusercontent.com/HermesPasser/Ramu/master/demos/mapping-test.js");
+				
+				// Replacing non local images
+				// isso quebra se as imagens não estiverem em outro server
+				map = map.replace("img/ground.png", "https://raw.githubusercontent.com/HermesPasser/Ramu/master/demos/img/ground.png");
+				map = map.replace("img/flying_ground.png", "https://raw.githubusercontent.com/HermesPasser/Ramu/master/demos/img/flying_ground.png");
+				
+				// Put code in a script tag
+				var ramuscript = document.createElement("script");
+				ramuscript.setAttribute("type", "text/javascript");
+				ramuscript.innerHTML = ramu;
+				document.body.appendChild(ramuscript);
+
+				var mapscript = document.createElement("script");
+				mapscript.setAttribute("type", "text/javascript");
+				mapscript.innerHTML = map;
+				document.body.appendChild(mapscript);					
+			</script>
+		]]></content>
+	</page>
+	
+	<page> <!-- Collision Test: Potato Atack -->
+		<title>Ramu Collision, Menu and Machine State: The Potato Attack</title>
+		<linkname>collision-test-potato-atack</linkname>
+		<description>A simple game that use menu and collisions.</description>
+		<keywords>Ramu test</keywords>
+		<content><![CDATA[
+			<canvas id="canvas" width="500" height="500" style="border:1px solid #000000;"></canvas>
+
+			<script type="text/javascript">	
+				// Get code from github
+				var ramu = getCode("https://raw.githubusercontent.com/HermesPasser/Ramu/master/Ramu.js");
+				var coll = getCode("https://raw.githubusercontent.com/HermesPasser/Ramu/master/demos/collision-test-potato-atack.js");
+				
+				// Replacing non local images
+				coll = coll.replace("img/potato.png", "https://raw.githubusercontent.com/HermesPasser/Ramu/master/demos/img/potato.png");
+				
+				// Put code in a script tag
+				var ramuscript = document.createElement("script");
+				ramuscript.setAttribute("type", "text/javascript");
+				ramuscript.innerHTML = ramu;
+				document.body.appendChild(ramuscript);
+
+				var collscript = document.createElement("script");
+				collscript.setAttribute("type", "text/javascript");
+				collscript.innerHTML = coll;
+				document.body.appendChild(collscript);					
+			</script>
+		]]></content>
+	</page>
+	
+	<page> <!-- Animation -->
+		<title>Game Sprite and Spritesheet Animation</title>
+		<linkname>animation-test</linkname>
+		<description>Demo with animations.</description>
+		<keywords>Ramu test</keywords>
+		<content><![CDATA[
+			<canvas id="canvas" width="500" height="500" style="border:1px solid #000000;"></canvas>
+
+			<script type="text/javascript">	
+				// Get code from github
+				var ramu = getCode("https://raw.githubusercontent.com/HermesPasser/Ramu/master/Ramu.js");
+				var a = getCode("https://raw.githubusercontent.com/HermesPasser/Ramu/master/demos/animation-test.js");
+
+				// Replacing non local images
+				a = a.replace("img/gear.png", "https://raw.githubusercontent.com/HermesPasser/Ramu/master/demos/img/gear.png");
+				a = a.replace("img/anim/", "https://raw.githubusercontent.com/HermesPasser/Ramu/master/demos/img/anim/");
+				
+				// Put code in a script tag
+				var ramuscript = document.createElement("script");
+				ramuscript.setAttribute("type", "text/javascript");
+				ramuscript.innerHTML = ramu;
+				document.body.appendChild(ramuscript);
+
+				var ascript = document.createElement("script");
+				ascript.setAttribute("type", "text/javascript");
+				ascript.innerHTML = a;
+				document.body.appendChild(ascript);					
+			</script>
+		]]></content>
+	</page>
+	
+	<!-- END - Ramu examples -->
 	
 	<page> <!-- Other Projects -->
 		<title>Other Projects</title>

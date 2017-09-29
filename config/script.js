@@ -20,3 +20,10 @@ function load(){
 		document.getElementsByTagName('aside')[0].setAttribute("style","height:" + mainHeight);
 	}
 }
+
+function getCode(string){
+	var request = new XMLHttpRequest();
+	request.open("GET", string, false);
+	request.send();
+	return request.responseText;
+}

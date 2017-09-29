@@ -2,7 +2,7 @@
 <html lang="en">
 	<head>
 		<meta charset="utf-8"/>
-		<meta name="description" content="A simple player control. Include basic movimentation, physics and full animation." />
+		<meta name="description" content="Demo with animations." />
 		<meta name="viewport" 	 content="width=device-width, initial-scale=1">
 		<meta name="keywords" 	 content="Ramu test"/>
 		
@@ -10,7 +10,7 @@
 		<link rel="stylesheet" type="text/css" href="../config/style.css" />
 		
 		<script type="text/javascript" src="../config/script.js"></script>
-		<title>Ramu Player Control - Gl&#225;dio C&#237;trico</title>
+		<title>Game Sprite and Spritesheet Animation - Gl&#225;dio C&#237;trico</title>
 	</head>
 	
 	<body onload="load();" onresize="load()">
@@ -23,19 +23,18 @@
 		</header>
 		
 		<main id="main"></section>
-			<h1>Ramu Player Control</h1>
+			<h1>Game Sprite and Spritesheet Animation</h1>
 			
-			<canvas id="canvas" width="512" height="480" style="border:1px solid #000000;"></canvas>
+			<canvas id="canvas" width="500" height="500" style="border:1px solid #000000;"></canvas>
 
 			<script type="text/javascript">	
 				// Get code from github
-				var ramu   = getCode("https://raw.githubusercontent.com/HermesPasser/Ramu/master/Ramu.js");
-				var player = getCode("https://raw.githubusercontent.com/HermesPasser/Ramu/master/demos/player-control-test.js");
-				
+				var ramu = getCode("https://raw.githubusercontent.com/HermesPasser/Ramu/master/Ramu.js");
+				var a = getCode("https://raw.githubusercontent.com/HermesPasser/Ramu/master/demos/animation-test.js");
+
 				// Replacing non local images
-				player = player.replace("img/potato.png", "https://raw.githubusercontent.com/HermesPasser/Ramu/master/demos/img/potato.png");
-				player = player.replace("lightning.png", "https://raw.githubusercontent.com/HermesPasser/Ramu/master/demos/lightning.png");
-				player = player.replace("lum-rip-by-rojimenez.png", "https://raw.githubusercontent.com/HermesPasser/Ramu/master/demos/lum-rip-by-rojimenez.png");
+				a = a.replace("img/gear.png", "https://raw.githubusercontent.com/HermesPasser/Ramu/master/demos/img/gear.png");
+				a = a.replace("img/anim/", "https://raw.githubusercontent.com/HermesPasser/Ramu/master/demos/img/anim/");
 				
 				// Put code in a script tag
 				var ramuscript = document.createElement("script");
@@ -43,10 +42,10 @@
 				ramuscript.innerHTML = ramu;
 				document.body.appendChild(ramuscript);
 
-				var playerscript = document.createElement("script");
-				playerscript.setAttribute("type", "text/javascript");
-				playerscript.innerHTML = player;
-				document.body.appendChild(playerscript);					
+				var ascript = document.createElement("script");
+				ascript.setAttribute("type", "text/javascript");
+				ascript.innerHTML = a;
+				document.body.appendChild(ascript);					
 			</script>
 		
 		</main>
