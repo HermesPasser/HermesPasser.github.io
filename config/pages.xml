@@ -254,7 +254,7 @@
 		<title>Ramu Player Control</title>
 		<linkname>ramu-player-control-test</linkname>
 		<description>A simple player control. Include basic movimentation, physics and full animation.</description>
-		<keywords></keywords>
+		<keywords>test</keywords>
 		<content><![CDATA[
 			<canvas id="canvas" width="512" height="480" style="border:1px solid #000000;"></canvas>
 
