@@ -43,6 +43,8 @@ for c in pages:
 	
 	with open("pages/" + c.find("linkname").text + ".html", 'w+') as f:
 		html = variables.html
+		
+		# Isso quebra se um desses não tiver texto
 		html = html.replace('#desc', desc)
 		html = html.replace('#keys', key)
 		html = html.replace('#title', title + " - Gl&#225;dio C&#237;trico")
