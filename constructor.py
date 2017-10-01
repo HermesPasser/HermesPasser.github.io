@@ -3,47 +3,39 @@
 # ==========================================
 # Folders:
 #	pages  - auto generated completed pages
-#	pieces - contain the code to be pasted in output file and variables
+#	config - pieces to contruct the pages
 # ==========================================
 
-VAR_FOLDER = "config"
-
-import os
 import xml.etree.ElementTree as ET
-import sys; sys.path.insert(0, "./" + VAR_FOLDER)
-import variables
-
 print("Gládio Cítrico site constructor.")
+
+VAR_FOLDER = "config"
+root = ET.parse(VAR_FOLDER + "/pages.xml").getroot()
 
 # ============== Generate cross column
 cross_column = ""
 for url, name in {
 	'Home'		: 'home.html', 
 	'GitHub'	: 'https://github.com/HermesPasser/', 
-	# 'Projects'	: '#', 
-	# 'About'		: '#', 
 }.items(): cross_column += "<li><a href=\"" + name + "\">" + url + "</a></li>\n\t\t\t"
 
 # ============== Format html
-variables.html = variables.html.replace('#css', 	"../" + VAR_FOLDER + "/style.css")
-variables.html = variables.html.replace('#js', 		"../" + VAR_FOLDER + "/script.js")
-variables.html = variables.html.replace('#icon', 	"../images/favicon.ico")
-variables.html = variables.html.replace('#sidebar', variables.sidebar)
-variables.html = variables.html.replace('#column', 	cross_column)
+html = root.find(".//html").text
+html = html.replace('#css', 	"../" + VAR_FOLDER + "/style.css")
+html = html.replace('#js', 		"../" + VAR_FOLDER + "/script.js")
+html = html.replace('#icon', 	"../images/favicon.ico")
+html = html.replace('#sidebar', root.find(".//sidebar").text)
+html = html.replace('#column', 	cross_column)
 
 # ============== Generate the pages
-pages = ET.parse(VAR_FOLDER + "/pages.xml").getroot()
-pages = pages.findall(".//page")
-
+pages = root.findall(".//page")
 for c in pages:
 	title = c.find("title").text
 	desc  = c.find("description").text
 	key   = c.find("keywords").text
 	cont  = c.find("content").text
 	
-	with open("pages/" + c.find("linkname").text + ".html", 'w+') as f:
-		html = variables.html
-		
+	with open("pages/" + c.find("linkname").text + ".html", 'w+') as f:		
 		# Isso quebra se um desses não tiver texto
 		html = html.replace('#desc', desc)
 		html = html.replace('#keys', key)
