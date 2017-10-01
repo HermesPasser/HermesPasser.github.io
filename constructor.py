@@ -34,19 +34,19 @@ for c in pages:
 	desc  = c.find("description").text
 	key   = c.find("keywords").text
 	cont  = c.find("content").text
-	
 	with open("pages/" + c.find("linkname").text + ".html", 'w+') as f:		
 		# Isso quebra se um desses não tiver texto
-		html = html.replace('#desc', desc)
-		html = html.replace('#keys', key)
-		html = html.replace('#title', title + " - Gl&#225;dio C&#237;trico")
-		html = html.replace('#content', cont)
+		tmphtml = html;
+		tmphtml = tmphtml.replace('#desc', desc)
+		tmphtml = tmphtml.replace('#keys', key)
+		tmphtml = tmphtml.replace('#title', title + " - Gl&#225;dio C&#237;trico")
+		tmphtml = tmphtml.replace('#content', cont)
 		
 		if 'dont-show-title' in c.attrib:
-			html = html.replace('#page', "")
+			tmphtml = tmphtml.replace('#page', "")
 		else:
-			html = html.replace('#page', title)
+			tmphtml = tmphtml.replace('#page', title)
 		
-		f.write(html)
+		f.write(tmphtml)
 
 print("Done.")

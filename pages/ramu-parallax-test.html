@@ -3,15 +3,15 @@
 <html lang="en">
 	<head>
 		<meta charset="utf-8"/>
-		<meta name="description" content="My personal page for the programs I wrote." />
+		<meta name="description" content="A demostration of parallax system." />
 		<meta name="viewport" 	 content="width=device-width, initial-scale=1">
-		<meta name="keywords" 	 content="Hermes Passer, Gládio Cítrico"/>
+		<meta name="keywords" 	 content="Ramu test"/>
 		
 		<link rel="shortcut    icon" href="../images/favicon.ico" />
 		<link rel="stylesheet" type="text/css" href="../config/style.css" />
 		
 		<script type="text/javascript" src="../config/script.js"></script>
-		<title>Home - Gl&#225;dio C&#237;trico</title>
+		<title>Ramu Parallax - Gl&#225;dio C&#237;trico</title>
 	</head>
 	
 	<body onload="load();" onresize="load()">
@@ -24,18 +24,33 @@
 		</header>
 		
 		<main id="main"></section>
-			<h1>Home</h1>
-						
-			<img border="0" height="320" src="https://3.bp.blogspot.com/-zbUCFqxq2yM/WRXwZ2f9lOI/AAAAAAAAHHs/nCzKFHHI_GoxX9kXEA8MXUPIW4pwW2CUgCLcB/s320/Barbaman%2BAACD%2B%2528arte%2BDebora%2BPereira%2Bpintura%2BHermesPasser%2529%2BANIMADO.gif"	/>
-			<p>This site is a repository for my online content.</p>
-			<br / >
-			<p>Looking for me?</p>
-			<ul style="list-style: none;">
-				<li><a href="http://gladiocitrico.blogspot.com.br/">Blog (in portuguese)</a></li>
-				<li><a href="https://www.youtube.com/channel/UCqhu61a4NvbPKF5MIufsGlw">YoutTube</a></li>
-				<li><a href="https://twitter.com/HermesPasser">Twitter</a></li>
-				<li><a href="https://forums.rpgmakerweb.com/index.php?members/hermespasser.102676/">RM Web</a></li>
-			</ul>
+			<h1>Ramu Parallax</h1>
+			
+			<canvas id="canvas" width="500" height="500" style="border:1px solid #000000;"></canvas>
+
+			<script type="text/javascript">		
+				var ramu   = getCode("https://raw.githubusercontent.com/HermesPasser/Ramu/master/Ramu.js");
+
+				// Put code in a script tag
+				var ramuscript = document.createElement("script");
+				ramuscript.setAttribute("type", "text/javascript");
+				ramuscript.innerHTML = ramu;
+				document.body.appendChild(ramuscript);
+
+				var c = "https://raw.githubusercontent.com/HermesPasser/Ramu/master/demos/img/clouds.png";
+				var m = "https://raw.githubusercontent.com/HermesPasser/Ramu/master/demos/img/montains.png";
+				
+				// Parallax Test by Hermes Passer in 09-15-17 using Ramu 0.3
+				class MyGame extends GameObj{
+					start(){
+						var sky = new Parallax(c, 1, 1, 500, 500, -2);
+						var montains = new Parallax(m, 1, 1, 500, 500);
+						sky.setDrawPriority(0)
+					}
+				}
+				new MyGame(0,0,0,0);
+				Ramu.init();	
+			</script>
 		
 		</main>
 		

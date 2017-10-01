@@ -62,7 +62,7 @@
 		<linkname>home</linkname>
 		<description>My personal page for the programs I wrote.</description>
 		<keywords>Hermes Passer, Gládio Cítrico</keywords>
-		<content><![CDATA[			
+		<content><![CDATA[
 			<img border="0" height="320" src="https://3.bp.blogspot.com/-zbUCFqxq2yM/WRXwZ2f9lOI/AAAAAAAAHHs/nCzKFHHI_GoxX9kXEA8MXUPIW4pwW2CUgCLcB/s320/Barbaman%2BAACD%2B%2528arte%2BDebora%2BPereira%2Bpintura%2BHermesPasser%2529%2BANIMADO.gif"	/>
 			<p>This site is a repository for my online content.</p>
 			<br / >
@@ -282,6 +282,25 @@
 		]]></content>
 	</page>
 	
+	<page> <!-- Other Projects -->
+		<title>Other Projects</title>
+		<linkname>other</linkname>
+		<description>Minor programming projects.</description>
+		<keywords>minor projects, projects</keywords>
+		<content><![CDATA[
+			<p align="center"></p>
+			coming soon
+			http://gladiocitrico.blogspot.com.br/p/projetos-m.html
+			
+			Manga Host Downloader
+			Duplicate Bookmarks Remover
+			CSPaint
+			SISEstoque
+			Unity Mechanics and Utilities
+			TecInfoActivities
+		]]></content>
+	</page>
+		
 	<page dont-show-title=""> <!-- Ramu -->
 		<title>Ramu Engine</title>
 		<linkname>ramu</linkname>
@@ -295,7 +314,7 @@
 			
 			<h2>Demos</h2>
 			<ul>
-				<li><a href="ramu-player-control-test.html">Player Control, Gravity and Animation Machine</a></li>
+				<li><a href="ramu-player-control-test.html">Player Control, Enemy A.I, Gravity and Animation Machine</a></li>
 				<li><a href="collision-test-potato-atack.html">Ramu Collision, Menu and Machine State</a></li>
 				<li><a href="animation-test.html">Game Sprite and Spritesheet Animation</a></li>
 				<li><a href="ramu-parallax-test.html">Parallax</a></li>
@@ -304,7 +323,7 @@
 			</ul>
 		]]></content>
 	</page>
-	
+
 	<!-- Ramu examples -->
 	
 	<page> <!-- Player Control -->
@@ -467,24 +486,4 @@
 	</page>
 	
 	<!-- END - Ramu examples -->
-	
-	<page> <!-- Other Projects -->
-		<title>Other Projects</title>
-		<linkname>other</linkname>
-		<description>Minor programming projects.</description>
-		<keywords>minor projects, projects</keywords>
-		<content><![CDATA[
-			<p align="center"></p>
-			coming soon
-			http://gladiocitrico.blogspot.com.br/p/projetos-m.html
-			
-			Manga Host Downloader
-			Duplicate Bookmarks Remover
-			CSPaint
-			SISEstoque
-			Unity Mechanics and Utilities
-			TecInfoActivities
-		]]></content>
-	</page>
-	
 </pages>
