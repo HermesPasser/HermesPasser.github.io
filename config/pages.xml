@@ -314,12 +314,21 @@
 			
 			<h2>Demos</h2>
 			<ul>
-				<li><a href="ramu-player-control-test.html">Player Control, Enemy A.I, Gravity and Animation Machine</a></li>
-				<li><a href="collision-test-potato-atack.html">Ramu Collision, Menu and Machine State</a></li>
-				<li><a href="animation-test.html">Game Sprite and Spritesheet Animation</a></li>
-				<li><a href="ramu-parallax-test.html">Parallax</a></li>
-				<br>
-				<li><a href="#">ai-test</a></li>
+				<li>
+					<a href="ramu-player-control-test.html">WORK ON PROGRESS - Player Control, Gravity and Spritesheet Animator</a>
+				</li>
+				<li>
+					<a href="#">WORK ON PROGRESS - Simple A.I</a>
+				</li>
+				<li>
+					<a href="collision-test-potato-atack.html">Collision, Menu and Machine State</a>
+				</li>
+				<li>
+					<a href="animation-test.html">Game Sprite and Spritesheet Animation</a>
+				</li>
+				<li>
+					<a href="ramu-parallax-test.html">Parallax</a>
+				</li>
 			</ul>
 		]]></content>
 	</page>
@@ -341,8 +350,8 @@
 				
 				// Replacing non local images
 				player = player.replace("img/potato.png", "https://raw.githubusercontent.com/HermesPasser/Ramu/master/demos/img/potato.png");
-				player = player.replace("lightning.png", "https://raw.githubusercontent.com/HermesPasser/Ramu/master/demos/lightning.png");
-				player = player.replace("lum-rip-by-rojimenez.png", "https://raw.githubusercontent.com/HermesPasser/Ramu/master/demos/lum-rip-by-rojimenez.png");
+				player = player.replace("img/lightning.png", "https://raw.githubusercontent.com/HermesPasser/Ramu/master/demos/lightning.png");
+				player = player.replace("img/lum-rip-by-rojimenez.png", "https://raw.githubusercontent.com/HermesPasser/Ramu/master/demos/lum-rip-by-rojimenez.png");
 				
 				// Put code in a script tag
 				var ramuscript = document.createElement("script");
@@ -386,7 +395,7 @@
 						sky.setDrawPriority(0)
 					}
 				}
-				new MyGame(0,0,0,0);
+				new MyGame(0,0);
 				Ramu.init();	
 			</script>
 		]]></content>
