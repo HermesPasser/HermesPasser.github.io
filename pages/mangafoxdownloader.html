@@ -1,0 +1,92 @@
+
+					
+<html lang="en">
+	<head>
+		<meta charset="utf-8"/>
+		<meta name="description" content="How to download manga from mangafox site." />
+		<meta name="viewport" 	 content="width=device-width, initial-scale=1">
+		<meta name="keywords" 	 content="download manga, download mangafox, manga, mangafox"/>
+		
+		<link rel="shortcut    icon" href="../images/favicon.ico" />
+		<link rel="stylesheet" type="text/css" href="../config/style.css" />
+		
+		<script type="text/javascript" src="../config/script.js"></script>
+		<title>Mangafox Downloader - Gl&#225;dio C&#237;trico</title>
+	</head>
+	
+	<body onload="load();" onresize="load()">
+		<header>
+			<ul>
+				<li><a href="home.html">Home</a></li>
+			<li><a href="https://github.com/HermesPasser/">GitHub</a></li>
+			
+			</ul>
+		</header>
+		
+		<main id="main"></section>
+			<h1>Mangafox Downloader</h1>
+			
+			<br>
+			<img alt="Mangafox downloader logo (a page of manga)." src="https://raw.githubusercontent.com/HermesPasser/MangaFox-Downloader/master/app-icon.png"></img>
+			<p align="center">Download mangas of mangafox site.</p>
+			<p>Downloads: <a href="https://github.com/HermesPasser/MangaFox-Downloader/raw/master/shy/MangafoxDownloader_0.5.shy">0.5</a></p>
+			<p>Source code at <a href="https://github.com/HermesPasser/Mangafox-Downloader">GitHub</a></p>
+			<br>
+			<h2>How to download manga from mangafox</h2>
+			<p>This program provide two ways to be used, by GUI that allows one download at a time and by command line, which allows create scripts to automatize the process allowing multiple downloads.</p>
+			<iframe src="https://www.youtube.com/embed/Vw3o-hZJp10" frameborder="0" allowfullscreen></iframe>
+			<h3>Download by GUI</h3>
+			<p>First you need install Shoes. You can download the latest version (7/2017) clicking <a href="http://shoes.mvmanila.com/public/shoes/shoes-3.3.2-gtk3-32.exe">here</a> or access the <a href="http://shoes.mvmanila.com/public/shoes/">list of versions</a> to be able to download for non-windows systems.</p>
+			<br>
+			<img alt="Shoes installer" src="../images/mfd/image003.gif"></img>
+			<p>After that, you need download the Mangafox Downloader, de latest version is available in this page.</p>
+			<p>When the download is finished, just open normally. If the system asks what program you want to open it with then just open the program with Shoes).</p>
+			<img alt="Mangafox downloader interface." src="../images/mfd/image004.gif"></img>
+			<p>To start you download, first you need specify the location where it will be downloaded, then type the name of manga and click in the Search manga button. If the manga exist the cover will appear and you may type the volume and chapter what you want download. (see About section in the program for more information of how type manga, volume and chapter names). If the chapter is not within any volume then leave the vol field blank.</p>
+			<p>The Download button start the download and the Cancel button stop the download.</p>
+			<h3>Download by command line</h3>
+			<br>
+			<p>First you need install Ruby. For windows users click <a href="https://rubyinstaller.org/downloads/">here</a> or <a href="https://www.ruby-lang.org/en/downloads/">here</a> for other systems.</p>
+			<p>After, you need download and unzip the source code of Mangafox Downloader available <a href="https://github.com/HermesPasser/MangaFox-Downloader/archive/master.zip">here</a>.</p>
+			<img alt="Ruby installer." src="../images/mfd/image005.gif"></img>
+			<p>To download by command line you need call the main program script (main.rb) with Ruby.</p>
+			<p>Parameters:</p>
+			<p>Download:<span style="font-size: 12pt; line-height: 17.12px;"> m:[manga_name], v:[vol_name] (optional), c:[chapter_name], p:[destination_path]</span></p>
+			<p><span style="font-size: 12pt; line-height: 17.12px;">Help: h:  |  Update: u:</span></p>
+			<p>Example:<span style="font-size: 12pt; line-height: 17.12px;">&nbsp;</span><span class="SpellE"><span style="color: #c00000; font-size: 9pt; line-height: 12.84px;">ruby</span></span><span style="color: #c00000; font-size: 9pt; line-height: 12.84px;">&nbsp;</span><span class="SpellE"><span style="color: #ffc000; font-size: 9pt; line-height: 12.84px;">main.rb</span></span><span style="color: #ffc000; font-size: 9pt; line-height: 12.84px;">&nbsp;</span><span style="color: #00b050; font-size: 9pt; line-height: 12.84px;">m:tamen_de_gushi&nbsp;</span><span style="color: #00b0f0; font-size: 9pt; line-height: 12.84px;">c:c001&nbsp;</span><span style="color: #002060; font-size: 9pt; line-height: 12.84px;">p:C:/users/hermes/manga<o:p></o:p></span></p>
+			<br>
+			<p>You can also can create batch files to automatize the process and download multiple chapters. To do this, you need to create a file and save it with the .bat extension. <a href="../pieces/mfdmascro.bat">The code here.</a></p>
+			<img alt="Code .bat." src="../images/mfd/image006.gif"></img>
+			<p>Above you can see program working and the final result.</p>
+			<img alt="Mangafox downloader working in command prompt." src="../images/mfd/image007.gif"></img>
+			<br>
+			<img alt="Folder with all chapters downloaded." src="../images/mfd/image008.gif"></img>
+		
+		</main>
+		
+		<aside>
+			
+					
+			<br>
+			<a href="http://gladiocitrico.blogspot.com.br/">Brother blog (in portuguese)</a></li>
+			<h3>Software</h3> 
+			<ul>
+				<li><a href="hermesmangadownloader.html">Hermes Manga Downloader</a></li>
+				<li><a href="mangafoxdownloader.html">MangaFox Downloader</a></li>
+				<li><a href="tilecon.html">Tileset Converter MV</a></li>
+				<li><a href="bakatsuki-extractor.html">BakaStuki Extractor</a></li>
+				<li><a href="ramu.html">Ramu</a></li>
+				<!-- Remove soon? -->
+				<li><a href="updatewp.html">Update by Webpage</a></li>
+			</ul>
+		
+	
+		</aside>
+		
+		<footer>
+			<small id="fooster-text">Gl&#225;dio C&#237;trico by Hermes Passer</small>
+		</footer>
+	</body>
+</html>
+		
+	
