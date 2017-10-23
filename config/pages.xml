@@ -291,8 +291,8 @@
 	<page dont-show-title=""> <!-- Dev'lusion -->
 		<title>Dev'lusion</title>
 		<linkname>devlusion</linkname>
-		<description>Minor programming projects.</description>
-		<keywords>minor projects, projects</keywords>
+		<description>A game focused in teaching programming logics.</description>
+		<keywords>devlusion, dev'lusion, dev lusion</keywords>
 		<content><![CDATA[
 			<img src="https://4.bp.blogspot.com/-_HxgoS8aEPM/WD1yon_v4rI/AAAAAAAAG-E/o9Eo5eG0J1A9pYKfKWTURdTSh4St7_YcwCLcB/s1600/Ico.png" alt="game icon" />
 			<p align="center">A game focused in teaching programming logics.</p>
@@ -305,6 +305,7 @@
 			<p><a href="http://gladiocitrico.blogspot.com.br/p/devlusion.html">Read in portuguese</a></p>
 			<br />
 			<p>Created as T.I activity of course completion.</p>
+			<p>This game is a prototype and will not be finished.</p>
 			<h2>System requirements</h2>
 			<p>
 				PC - Windows7 or higher / .NET Framework 2.0 or higher /Intel HD 2000 higher
