@@ -42,6 +42,8 @@ for c in pages:
 		tmphtml = tmphtml.replace('#title', title + " - Gl&#225;dio C&#237;trico")
 		tmphtml = tmphtml.replace('#content', cont)
 		
+		print(c.find('memory'))
+		
 		if 'dont-show-title' in c.attrib:
 			tmphtml = tmphtml.replace('#page', "")
 		else:

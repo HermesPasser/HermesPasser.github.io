@@ -54,6 +54,10 @@
 				<!-- Remove soon? -->
 				<li><a href="updatewp.html">Update by Webpage</a></li>
 			</ul>
+			<h3>Other</h3> 
+			<ul>
+				<li><a href="devlusion.html">Dev'lusion</a></li>
+			</ul>
 		]]>
 	</sidebar>
 	
@@ -284,6 +288,40 @@
 		]]></content>
 	</page>
 	
+	<page dont-show-title=""> <!-- Dev'lusion -->
+		<title>Dev'lusion</title>
+		<linkname>devlusion</linkname>
+		<description>Minor programming projects.</description>
+		<keywords>minor projects, projects</keywords>
+		<content><![CDATA[
+			<img src="https://4.bp.blogspot.com/-_HxgoS8aEPM/WD1yon_v4rI/AAAAAAAAG-E/o9Eo5eG0J1A9pYKfKWTURdTSh4St7_YcwCLcB/s1600/Ico.png" alt="game icon" />
+			<p align="center">A game focused in teaching programming logics.</p>
+			<p>Download Apha (<a href="http://www.mediafire.com/file/zjaiwot8bmi84ew/Devlusion_windows.exe">Windows</a> / 
+							  <a href="http://www.mediafire.com/file/nbyeeb2nndnuxex/Devlusion_linux.rar">Linux</a> / 
+							  <a href="http://www.mediafire.com/file/8tev5387bns5z34/Devlusion_macosx.exe">Mac OS X</a> / 
+							  <a href="http://www.mediafire.com/file/w23nbyxl6pnfqol/Devlusion_ios.rar">iOS</a> / 
+							  <a href="http://www.mediafire.com/file/5d79gle8nxx95mw/Devlusion_android.rar">Android</a>)</p>
+			<p>Source code at <a href="https://github.com/HermesPasser/Dev-lusion">GitHub</a></p>
+			<p><a href="http://gladiocitrico.blogspot.com.br/p/devlusion.html">Read in portuguese</a></p>
+			<br />
+			<p>Created as T.I activity of course completion.</p>
+			<h2>System requirements</h2>
+			<p>
+				PC - Windows7 or higher / .NET Framework 2.0 or higher /Intel HD 2000 higher
+				<br>
+				Android - Version 4.0 or higher
+				<br>
+				iOS - Version 8 or higher
+				<br>
+				Mac - Processor AMD HD 5000 or higher/  iOS X or higher
+			</p>
+			<h2>Images</h2>
+			<img src="https://1.bp.blogspot.com/-ek2t0zRVeKo/WD1tIsdiLlI/AAAAAAAAG9w/DmNd06Tc1tEgxdt_0jCnFmU5JOhoEEVnwCLcB/s1600/main%2Bmenu.png" alt="title screen" />
+			<img src="https://1.bp.blogspot.com/-wDS8ptq0DSo/WD1tIaU1BSI/AAAAAAAAG9s/BRqL7rvJu2AAMg71F3H8JsGSEEEqSA5VQCLcB/s1600/act1.png" alt="console" />
+			<img src="https://1.bp.blogspot.com/-3_RNc69gbjI/WD1tIpPJDpI/AAAAAAAAG90/CW2wTWYn5hUF6-UuDPLOJpn09DGvBN_TgCLcB/s1600/terminal1.png" alt="in game" />
+		]]></content>
+	</page>
+	
 	<page> <!-- Other Projects -->
 		<title>Other Projects</title>
 		<linkname>other</linkname>
@@ -302,7 +340,7 @@
 			TecInfoActivities
 		]]></content>
 	</page>
-		
+	
 	<page dont-show-title=""> <!-- Ramu -->
 		<title>Ramu Engine</title>
 		<linkname>ramu</linkname>
