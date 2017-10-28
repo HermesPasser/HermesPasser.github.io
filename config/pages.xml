@@ -53,6 +53,7 @@
 				<li><a href="ramu.html">Ramu</a></li>
 				<!-- Remove soon? -->
 				<li><a href="updatewp.html">Update by Webpage</a></li>
+				<li><a href="other.html">Other projects</a></li>
 			</ul>
 			<h3>Other</h3> 
 			<ul>
@@ -346,16 +347,49 @@
 		<description>Minor programming projects.</description>
 		<keywords>minor projects, projects</keywords>
 		<content><![CDATA[
-			<p align="center"></p>
-			coming soon
-			http://gladiocitrico.blogspot.com.br/p/projetos-m.html
+			<p>See the <a href="http://gladiocitrico.blogspot.com.br/p/projetos-m.html">non-programmed  projects here.</a></p>
+
+			<h2 align="center">Manga Host Downloader</h2>
+			<p align="center">Download mangas from the brazilian's site MangaHost.</p>
+			<p>Only work in command line and need Ruby be installed. Due to a site update, this program is not working.</p>
+			<p>Type h: to help in command line</p>
+			<p>Download <a href="https://github.com/HermesPasser/Manga-Host-Downloader/archive/master.zip">1.5</a></p>
+			<p>Source code at <a href="https://github.com/HermesPasser/Manga-Host-Downloader">GitHub</a></p>
+			<br>
+
+			<h2 align="center">Duplicate Bookmarks Remover</h2>
+			<p align="center">A simple duplicate bookmark remover for google chrome.</p>
+			<p>Only work in command line and need Perl be installed.
+			<p>Source code at <a href="https://github.com/HermesPasser/Duplicate-Bookmarks-Remover">GitHub</a></p>
+			<br>
 			
-			Manga Host Downloader
-			Duplicate Bookmarks Remover
-			CSPaint
-			SISEstoque
-			Unity Mechanics and Utilities
-			TecInfoActivities
+			<h2 align="center">CSPaint</h2>
+			<p align="center">A C# reproduction of Paint created in GamesIndie "let's code" live streams.</p>
+			<p>Source code at <a href="https://github.com/HermesPasser/CSPaint">GitHub</a></p>
+			<br>
+			<p>
+				GamesIndie live streams (in portuguese)
+				<a href="https://www.youtube.com/watch?v=OhyA_H0udPA&list=LLEbEugtl-gIHmFQFmlgNcKQ">01</a> | 
+				<a href="https://www.youtube.com/watch?v=BNhRU6XCXso&list=LLEbEugtl-gIHmFQFmlgNcKQ">02</a>
+			</p>
+			<p>Videos creating the program (in portuguese):</p>
+			<iframe src="https://www.youtube.com/embed/CL6Z7Jqjcls" frameborder="0" allowfullscreen></iframe>
+
+			<h2 align="center">SISEstoque</h2>
+			<p align="center">Warehouse system created as a T.I course activity of Douglas "Hermes Passer" Lacerda , Leonardo Oliveira, Jorge Enrique Munoz and Everton Barbosa.</p>
+			<p>Unfunctional program, for reference only.</p>
+			<p>Source code at <a href="https://github.com/HermesPasser/SISEstoque">GitHub</a></p>
+			<br>
+			
+			<h2 align="center">Unity Mechanics and Utilities</h2>
+			<p align="center">Demo mechanics, basic scripts and utilities for unity.</p>
+			<p>Source code at <a href="https://github.com/HermesPasser/Unity-Mechanics-and-Utilities">GitHub</a></p>
+			<br>
+			
+			<h2 align="center">TecInfoActivities</h2>
+			<p align="center">My T.I course activities.</p>
+			<p>Source code at <a href="https://github.com/HermesPasser/TecInfoActivities">GitHub</a></p>
+			<br>
 		]]></content>
 	</page>
 	
