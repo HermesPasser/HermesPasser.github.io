@@ -88,14 +88,18 @@
 		<keywords>404</keywords>
 		<content><![CDATA[
 			<h2>404 - Page not found</h2>
-			<p>Looks like the page what you are searching for does not exit. Try check the url or search in the sidebar.</p>
+			<p>Looks like the page what you are searching for does not exit. Try check the url or search below.</p>
 			<content>
 			</content>
 			<script>
-				var aside = document.getElementsByTagName('aside')[0];
-				var content = document.getElementsByTagName('content')[0]
-				
-				content.innerHTML = aside.innerHTML;
+				window.onload=function(){
+					var aside = document.getElementsByTagName('aside')[0];
+					var content = document.getElementsByTagName('content')[0]
+					
+					content.innerHTML = aside.innerHTML;
+					aside.innerHTML = "";
+					load();
+				}
 			</script>
 		]]></content>
 	</page>
