@@ -1,7 +1,8 @@
 <html lang="en">
 	<head>
 		<script type="text/javascript">
-			window.location.href = document.location.hostname + "/pages/notfound.html"
+			if (document.location.hostname != "")
+				window.location.href = "https//" + document.location.hostname + "/pages/notfound.html"
 		</script>
 		<title>404 - Gl&#225;dio C&#237;trico</title>
 	</head>
