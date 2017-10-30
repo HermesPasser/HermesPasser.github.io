@@ -81,14 +81,22 @@
 		]]></content>
 	</page>	
 	
-	<page> <!-- 404 -->
+	<page dont-show-title=""> <!-- 404 -->
 		<title>404 - Not found</title>
 		<linkname>notfound</linkname>
 		<description>404</description>
 		<keywords>404</keywords>
 		<content><![CDATA[
 			<h2>404 - Page not found</h2>
-			<p>Looks like the page what you are searching for does not exits. Try check the url or search in the sidebar.</p>
+			<p>Looks like the page what you are searching for does not exit. Try check the url or search in the sidebar.</p>
+			<content>
+			</content>
+			<script>
+				var aside = document.getElementsByTagName('aside')[0];
+				var content = document.getElementsByTagName('content')[0]
+				
+				content.innerHTML = aside.innerHTML;
+			</script>
 		]]></content>
 	</page>
 	
