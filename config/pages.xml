@@ -79,6 +79,16 @@
 				<li><a href="https://forums.rpgmakerweb.com/index.php?members/hermespasser.102676/">RM Web</a></li>
 			</ul>
 		]]></content>
+	</page>	
+	
+	<page> <!-- 404 -->
+		<title>404 - Not found</title>
+		<linkname>notfound</linkname>
+		<description>404</description>
+		<keywords>404</keywords>
+		<content><![CDATA[
+
+		]]></content>
 	</page>
 	
 	<page> <!-- Mangafox Downloader -->
