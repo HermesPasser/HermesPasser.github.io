@@ -87,12 +87,8 @@
 		<description>404</description>
 		<keywords>404</keywords>
 		<content><![CDATA[
-			ddddddd
-			ddddddd
-			ddddddd
-			ddddddd
-			ddddddd
-			ddddddd
+			<h2>404 - Page not found</h2>
+			<p>Looks like the page what you are searching for does not exits. Try check the url or search in the sidebar.</p>
 		]]></content>
 	</page>
 	
