@@ -185,7 +185,7 @@
 			<h3 id="editor">Editor</h3>
 			<iframe src="https://www.youtube.com/embed/4iGQA1CZqJM" frameborder="0" allowfullscreen></iframe>
 
-			<h2 name="versions">Versions</h2>
+			<h2 id="versions" name="versions">Versions</h2>
 
 			<table>
 				<thead>
