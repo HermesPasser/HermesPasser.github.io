@@ -49,7 +49,7 @@
 				<li><a href="hermesmangadownloader.html">Hermes Manga Downloader</a></li>
 				<li><a href="mangafoxdownloader.html">MangaFox Downloader</a></li>
 				<li><a href="tilecon.html">Tileset Converter MV</a></li>
-				<li><a href="bakatsuki-extractor.html">BakaStuki Extractor</a></li>
+				<li><a href="bakatsuki-extractor.html">BakaTsuki Extractor</a></li>
 				<li><a href="ramu.html">Ramu</a></li>
 				<!-- Remove soon? -->
 				<li><a href="updatewp.html">Update by Webpage</a></li>
@@ -327,7 +327,7 @@
 		<content><![CDATA[
 			<p align="center">Download the text and images from pages Baka-Tsuki without the page layout to be read anytime.</p>
 			<p>Baka-Tsuki.org is a site what provide translation of light novels.</p>
-			<p>Download <a href="https://github.com/HermesPasser/BakaTsuki-Extractor/blob/master/bin/Release/BakaTsuki%20Extractor.exe?raw=true">0.3</a></p>
+			<p>Download <a href="https://github.com/HermesPasser/BakaTsuki-Extractor/blob/master/bin/Release/BakaTsuki%20Extractor.exe?raw=true">0.4</a></p>
 			<p>Source code at <a href="https://github.com/HermesPasser/BakaTsuki-Extractor">GitHub</a></p>
 			<br>
 			<img alt="Program interface." src="../images/bakatsuki-extractor.png"></img>
