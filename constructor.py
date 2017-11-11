@@ -17,6 +17,7 @@ cross_column = ""
 for url, name in {
 	'Home'		: 'home.html', 
 	'GitHub'	: 'https://github.com/HermesPasser/', 
+	'Blog (in portuguese)': 'http://gladiocitrico.blogspot.com.br/', 
 }.items(): cross_column += "<li><a href=\"" + name + "\">" + url + "</a></li>\n\t\t\t"
 
 # ============== Format html
