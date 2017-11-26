@@ -83,7 +83,7 @@
 		]]>
 	</comments_disqus>
 	
-	<page> <!-- Home -->
+	<page dont-show-comments=""> <!-- Home -->
 		<title>Home</title>
 		<linkname>home</linkname>
 		<description>My personal page for the programs I wrote.</description>

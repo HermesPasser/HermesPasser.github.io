@@ -28,7 +28,6 @@ html = html.replace('#css#', 	  "../" + VAR_FOLDER + "/style.css")
 html = html.replace('#js#', 	  "../" + VAR_FOLDER + "/script.js")
 html = html.replace('#icon#', 	  "../images/favicon.ico")
 html = html.replace('#sidebar#',  root.find(".//sidebar").text)
-html = html.replace('#comments#', root.find(".//comments_disqus").text)
 html = html.replace('#column#',   cross_column)
 
 # ============== Generate the pages
@@ -51,6 +50,11 @@ for c in pages:
 		tmphtml = tmphtml.replace('#PAGE_URL#', '"http://' + SITE_URL + "/" + pageName + '"')
 		tmphtml = tmphtml.replace('#PAGE_IDENTIFIER#', '"/' + pageName + '"')
 		
+		if 'dont-show-comments' in c.attrib:
+			tmphtml = tmphtml.replace('#comments#', "")
+		else:
+			tmphtml = tmphtml.replace('#comments#', root.find(".//comments_disqus").text)
+			
 		if 'dont-show-title' in c.attrib:
 			tmphtml = tmphtml.replace('#page#', "")
 		else:
