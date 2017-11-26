@@ -51,6 +51,32 @@
 				document.body.appendChild(playerscript);					
 			</script>
 		
+			<br />
+			
+		
+				<div id="disqus_thread"></div>
+				<script type="text/javascript">
+					var disqus_config = function () {
+						this.page.url = "http://hermespasser.github.io/pages/ramu-player-control-test.html";
+						this.page.identifier = "/pages/ramu-player-control-test.html";
+						
+						// To make de sidebar again with same height of main
+						this.callbacks.onReady.push(function() {
+							setTimeout(function(){load();}, 1000);  
+						});
+					};
+					
+					(function() { // DON'T EDIT BELOW THIS LINE
+						var d = document, s = d.createElement('script');
+						s.src = 'https://hermespasser-github-io.disqus.com/embed.js';
+						s.setAttribute('data-timestamp', +new Date());
+						(d.head || d.body).appendChild(s);
+					})();
+				</script>
+				<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+				<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+		
+	
 		</main>
 		
 		<aside>

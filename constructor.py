@@ -10,6 +10,8 @@ import xml.etree.ElementTree as ET
 print("Gládio Cítrico site constructor.")
 
 VAR_FOLDER = "config"
+SITE_URL   = "hermespasser.github.io"
+
 root = ET.parse(VAR_FOLDER + "/pages.xml").getroot()
 
 # ============== Generate cross column
@@ -22,31 +24,37 @@ for url, name in {
 
 # ============== Format html
 html = root.find(".//html").text
-html = html.replace('#css', 	"../" + VAR_FOLDER + "/style.css")
-html = html.replace('#js', 		"../" + VAR_FOLDER + "/script.js")
-html = html.replace('#icon', 	"../images/favicon.ico")
-html = html.replace('#sidebar', root.find(".//sidebar").text)
-html = html.replace('#column', 	cross_column)
+html = html.replace('#css#', 	  "../" + VAR_FOLDER + "/style.css")
+html = html.replace('#js#', 	  "../" + VAR_FOLDER + "/script.js")
+html = html.replace('#icon#', 	  "../images/favicon.ico")
+html = html.replace('#sidebar#',  root.find(".//sidebar").text)
+html = html.replace('#comments#', root.find(".//comments_disqus").text)
+html = html.replace('#column#',   cross_column)
 
 # ============== Generate the pages
 pages = root.findall(".//page")
 for c in pages:
-	title = c.find("title").text
-	desc  = c.find("description").text
-	key   = c.find("keywords").text
-	cont  = c.find("content").text
-	with open("pages/" + c.find("linkname").text + ".html", 'w+') as f:		
+	title	 = c.find('title').text
+	desc 	 = c.find('description').text
+	key 	 = c.find('keywords').text
+	cont 	 = c.find('content').text
+	pageName = 'pages/' + c.find('linkname').text + '.html'
+	with open(pageName, 'w+') as f:		
 		# Isso quebra se um desses não tiver texto
 		tmphtml = html;
-		tmphtml = tmphtml.replace('#desc', desc)
-		tmphtml = tmphtml.replace('#keys', key)
-		tmphtml = tmphtml.replace('#title', title + " - Gl&#225;dio C&#237;trico")
-		tmphtml = tmphtml.replace('#content', cont)
+		tmphtml = tmphtml.replace('#desc#', desc)
+		tmphtml = tmphtml.replace('#keys#', key)
+		tmphtml = tmphtml.replace('#title#', title + " - Gl&#225;dio C&#237;trico")
+		tmphtml = tmphtml.replace('#content#', cont)
+		
+		# Disqus.com commentaries - page config
+		tmphtml = tmphtml.replace('#PAGE_URL#', '"http://' + SITE_URL + "/" + pageName + '"')
+		tmphtml = tmphtml.replace('#PAGE_IDENTIFIER#', '"/' + pageName + '"')
 		
 		if 'dont-show-title' in c.attrib:
-			tmphtml = tmphtml.replace('#page', "")
+			tmphtml = tmphtml.replace('#page#', "")
 		else:
-			tmphtml = tmphtml.replace('#page', title)
+			tmphtml = tmphtml.replace('#page#', title)
 		
 		f.write(tmphtml)
 

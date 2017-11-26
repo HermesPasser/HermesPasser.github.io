@@ -5,31 +5,33 @@
 <html lang="en">
 	<head>
 		<meta charset="utf-8"/>
-		<meta name="description" content="#desc" />
+		<meta name="description" content="#desc#" />
 		<meta name="viewport" 	 content="width=device-width, initial-scale=1">
-		<meta name="keywords" 	 content="#keys"/>
+		<meta name="keywords" 	 content="#keys#"/>
 		
-		<link rel="shortcut    icon" href="#icon" />
-		<link rel="stylesheet" type="text/css" href="#css" />
+		<link rel="shortcut    icon" href="#icon#" />
+		<link rel="stylesheet" type="text/css" href="#css#" />
 		
-		<script type="text/javascript" src="#js"></script>
-		<title>#title</title>
+		<script type="text/javascript" src="#js#"></script>
+		<title>#title#</title>
 	</head>
 	
 	<body onload="load();" onresize="load()">
 		<header>
 			<ul>
-				#column
+				#column#
 			</ul>
 		</header>
 		
 		<main id="main"></section>
-			<h1>#page</h1>
-			#content
+			<h1>#page#</h1>
+			#content#
+			<br />
+			#comments#
 		</main>
 		
 		<aside>
-			#sidebar
+			#sidebar#
 		</aside>
 		
 		<footer>
@@ -60,30 +62,31 @@
 		]]>
 	</sidebar>
 	
-	<page> <!-- Tests -->
-		<title>Tests</title>
-		<linkname>tests</linkname>
-		<description>tests.</description>
-		<keywords>tests</keywords>
-		<content><![CDATA[
-<div id="disqus_thread"></div>
-<script type="text/javascript">
-	var disqus_config = function () {
-		this.page.url = "http://hermespasser.github.io/pages/tests.html";  // Replace PAGE_URL with your page's canonical URL variable
-		this.page.identifier = "/pages/tests.html"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
-	};
-	
-	(function() { // DON'T EDIT BELOW THIS LINE
-		var d = document, s = d.createElement('script');
-		s.src = 'https://hermespasser-github-io.disqus.com/embed.js';
-		s.setAttribute('data-timestamp', +new Date());
-		(d.head || d.body).appendChild(s);
-	})();
-</script>
-<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
-		]]></content>
-	</page>
+	<comments_disqus>
+		<![CDATA[
+				<div id="disqus_thread"></div>
+				<script type="text/javascript">
+					var disqus_config = function () {
+						this.page.url = #PAGE_URL#;
+						this.page.identifier = #PAGE_IDENTIFIER#;
+						
+						// To make de sidebar again with same height of main
+						this.callbacks.onReady.push(function() {
+							setTimeout(function(){load();}, 1000);  
+						});
+					};
+					
+					(function() { // DON'T EDIT BELOW THIS LINE
+						var d = document, s = d.createElement('script');
+						s.src = 'https://hermespasser-github-io.disqus.com/embed.js';
+						s.setAttribute('data-timestamp', +new Date());
+						(d.head || d.body).appendChild(s);
+					})();
+				</script>
+				<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+				<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+		]]>
+	</comments_disqus>
 	
 	<page> <!-- Home -->
 		<title>Home</title>
