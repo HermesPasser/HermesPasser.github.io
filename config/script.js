@@ -21,6 +21,8 @@ function load(){
 	}
 }
 
+setInterval(function(){ load(); }, 3000);
+
 function getCode(string){
 	var request = new XMLHttpRequest();
 	request.open("GET", string, false);
