@@ -46,14 +46,16 @@ for c in pages:
 		tmphtml = tmphtml.replace('#title#', title + " - Gl&#225;dio C&#237;trico")
 		tmphtml = tmphtml.replace('#content#', cont)
 		
+		# Disqus.com commentaries - page config
 		if 'dont-show-comments' in c.attrib:
 			tmphtml = tmphtml.replace('#comments#', "")
 		else:
 			tmphtml = tmphtml.replace('#comments#', root.find(".//comments_disqus").text)
-			
-		# Disqus.com commentaries - page config
+		
 		tmphtml = tmphtml.replace('#PAGE_URL#', '"http://' + SITE_URL + "/" + pageName + '"')
 		tmphtml = tmphtml.replace('#PAGE_IDENTIFIER#', '"/' + pageName + '"')
+		
+		# Disqus.com - END
 		
 		if 'dont-show-title' in c.attrib:
 			tmphtml = tmphtml.replace('#page#', "")

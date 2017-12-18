@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <pages>
+	<!-- Dreams Park senha (antiga?): terrorcosmico  -->
 	<html>
 		<![CDATA[			
 <html lang="en">
@@ -331,7 +332,7 @@
 			  <li>MangaEden;</li>
 			  <li>Hentai2Read.</li>
 			</ul>
-			<p>Downloads: <a href="https://github.com/HermesPasser/Hermes-Manga-Downloader/blob/master/HermesMangaDownloader/bin/Debug/HermesMangaDownloader.exe?raw=true">0.3</a></p>
+			<p>Downloads: <a href="../downloads/HermesMangaDownloader.zip">0.3</a></p>
 			<p>Source code at <a href="https://github.com/HermesPasser/Hermes-Manga-Downloader">GitHub</a></p>
 			<p><a href=https://www.youtube.com/watch?v=xhPP_7Jmmr8&feature=youtu.be">How to download manga from mangaeden</a></p>
 			<img alt="Program interface in the main form." src="../images/hmd/main.png"></img>
