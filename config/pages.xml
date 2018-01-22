@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <pages>
-	<!-- Dreams Park senha (antiga?): terrorcosmico  -->
+	
 	<html>
 		<![CDATA[			
 <html lang="en">
@@ -428,12 +428,6 @@
 			<h2 align="center">CSPaint</h2>
 			<p align="center">A C# reproduction of Paint created in GamesIndie "let's code" live streams.</p>
 			<p>Source code at <a href="https://github.com/HermesPasser/CSPaint">GitHub</a></p>
-			<br>
-			<p>
-				GamesIndie live streams (in portuguese)
-				<a href="https://www.youtube.com/watch?v=OhyA_H0udPA&list=LLEbEugtl-gIHmFQFmlgNcKQ">01</a> | 
-				<a href="https://www.youtube.com/watch?v=BNhRU6XCXso&list=LLEbEugtl-gIHmFQFmlgNcKQ">02</a>
-			</p>
 			<p>Videos creating the program (in portuguese):</p>
 			<iframe src="https://www.youtube.com/embed/CL6Z7Jqjcls" frameborder="0" allowfullscreen></iframe>
 
