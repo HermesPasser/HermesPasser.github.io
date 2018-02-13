@@ -12,6 +12,7 @@ img, picture, video, iframe, embed, canvas {
 body {
 	background-image: url("../images/background.gif");
 	color: white;
+	font-family: Verdana, Geneva, sans-serif;
 }
 
 header {
@@ -85,7 +86,11 @@ a:visited {
 
 p {
 	font-size: 0.8em;
- 	font-family: Arial, Tahoma, Helvetica, FreeSans, sans-serif;
+ 	font-family: Tahoma, Arial;
+}
+
+h1, h2, h3, h4{
+	font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
 }
 
 h1 { font-size: 1.5em; }
