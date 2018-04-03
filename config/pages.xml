@@ -86,19 +86,28 @@
 	<page dont-show-comments=""> <!-- Home -->
 		<title>Home</title>
 		<linkname>home</linkname>
-		<description>My personal page for the programs I wrote.</description>
+		<description>My personal page for the programs i wrote.</description>
 		<keywords>Hermes Passer, Gládio Cítrico</keywords>
 		<content><![CDATA[
 			<img border="0" height="320" src="https://3.bp.blogspot.com/-zbUCFqxq2yM/WRXwZ2f9lOI/AAAAAAAAHHs/nCzKFHHI_GoxX9kXEA8MXUPIW4pwW2CUgCLcB/s320/Barbaman%2BAACD%2B%2528arte%2BDebora%2BPereira%2Bpintura%2BHermesPasser%2529%2BANIMADO.gif"	/>
 			<p>This site is a repository for my online content.</p>
 			<br / >
 			<p>Looking for me?</p>
-			<ul style="list-style: none;">
-				<li><a href="http://gladiocitrico.blogspot.com.br/">Blog (in portuguese)</a></li>
-				<li><a href="https://www.youtube.com/channel/UCqhu61a4NvbPKF5MIufsGlw">YoutTube</a></li>
-				<li><a href="https://twitter.com/HermesPasser">Twitter</a></li>
-				<li><a href="https://forums.rpgmakerweb.com/index.php?members/hermespasser.102676/">RM Web</a></li>
-			</ul>
+			
+			<a href="http://gladiocitrico.blogspot.com.br/">
+				<img class="line" alt="Blog (in portuguese)"  title="Blog (in portuguese)" height="16" width="16" src="../images/favicon.ico"></img>
+			</a>
+			<a href="https://www.youtube.com/channel/UCqhu61a4NvbPKF5MIufsGlw">
+				<img class="line" alt="YoutTube"  title="YoutTube" height="16" width="16" src="../images/social/yt.ico"></img>
+			</a>
+			<a href="https://twitter.com/HermesPasser">
+				<img class="line" alt="Twitter"  title="Twitter" height="16" width="16" src="../images/social/tw.ico"></img>
+			</a>
+			<a href="https://forums.rpgmakerweb.com/index.php?members/hermespasser.102676/">
+				<img class="line" alt="RPG Maker Web" title="RPG Maker Web" height="16" width="16" src="../images/social/rmw.ico"></img>
+			</a>
+
+
 		]]></content>
 	</page>
 	
