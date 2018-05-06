@@ -487,24 +487,24 @@
 			<p>Downloads: <a href="https://github.com/HermesPasser/Ramu/raw/master/Ramu.js">0.5.2</a></p>
 			<p>Source code at <a href="https://github.com/HermesPasser/Ramu">GitHub</a></p>
 			<p>Currently just works well in chrome.</p>
-			<h2>Demos</h2>
-			<ul>
-				<li>
-					<a href="ramu-player-control-test.html">WORK ON PROGRESS - Player Control, Gravity and Spritesheet Animator</a>
-				</li>
-				<li>
-					<a href="#">WORK ON PROGRESS - Simple A.I</a>
-				</li>
-				<li>
-					<a href="collision-test-potato-atack.html">Collision, Menu and Machine State</a>
-				</li>
-				<li>
-					<a href="animation-test.html">Game Sprite and Spritesheet Animation</a>
-				</li>
-				<li>
-					<a href="ramu-parallax-test.html">Parallax</a>
-				</li>
-			</ul>
+			<!-- <h2>Demos</h2> -->
+			<!-- <ul> -->
+				<!-- <li> -->
+					<!-- <a href="ramu-player-control-test.html">WORK ON PROGRESS - Player Control, Gravity and Spritesheet Animator</a> -->
+				<!-- </li> -->
+				<!-- <li> -->
+					<!-- <a href="#">WORK ON PROGRESS - Simple A.I</a> -->
+				<!-- </li> -->
+				<!-- <li> -->
+					<!-- <a href="collision-test-potato-atack.html">Collision, Menu and Machine State</a> -->
+				<!-- </li> -->
+				<!-- <li> -->
+					<!-- <a href="animation-test.html">Game Sprite and Spritesheet Animation</a> -->
+				<!-- </li> -->
+				<!-- <li> -->
+					<!-- <a href="ramu-parallax-test.html">Parallax</a> -->
+				<!-- </li> -->
+			<!-- </ul> -->
 		]]></content>
 	</page>
 
