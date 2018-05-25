@@ -306,7 +306,7 @@
 			<br>
 			<p align="center">System update for ruby programs that checks on a page specifies whether updates are available.</p>
 			<br>
-			<p>Source code at <a href="https://github.com/HermesPasser/UpdateByWebPage">GitHub</a></p>
+			<p>Source code at <a href="https://github.com/HermesPasser/rb-scripts/tree/master/Updatewp">GitHub</a></p>
 			<br>
 			<p>Update system for ruby programs that checks on a page specifies whether updates are available.</p>
 			<h2 id="how-use">How use</h2>

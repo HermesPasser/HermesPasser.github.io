@@ -7,7 +7,7 @@
 # ==========================================
 
 import xml.etree.ElementTree as ET
-print("Gládio Cítrico site constructor.")
+print("Gládio Cítrico site builder.")
 
 VAR_FOLDER = "config"
 SITE_URL   = "hermespasser.github.io"
