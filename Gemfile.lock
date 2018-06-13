@@ -148,7 +148,7 @@ PLATFORMS
   x64-mingw32
 
 DEPENDENCIES
-  github-pages (= 104)
+  github-pages (>= 104)
   tzinfo-data
   wdm (~> 0.1.0)
 
