@@ -1,1 +1,6 @@
-**/pages/debug.txt*
+_site
+__drafts
+.sass-cache
+.jekyll-metadata
+.sass-cache
+start.bat

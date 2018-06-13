@@ -1,0 +1,30 @@
+---
+title: "Ramu Collision, Menu and Machine State: The Potato Attack"
+pagename: collision-test-potato-atack
+keywords: Ramu test
+description: A demostration of parallax system.
+show-comments: true
+
+layout: default
+---
+<canvas id="canvas" width="500" height="500" style="border:1px solid #000000;"></canvas>
+
+<script type="text/javascript">	
+	// Get code from github
+	var ramu = getCode("https://raw.githubusercontent.com/HermesPasser/Ramu/master/Ramu.js");
+	var coll = getCode("https://raw.githubusercontent.com/HermesPasser/Ramu/master/demos/collision-test-potato-atack.js");
+	
+	// Replacing non local images
+	coll = coll.replace("img/potato.png", "https://raw.githubusercontent.com/HermesPasser/Ramu/master/demos/img/potato.png");
+	
+	// Put code in a script tag
+	var ramuscript = document.createElement("script");
+	ramuscript.setAttribute("type", "text/javascript");
+	ramuscript.innerHTML = ramu;
+	document.body.appendChild(ramuscript);
+
+	var collscript = document.createElement("script");
+	collscript.setAttribute("type", "text/javascript");
+	collscript.innerHTML = coll;
+	document.body.appendChild(collscript);					
+</script>

@@ -1,0 +1,32 @@
+---
+title: Ramu Mapping
+pagename: mapping-test
+keywords: Ramu test
+description: A simple mapping system.
+show-comments: true
+
+layout: default
+---
+<canvas id="canvas" width="500" height="500" style="border:1px solid #000000;"></canvas>
+
+<script type="text/javascript">	
+	// Get code from github
+	var ramu = getCode("https://raw.githubusercontent.com/HermesPasser/Ramu/master/Ramu.js");
+	var map = getCode("https://raw.githubusercontent.com/HermesPasser/Ramu/master/demos/mapping-test.js");
+	
+	// Replacing non local images
+	// isso quebra se as imagens não estiverem em outro server
+	map = map.replace("img/ground.png", "https://raw.githubusercontent.com/HermesPasser/Ramu/master/demos/img/ground.png");
+	map = map.replace("img/flying_ground.png", "https://raw.githubusercontent.com/HermesPasser/Ramu/master/demos/img/flying_ground.png");
+	
+	// Put code in a script tag
+	var ramuscript = document.createElement("script");
+	ramuscript.setAttribute("type", "text/javascript");
+	ramuscript.innerHTML = ramu;
+	document.body.appendChild(ramuscript);
+
+	var mapscript = document.createElement("script");
+	mapscript.setAttribute("type", "text/javascript");
+	mapscript.innerHTML = map;
+	document.body.appendChild(mapscript);					
+</script>

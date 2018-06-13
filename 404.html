@@ -1,10 +1,24 @@
-<html lang="en">
-	<head>
-		<script type="text/javascript">
-			if (document.location.hostname != "")
-				window.location.href = "https://" + document.location.hostname + "/pages/notfound.html"
-		</script>
-		<title>404 - Gl&#225;dio C&#237;trico</title>
-	</head>
-	<body></body>
-</html>
+---
+title: 404 - Page not found
+pagename: 404
+keywords: Page not found
+description: 404
+show-comments: false
+
+layout: default
+---
+<p>Looks like the page what you are searching for does not exit. Try check the url or search below.</p>
+
+{% include sidebar.html %}
+
+<script>	
+	function redirect(){
+		var href = window.location.href;
+		if (href.includes('/pages/')){
+			href = href.replace('/pages/', '/p/');
+			href = href.replace('.html', '');
+			window.location.replace(href);
+		}
+	}
+	window.onload = function(){ redirect(); }
+</script>
