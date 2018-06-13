@@ -9,7 +9,7 @@ description: >- # this means to ignore newlines until "baseurl:"
 baseurl: "https://hermespasser.github.io"/" # the subpath of your site, e.g. /blog
 
 # This must be "" in localhost and hermespasser.github.io when pushed.
-url: "https://hermespasser.github.io" # the base hostname & protocol for your site, e.g. http://example.com
+url: "" # the base hostname & protocol for your site, e.g. http://example.com
 
 # custom
 siteurl: hermespasser.github.io
