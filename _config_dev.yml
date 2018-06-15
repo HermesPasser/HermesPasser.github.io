@@ -5,10 +5,8 @@
 title: Gládio Cítrico
 email: hermespasser@gmail.com
 description: >- # this means to ignore newlines until "baseurl:"
-  My website
-# I'm using it as normal url just 'cause is working. Must leave empty in localhost
-# or else i must change all links to {{site.url}}/{{site.baseurl}}/file
-baseurl: "" # the subpath of your site, e.g. /blog
+  Onde criadores, loucos e excêntricos se reúnem.
+baseurl: "/" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
 
 # custom
@@ -21,8 +19,8 @@ markdown: kramdown
   # - jekyll-feed
 
 # Exclude from processing.
-# The following items will not be processed, by /{{site.url}}/{{site.baseurl}}. Create a custom list
-# to override the /{{site.url}}/{{site.baseurl}} setting.
+# The following items will not be processed, by default. Create a custom list
+# to override the default setting.
 exclude:
   - README.md
   # - Gemfile

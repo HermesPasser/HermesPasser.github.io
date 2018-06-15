@@ -11,7 +11,7 @@ layout: default
 
 Source at [github](https://github.com/hermespasser/ventura)   
 
-Created as substitute of [updatewp]({{ site.baseurl }}p/rb-scripts/updatewp) in a series of post to a forum.
+Created as substitute of [updatewp]({{site.url}}/{{site.baseurl}}p/rb-scripts/updatewp) in a series of post to a forum.
 
 ## Other links
 

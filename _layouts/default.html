@@ -4,10 +4,10 @@
 		<meta name="description" content="{{ page.description }}" />
 		<meta name="viewport" 	 content="width=device-width, initial-scale=1">
 		<meta name="keywords" 	 content="{{ page.keywords }}"/>
-		<link rel="shortcut icon" href="{{ site.baseurl }}images/favicon.ico" />
-		<link rel="stylesheet" type="text/css" href="{{ site.baseurl }}css/main.css" />
+		<link rel="shortcut icon" href="{{site.url}}/{{site.baseurl}}images/favicon.ico" />
+		<link rel="stylesheet" type="text/css" href="{{site.url}}/{{site.baseurl}}css/main.css" />
 		
-		<script type="text/javascript" src="{{ site.baseurl }}js/script.js"></script>
+		<script type="text/javascript" src="{{site.url}}/{{site.baseurl}}js/script.js"></script>
 
 		<title>{% unless page.url == '/' %} {{ page.title }} &#8226; {% endunless %} {{ site.title }}</title>
 	</head>
