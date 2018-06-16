@@ -16,6 +16,9 @@ siteurl: hermespasser.github.io
 
 # Build settings
 markdown: kramdown
+highlighter: rouge
+kramdown:
+    syntax_highlighter: rouge
 # theme: minima
 # plugins:
   # - jekyll-feed
@@ -25,5 +28,6 @@ markdown: kramdown
 # to override the /{{site.url}}/{{site.baseurl}} setting.
 exclude:
   - README.md
+  - build.rb
   # - Gemfile
   # - Gemfile.lock

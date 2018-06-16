@@ -7,7 +7,7 @@ show-comments: true
 
 layout: default
 ---
-<img alt="Mangafox downloader logo (a page of manga)." src="https://raw.githubusercontent.com/HermesPasser/MangaFox-Downloader/master/app-icon.png"></img>
+![Mangafox downloader logo (a page of manga).](https://raw.githubusercontent.com/HermesPasser/MangaFox-Downloader/master/app-icon.png)
 <p align="center">Download mangas from the brazilian's site Manga Host.</p>
 
 Source code at [Github](https://github.com/HermesPasser/Manga-Host-Downloader)   
@@ -30,7 +30,7 @@ Needs ruby 2.4 or higher to work.
 #### Downloading
 
 See the image below to undertand where get the information of the chapter that you want to download:  
-![enter image description here](https://raw.githubusercontent.com/HermesPasser/Manga-Host-Downloader/master/about.png)
+![how to know the name and chapter from a manga host url](https://raw.githubusercontent.com/HermesPasser/Manga-Host-Downloader/master/about.png)
 If there is a volume it will be before the chapter. The number after the chapter is the current page and should be ignored.   
 
 ``m:<manga_name>`` replace \<manga_name\> with the name of the manga. 

@@ -7,4 +7,4 @@ show-comments: false
 
 layout: default
 ---
-{% include sidebar.html %}
+{% include projectlist.html %}

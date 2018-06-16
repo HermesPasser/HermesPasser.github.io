@@ -90,19 +90,25 @@ p {
  	font-family: Tahoma, Arial;
 }
 
-h1, h2, h3, h4{
+h1, h2, h3, h4, h5{
 	font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
 }
 
-h1 { font-size: 1.5em; }
-
-h2 { font-size: 1em; }
+h1 { font-size: 1.8em; }
+h2 { font-size: 1.5em; }
+h3 { font-size: 1.3em; }
+h4 { font-size: 1.1em; }
+h5 { font-size: 0.5em; }
 
 .line {
 	max-width: 100%;
     display: inline;
     margin: 0 auto;
 }
+
+/* post */
+.prev { float: left; }
+.next { float: right; }
 
 /*
 	@media screen and (max-width: 768px) {}
