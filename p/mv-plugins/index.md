@@ -11,7 +11,7 @@ layout: default
 
 Source code and other plugins at [Github](https://github.com/HermesPasser/RMMV-Plugins), see also [RPG Maker XP-Ace](https://github.com/HermesPasser/RGSS-Scripts) scripts.  
 
-Thanks to [Kazzter](http://www.condadobraveheart.com/forum/index.php?action=profile;u=1820) for the for the spelling corrections.  
+Thanks to [Kazzter](http://www.condadobraveheart.com/forum/index.php?action=profile;u=1820) for the spelling corrections.  
 
 ## Created for Condado Braveheart Christmas Event
 
