@@ -11,6 +11,8 @@ layout: default
 
 Source code and other plugins at [Github](https://github.com/HermesPasser/RMMV-Plugins), see also [RPG Maker XP-Ace](https://github.com/HermesPasser/RGSS-Scripts) scripts.  
 
+Thanks to [Kazzter](http://www.condadobraveheart.com/forum/index.php?action=profile;u=1820) for the for the spelling corrections.  
+
 ## Created for Condado Braveheart Christmas Event
 
 ### Jump System 0.2
@@ -31,7 +33,7 @@ The whole process in video:
 
 ---
 ### Name Window 0.1
-When the player is talking a event show it namne in a window.  
+Show a window with the name of the event that is talking with the player.  
 Download [here](https://github.com/HermesPasser/RMMV-Plugins/blob/master/Condado%20Braveheart/Christmas%20Event/NameWindow.js)  
 
 #### Usage
@@ -118,7 +120,7 @@ Download [here](https://github.com/HermesPasser/RMMV-Plugins/blob/master/Condado
 
 Write "zombie" in the event note to make it a zombie. This script is compatible with Hermes Shooting System.
 
-**Note: This is a experimental script write for a event and is can be not too useful**
+**Note: This is an experimental script and may not be very useful**
 
 The whole process in video:
 <iframe src="https://www.youtube.com/embed/2KTiFDfsqSE" frameborder="0" allowfullscreen></iframe>
@@ -135,7 +137,7 @@ The clone just have some basic info of the player.
 Plugin commands:  
 **Clone \<event_id\>**: Replace \<event_id\> with the id of event that will turn into a clone. 
  
-**Note: This is a experimental script write for a event and is can be not too useful**
+**Note: This is an experimental script and may not be very useful**
 
 The whole process in video:
 <iframe src="https://www.youtube.com/embed/oKv7Fk4pAh0" frameborder="0" allowfullscreen></iframe>
@@ -184,7 +186,7 @@ Download [here](https://github.com/HermesPasser/RMMV-Plugins/blob/master/Obseris
 
 The name of the file must be SceneBook.js to work.
 
-To open the scene use _Book \<file_text\>_ in 'plugin command" replacing \<file_text\> with the file that you want to be loaded in scene. The file must be have a .txt extension and should be in data/book folder.  
+To open the scene use _Book \<file_text\>_ in 'plugin command" replacing \<file_text\> with the file that you want to be loaded in scene. The file must have a .txt extension and should be in data/book folder.  
 e.g: _Book myText_
 
 In your file you can write all text commands that you can use in "show text" command to be processed by the plugin and some news:  
@@ -262,7 +264,7 @@ cancel option in:
 
 The name of the file must be MenuButtonCancel.js to work.
 
-This plugin is made to work on devices with touch screen and not work in desktop devices.
+This plugin was not tested and might not work in touch screen devices. 
 
 Plugin parameters:  
 **Image**: Image (75x75) name of button, if is none then will not use a image. The image must be in system folder and should not contains the extension. Default: none
@@ -278,7 +280,7 @@ See the [button without image](https://i.imgur.com/6KPw0Hn.png)
 
 The name of the file must be MenuCancelOption.js to work.
 
-This plugin it was not tested on devices with touch screen and not work in desktop devices.
+This plugin was not tested and might not work in touch screen devices. 
 
 Plugin parameters:  
 **Image**: Image (75x75) name of button, if is none then will not use a image. The image must be in system folder and should not contains the extension. Default: none
