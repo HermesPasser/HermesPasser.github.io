@@ -10,6 +10,11 @@ img, picture, video, iframe, embed, canvas {
     margin: 0 auto;
 }
 
+iframe {
+	width: 450px;
+	height: 300px;
+}
+
 body {
 	background-image: url("../images/background.gif");
 	color: white;
