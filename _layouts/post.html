@@ -9,7 +9,7 @@ layout: default
 
 <div id="post-nav" class="clearfix">
 	<hr>
-	<p>Posted by <span style="color:red">{{ page.author}}</span> in {{ page.date | date: "%B %e, %Y" }}</p>
+	<p>Posted by <a href="/about">{{ page.author}}</a> in {{ page.date | date: "%B %e, %Y" }} | tags: {{ page.tags }}</p>
 	{% if page.previous.url %} 
 		<a class="prev" href="{{page.previous.url}}">&laquo; {{page.previous.title}}</a> 
 	{% endif %} 

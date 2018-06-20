@@ -7,20 +7,16 @@ show-comments: false
 
 layout: default
 ---
-<img border="0" height="320" src="https://3.bp.blogspot.com/-zbUCFqxq2yM/WRXwZ2f9lOI/AAAAAAAAHHs/nCzKFHHI_GoxX9kXEA8MXUPIW4pwW2CUgCLcB/s320/Barbaman%2BAACD%2B%2528arte%2BDebora%2BPereira%2Bpintura%2BHermesPasser%2529%2BANIMADO.gif"	/>
-<p>This site is a repository for my online content.</p>
-<br />
-<p>Looking for me?</p>
+{% include lookingforme.html %}
 
-<a href="http://gladiocitrico.blogspot.com.br/">
-	<img class="line" alt="Blog (in portuguese)"  title="Blog (in portuguese)" height="16" width="16" src="../images/favicon.ico"></img>
-</a>
-<a href="https://www.youtube.com/channel/UCqhu61a4NvbPKF5MIufsGlw">
-	<img class="line" alt="YoutTube"  title="YoutTube" height="16" width="16" src="../images/social/yt.ico"></img>
-</a>
-<a href="https://twitter.com/HermesPasser">
-	<img class="line" alt="Twitter"  title="Twitter" height="16" width="16" src="../images/social/tw.ico"></img>
-</a>
-<a href="https://forums.rpgmakerweb.com/index.php?members/hermespasser.102676/">
-	<img class="line" alt="RPG Maker Web" title="RPG Maker Web" height="16" width="16" src="../images/social/rmw.ico"></img>
-</a>
+<h2>News</h2>
+<div class="post-list">
+{% for post in site.posts %}
+	<div class="post">
+		<h2><a href="{{ post.url }}">{{ post.title }}</a></h2>
+		<p>{{ post.excerpt }} <a href="{{ post.url }}">(more)</a></p>
+		<small>{{ post.date | date: "%B %e, %Y" }}</small>
+		<small> {{ post.tags }}</small>
+	</div>
+{% endfor %}
+</div>
