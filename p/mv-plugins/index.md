@@ -197,7 +197,7 @@ e.g: _this text will be showed in first page %%and this in the secound._
 e.g: _#picture1_ (in first line) or  _%#picture1% (in other lines)_  
 
 Plugin parameters:  
-**background**: Baground image file name in pictures folder. Default: "" (none)  
+**background**: File name of background image in pictures folder. Default: "" (none)  
 **page text**: Page text. Default: page
 
 ---
