@@ -15,7 +15,8 @@ Download [1.6](href="https://github.com/HermesPasser/Ramu/raw/master/Ramu.js)
 
 Currently just works well in chrome.  
 ## Demos  
-* [tauromaquia](tauromaquia/)
+* [Tauromaquia](tauromaquia/)
+* [Rhythm Flamengo](rhythmflamengo/)
 <!-- <ul> -->
 	<!-- <li> -->
 		<!-- <a href="player-control-test.html">WORK ON PROGRESS - Player Control, Gravity and Spritesheet Animator</a> -->

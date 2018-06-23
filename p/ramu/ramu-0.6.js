@@ -469,7 +469,6 @@ class Collisor extends Drawable{
 			
 			if (RamuMath.overlap(rect1, rect2)){
 				objsToCollide[i].collision.push(this);
-				
 				this.collision.push(objsToCollide[i]);
 				this.onCollision();
 			}
