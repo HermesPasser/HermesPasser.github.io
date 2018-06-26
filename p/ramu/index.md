@@ -17,6 +17,7 @@ Currently just works well in chrome.
 ## Demos  
 * [Tauromaquia](tauromaquia/)
 * [Rhythm Flamenco](rhythmflamenco/)
+* [Rhythm Flamenco](latomatina/)
 <!-- <ul> -->
 	<!-- <li> -->
 		<!-- <a href="player-control-test.html">WORK ON PROGRESS - Player Control, Gravity and Spritesheet Animator</a> -->
