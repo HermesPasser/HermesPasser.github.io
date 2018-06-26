@@ -98,7 +98,7 @@ class Game extends GameObj{
 		this.eventCreated = false;
 		
 		this.score = new Text('', Ramu.width / 2 - 40, 460);
-		this.infoDump = new Text('Click/touch to throw a tomato. Hermes Passer in 2018-06-26', 40, 480);
+		this.infoDump = new Text('Click to throw a tomato. Hermes Passer in 2018-06-26', 40, 480);
 		
 		this.timeToThrow = 1;
 		this.currentTimeThrow = this.timeToThrow;
@@ -129,7 +129,12 @@ class Game extends GameObj{
 		// Ramu.canvas will be defined after Ramu.init was called
 		if (Ramu.canvas && !this.eventCreated){
 			this.eventCreated = true;
-			'ontouchstart' in document.documentElement ? this.onTouch() : this.onClick();
+			
+			Ramu.canvas.addEventListener('click', event => {
+				let bound = Ramu.canvas.getBoundingClientRect();
+				let x = event.clientX - bound.left - Ramu.canvas.clientLeft; // let y = event.clientY - bound.top - Ramu.canvas.clientTop;
+				game.throwTomato(x);
+			});
 		}
 	}
 	
@@ -137,14 +142,6 @@ class Game extends GameObj{
 		Ramu.canvas.addEventListener('click', event => {
 			let bound = Ramu.canvas.getBoundingClientRect();
 			let x = event.clientX - bound.left - Ramu.canvas.clientLeft; // let y = event.clientY - bound.top - Ramu.canvas.clientTop;
-			game.throwTomato(x);
-		});
-	}
-	
-	onTouch(){
-		Ramu.canvas.addEventListener('touchstart',  event => {
-			let bound = Ramu.canvas.getBoundingClientRect();
-			let x = touchEvent.touches[0].clientX - bound.left - Ramu.canvas.clientLeft; // let y = touchEvent.touches[0].clientY - bound.top;
 			game.throwTomato(x);
 		});
 	}
@@ -165,6 +162,5 @@ class Game extends GameObj{
 }
 
 Ramu.init(500, 500); 
-Ramu.debugMode = true;
+// Ramu.debugMode = true;
 var game = new Game();
-
