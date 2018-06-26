@@ -144,7 +144,7 @@ class Game extends GameObj{
 	onTouch(){
 		Ramu.canvas.addEventListener('touchstart',  event => {
 			let bound = Ramu.canvas.getBoundingClientRect();
-			let x = touchEvent.touches[0].clientX - bound.left ; // let y = touchEvent.touches[0].clientY - bound.top;
+			let x = touchEvent.touches[0].clientX - bound.left - Ramu.canvas.clientLeft; // let y = touchEvent.touches[0].clientY - bound.top;
 			game.throwTomato(x);
 		});
 	}
