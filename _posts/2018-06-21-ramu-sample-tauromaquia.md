@@ -1,5 +1,5 @@
 ---
-title: New Ramu sample: Tauromaquia
+title: New Ramu sample - Tauromaquia
 date: '2018-06-21'
 author: Hermes Passer
 tags:

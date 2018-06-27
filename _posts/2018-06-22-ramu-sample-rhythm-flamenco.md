@@ -1,5 +1,5 @@
 ---
-title: New Ramu sample: Rhythm Flamenco
+title: New Ramu sample - Rhythm Flamenco
 date: '2018-06-22'
 author: Hermes Passer
 tags:
