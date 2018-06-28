@@ -9,11 +9,11 @@ layout: default
 ---
 <p align="center">Plugins for the RPG Maker MV.</p>
 
-Source code and other plugins at [Github](https://github.com/HermesPasser/RMMV-Plugins), see also [RPG Maker XP-Ace](https://github.com/HermesPasser/RGSS-Scripts) scripts.  
+Source code and other plugins at [Github](https://github.com/HermesPasser/RMMV-Plugins). See also [RPG Maker XP-Ace]({{ site.url }}/{{ site.baseurl }}/p/rgss-scripts) scripts.  
 
 Thanks to [Kazzter](http://www.condadobraveheart.com/forum/index.php?action=profile;u=1820) for the spelling corrections.  
 
-## Created for Condado Braveheart Christmas Event
+<h2 align="center">Created for Condado Braveheart Christmas Event</h2>
 
 ### Jump System 0.2
 Allow the player to jump.  
@@ -152,7 +152,7 @@ Download [here](https://github.com/HermesPasser/RMMV-Plugins/blob/master/Condado
 The whole process in video:
 <iframe src="https://www.youtube.com/embed/sUAdlFu8Uvg" frameborder="0" allowfullscreen></iframe>
 
-## Created as answer in Librarium forum
+<h2 align="center">Created as answer in Librarium forum</h2>
 
 ### Animated Title 0.1
 A example of animated title.  
@@ -173,7 +173,7 @@ Plugin parameters:
 Part of creation of plugin:
 <iframe src="https://www.youtube.com/embed/HlVXxaKEg5E" frameborder="0" allowfullscreen></iframe>
 
-## Created for Obseris Duelo game
+<h2 align="center"> Created for Obseris Duelo game</h2>
 
 ### Scene Book 0.2
 
@@ -241,9 +241,11 @@ Plugin parameters:
 **global text**: Nw name to global.rpgsave. Default: global
 **file text**: New name to file<number>.rpgsave. Default: file
 
+<!--
 ==================
 ESSES DOIS ESTÃO IGUAIS DEMAIS PRA MIM, TESTALOS E VER SE REALMENTE PRECISO DE DOIS SCRIPTS DE CANCELAR
 ==================
+-->
 ---
 ### Menu Button Cancel 0.3
 Add a cancel button to the menus and remove "double touch" to cancel menus.  
