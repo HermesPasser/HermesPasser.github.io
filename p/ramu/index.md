@@ -16,8 +16,14 @@ Download [1.6](href="https://github.com/HermesPasser/Ramu/raw/master/Ramu.js)
 Currently just works well in chrome.  
 ## Demos  
 * [Tauromaquia](tauromaquia/)
-* [Rhythm Flamenco](rhythmflamenco/)
+* [Rhythm Flamenco](rhythmflamenco/)*
 * [La Tomatina](latomatina/)
+* [Lost Train](losttrain/)**
+
+*: 2 Aires Choqueros (Fandangos De Huelva). Available on [archive.org/details/PacoDeLuciaManitasDePlata](https://archive.org/details/PacoDeLuciaManitasDePlata)
+
+**: "Steam Train Whistle Sound" by Daniel Simion. Available on [http://soundbible.com/2177-Steam-Train-Whistle.html](http://soundbible.com/2177-Steam-Train-Whistle.html) under [Creative Commons Attribution 3.0 ](https://creativecommons.org/licenses/by/3.0/?theme=Running_Club)
+
 <!-- <ul> -->
 	<!-- <li> -->
 		<!-- <a href="player-control-test.html">WORK ON PROGRESS - Player Control, Gravity and Spritesheet Animator</a> -->
