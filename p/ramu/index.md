@@ -19,6 +19,7 @@ Currently just works well in chrome.
 * [Rhythm Flamenco](rhythmflamenco/)*
 * [La Tomatina](latomatina/)
 * [Lost Train](losttrain/)**
+* [Non Plus Ultra](nonplusultra/)
 
 *: 2 Aires Choqueros (Fandangos De Huelva). Available on [archive.org/details/PacoDeLuciaManitasDePlata](https://archive.org/details/PacoDeLuciaManitasDePlata)
 
