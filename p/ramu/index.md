@@ -11,7 +11,7 @@ layout: default
 <p align="center">A simple game engine written in javascript.</p>
 
 Source code at [Github](https://github.com/HermesPasser/Ramu)   
-Download [1.6](href="https://github.com/HermesPasser/Ramu/raw/master/Ramu.js)
+Download [1.7](href="https://github.com/HermesPasser/Ramu/raw/master/Ramu.js)
 
 Currently just works well in chrome.  
 ## Demos  
