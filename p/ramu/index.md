@@ -25,19 +25,3 @@ Currently just works well in chrome.
 
 **: "Steam Train Whistle Sound" by Daniel Simion. Available on [http://soundbible.com/2177-Steam-Train-Whistle.html](http://soundbible.com/2177-Steam-Train-Whistle.html) under [Creative Commons Attribution 3.0 ](https://creativecommons.org/licenses/by/3.0/?theme=Running_Club)
 
-<!-- <ul> -->
-	<!-- <li> -->
-		<!-- <a href="player-control-test.html">WORK ON PROGRESS - Player Control, Gravity and Spritesheet Animator</a> -->
-	<!-- </li> -->
-	<!-- <li> -->
-		<!-- <a href="#">WORK ON PROGRESS - Simple A.I</a> -->
-	<!-- </li> -->
-	<!-- <li> -->
-		<!-- <a href="collision-test-potato-atack.html">Collision, Menu and Machine State</a> -->
-	<!-- </li> -->
-	<!-- <li> -->
-		<!-- <a href="animation-test.html">Game Sprite and Spritesheet Animation</a> -->
-	<!-- </li> -->
-	<!-- <li> -->
-		<!-- <a href="parallax-test">Parallax</a> -->
-	<!-- </li> -->
