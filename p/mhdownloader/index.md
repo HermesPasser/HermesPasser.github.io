@@ -27,7 +27,8 @@ Note: some methods useds can be depreciated or removed in newer versions, i reco
 
 ``h:`` to show help.  
 ``u:`` to update the program.    
-``d:`` to change the default folder (default is program_folder/mangas/).  
+``d:`` to change the default folder (default is program_folder/mangas/). The value is stored in a file so you only need to change once.  
+``l:`` to change the default domain (default is mangahost-br.com). This command must be called with the ``m:`` command, everytime you download a manga the value of this will be the default value again.  
 
 #### Downloading
 
