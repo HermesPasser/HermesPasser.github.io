@@ -11,13 +11,15 @@ layout: default
 <p align="center">Download mangas from the brazilian's site Manga Host.</p>
 
 Source code at [Github](https://github.com/HermesPasser/Manga-Host-Downloader)   
-Download [1.7](href="https://github.com/HermesPasser/Manga-Host-Downloader/archive/master.zip)
+Download [2.2](href="https://github.com/HermesPasser/Manga-Host-Downloader/archive/master.zip)
 
 **NOTE: This program will not be updated anymore.**
 
 ## Usage  
 
 Needs ruby 2.4 or higher to work.  
+
+Note: some methods useds can be depreciated or removed in newer versions, i recommend the usage of 2.* versions.
 
 ### Command line arguments  
 
