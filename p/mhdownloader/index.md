@@ -40,6 +40,7 @@ If there is a volume it will be before the chapter. The number after the chapter
 ``v:<volume_name>`` replace \<volume_name\> with the name of volume. Ignore this parameter if the manga does not have one. (optional)  
 ``p:<path>`` replace \<path\> with the path you want to download. This will just download the current manga in the selected folder and will not replace the default folder. (optional)  
 ``l:`` to change the default domain (default is mangahost-br.com).   
+
 e.g: ``m:manga_name c:01 p:c:\folder`` or ``m:other_manga c:5.5 v:4`` or ``m:manga_name c:1 l:mangahost.net``  
 
 Below a video with the whole process:
