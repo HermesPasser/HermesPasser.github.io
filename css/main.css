@@ -63,7 +63,7 @@ aside ul li { list-style: none; }
 main {
 	margin-left: 5%;
 	padding: 2%;
-	width: 66.01%;
+	width: 86%; /* 66.01%; */
 	float: left;
 }
 

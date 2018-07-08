@@ -1,10 +1,10 @@
 ---
-title: Manha Host Downloader update 2.2
+title: Manga Host Downloader update 2.2
 date: '2018-07-06'
 author: Hermes Passer
 tags:
--manga
--downloader
+- manga
+- downloader
 
 layout: post
 ---

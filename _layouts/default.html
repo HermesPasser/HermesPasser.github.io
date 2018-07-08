@@ -13,7 +13,8 @@
 		<title>{% unless page.url == '/' %} {{ page.title }} &#8226; {% endunless %} {{ site.title }}</title>
 	</head>
 	
-	<body onload="load();" onresize="load()">
+	<body>
+	<!-- <body onload="load();" onresize="load()"> -->
 		{% include column.html %}	
 		<main id="main">
 			<h1>{{ page.title }}</h1>
@@ -22,9 +23,9 @@
 			{% include comments_disqus.html %}
 		</main>
 		
-		<aside>
-			<a href="{{site.url}}/{{site.baseurl}}p">Projects list</a>
-		</aside>
+		<!-- <aside> -->
+			<!-- <a href="{{site.url}}/{{site.baseurl}}p">Projects list</a> -->
+		<!-- </aside> -->
 		<footer>
 			<small id="fooster-text">{{ site.title }} by Hermes Passer</small>
 		</footer>
