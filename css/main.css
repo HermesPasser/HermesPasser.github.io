@@ -76,13 +76,13 @@ footer {
 }
 
 a {
-    color: #ff0000;
+    color: #9e0000;
     text-decoration: none;
 }
 
 a:hover {
     text-decoration: underline;
-	color: #996464;
+	color: #490000;
 }
 
 a:visited {
