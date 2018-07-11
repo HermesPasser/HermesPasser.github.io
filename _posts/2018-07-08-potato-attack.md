@@ -3,8 +3,8 @@ title: Old Ramu demo, Potato Attack
 date: '2018-07-08'
 author: Hermes Passer
 tags:
-- manga
-- downloader
+- ramu
+- demo
 
 layout: post
 ---

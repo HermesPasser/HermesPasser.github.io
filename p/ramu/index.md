@@ -16,14 +16,14 @@ Download [1.7](href="https://github.com/HermesPasser/Ramu/raw/master/Ramu.js)
 Currently just works well in chrome.  
 ## Demos  
 * [Tauromaquia](tauromaquia/)
-* [Rhythm Flamenco](rhythmflamenco/)*
+* [Rhythm Flamenco](rhythmflamenco/)[1]
 * [La Tomatina](latomatina/)
-* [Lost Train](losttrain/)**
+* [Lost Train](losttrain/)[2]
 * [Non Plus Ultra](nonplusultra/)
-* [Potato Attack](potatoattack/)***
+* [Potato Attack](potatoattack/)[3]
 
-*: 2 Aires Choqueros (Fandangos De Huelva). Available on [archive.org/details/PacoDeLuciaManitasDePlata](https://archive.org/details/PacoDeLuciaManitasDePlata)   
+[1]: Music used: 2 Aires Choqueros (Fandangos De Huelva). Available on [archive.org](https://archive.org/details/PacoDeLuciaManitasDePlata)   
 
-**: "Steam Train Whistle Sound" by Daniel Simion. Available on [http://soundbible.com/2177-Steam-Train-Whistle.html](http://soundbible.com/2177-Steam-Train-Whistle.html) under [Creative Commons Attribution 3.0 ](https://creativecommons.org/licenses/by/3.0/?theme=Running_Club)   
+[2]: Music used: "Steam Train Whistle Sound" by Daniel Simion. Available on [soundbible.com](http://soundbible.com/2177-Steam-Train-Whistle.html) under [Creative Commons Attribution 3.0 ](https://creativecommons.org/licenses/by/3.0/?theme=Running_Club)   
 
-***: Originally written in Ramu 0.2 then it can be a little poorly made.
+[3]: Originally written in Ramu 0.2 and can be a little poorly made.
