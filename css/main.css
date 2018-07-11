@@ -105,6 +105,11 @@ h3 { font-size: 1.3em; }
 h4 { font-size: 1.1em; }
 h5 { font-size: 0.5em; }
 
+.ref {
+	font-size: 0.5em;
+	vertical-align: 1em;
+}
+
 .post-list {
 	background-color: #6d6d6d;
 	margin-right: 0.5em;
