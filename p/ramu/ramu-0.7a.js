@@ -56,7 +56,7 @@ class Rect{
 	}
 }
 
-// ============ RAMU DECLARATION 1.7 - 2018-06-30 ============ //
+// ============ RAMU DECLARATION 1.7 - 2018-07-09 ============ //
 
 class Ramu{
 	/// Prevents creating an instance of this class.
@@ -67,20 +67,22 @@ class Ramu{
 	static get width(){
 		if (Ramu.canvas)
 			return Ramu.canvas.width;
+		return 0;
 	}
 
 	static get height(){
 		if (Ramu.canvas)
 			return Ramu.canvas.height;
+		return 0;
 	}
 	
 	static get VERSION() {
-		return "0.7";
+		return '0.7 07-10-18';
 	}
 }
 
 
-// Ramu.callDestroy	   = false; //TODO
+Ramu.callDestroy	   = false; //TODO
 Ramu.callSortUpdate    = false;
 Ramu.callSortDraw 	   = false;
 Ramu.callSortCollision = false;
@@ -88,20 +90,20 @@ Ramu.callSortCollision = false;
 Ramu.debugMode  = false;
 Ramu.inLoop 	= true;
 
-Ramu.canvas = null;
-Ramu.ctx = null;
+Ramu.canvas = document.createElement('canvas');
+Ramu.ctx = Ramu.canvas.getContext('2d');
 
-Ramu.time = null;
+Ramu.time = {last: 0, delta: 1/60, frameTime: 0};
 
 /// Init the Ramu and the main loop.
 Ramu.init = function(width = 500, height = 500){
 	if (!document.body)
 		throw new Error('No body tag found.');
 	
-	Ramu.canvas = document.createElement('canvas');
+	// Ramu.canvas = document.createElement('canvas');
 	Ramu.canvas.width  = width
 	Ramu.canvas.height = height
-	Ramu.ctx = Ramu.canvas.getContext('2d');
+	// Ramu.ctx = Ramu.canvas.getContext('2d');
 	document.body.appendChild(Ramu.canvas);
 	
 	Ramu.callSortUpdate    = false;
@@ -125,6 +127,7 @@ Ramu.init = function(width = 500, height = 500){
 Ramu.pressedKeys	 = {};
 Ramu.lastKeysPressed = {};
 Ramu.clickedPosition = {};
+Ramu.mousePosition   = { X: 0, Y: 0};
 
 Ramu._key = function(){
 	Ramu.pressedKeys	 = {}; // The key continues on this list until the key up.
@@ -140,23 +143,33 @@ Ramu._key = function(){
 	}, false);
 }
 
+Ramu._getMousePosition = function(event){
+	let bound = Ramu.canvas.getBoundingClientRect();
+	return {
+		X: event.clientX - bound.left - Ramu.canvas.clientLeft,
+		Y: event.clientY - bound.top - Ramu.canvas.clientTop	
+	}
+}
+
 Ramu._click = function(){
 	Ramu.clickedPosition = {};
 	Ramu.canvas.addEventListener('click', event => {
 		// esse metodo não é tão bom, clicar apos deixar a aba ativa gerara isso a ser chamado varias vezes num mesmo clique
-		
-		let bound = Ramu.canvas.getBoundingClientRect();			
-		Ramu.clickedPosition = { 
-			X: event.clientX - bound.left - Ramu.canvas.clientLeft, 
-			Y: event.clientY - bound.top - Ramu.canvas.clientTop
-		};
+		Ramu.clickedPosition = Ramu._getMousePosition(event);
 	});
 }
 
+Ramu._mouseMove = function(){
+	Ramu.canvas.addEventListener('mousemove', event => {
+		Ramu.mousePosition = Ramu._getMousePosition(event);
+	}); 
+}
+	
 /// Start all input events listeners
 Ramu.input = function(){
 	Ramu._key();
 	Ramu._click();
+	Ramu._mouseMove();
 	
 	// Ramu.canvas.addEventListener('mousemove'   function(e){},  false);
 	// Ramu.canvas.addEventListener('touchstart', function(e){},  false);
@@ -231,12 +244,10 @@ Ramu.loop = function(){
 
 			// Ramu._sortDestroy();
 			
-			Ramu._sortCollision();
-			
+			Ramu._sortCollision();	
 			Ramu.checkCollision();
 			
 			Ramu._sortUpdate();
-			
 			Ramu.update();
 			
 			Ramu.time.frameTime = Ramu.time.frameTime - Ramu.time.delta;
@@ -246,8 +257,7 @@ Ramu.loop = function(){
 		}
 	}
 	
-	Ramu._sortDraw();
-	
+	Ramu._sortDraw();	
 	Ramu.draw();
 	Ramu._clearInput();
 	
@@ -255,7 +265,7 @@ Ramu.loop = function(){
 	window.requestAnimationFrame(Ramu.loop);
 }
 
-// ============ RAMU MAIN ENGINE (WITH NO LOOP) 1.7 - 2018-06-30 ============ //
+// ============ RAMU MAIN ENGINE (WITH NO LOOP) 1.7 - 2018-07-10 ============ //
 
 /// Executes all start methods of all Ramu.gameObjs in the game.
 Ramu.start = function(){
@@ -284,7 +294,7 @@ Ramu.update = function(){
 /// Check all collisions in the game.
 Ramu.checkCollision = function(){
 	for (var i = 0; i < Ramu.objsToCollide.length; i++){
-		if (!Ramu.objsToCollide[i]._start_was_called)
+		if (!Ramu.objsToCollide[i]._start_was_called || !Ramu.gameObjs[i].canUpdate)
 			continue;
 		Ramu.objsToCollide[i].checkCollision();
 	}
@@ -296,16 +306,10 @@ Ramu.draw = function(){
 	Ramu.ctx.clearRect(0, 0, Ramu.width, Ramu.height);
 	
 	for (var i = 0; i < Ramu.objsToDraw.length; i++){
-		if (!Ramu.objsToDraw[i]._start_was_called)
+		if (!Ramu.objsToDraw[i]._start_was_called || !Ramu.gameObjs[i].canUpdate)
 			continue;
 		
-		let positionWidth = Ramu.objsToDraw[i].x + Ramu.objsToDraw[i].width;		
-		let positionHeigh = Ramu.objsToDraw[i].y + Ramu.objsToDraw[i].height;
-		
-		let isOutOfCanvas = positionWidth >= 0 && Ramu.objsToDraw[i].x <= Ramu.width &&
-							positionHeigh >= 0 && Ramu.objsToDraw[i].y <= Ramu.height // Renderiza somente o que esta no Ramu.canvas
-		
-		if (Ramu.objsToDraw[i].drawOutOfCanvas || isOutOfCanvas)
+		if (Ramu.objsToDraw[i].drawOutOfCanvas || Ramu.Utils.isInsidesOfCanvas(Ramu.objsToDraw[i]))
 			Ramu.objsToDraw[i].drawInCanvas();
 	}
 }
@@ -332,7 +336,7 @@ Ramu.Math = class Math{
 	}
 }
 
-// ============ RAMU UTILS 1.7 - 2018-06-30 ============ //
+// ============ RAMU UTILS 1.7 - 2018-07-10 ============ //
 
 Ramu.Utils = class Utils{
 	constructor(){
@@ -366,10 +370,18 @@ Ramu.Utils = class Utils{
 		return img.complete && img.naturalWidth !== 0 && img.naturalHeight !== 0;
 	}
 	
-	/// Check if the gameObject is out of the canvas
+	/// Check if the gameObject position (x,y) is out of the canvas
 	static isOutOfCanvas(gameObject){
 		return gameObject.x < 0 || gameObject.x > Ramu.canvas.width ||
 			   gameObject.y < 0 || gameObject.y > Ramu.canvas.height;
+	}
+	
+	/// Check if the part of gameObject size (x,y,w,h) is inside of the canvas
+	static isInsidesOfCanvas(gameObject){
+		return (gameObject.x + gameObject.width) > 0  && 
+				gameObject.x <= Ramu.width  &&
+				(gameObject.y + gameObject.height) > 0 &&
+				gameObject.y <= Ramu.height;	   
 	}
 	
 	/// Check if object/hash is empty
@@ -379,6 +391,7 @@ Ramu.Utils = class Utils{
 		return true;
 	}
 	
+	/// Used in ramu internal to throw erros
 	static CustomTypeError(instance, classToCompare){
 		return new Error("TypeError: " + Object.keys({instance})[0] + ' must be a ' + classToCompare.name + ' instance.');
 	}
@@ -409,12 +422,21 @@ class GameObj{
 		for (let i = 0; i < Ramu.gameObjs.length; ++i){
 			for (let j = i + 1; j < Ramu.gameObjs.length; ++j){
 				if (Ramu.gameObjs[i].updatePriority > Ramu.gameObjs[j].updatePriority){
-					let temp 	=  Ramu.gameObjs[i];
+					let temp =  Ramu.gameObjs[i];
 					Ramu.gameObjs[i] = Ramu.gameObjs[j];
 					Ramu.gameObjs[j] = temp;
 				}
 			}
 		}
+	}
+	
+	toRect(){
+		return new Rect(this.x, this.y, this.width, this.height);
+	}
+	
+	setActive(bool){
+		if (!(typeof(bool) === 'boolean')) throw Ramu.Utils.CustomTypeError(bool, Boolean);
+		this.canUpdate = bool;
 	}
 	
 	destroy(){
@@ -427,6 +449,8 @@ class GameObj{
 		// console.log("destroy chamado para " )
 		// console.log(this)
 		// console.log("  " )
+		
+		this.setActive(false);
 		
 		this.canDestroy = true;
 		Ramu.callDestroy = true;
@@ -577,7 +601,7 @@ class Collisor extends Drawable{
 		
 		this.collision = [];
 		for (let i = 0; i < Ramu.objsToCollide.length; i++){
-			if (Ramu.objsToCollide[i] === this || !Ramu.objsToCollide[i].canCollide)
+			if (Ramu.objsToCollide[i] === this || !Ramu.objsToCollide[i].canCollide || !Ramu.gameObjs[i].canUpdate)
 				continue;
 			
 			let rect1 = new Rect(this.x, this.y, this.width, this.height);
@@ -695,8 +719,8 @@ class Sprite extends Drawable{
 		}
 		
 		//if (this.canDraw)
-			Ramu.ctx.imageSmoothingEnabled = false;
-			Ramu.ctx.drawImage(this.img, originX, originY, this.width, this.height);
+		Ramu.ctx.imageSmoothingEnabled = false;
+		Ramu.ctx.drawImage(this.img, originX, originY, this.width, this.height);
 	}
 }
 
@@ -902,7 +926,6 @@ class SpritesheetAnimator extends GameObj{
 	
 	setCanDraw(bool){
 		if (!(typeof(bool) == 'boolean')) throw Ramu.Utils.CustomTypeError(bool, Boolean);
-	
 		this.anim[this.currentID].canDraw = bool;
 	}
 	
@@ -969,7 +992,13 @@ class SpritesheetAnimator extends GameObj{
 		this.y = y;
 		for (var key in this.anim)
 			this.anim[key].y = y;
-	}	
+	}
+	
+	setActive(bool){
+		super.setActive(bool);
+		for(var key in this.anim)
+			this.anim[key].setActive(bool);
+	}
 	
 	addX(x){
 		this.x += x;
@@ -998,60 +1027,347 @@ class Clickable extends GameObj{
 		super(x, y, w, h);
 		if (arguments.length != 4) throw new Error('ArgumentError: Wrong number of arguments');
 		this.enabled = true;
+		this.isInHover = false;
 	}
 	
 	static clickEventExists(){
 		return 'click' in document.documentElement;
 	}
-	
+
 	update(){
-		if (Clickable.clickEventExists() || this.enabled)
-			this.checkClick();
+		if (!Clickable.clickEventExists() || !this.enabled)
+			return;
+		
+		this.checkHover();
+		this.checkClick();
 	}
 	
 	checkClick(){
+		// to add a onClickEnter and a onClickExit will be need add an onmouseup and onmousedown event
 		if (!Ramu.clickedPosition.X && !Ramu.clickedPosition.Y)
 			return;
-			
-		let rect1 = new Rect(this.x, this.y, this.width, this.height);
-		let rect2 = new Rect(Ramu.clickedPosition.X, Ramu.clickedPosition.Y, 1, 1);
 		
-		if (Ramu.Math.overlap(rect1, rect2))
+		let rect = new Rect(Ramu.clickedPosition.X, Ramu.clickedPosition.Y, 1, 1);
+		
+		if (Ramu.Math.overlap(this.toRect(), rect)){
+			if (!this.isClicking)
+				this.isClicking = true;
 			this.onClick();
+		} else {
+			this.isClicking = false;
+		}
 	}
+	
+	checkHover(){
+		let rect = new Rect(Ramu.mousePosition.X, Ramu.mousePosition.Y, 1, 1);
+		
+		if (Ramu.Math.overlap(this.toRect(), rect)){
+			if (!this.isInHover){
+				this.isInHover = true;
+				this.onHoverEnter();
+				return;
+			}
+		} else {
+			if (this.isInHover){
+				this.isInHover = false;
+				this.onHoverExit();
+				return;
+			}
+		}
+		
+		if (this.isInHover)
+			this.onHoverStay();
+	}
+	
+	/// Virtual to be inherited
+	onHoverEnter(){ }
+	
+	/// Virtual to be inherited
+	onHoverStay(){ }
+	
+	/// Virtual to be inherited
+	onHoverExit(){ }
 	
 	/// Virtual to be inherited
 	onClick(){ }
 }
 
-class SimpleSpriteButton extends Sprite{
-	constructor(img, x, y, w, h){
-		super(img, x, y, w, h, true);
-		if (arguments.length != 5) throw new Error('ArgumentError: Wrong number of arguments');
-		this.clickable = new Clickable(x, y, w, h);
+/// Abstract superclass of SimpleparentBtnButton and SimpleparentBtnsheetButton
+class SimpleButtonBase extends Clickable{
+	constructor(x, y, w, h){
+		super(x, y, w, h);
+		if (arguments.length != 4) throw new Error('ArgumentError: Wrong number of arguments');
+		
+		this.onClickFunc = null;
+		this.onClickFuncIsAdded = false;
+		
+		this.onHoverEnterFunc = null;
+		this.onHoverEnterFuncIsAdded = false;
+
+		this.onHoverExitFunc = null;
+		this.onHoverExitFuncIsAdded = false;
+		
+		// Because there is a delay to go back to previous image, it was no need if it have a onClickEnter/Exit
+		this.clicked = false;
+		this.timeToCancelClickDrawable = 0.2;
+		this.currentTimeToCancel = 0;
+	}
+	
+	get drawableObj(){ } // Virtual
+	
+	set drawableImage(value) { } // Virtual
+	
+	get drawableImage() { } // Virtual
+	
+	get drawableNormal(){ } // Virtual
+	
+	get drawableHover(){ } // Virtual
+	
+	get drawableClick(){ } // Virtual
+	
+	set drawableBeforeClick(value){ } // Virtual
+	
+	get drawableBeforeClick(){ } // Virtual
+	
+	start(){
+		this.updateEvents();
 	}
 	
 	setRect(rect){
 		if (!(rect instanceof Rect)) throw Ramu.Utils.CustomTypeError(rect, Rect);
 		
 		this.x = rect.x;
-		this.clickable.x = rect.x;
+		this.drawableObj.x = rect.x;
 		this.y = rect.y;
-		this.clickable.y = rect.x;
+		this.drawableObj.y = rect.x;
 	}
 	
 	setEnabled(bool){
-		if (!(typeof(bool) == 'boolean')) throw Ramu.Utils.CustomTypeError(bool, Boolean);
-		this.clickable.enabled = bool;
+		if (!(typeof(bool) === 'boolean')) throw Ramu.Utils.CustomTypeError(bool, Boolean);
+		this.enabled = bool;
+		this.drawableObj.enabled = bool;
 	}
 	
 	setOnClick(func){
-		this.clickable.onClick = func;
+		if (!(typeof(func) === 'function')) throw Ramu.Utils.CustomTypeError(func, Function);
+		this.onClickFunc = func;
+		this.onClickFuncIsAdded = true;
 	}
+	
+	setOnHoverEnter(func){
+		if (!(typeof(func) === 'function')) throw Ramu.Utils.CustomTypeError(func, Function);
+		this.onHoverEnterFunc = func;
+		this.onHoverEnterFuncIsAdded = true;
+	}
+	
+	setOnHoverStay(func){
+		if (!(typeof(func) === 'function')) throw Ramu.Utils.CustomTypeError(func, Function);
+		this.onHoverStay = func;
+	}
+	
+	setOnHoverExit(func){
+		if (!(typeof(func) === 'function')) throw Ramu.Utils.CustomTypeError(func, Function);
+		this.onHoverExitFunc = func;
+		this.onHoverExitFuncIsAdded = true;
+	}
+	
+	setActive(bool){
+		if (!(typeof(bool) === 'boolean')) throw Ramu.Utils.CustomTypeError(bool, Boolean);
+		super.setActive(bool);
+		this.setActive(bool);
+	}
+	
+	/// Private Setter
+	setToHoverImage(){
+		this.clicked = false;
+		if (this.drawableHover)
+			this.drawableImage = this.drawableHover;
+	}
+	
+	/// Private Setter
+	setToClickImage(){
+		if (this.drawableClick){
+			this.clicked = true;
+			this.drawableBeforeClick = this.drawableImage;
+			this.drawableImage = this.drawableClick
+			this.currentTimeToCancel = 0;
+		}
+	}
+	
+	updateEvents(){
+		this.onHoverEnter = function(){
+			if (this.onHoverEnterFunc){
+				this.onHoverEnterFunc.call(this);
+			}
+			
+			this.setToHoverImage();
+		};
 		
+		this.onHoverExit = function(){
+			if (this.onHoverExitFunc){
+				this.onHoverExitFunc.call(this);
+			}
+			
+			this.clicked = false;
+			this.drawableImage = this.drawableNormal;
+		};
+		
+		this.onClick = function(){
+			if (this.onClickFunc){
+				this.onClickFunc.call(this);
+			}
+			
+			this.setToClickImage();
+		};	
+	}
+	
+	update(){
+		super.update();
+		
+		if (this.clicked){			
+			this.currentTimeToCancel += Ramu.time.delta;
+			if (this.currentTimeToCancel >= this.timeToCancelClickDrawable){
+				console.log(this.drawableImage)
+				console.log(this.drawableBeforeClick)
+				console.log('--')
+				this.drawableImage = this.drawableBeforeClick;
+				this.clicked = false;
+			}
+		}
+		
+		// Because if setOnClick was written before Ramu.init then this.onClickFunc will be null and will never be called
+		if (this.onClickFuncIsAdded){
+			this.updateEvents();
+			this.onClickFuncIsAdded = false;			
+		}
+		
+		// Because if setOnHoverEnter was written before Ramu.init then this.onClickFunc will be null and will never be called
+		if (this.onHoverEnterFuncIsAdded){
+			this.updateEvents();
+			this.onHoverEnterFuncIsAdded = false;			
+		}
+		
+		// Because if setOnHoverExit was written before Ramu.init then this.onClickFunc will be null and will never be called
+		if (this.onHoverEnterFuncIsAdded){
+			this.updateEvents();
+			this.onHoverEnterFuncIsAdded = false;			
+		}
+	}
+	
 	destroy(){
 		super.destroy();
-		this.clickable.destroy();
+		this.drawableObj.destroy();
+	}
+}
+
+class SimpleSpriteButton extends SimpleButtonBase{
+	constructor(x, y, w, h, bottonImg, buttonHover = null, buttonClick = null){
+		super(x, y, w, h);
+		if (arguments.length < 5 || arguments.length > 7) throw new Error('ArgumentError: Wrong number of arguments');
+		this.sprite = new Sprite(bottonImg, x, y, w, h);		
+		this.imgNormal = bottonImg;
+		this.imgHover = buttonHover;
+		this.imgClick = buttonClick;
+		this.imgBeforeClick = bottonImg;
+	}
+	
+	get drawableObj(){
+		return sprite;
+	}
+	
+	set drawableImage(img){
+		if (!(img instanceof Image)) throw Ramu.Utils.CustomTypeError(img, Image);
+		this.sprite.img = img;
+	}
+	
+	get drawableImage(){
+		return this.sprite.img;
+	}
+		
+	get drawableNormal(){
+		return this.imgNormal;
+	}
+	
+	get drawableHover(){
+		return this.imgHover;
+	}
+	
+	get drawableClick(){
+		return this.imgClick;
+	}
+	
+	set drawableBeforeClick(img){
+		if (!(img instanceof Image)) throw Ramu.Utils.CustomTypeError(img, Image);
+		this.rectBeforeClick = img;
+	}
+	
+	get drawableBeforeClick(){
+		return this.imgBeforeClick;
+	}
+}
+
+class SimpleSpritesheetButton extends SimpleButtonBase{
+	constructor(x, y, w, h, img, rectNormal, rectHover = null, rectClick = null){
+		super(x, y, w, h);
+		if (arguments.length < 6 || arguments.length > 8) throw new Error('ArgumentError: Wrong number of arguments');
+		this.spritesheet = new Spritesheet(img, rectNormal, x, y, w, h);
+		this.rectNormal = rectNormal;
+		this.rectHover = rectHover;
+		this.rectClick = rectClick;
+		this.rectBeforeClick = rectNormal;
+	}
+	
+	get drawableObj(){
+		return spritesheet;
+	}
+	
+	set drawableImage(rect){
+		if (!(rect instanceof Rect)) throw Ramu.Utils.CustomTypeError(rect, Rect);
+		this.spritesheet.setSheet(rect);
+	}
+	
+	get drawableImage(){
+		return this.spritesheet.sheet;
+	}
+		
+	get drawableNormal(){
+		return this.rectNormal;
+	}
+	
+	get drawableHover(){
+		return this.rectHover;
+	}
+	
+	get drawableClick(){
+		return this.rectClick;
+	}
+	
+	set drawableBeforeClick(rect){
+		if (!(rect instanceof Rect)) throw Ramu.Utils.CustomTypeError(rect, Rect);
+		this.rectBeforeClick = rect;
+	}
+	
+	get drawableBeforeClick(){
+		return this.rectBeforeClick;
+	}
+}
+
+class Destroyer extends GameObj{
+	constructor(time, gameObj){
+		super(0,0,0,0);
+		if (arguments.length !== 2) throw new Error('ArgumentError: Wrong number of arguments');
+		this.timeToDestroy = time;
+		this.currentTime = 0;
+		this.objToBeDestroyed = gameObj;
+	}
+	
+	update(){
+		this.currentTime += Ramu.time.delta;
+		if(this.currentTime >= this.timeToDestroy){
+			if(this.objToBeDestroyed)
+				this.objToBeDestroyed.destroy();
+			this.destroy();
+		}
 	}
 }
 
@@ -1076,11 +1392,24 @@ Ramu.Audio = class Audio extends GameObj{
 		this.audio.currentTime = 0;
 	}
 	
+	pause(){
+		this.audio.pause();
+	}
+	
+	resume(){
+		this.audio.play();
+	}
+	
 	update(){
 		if (this.isPlaying && this.audio.ended){
 			this.stop();
 			this.onAudioEnd();
 		}
+	}
+		
+	setActive(bool){
+		super.setActive(bool);
+		this.pause();
 	}
 	
 	/// Virtual to be inherited
@@ -1101,7 +1430,7 @@ class Parallax extends GameObj{
 	}
 	
 	canDraw(bool){
-		if (!(bool instanceof Boolean)) throw Ramu.Utils.CustomTypeError(bool, Boolean);
+		if (!(typeof(bool) == 'boolean')) throw Ramu.Utils.CustomTypeError(bool, Boolean);
 
 		this.left.canDraw   = bool;
 		this.center.canDraw = bool;
@@ -1134,6 +1463,13 @@ class Parallax extends GameObj{
 		
 		if (this.right.x + this.right.width <= 0)
 			this.right.x = this.center.width;
+	}
+	
+	setActive(bool){
+		super.setActive(bool);
+		this.left.setActive(bool);
+		this.center.setActive(bool);
+		this.right.setActive(bool);
 	}
 	
 	destroy(){
@@ -1282,6 +1618,13 @@ class SimpleParticle extends GameObj{
 			this.particles[i].y = this.y;			
 			this.particles[i].canDraw = false;
 		}
+	}
+		
+	setActive(bool){
+		super.setActive(bool);
+		
+		for (let i = 0; i < this.particles.length ; i++)
+			this.particles[i].setActive(bool);
 	}
 	
 	destroy(){
