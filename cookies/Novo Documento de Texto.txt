@@ -1,0 +1,8 @@
+https://developers.google.com/analytics/devguides/collection/analyticsjs/cookie-usage
+https://support.google.com/analytics/answer/2838718
+https://policies.google.com/technologies/cookies
+
+https://analytics.google.com/analytics/web/provision/?authuser=0#provision/SignUp/
+https://support.google.com/analytics/answer/1008080?hl=pt-BR&utm_medium=et&utm_campaign=en_us&utm_source=SetupChecklist
+
+https://help.disqus.com/user-profile/use-of-cookies
