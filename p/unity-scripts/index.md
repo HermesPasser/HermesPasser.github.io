@@ -15,7 +15,7 @@ Source code and other scripts in [Github](https://github.com/HermesPasser/unity-
 <h2 align="center">Systems</h2>
 
 ### novelist
-A very simple precedual visual novel engine.
+A very simple precedual visual novel engine.   
 Download [here](https://github.com/HermesPasser/unity-scripts/tree/master/novelist)  
 
 #### Usage
@@ -26,7 +26,7 @@ Read the documentation [here](novelist).
 <h2 align="center">(Very basic) Scripts</h2>
 
 ### Destroyer
-Destroy a GameObject after a time defined.
+Destroy a GameObject after a time defined.   
 Download [here](https://github.com/HermesPasser/unity-scripts/blob/master/basic/Destroyer.cs)  
 
 #### Usage
@@ -38,7 +38,7 @@ Properties:
 
 ---
 ### FollowObject
-Make a GameObject follow another.
+Make a GameObject follow another.   
 Download [here](https://github.com/HermesPasser/unity-scripts/blob/master/basic/FollowObject.cs)  
 
 #### Usage
@@ -51,7 +51,7 @@ Properties:
 
 ---
 ### GameLight
-Control the light of a GameObject.
+Control the light of a GameObject.   
 Download [here](https://github.com/HermesPasser/unity-scripts/blob/master/basic/GameLight.cs)  
 
 #### Usage
@@ -67,7 +67,7 @@ Properties:
 
 ---
 ### BasicTopDownMovimentationPC
-Basic top-down movimentation with keyboard.
+Basic top-down movimentation with keyboard.   
 Download [here](https://github.com/HermesPasser/unity-scripts/blob/master/basic/Movimentation/BasicTopDownMovimentationPC.cs)  
 
 #### Usage
@@ -81,7 +81,7 @@ Properties:
 
 ---
 ### BasicTopDownMovimentationMobile
-Basic top-down movimentation with touch.
+Basic top-down movimentation with touch.   
 Download [here](https://github.com/HermesPasser/unity-scripts/blob/master/basic/Movimentation/BasicTopDownMovimentationMobile.cs)  
 
 #### Usage
