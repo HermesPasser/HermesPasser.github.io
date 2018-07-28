@@ -123,6 +123,10 @@ td {
 	border-color: white;
 }
 
+.page-title {
+	color: #bbbbbb;
+}
+
 .ref {
 	font-size: 0.5em;
 	vertical-align: 1em;

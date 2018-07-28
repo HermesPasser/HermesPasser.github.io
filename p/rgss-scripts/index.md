@@ -9,7 +9,7 @@ layout: default
 ---
 <p align="center">Scripts for the RPG Maker XP, VX and VX Ace.</p>
 
-Source code and other scripts at [Github](https://github.com/HermesPasser/RGSS-Scripts). See also Plugins for RPG Maker MV [here]({{site.url}}/{{site.baseurl}}p/mv-plugins).
+Source code and other scripts in [Github](https://github.com/HermesPasser/RGSS-Scripts). See also Plugins for RPG Maker MV [here]({{site.url}}/{{site.baseurl}}p/mv-plugins).
 
 <!--
 ================

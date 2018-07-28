@@ -9,7 +9,7 @@ layout: default
 ---
 <p align="center">Plugins for the RPG Maker MV.</p>
 
-Source code and other plugins at [Github](https://github.com/HermesPasser/RMMV-Plugins). See also [RPG Maker XP-Ace]({{site.url}}/{{site.baseurl}}p/rgss-scripts) scripts.  
+Source code and other plugins in [Github](https://github.com/HermesPasser/RMMV-Plugins). See also [RPG Maker XP-Ace]({{site.url}}/{{site.baseurl}}p/rgss-scripts) scripts.  
 
 Thanks to [Kazzter](http://www.condadobraveheart.com/forum/index.php?action=profile;u=1820) for the spelling corrections.  
 
