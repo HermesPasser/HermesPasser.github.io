@@ -75,7 +75,7 @@ Download [here](https://github.com/HermesPasser/unity-scripts/blob/master/basic/
 Attach to you GameObject.
 
 Properties:  
-**rbody (Rigidbody2D )**: GameObject to be moved.   
+**rbody (Rigidbody2D)**: GameObject to be moved.   
 **speed (float)**: Movimentation speed. Default:  3   
 
 
@@ -89,7 +89,7 @@ Download [here](https://github.com/HermesPasser/unity-scripts/blob/master/basic/
 Attach to you GameObject.
 
 Properties:  
-**rbody (Rigidbody2D )**: GameObject to be moved.   
+**rbody (Rigidbody2D)**: GameObject to be moved.   
 **speed (float)**: Movimentation speed. Default:  3   
 **x (float)**: Position in X of the button.   
 **y (float)**: Position in Y of the button.   
