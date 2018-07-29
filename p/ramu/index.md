@@ -13,7 +13,6 @@ layout: default
 Source code in [Github](https://github.com/HermesPasser/Ramu)   
 Download [1.7b](https://github.com/HermesPasser/Ramu/releases/download/1.7b/ramu-1.7b.js)   
 
-Currently just works well in chrome.  
 ## Demos  
 * [Tauromaquia](tauromaquia/)
 * [Rhythm Flamenco](rhythmflamenco/) <small class="ref">[1]</small>
