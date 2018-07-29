@@ -1,8 +1,8 @@
 ---
-title: todo
+title: Screen Capturer
 pagename: screencapturer
 keywords: screenshot
-description: todo
+description: Capture the screen.
 show-comments: true
 
 layout: default

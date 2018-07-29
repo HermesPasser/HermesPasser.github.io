@@ -10,7 +10,7 @@ layout: default
 ![Broken helmet](https://i.imgur.com/6rbBCMt.png)
 <p align="center">A action top-down view example game written with <a href="/p/ramu">Ramu</a>.</p>
 
-Source code in [GitHub](https://github.com/HermesPasser/Mangafox-Downloader)  
+Source code in [GitHub](https://github.com/HermesPasser/ThatApathyCloud)  
 Downloads: 
 [demo 1](http://www.mediafire.com/file/1srh3h3sxswmgg5/The%20Apathy%20Cloud%20demo%201.rar), 
 [demo 2](http://www.mediafire.com/file/dcownykkchekhyq/The%20Apathy%20Cloud%20demo%202.rar), 
