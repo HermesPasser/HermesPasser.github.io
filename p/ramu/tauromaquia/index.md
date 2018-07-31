@@ -7,7 +7,7 @@ show-comments: false
 
 layout: default
 ---
-[back to Ramu](../) | [demo source](https://github.com/HermesPasser/Ramu/tree/master/demos/tauromaquia)   
+[back to Ramu](../) &#8226 [demo source](https://github.com/HermesPasser/Ramu/tree/master/demos/tauromaquia)   
 
 <style> canvas { background-color: white; } </style>
 <script type="text/javascript" src="../ramu-0.7b.js"></script>
