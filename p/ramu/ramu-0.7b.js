@@ -1,4 +1,4 @@
-'use strict';
+﻿'use strict';
 
 // ---------------------------------- //
 // Ramu 0.7 - Hermes Passer           //
@@ -76,7 +76,7 @@ var Rect = function () {
 	return Rect;
 }();
 
-// ============ RAMU DECLARATION 1.7 - 2018-07-09 ============ //
+// ============ RAMU DECLARATION 1.7 - 2018-07-29 ============ //
 
 var Ramu = function () {
 	/// Prevents creating an instance of this class.
@@ -101,7 +101,7 @@ var Ramu = function () {
 	}, {
 		key: 'VERSION',
 		get: function get() {
-			return '0.7 07-10-18';
+			return '0.7b 07-29-18';
 		}
 	}]);
 
@@ -1772,15 +1772,15 @@ Ramu.Audio = function (_GameObj5) {
 	return _class;
 }(GameObj);
 
-var Parallax = function (_GameObj6) {
-	_inherits(Parallax, _GameObj6);
+var Panorama = function (_GameObj6) {
+	_inherits(Panorama, _GameObj6);
 
-	function Parallax(img, x, y, w, h) {
+	function Panorama(img, x, y, w, h) {
 		var velocity = arguments.length > 5 && arguments[5] !== undefined ? arguments[5] : 20;
 
-		_classCallCheck(this, Parallax);
+		_classCallCheck(this, Panorama);
 
-		var _this16 = _possibleConstructorReturn(this, (Parallax.__proto__ || Object.getPrototypeOf(Parallax)).call(this, x, y, w, h));
+		var _this16 = _possibleConstructorReturn(this, (Panorama.__proto__ || Object.getPrototypeOf(Panorama)).call(this, x, y, w, h));
 
 		if (arguments.length < 5) throw new Error('ArgumentError: Wrong number of arguments');
 		if (!(img instanceof Image)) throw Ramu.Utils.CustomTypeError(img, Image);
@@ -1793,7 +1793,7 @@ var Parallax = function (_GameObj6) {
 		return _this16;
 	}
 
-	_createClass(Parallax, [{
+	_createClass(Panorama, [{
 		key: 'canDraw',
 		value: function canDraw(bool) {
 			if (!(typeof bool === 'boolean')) throw Ramu.Utils.CustomTypeError(bool, Boolean);
@@ -1831,7 +1831,7 @@ var Parallax = function (_GameObj6) {
 	}, {
 		key: 'setActive',
 		value: function setActive(bool) {
-			_get(Parallax.prototype.__proto__ || Object.getPrototypeOf(Parallax.prototype), 'setActive', this).call(this, bool);
+			_get(Panorama.prototype.__proto__ || Object.getPrototypeOf(Panorama.prototype), 'setActive', this).call(this, bool);
 			this.left.setActive(bool);
 			this.center.setActive(bool);
 			this.right.setActive(bool);
@@ -1845,11 +1845,11 @@ var Parallax = function (_GameObj6) {
 			delete this.center; //= null;
 			this.right.destroy();
 			delete this.right; //= null;
-			_get(Parallax.prototype.__proto__ || Object.getPrototypeOf(Parallax.prototype), 'destroy', this).call(this);
+			_get(Panorama.prototype.__proto__ || Object.getPrototypeOf(Panorama.prototype), 'destroy', this).call(this);
 		}
 	}]);
 
-	return Parallax;
+	return Panorama;
 }(GameObj);
 
 var Text = function (_Drawable5) {
@@ -1961,7 +1961,6 @@ var SimpleParticle = function (_GameObj7) {
 				this.particles[i].drawPriority = this.drawPriority;
 				this.particles[i].tag = 'particle-sprite';
 			}
-			console.log(this.particles);
 		}
 	}, {
 		key: 'init',
@@ -1986,9 +1985,10 @@ var SimpleParticle = function (_GameObj7) {
 		value: function setDrawPriority(priority) {
 			Ramu.callSortDraw = true;
 			this.drawPriority = priority;
-			console.log(this.particles);
-			// for (let i = 0; i < this.particles.length; i++)
-			// this.particles[i].drawPriority = priority;	
+
+			for (var i = 0; i < this.particles.length; i++) {
+				this.particles[i].drawPriority = priority;
+			}
 		}
 	}, {
 		key: 'setPosition',

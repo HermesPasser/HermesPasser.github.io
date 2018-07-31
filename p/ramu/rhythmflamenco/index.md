@@ -9,7 +9,7 @@ layout: default
 ---
 [back to Ramu](../) | [demo source](https://github.com/HermesPasser/Ramu/tree/master/demos/rhythmflamenco)   
 
-<script type="text/javascript" src="../ramu-0.6.js"></script>
+<script type="text/javascript" src="../ramu-0.7b.js"></script>
 <script type="text/javascript" src="game.js"></script>
 <script>
 	// from https://developer.mozilla.org/en-US/docs/Web/API/Event/preventDefault
