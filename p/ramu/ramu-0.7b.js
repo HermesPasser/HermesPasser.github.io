@@ -174,8 +174,9 @@ Ramu._key = function () {
 Ramu._getMousePosition = function (event) {
 	var bound = Ramu.canvas.getBoundingClientRect();
 	return {
-		X: event.clientX - bound.left - Ramu.canvas.clientLeft,
-		Y: event.clientY - bound.top - Ramu.canvas.clientTop
+		// previously used bound.left/bound.top but it not work well when the canvas is distorced.
+		X: event.clientX - bound.x - Ramu.canvas.clientLeft,
+		Y: event.clientY - bound.y - Ramu.canvas.clientTop
 	};
 };
 
