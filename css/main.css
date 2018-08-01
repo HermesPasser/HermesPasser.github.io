@@ -4,9 +4,12 @@ header, aside, main, footer {
 }
 
 img, picture, video, iframe, embed, canvas {
-	max-width: 100%;
     display: block;
     margin: 0 auto;
+}
+
+img, picture, video, iframe, embed {
+	max-width: 100%;
 }
 
 iframe {
