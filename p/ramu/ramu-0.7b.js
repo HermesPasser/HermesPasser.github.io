@@ -341,7 +341,7 @@ Ramu.draw = function () {
 		var obj = Ramu.objsToDraw[i];
 
 		if (obj._start_was_called && obj.canUpdate) {
-			if (obj.drawOutOfCanvas || Ramu.Utils.isInsidesOfCanvas(obj)) {
+			if (obj.drawOutOfCanvas || Ramu.Utils.isInsideOfCanvas(obj)) {
 				obj.drawInCanvas();
 			}
 		}
@@ -434,8 +434,8 @@ Ramu.Utils = function () {
 		/// Check if the part of gameObject size (x,y,w,h) is inside of the canvas
 
 	}, {
-		key: 'isInsidesOfCanvas',
-		value: function isInsidesOfCanvas(gameObject) {
+		key: 'isInsideOfCanvas',
+		value: function isInsideOfCanvas(gameObject) {
 			// canvas rect starts at 0 and ends at canvas.size - 1
 			return gameObject.x + gameObject.width >= 0 && gameObject.x < Ramu.width && gameObject.y + gameObject.height >= 0 && gameObject.y < Ramu.height;
 		}
