@@ -13,6 +13,9 @@ layout: default
 Source code in [Github](https://github.com/HermesPasser/Ramu)   
 Download [1.7b](https://github.com/HermesPasser/Ramu/releases/download/1.7b/ramu-1.7b.js)   
 
+## Try Ramu
+You can try write something with ramu [here](tryramu/).
+
 ## Demos  
 * [Tic Tac Toe](tictactoe/)
 * [Tauromaquia](tauromaquia/)
