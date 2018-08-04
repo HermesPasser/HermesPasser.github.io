@@ -31,9 +31,9 @@ function execute() {
 	var index = href.indexOf('?');
 	var value = document.getElementById('editor').value;
 	if (index !== -1) {
-		window.location.href = href.substring(0, index) + "?" + value;
+		window.location.href = encodeURI(href.substring(0, index) + "?" + value);
 	} else {
-		window.location.href = href + "?" + value;
+		window.location.href = encodeURI(href + "?" + value);
 	}
 	addCanvasToDiv();
 }
