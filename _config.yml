@@ -21,8 +21,7 @@ kramdown:
     syntax_highlighter: rouge
 # theme: minima
 plugins:
-  - jekyll-sitemap
-  # - jekyll-feed
+  - jekyll-feed
 
 # Exclude from processing.
 # The following items will not be processed, by /{{site.url}}/{{site.baseurl}}. Create a custom list
