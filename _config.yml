@@ -20,7 +20,8 @@ highlighter: rouge
 kramdown:
     syntax_highlighter: rouge
 # theme: minima
-# plugins:
+plugins:
+  - jekyll-sitemap
   # - jekyll-feed
 
 # Exclude from processing.
