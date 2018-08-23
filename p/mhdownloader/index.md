@@ -11,7 +11,7 @@ layout: default
 <p align="center">Download mangas from the brazilian's site Manga Host.</p>
 
 Source code in [Github](https://github.com/HermesPasser/Manga-Host-Downloader)   
-Download [2.2](href="https://github.com/HermesPasser/Manga-Host-Downloader/archive/master.zip)
+Download [2.3](href="https://github.com/HermesPasser/Manga-Host-Downloader/archive/master.zip)
 
 **NOTE: This program will not be updated anymore.**
 

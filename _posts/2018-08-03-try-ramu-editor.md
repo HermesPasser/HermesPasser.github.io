@@ -6,4 +6,4 @@ tags: [ramu, demo, editor, try ramu]
 
 layout: post
 ---
-I wrote an editor to try ramu online inspired on *Tryite Eitor* of *E3Schools* and you can use [here]({{site.url}}/{{site.baseurl}}p/ramu/tryramu).
+I wrote an editor to try ramu online inspired on *Tryite Editor* of *E3Schools* and you can use [here]({{site.url}}/{{site.baseurl}}p/ramu/tryramu).
