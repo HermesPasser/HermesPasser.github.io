@@ -11,14 +11,17 @@ layout: default
 
 {% include projectlist.html %}
 
-<script>	
-	function redirect(){
+<script>
+	(function(){
+		var main = document.getElementById('main');
 		var href = window.location.href;
+		
 		if (href.includes('/pages/')){
 			href = href.replace('/pages/', '/p/');
 			href = href.replace('.html', '');
+			main.innerHTML = `<p>Redirecting, be patient... or <a href=\"${href}\">click here</a></p>`;
+			
 			window.location.replace(href);
 		}
-	}
-	window.onload = function(){ redirect(); }
+	})();
 </script>

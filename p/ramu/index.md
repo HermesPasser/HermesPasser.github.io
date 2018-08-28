@@ -13,8 +13,8 @@ layout: default
 Source code in [Github](https://github.com/HermesPasser/Ramu)   
 Download [1.7b](https://github.com/HermesPasser/Ramu/releases/download/1.7b/ramu-1.7b.js)   
 
-## Documentation
-[Ramu 0.7b Documentation](/wiki-0.7/home.html)  
+<!-- ## Documentation -->
+<!-- [Ramu 0.7b Documentation](/wiki-0.7/home.html)  -->
 
 ## Try Ramu
 You can try write and test something with ramu [here](tryramu/).
