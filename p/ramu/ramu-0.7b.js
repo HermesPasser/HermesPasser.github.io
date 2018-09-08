@@ -1118,7 +1118,7 @@ var SpritesheetAnimator = function (_GameObj2) {
 		if (arguments.length != 4) throw new Error('ArgumentError: Wrong number of arguments');
 
 		_this9.anim = {};
-		_this9.animDrawPriority = drawLastPriority++;
+		_this9.animDrawPriority = Ramu.drawLastPriority++;
 		_this9.currentID = "";
 		return _this9;
 	}
