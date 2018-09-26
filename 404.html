@@ -16,7 +16,8 @@ layout: default
 		var main = document.getElementById('main');
 		var href = window.location.href;
 		
-		if (href.includes('/pages/')){
+		// if is a old link or a disqus thread link (will broke if is a thread of a non /p/ page)
+		if (href.includes('/pages/') || href.includes('#comment')){
 			href = href.replace('/pages/', '/p/');
 			href = href.replace('.html', '');
 			main.innerHTML = `<p>Redirecting, be patient... or <a href=\"${href}\">click here</a></p>`;
