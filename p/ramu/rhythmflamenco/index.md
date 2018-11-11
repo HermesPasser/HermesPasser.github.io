@@ -19,5 +19,5 @@ layout: default
 			e.preventDefault();
 		}
 	}, false);
-	addCanvasOnMain();
+	window.onload = addCanvasOnMain;
 </script>
