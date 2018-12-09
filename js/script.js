@@ -6,9 +6,22 @@ function addCanvasOnMain(){
 		main.appendChild(canvas);
 }
 
-function getCode(string){
-	var request = new XMLHttpRequest();
-	request.open("GET", string, false);
-	request.send();
-	return request.responseText;
-}
+/// Draw a line below the current page on column
+// function selectColumn(){
+	// var columns = document.getElementsByClassName('selectable');
+	// var href = window.location.href;
+	// href = href.substr(0, href.length - 1);
+	// var page = href.substr(href.lastIndexOf('/') + 1);
+	
+		
+	// for (var i = 0; i < columns.length; ++i){
+		// var attr = columns[i].attributes['href'].value;
+
+		// if (href === void(0) || attr === window.location.href || attr.match(`https|http:\/\/.*\/${page}`)){
+			// columns[i].setAttribute('class', 'selectable selected');
+		// } else {
+			// columns[i].setAttribute('class', 'selectable');	
+		// }
+	// }
+// }
+// selectColumn();

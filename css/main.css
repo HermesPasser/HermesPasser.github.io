@@ -126,6 +126,10 @@ td {
 	border-color: white;
 }
 
+/* .selectable.selected {
+	border-bottom: solid;
+} */
+
 .page-title {
 	color: #bbbbbb;
 }
