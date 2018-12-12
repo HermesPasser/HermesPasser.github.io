@@ -1,19 +1,5 @@
 "use strict";
 
-/*
-	Sistema de Neve by Hermes Passer with Ramu 0.7b
-
-	[x] - O sistema deve fazer cair flocos neve no mapa escolhido;
-	
-	[ ] - O sistema deve ser configurável para que:
-	
-		[x]	1) A neve pode começar (e parar) em um momento aleatório;
-
-		[ ]	2) A neve pode começar (e parar) ao interagir com um evento;
-
-		[x]	3) A intensidade dos flocos de neve seja configurada (pouco, médio ou muitos).
-*/
-
 Panorama.prototype.setImage = function(img){
 	if (!(img instanceof Image)) throw Ramu.Utils.CustomTypeError(img, Image);
 
@@ -152,69 +138,44 @@ class SnowController extends GameObj{
 		this.currentTimeInstantiate = 0;
 		
 		switch(this.currentItensity){
-			case this.itensity.none:
-				this.setNone();
-				break;
-			case this.itensity.little:
-				this.setLittle();
-				break;
-			case this.itensity.averange:
-				this.setAvarange();
-				break;
-			case this.itensity.much:
-				this.setMuch();
-				break;
+			case this.itensity.none: 	 this.setNone(); break;
+			case this.itensity.little:   this.setLittle(); break;
+			case this.itensity.averange: this.setAvarange(); break;
+			case this.itensity.much: 	 this.setMuch(); break;
 			default:
 				this.setSnowhell();
 		}	
 	}
 	
-	setNone(){
-		this.sky.setImage(this.clearSky);
-		this.sky.velocity = 10;
+	setItensity(skyImg, skyVel, instantiateVel, windVel, snowVel = 0){
+		this.sky.setImage(skyImg);
+		this.sky.velocity = skyVel;
 		
-		this.timeToInstantiate =  -1;
-		SnowController.Wind = 10;
+		this.timeToInstantiate =  instantiateVel;
+		SnowController.Wind = [Math.random() * windVel, Math.random() * -windVel][Math.trunc(Math.random() * 2)]; // Create a array with 2 of length and add a positive and a negative random number in it, then sort one of two positions
+		
+		if (snowVel > 0)
+			new Snow(Math.random() * Ramu.width, -10, snowVel);
+	}
+	
+	setNone(){
+		this.setItensity(this.clearSky, 10, -1, 10);
 	}
 	
 	setLittle(){
-		this.sky.setImage(this.snowingSky);
-		this.sky.velocity = 20;
-		
-		this.timeToInstantiate =  1.5;
-		SnowController.Wind = 15;
-		
-		new Snow(Math.random() * Ramu.width, -10, 40);
+		this.setItensity(this.snowingSky, 20, 1.5, 15, 40);
 	}
 	
 	setAvarange(){
-		this.sky.setImage(this.snowingSky);
-		this.sky.velocity = 30;
-		
-		this.timeToInstantiate =  1;
-		SnowController.Wind = 20;
-		
-		new Snow(Math.random() * Ramu.width, -10, 80);
+		this.setItensity(this.snowingSky, 30, 1, 20, 80);
 	}
 	
 	setMuch(){
-		this.sky.setImage(this.snowingSky);
-		this.sky.velocity = 40;
-		
-		this.timeToInstantiate =  0.5;
-		SnowController.Wind = 9;
-		
-		new Snow(Math.random() * Ramu.width, -10, 160);
+		this.setItensity(this.snowingSky, 40, 0.5, 25, 160);
 	}
 	
 	setSnowhell(){
-		this.sky.setImage(this.snowingSky);
-		this.sky.velocity = 100;
-		
-		this.timeToInstantiate =  0.05;
-		SnowController.Wind = 20;
-		
-		new Snow(Math.random() * Ramu.width, -10, 200);
+		this.setItensity(this.snowingSky, 100, 0.05, 30, 200);
 	}
 	
 	invokeSnowHell(){
@@ -224,8 +185,7 @@ class SnowController extends GameObj{
 	}
 }
 
-
-class Game extends GameObj{
+class SnowGame extends GameObj{
 	start(){
 		this.createGound();
 		this.controller = new SnowController();
@@ -244,7 +204,6 @@ class Game extends GameObj{
 		if (keyCode.space in Ramu.pressedKeys && this.canSacrificy){
 			this.canSacrificy = false;
 			this.text.destroy();
-			// this.cursedSnowmanSprite.destroy();
 			this.cursedSnowmanColisor.destroy();
 			this.particle.init();
 			
@@ -260,8 +219,3 @@ class Game extends GameObj{
 		this.groundleft_col = new SimpleRectCollisor(-50,450,250,50);
 	}
 }
-
-
-var game = new Game();
-Ramu.init(500, 500);
-// Ramu.debugMode = true;
