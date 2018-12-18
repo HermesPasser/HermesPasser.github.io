@@ -51,7 +51,6 @@ class Game extends GameObj {
 	updateUI() {
 		if (this.secsLeft <= 0.000 && this.started){
 			this.secsLeft = this.secs;
-			Ramu.inLoop = false;
 		}
 		
 		this.secsLeft -= Ramu.time.delta;
