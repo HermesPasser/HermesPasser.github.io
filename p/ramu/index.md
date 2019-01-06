@@ -20,13 +20,21 @@ Download [1.7b](https://github.com/HermesPasser/Ramu/releases/download/1.7b/ramu
 You can try write and test something with ramu [here](tryramu/).
 
 ## Demos  
-* [Tic Tac Toe](tictactoe/)
+* [Tic Tac Toe for one](isxmas3/tictoeforone/)
+* [Tic Tac Toe for two](tictactoe/)
 * [Tauromaquia](tauromaquia/)
 * [Rhythm Flamenco](rhythmflamenco/) <small class="ref">[1]</small>
 * [La Tomatina](latomatina/)
 * [Lost Train](losttrain/) <small class="ref">[2]</small>
 * [Non Plus Ultra](nonplusultra/)
 * [Potato Attack](potatoattack/) <small class="ref">[3]</small>
+* [Snow Simulation](isxmas3/snow/) 
+* [Find the Ogre](isxmas3/ogre/) 
+* [Cover the Holes](isxmas3/hole/) 
+* [Santa's Gift](isxmas3/gift/) 
+* [Fish](isxmas3/fish/) 
+* [Santa's Browling Vacation](isxmas3/browling/) 
+* [Tree](isxmas3/tree/) 
 
 \[1\]: Music used: 2 Aires Choqueros (Fandangos De Huelva). Available on [archive.org](https://archive.org/details/PacoDeLuciaManitasDePlata)   
 
