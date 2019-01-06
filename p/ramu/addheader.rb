@@ -1,7 +1,8 @@
 # Add a Jekyll header to the .MD files from github
 
-if !ARGV[0]
+unless ARGV[0]
 	puts "Version missing"
+	exit 0
 end
 
 text = <<END

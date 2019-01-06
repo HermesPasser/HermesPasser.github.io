@@ -1,0 +1,26 @@
+---
+title: Ramu 0.7b doc
+pagename: ramu
+keywords: ramu, game engine, doc, documentation
+description: Ramu 0.7b doc.
+show-comments: false
+
+layout: default
+---
+[doc home](home) &#8226; [Ramu](../)  
+
+[SpritesheetAnimator](SpritesheetAnimator).setY()   
+
+## Parameters
+``int`` **y**: Value of [y](GameObj.y).  
+
+## Description
+Set the y position of it and its animations.
+
+You can test this snippet of code [here](https://hermespasser.github.io/p/ramu/tryramu/?let%20img%20=%20Ramu.Utils.getImage(%22https://raw.githubusercontent.com/HermesPasser/Ramu/master/demos/img/anim/crossSheet.gif%22);%0Alet%20anim%20=%20new%20SpritesheetAnimation(img,%2010,%2010,%2035,%2035);%0Aanim.addFrame(%5Bnew%20Rect(43,%2052,%2035,%2035)%5D);%0A%0Alet%20animator%20=%20new%20SpritesheetAnimator(10,%2010,%2035,%2035);%0Aanimator.addAnimation(%27anim1%27,%20anim);%0Aanimator.setCurrentAnimation(%27anim1%27);%0A%0Aanimator.setY(300);%0ARamu.init();).
+```javascript
+let animator = new SpritesheetAnimator(10, 10, 35, 35);
+animator.setY(300);
+``` 
+
+See also [SpritesheetAnimator.setX](SpritesheetAnimator.setX), [SpritesheetAnimator.addX](SpritesheetAnimator.addX) and [SpritesheetAnimator.addY](SpritesheetAnimator.addY).
