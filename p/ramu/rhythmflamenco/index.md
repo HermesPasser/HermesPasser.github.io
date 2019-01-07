@@ -15,3 +15,5 @@ layout: default
 	blockScroll();
 	window.onload = addCanvasOnMain;
 </script>
+
+Music used: 2 Aires Choqueros (Fandangos De Huelva). Available on [archive.org](https://archive.org/details/PacoDeLuciaManitasDePlata)   

@@ -13,8 +13,8 @@ layout: default
 Source code in [Github](https://github.com/HermesPasser/Ramu)   
 Download [0.7b](https://github.com/HermesPasser/Ramu/releases/download/1.7b/ramu-1.7b.js)   
 
-## Documentatio
-[Ramu 0.7b Documentation](wiki-0.7b/home.html)  
+## Documentation
+[Ramu 0.7b Documentation](wiki-0.7b/Home.html)  
 
 ## Try Ramu
 You can try write and test something with ramu [here](tryramu/).
@@ -23,11 +23,11 @@ You can try write and test something with ramu [here](tryramu/).
 * [Tic Tac Toe for one](isxmas3/tictoeforone.html)
 * [Tic Tac Toe for two](tictactoe/)
 * [Tauromaquia](tauromaquia/)
-* [Rhythm Flamenco](rhythmflamenco/) <small class="ref">[1]</small>
+* [Rhythm Flamenco](rhythmflamenco/) 
 * [La Tomatina](latomatina/)
-* [Lost Train](losttrain/) <small class="ref">[2]</small>
+* [Lost Train](losttrain/) 
 * [Non Plus Ultra](nonplusultra/)
-* [Potato Attack](potatoattack/) <small class="ref">[3]</small>
+* [Potato Attack](potatoattack/) <small class="ref">[1]</small>
 * [Snow Simulation](isxmas3/snow.html) 
 * [Find the Ogre](isxmas3/ogre.html) 
 * [Cover the Holes](isxmas3/hole.html) 
@@ -36,8 +36,4 @@ You can try write and test something with ramu [here](tryramu/).
 * [Santa's Browling Vacation](isxmas3/browling.html) 
 * [Tree](isxmas3/tree.html) 
 
-\[1\]: Music used: 2 Aires Choqueros (Fandangos De Huelva). Available on [archive.org](https://archive.org/details/PacoDeLuciaManitasDePlata)   
-
-\[2\]: Music used: "Steam Train Whistle Sound" by Daniel Simion. Available on [soundbible.com](http://soundbible.com/2177-Steam-Train-Whistle.html) under [Creative Commons Attribution 3.0 ](https://creativecommons.org/licenses/by/3.0/?theme=Running_Club)   
-
-\[3\]: Originally written in Ramu 0.2 and can be a little poorly made.
+\[1\]: Originally written in Ramu 0.2 and can be a little poorly made.
