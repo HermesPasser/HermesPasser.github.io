@@ -1,3 +1,3 @@
 # Gládio Cítrico
 
-a lab to my front-end tests written in Jekyll, [click here](https://hermespasser.github.io) to see the website.
+A lab to my tests written in Jekyll. [Click here](https://hermespasser.github.io) to access the website.
