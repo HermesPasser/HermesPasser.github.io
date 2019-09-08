@@ -1,5 +1,6 @@
 {
-  "message": {
-      "releases": []
-  }
+ "messages": [
+   {"text": "Teste 1"},
+   {"text": "2"}
+ ]
 }
