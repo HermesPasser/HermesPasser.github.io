@@ -1,9 +1,0 @@
-
-{
-  talvez receber titulos dinamicamente não tenha sido uma boa idea
-  o chatfuel não vai converter " " para %20 então eu teria que entrar com um apelido 
-  como "hokuto" para hokuto no ken, e nesse caso é melhor eu só criar um block para
-  ele ao inves de usar json
-  se pa é melhor fazer isso com os lançamentos também
-  https://blogbbm.com/2019/09/02/checklist-setembro-de-2019-editora-jbc/
-}
