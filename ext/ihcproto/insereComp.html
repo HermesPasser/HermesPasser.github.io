@@ -1,0 +1,49 @@
+<!doctype HTML>
+<html lang="pt-br">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" type="text/css" href="main.css">
+		<title>Insere Componente</title>
+	</head>
+	<body>
+		<header>
+			<h1>Hardwhere</h1>
+			<nav>
+				<ul>
+					<li><a href="inicio.html">Tela Inicial</a></li>
+					<li><a href="#">Sobre nós</a></li>
+					<li><a href="#">Ajuda</a></li>
+				</ul>
+			</nav>
+		</header>	
+		<main id="main">
+			<section id="sec-two">
+				<h2 class="page-title">Inserir Componente</h2>
+				<form>
+					<div class="item" >
+						<label>Nome</label>
+						<input class="input" name="nome" type="text" />
+					</div>
+					<div class="item" >
+						<label>Modelo</label>
+						<input class="input" name="modelo" type="text" />
+					</div>
+					<div class="item" >
+						<label>Fabricante</label>
+						<input class="input" name="fabricante" type="text" />
+					</div>
+					<div class="item" >
+						<label>Imagem</label>
+						<input class="input file" name="arquivo" type="file" />
+					</div>	
+					<input onclick="window.location = 'principal.html'" id="cancel" class="btn input" type="button" value="Cancelar" />
+					<input id="add" class="btn input" type="button" value="Adicionar" />
+				</form>	
+			</section>	
+		</main>
+		<footer>
+			<small id="fooster-text">Hardwhere, 2019</small>
+		</footer>
+	</body>
+</html>

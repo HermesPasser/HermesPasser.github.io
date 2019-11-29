@@ -1,0 +1,51 @@
+<!doctype HTML>
+<html lang="pt-br">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" type="text/css" href="main.css">
+		<script>function sendtonothing(name) {
+			document.location = document.location
+		} </script>
+		<title>Principal</title>
+	</head>
+	<body>
+		<header>
+			<h1>Hardwhere</h1>
+			<nav>
+				<ul>
+					<li><a href="inicio.html">Tela Inicial</a></li>
+					<li><a href="#">Sobre n&oacute;s</a></li>
+					<li><a href="#">Ajuda</a></li>
+				</ul>
+			</nav>
+		</header>	
+		<main id="main">
+			<section class="left" id="sec-two">
+				<h2 class="page-title">Bem vindo, <span>usuario</span>!</h2>
+				<img alt="Figura que apresenta o perfil de uma pessoa para simbolizar sua foto de avatar" src="img/avatar.png" />
+				<small><a href="#">Mudar avatar</a> | <a href="#">Configura&ccedil;&oacute;es</a></small>
+			</section>
+			<section class="right" id="sec-one">
+				<h2 class="page-title">Aç&otilde;es</h2>
+				<button class="btn" onclick="sendtonothing()">
+					Verificar compatibilidade
+				</button>
+				<button class="btn" onclick="window.location = 'insereComp.html'">
+					Inserir Componente
+				</button>
+				<button class="btn" onclick="sendtonothing()">
+					Inserir Compatibilidade
+				</button>
+				<hr>
+				<form>
+					<input name="pesquisa" type="text" placeholder="Entre com o nome de um componente para pesquisar" />
+					<input onclick="sendtonothing()" class="btn small" type="button" value="ir" /> 
+				</form>
+			</section>	
+		</main>
+		<footer>
+			<small id="fooster-text">Hardwhere, 2019</small>
+		</footer>
+	</body>
+</html>
