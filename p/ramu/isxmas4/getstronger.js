@@ -106,6 +106,9 @@ class Blast extends SimpleRectCollider {
 		const vel = 60 * Ramu.time.delta
 		this.y -= vel
 		this.sprite.y -= vel
+		
+		if (Ramu.Utils.isOutOfCanvas(this))
+			this.destroy()
 	}
 	
 	onCollision() {
