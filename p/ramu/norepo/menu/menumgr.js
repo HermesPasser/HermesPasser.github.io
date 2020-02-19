@@ -7,7 +7,7 @@ class MenuParams {
 	cursorRect = new Rect(32, 19, 9, 15)
 	cornerSize = 6
 	padding = 4
-
+	img = null
 	static default = new MenuParams()
 }
 
@@ -93,6 +93,8 @@ Ramu.debugMode = true
 
 // the order matters when is adding a child menu, change it
 
+MenuParams.default.img = Ramu.Utils.getImage('skin.png')
+
 const mgr = new MenuManager()
 
 const m = new Menu(10, 10, 250, 100) // size < 20 quebra (joga exceção)
@@ -119,9 +121,11 @@ subm.pack()
 subm.onCommandFunc = (item) => {
 	// chamando uma vez mesmo quando não cliquei
 	if (item.id == submitem.id) {
-		console.log("oi")
+		console.log(item.text)
 		subm.close()
 		
+	} else {
+		console.log(item.text)
 	}
 }
 mitem.childMenu = subm
