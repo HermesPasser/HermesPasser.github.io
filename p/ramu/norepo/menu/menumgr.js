@@ -118,14 +118,15 @@ subm.set('')
 subm.parentMenu = m // need this to childMenu() work
 subm.pack()
 
+m.onCommandFunc = (item) => {
+	alert(`opcao ${item.text} selecionada`)
+}
+
 subm.onCommandFunc = (item) => {
-	// chamando uma vez mesmo quando não cliquei
 	if (item.id == submitem.id) {
-		console.log(item.text)
 		subm.close()
-		
 	} else {
-		console.log(item.text)
+		alert(`opcao {item.text} selecionada`)
 	}
 }
 mitem.childMenu = subm
