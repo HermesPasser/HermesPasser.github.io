@@ -1,37 +1,56 @@
 "use strict"
-class Menu extends Clickable {
-	// remove and use MenuParams
-	params = MenuParams.default
+class Menu {
+	x = -1
+	y = -1
+	//TODO: test what happen if one or all is <= 0
+	width = -1
+	height = -1
+	lines = -1
+	columns = -1
 	
-	columns = 3
-	lines = 2
 	cursor = 0
-	#menuItens = []
-	active = false
+	
+	#menuItens = [] // use set(text, index) instead?
+	#placeholderItens = []
+	#childMenus = {}
 	#packed = false
-	onCloseFunc = null
-	onOpenFunc = null
-	onCommandFunc = null
+	active = false
 	visible = false
 	
+	onOpenFunc    = () => {}
+	onCloseFunc   = () => {}
+	onCommandFunc = () => {}
+	
+	params = MenuParams.default
 	manager = null
 
-	constructor(x, y, w, h, params = null) {
-		super(x, y, w, h)
-		if (params)
-			this.params = params
+	constructor(posSize, lines, columns, params = null) {
+		this.x = posSize.x
+		this.y = posSize.y
+		this.width = posSize.width
+		this.height = posSize.height
+		this.lines = lines
+		this.columns = columns
+		this.params = params || this.params
 	}
+	
+	setChildMenu(triggerOption, menu) {
+		this.#childMenus[triggerOption] = menu
+		this.#childMenus[triggerOption].manager = this.manager
+	}
+	
+	get itens() {
+		return this.#menuItens
+	}	
 
 	open() {
-		if(this.onOpenFunc)
-			this.onOpenFunc()
+		this.onOpenFunc()
 		this.visible = true
 		this.active = true
 	}
 	
 	close() {
-		if(this.onCloseFunc)
-			this.onCloseFunc()
+		this.onCloseFunc()
 		this.active = false
 		this.visible = false
 		
@@ -39,15 +58,17 @@ class Menu extends Clickable {
 			this.manager.pop()
 	}
 	
-	processCommand(item) {
-		if (item && item.childMenu) {
-			item.childMenu.open()
-			this.manager.push(item.childMenu)
+	_processCommand(item) {
+		if (!item.active)
+			return
+		
+		if (item && this.#childMenus[item.text]) {
+			this.#childMenus[item.text].open()
+			this.manager.push(this.#childMenus[item.text])
 			this.active = false
 			
 		} else {
-			if (this.onCommandFunc)
-				this.onCommandFunc(item)
+			this.onCommandFunc(item)
 		}
 	}
 	
@@ -57,8 +78,7 @@ class Menu extends Clickable {
 	
 	set(name) {
 		if (this.#menuItens.length > this.columns * this.lines)
-			// TODO: se tiver scroll .pos e .screenPos deve ser re-calculado cada vez que dar scroll
-			console.warn("NoImplemented: this have not scroll so this ops will not be shown yet")
+			return
 		
 		const mi = new MenuItem()
 		mi.text = name
@@ -73,7 +93,7 @@ class Menu extends Clickable {
 		
 		this.#packed = true
 		
-		const size = 6
+		const size = this.params.cornerSize
 		const windowInnerFrame = new Rect(
 			this.x + size, this.y + size,
 			this.width - size * 2, this.height - size * 2
@@ -83,12 +103,16 @@ class Menu extends Clickable {
 
 		for (let sY = windowInnerFrame.y, posY = 0, i = 0; sY < windowInnerFrame.y + windowInnerFrame.height; sY += itemH, posY++) {
 			for (let sX = windowInnerFrame.x, posX = 0; sX < windowInnerFrame.x + windowInnerFrame.width; sX += itemW, posX++, i++) {					
+				let item = null
+				if (i > this.#menuItens.length - 1) {
+					let fillItem = new MenuItem()
+					fillItem.index = i
+					this.#placeholderItens.push(fillItem)
+					item = fillItem
+				} else item = this.#menuItens[i]
 				
-				if (i > this.#menuItens.length - 1)
-					continue
-				
-				this.#menuItens[i].pos = new Rect(posX, posY, 0, 0)
-				this.#menuItens[i].screenPos = new Rect(sX, sY, itemW, itemH)	
+				item.pos = new Rect(posX, posY, 0, 0)
+				item.screenPos = new Rect(sX, sY, itemW, itemH)		
 			}
 		}
 	}
@@ -100,30 +124,34 @@ class Menu extends Clickable {
 	}
 
 	cursorDown() {
+		// prevents from selecting an unexistent item
+		if (this.#menuItens[this.cursor + this.columns] === void(0))
+			return
+		
 		this.cursor += this.columns
 		if (this.cursor > this.columns + this.lines)
 			this.cursor -= this.columns
 	}
 
 	cursorLeft() {
-		this.cursor = --this.cursor 
-			
-		if (this.cursor < 0)
-			this.cursor = this.columns + this.lines
+		if (--this.cursor < 0)
+			this.cursor = this.#menuItens.length - 1
 	}
 
 	cursorRight() {
-		this.cursor = ++this.cursor 
+		++this.cursor
 			
-		if (this.cursor > this.columns + this.lines)
+		// prevents from selecting an unexistent item
+		if (this.cursor > this.columns + this.lines || this.#menuItens[this.cursor] === void (0))
 			this.cursor = 0
 	}
 
 	selectOption() {
-		this.processCommand(this.#menuItens[this.cursor])
+		if (this.#menuItens[this.cursor] !== null)
+			this._processCommand(this.#menuItens[this.cursor])
 	}
 
-	drawWindow() {
+	_drawWindow() {
 		const img = this.params.img
 		const vline = this.params.verticalLine
 		const hline = this.params.horizontalLine
@@ -157,9 +185,9 @@ class Menu extends Clickable {
 		})
 	}
 
-	drawSubmenuIcon(item) {
-		const cursor = this.params.cursorRect
-		if (item.childMenu)
+	_drawSubmenuIcon(item) {
+		const cursor = this.active ? this.params.cursorRect : this.params.cursorRectInactive
+		if (this.#childMenus[item.text])
 			Ramu.ctx.drawImage(
 				this.params.img,
 				cursor.x, 
@@ -171,38 +199,41 @@ class Menu extends Clickable {
 				cursor.width, cursor.height)
 	}
 
-	drawItemWindow(item, index) {
-		if (this.cursor == index) {
-			Ramu.ctx.fillStyle = 'cyan'
-			Ramu.ctx.strokeStyle = 'white'
-		} else {
-			Ramu.ctx.fillStyle = '#86d1fc'
-			Ramu.ctx.strokeStyle = '#2fadf5'
+	_drawItemWindow(item, index) {
+		const winRect = this.active 
+						? this.cursor == index 
+							? this.params.normalBg 
+							: this.params.selectedBg
+						: this.params.inactiveBg
+
+		if (Ramu.debugMode) {
+			Ramu.ctx.strokeStyle = 'red'
+			Ramu.ctx.strokeRect(item.screenPos.x, item.screenPos.y, item.screenPos.width, item.screenPos.height)
 		}
 		
-		if (!this.active) {
-			Ramu.ctx.fillStyle = '#c2eff2'
-		}
-					
-		Ramu.ctx.fillRect(item.screenPos.x, item.screenPos.y, item.screenPos.width, item.screenPos.height)
-		Ramu.ctx.strokeRect(item.screenPos.x, item.screenPos.y, item.screenPos.width, item.screenPos.height)
+		Ramu.ctx.drawImage(this.params.img,
+			winRect.x, winRect.y, winRect.width, winRect.height,
+			item.screenPos.x, item.screenPos.y, item.screenPos.width, item.screenPos.height)
 	}
 
-	drawItemName(item, index) {
+	_drawItemName(item, index) {
 		Ramu.ctx.textBaseline = 'top'
-		Ramu.ctx.fillStyle = 'white'
-		const w = Ramu.ctx.measureText('M').width
-
-		if (!item.active)
-			Ramu.ctx.fillStyle = 'gray'
-		else if (this.cursor == index)
-			Ramu.ctx.fillStyle = '#2fadf5'
+		Ramu.ctx.font = this.params.font
+		Ramu.ctx.fillStyle = !item.active
+								? this.params.inactiveItemText
+								: this.cursor == index
+									? this.params.selectedItemText
+									: this.params.itemText	
 		
-		Ramu.ctx.fillText(item.text, item.screenPos.x + w , item.screenPos.y + w/2)
+		const w = Ramu.ctx.measureText('M').width		
+		Ramu.restoreAfter( () => {
+			Ramu.ctx.imageSmoothingEnabled = true
+			Ramu.ctx.fillText(item.text, item.screenPos.x + w , item.screenPos.y + w / 2)
+		})
 	}
 
-	draw() { // this class do not inherits from Drawable, this will be called in MenuManager
-		if (!this.visible) // remove this?
+	draw() {
+		if (!this.visible)
 			return
 
 		Ramu.ctx.imageSmoothingEnabled = false
@@ -214,42 +245,17 @@ class Menu extends Clickable {
 		if (!this.#packed) // do NOT draw even with itens availables since the position wasn't calculated yet
 			return
 		
+		// Fill the item list with empty values if the number of actual items are lesser than the space available in the window
+		let itens = this.#menuItens.slice().concat(this.#placeholderItens)
+		
 		let index = 0
-		for (let item of this.#menuItens) {
-			this.drawItemWindow(item, index)
-
-			this.drawSubmenuIcon(item)		
-			this.drawItemName(item, index)
+		for (let item of itens) {
+			this._drawItemWindow(item, index)
+			this._drawSubmenuIcon(item)		
+			this._drawItemName(item, index)
 				
 			index++
 		}
-		
-		this.drawWindow()
-	}
-
-	// --- Override members ---
-
-	update() {
-		if (this.active)
-			super.update()
-	}
-	
-	checkClick(){
-		if (Ramu.Utils.isEmpty(Ramu.clickedPosition))
-			return
-		
-		const rect = new Rect(Ramu.clickedPosition.X, Ramu.clickedPosition.Y, 1, 1)
-		for (let item of this.#menuItens) {
-			if (Ramu.Math.overlap(item.screenPos, rect))
-				this.selectOption()
-			
-		}
-	}
-	
-	checkHover(){
-		const rect = new Rect(Ramu.mousePosition.X, Ramu.mousePosition.Y, 1, 1)
-		for (let item of this.#menuItens)
-			if (Ramu.Math.overlap(item.screenPos, rect))
-				this.cursor = item.index	
+		this._drawWindow()
 	}
 }

@@ -1,60 +1,82 @@
 "use strict"
 
-class MenuParams {
-	upperLeftJoint = new Rect(0, 0, 6, 6)
-	horizontalLine = new Rect(6, 0, 53, 6)
-	verticalLine = new Rect(0, 6, 6, 53)
-	cursorRect = new Rect(32, 19, 9, 15)
-	cornerSize = 6
-	padding = 4
-	img = null
-	static default = new MenuParams()
-}
-
 class MenuManager extends Drawable {
 	#root = null
-	stack = []
+	#stack = []
+	#clickable = new Clickable(1,1,1,1)
 
 	constructor() {
 		super(1, 1, 1, 1)
 		this.canDraw = true
+		this._setup()
+		// Ramu.canvas.oncontextmenu = () => {
+			// if (this.last)
+				// this.last.checkRightClick()
+			// return false
+		// }
 	}
 
-	start() {
-		this.stack = [ this.#root ]
-		this.root.open()
+	get last() {
+		return this.#stack[this.#stack.length -1] || null
+	}
+	
+	_setup() {
+		this.#clickable.checkClick = () => {
+			if (Ramu.Utils.isEmpty(Ramu.clickedPosition))
+				return
+			
+			// verify if one of the items is clicked
+			const rect = new Rect(Ramu.clickedPosition.X - 10, Ramu.clickedPosition.Y - 10, 1, 1)
+			if (this.last) {
+				for (let item of this.last.itens) {
+					if (Ramu.Math.overlap(item.screenPos, rect))
+						this.last.selectOption()
+				}
+			}
+		}
+		this.#clickable.checkHover = () => {
+			const rect = new Rect(Ramu.mousePosition.X, Ramu.mousePosition.Y, 1, 1)
+			if (this.last) {
+				for (let item of this.last.itens) 
+					if (Ramu.Math.overlap(item.screenPos, rect))
+						this.last.cursor = item.index	
+			}
+		}	
 	}
 	
 	push(menu) {
-		this.stack.push(menu)
+		if (this.#stack.length === 0) {
+			this.#root = menu
+			menu.manager = this
+		}
+		this.#stack.push(menu)
 	}
 	
 	pop() {
-		this.stack.pop()
+		this.#stack.pop()
 		if (this.last) {
 			this.last.active = true
 		}
 	}
 	
-	get last() {
-		return this.stack[this.stack.length -1]
+	reset() {
+		if (this.#root) {
+			this.push(this.#root)
+			this.#root.open()
+		}		
 	}
 	
-	set root (menu) {
-		this.#root = menu
-		menu.manager = this
+	// --- Override members ---
+	
+	start() {
+		this.reset()
 	}
-
-	get root() {
-		return this.#root
-	}
-
+	
 	update() {
 		// TODO: add way to dinamically biding the keys
-		
 		const last = this.last
 		
-		if (!last && last.active)
+		if (last === null || !last.active)
 			return
 		
 		if (Ramu.onKeyDown('d')) {
@@ -83,50 +105,7 @@ class MenuManager extends Drawable {
 	}
 
 	draw() {
-		// TODO: draw sign of sub menu
-		for(let win of this.stack) 
+		for(let win of this.#stack) 
 			Ramu.restoreAfter( () => { win.draw() } )
 	}
 }
-Ramu.init()
-Ramu.debugMode = true
-
-// the order matters when is adding a child menu, change it
-
-MenuParams.default.img = Ramu.Utils.getImage('skin.png')
-
-const mgr = new MenuManager()
-
-const m = new Menu(10, 10, 250, 100) // size < 20 quebra (joga exceção)
-m.set('fight')
-m.set('skill')
-m.set('item').active = false
-const mitem = m.set('submenu')
-m.set('runer')
-m.set('dreamer')
-m.pack()
-
-mgr.root = m
-
-const subm = new Menu(25, 25, 150, 50)
-subm.set('00')
-const submitem = subm.set('voltar')
-subm.set('')
-subm.set('')
-subm.set('')
-subm.set('')
-subm.parentMenu = m // need this to childMenu() work
-subm.pack()
-
-m.onCommandFunc = (item) => {
-	alert(`opcao ${item.text} selecionada`)
-}
-
-subm.onCommandFunc = (item) => {
-	if (item.id == submitem.id) {
-		subm.close()
-	} else {
-		alert(`opcao {item.text} selecionada`)
-	}
-}
-mitem.childMenu = subm
