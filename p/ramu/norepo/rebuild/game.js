@@ -35,7 +35,7 @@ class Game extends Drawable {
         this.toolSizes = [0, [31, 31], [108, 62], [56, 62], [62, 62], [62, 62]]
         this.currentTool = 1
         this.currentToolText = new Ramu.Text('', 20, 20, 200)
-        new Ramu.Text("q: erase | w: block | e: tower", 200, 20, 300)
+        new Ramu.Text("q: erase | w: block | e: tower | r: window | t: door | y: big block", 200, 20, 300)
 
         this.area = new Inventory(40, 40, Ramu.width - 40, Ramu.height - 40)
         this.area.drawPriority = -1
