@@ -107,7 +107,7 @@ class Game extends Drawable {
 
     draw() {
         const size = this.toolSizes[this.currentTool] || 1
-        Ramu.ctx.strokeRect(Ramu.mousePosition.X -25, Ramu.mousePosition.Y -25, size[0], size[1])
+        Ramu.ctx.strokeRect(Ramu.mousePosition.X - size[0] / 2, Ramu.mousePosition.Y - size[1] / 2, size[0], size[1])
     }
 
 }
