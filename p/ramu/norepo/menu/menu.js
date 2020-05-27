@@ -44,8 +44,8 @@ class Menu {
 	}
 
 	selectItem(index) {
-		if (index >= 0 && index < this.#activeItemCount)
-			this.cursor = index
+		if (index >= 0 && index < this.#activeItemCount) 
+			this.cursor = index		
 	}
 
 	setChildMenu(triggerOption, menu) {
@@ -162,13 +162,10 @@ class Menu {
 	}
 
 	playChangeAudio() {
-		console.log(this.params.changeAudio)
 		if(this.params.changeAudio !== null) {
-			this.params.changeAudio.currentTime = 0
-			this.params.changeAudio.play(0).catch(function(m) {
-				console.log(m)
-			 });
-			}
+			this.params.changeAudio.load()
+			this.params.changeAudio.play()//.catch((e) => {  })
+		}
 	}
 
 	draw() {

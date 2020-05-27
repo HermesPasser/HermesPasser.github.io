@@ -31,20 +31,32 @@ class MenuManager extends Drawable {
 			if (this.last) {
 				for (let item of this.last.itens) {
 					if (Ramu.Math.overlap(item.screenPos, rect))
-					this.last.selectOption(item.index)
+						this.last.selectOption(item.index)
 				}
 			}
 		}
+		this._lastClicked = null
 		this.#clickable.checkHover = () => {
+			// TODO: for f's sake refactor this
+			
 			const rect = new Rect(Ramu.mousePosition.X, Ramu.mousePosition.Y, 1, 1)
 			if (this.last) {
-				for (let item of this.last.itens) 
-					if (Ramu.Math.overlap(item.screenPos, rect)){
-						this.last.playChangeAudio()
-						this.last.selectItem(item.index)
+				for (let item of this.last.itens){
+					if (Ramu.Math.overlap(item.screenPos, rect) && !this.#clickable.isInHover) {
+						if (this._lastClicked === item)
+							return
+							
+						this._lastClicked = item
+						this.#clickable.onHoverEnter(item);	
+						break
 					}
+				}
 			}
-		}	
+		}
+		this.#clickable.onHoverEnter = (item) => {
+			this.last.selectItem(item.index)
+			this.last.playChangeAudio()
+		}
 	}
 	
 	push(menu) {
