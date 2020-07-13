@@ -13,17 +13,35 @@ Ramu.init()
 Ramu.debugMode = true
 const img = Ramu.Utils.getImage("simplespritefont.png")
 let c = new SpriteText("Hello World", void(0), img, new Rect(10, 10, 200, 25))
-
+c.padding = 0
 
 let cc = new SpriteText("Aperte q para mostrar os limites ou w para tirar a quebra", void(0), img, new Rect(10, 55, 250, 50))
 cc.fontSize = 13
 cc.wrap = true
-cc.padding = 2
+cc.padding = 0
+
+let ccc = new SpriteText("", void(0), img, new Rect(10, 150, 480, 300))
+ccc.fontSize = 13
+ccc.wrap = true
+ccc.padding = 0
+
+document.addEventListener('keydown', (e) => {
+	console.log(e.key.length === 1 )
+	if (e.keyCode === 13){
+		ccc.text += "\n"
+		return
+	} else if (e.keyCode === 8) {
+		ccc.text = ccc.text.substr(0, ccc.text.length -1)
+		return
+	} else if (e.key.length !== 1) 
+		return
+	ccc.text += e.key
+	
+})
 
 new GameObj().update = () => {
 	if (Ramu.onKeyDown('q')) {
 		Ramu.debugMode = !Ramu.debugMode
-		console.log("o")
 	}
 	if (Ramu.onKeyDown('w')) {
 		c.wrap = !c.wrap
