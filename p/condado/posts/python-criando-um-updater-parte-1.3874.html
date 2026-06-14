@@ -1,0 +1,968 @@
+---
+title: "Condado Braveheart posts - Python - Criando um updater, parte 1"
+pagename: python-criando-um-updater-parte-1.3874-pg01.html
+keywords: rpg maker
+show-comments: true
+layout: condado
+---
+<p>
+ Publicado originalmente em
+ <time datetime="2018-05-22T21:34:30-0300">
+  22 de Maio de 2018 às 21:34
+ </time>
+ no Condado Braveheart (
+ <a href="https://condadobraveheart.com/threads/python-criando-um-updater-parte-1.3874/">
+  link
+ </a>
+ ).
+</p>
+<hr/>
+<div class="bbWrapper">
+ <div style="text-align: center">
+  <b>
+   Introdução
+  </b>
+  ​
+ </div>
+ Com este projeto planejo fazer um
+ <i>
+  updater
+ </i>
+ , ou seja, um utilitário que atualiza o seu programa em Python. Pessoalmente eu não tenho tanta familiaridade com essa linguagem então estarei aprendendo junto vocês
+ <br/>
+ <br/>
+ Esse tutorial será dividido em partes que serão lançadas irregularmente.
+ <br/>
+ <br/>
+ <div style="text-align: center">
+  <b>
+   Funcionamento
+  </b>
+  ​
+ </div>
+ <br/>
+ Esse projeto funcionará da seguinte maneira:
+ <br/>
+ <ul>
+  <li data-xf-list-type="ul">
+   Um documento XML online que será acessado para buscar as informações;
+  </li>
+  <li data-xf-list-type="ul">
+   Um arquivo .zip com os arquivos que serão baixados para servir como atualização;
+  </li>
+  <li data-xf-list-type="ul">
+   O nosso projeto em python que acessará o XML, deletará e atualizará (baixando o .zip) os arquivos listados lá.
+  </li>
+ </ul>
+ <br/>
+ O XML consiste de um nó principal, que chamarei de ventura (pois este é o nome que escolhi para o projeto, entendedores entenderão) e dentro terá os nós update que contém o atributo com a versão e os nós com o link de download (url) para a atualização e um com a lista de pastas e arquivos a serem deletados (delete). As pastas/arquivos serão separados por uma virgula e serão consideradas pastas nomes com uma barra inversa "/" no final.
+ <br/>
+ <br/>
+ <div class="bbCodeBlock bbCodeBlock--screenLimited bbCodeBlock--code">
+  <div class="bbCodeBlock-title">
+   Código:
+  </div>
+  <div class="bbCodeBlock-content" dir="ltr">
+   <pre class="bbCodeCode" data-lang="" data-xf-init="code-block" dir="ltr"><code>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;ventura&gt;
+  &lt;update version="0.1"&gt;
+    &lt;url&gt;https://um.link&lt;/url&gt;
+    &lt;delete&gt;file_to_delete1.txt,folder1\&lt;/delete&gt;
+  &lt;/update&gt;
+&lt;/ventura&gt;</code></pre>
+  </div>
+ </div>
+ <br/>
+ <div style="text-align: center">
+  <b>
+   Preparativos
+  </b>
+  ​
+ </div>
+ <br/>
+ Precisaremos, claro, do Python. No caso eu estou usando o Python
+ <a class="link link--external" href="https://www.python.org/downloads/release/python-361/" rel="nofollow ugc noopener" target="_blank">
+  3.6.1
+ </a>
+ mas você pode clicar
+ <a class="link link--external" href="https://www.python.org/downloads/" rel="nofollow ugc noopener" target="_blank">
+  aqui
+ </a>
+ para baixar a última versão disponível. Só tenha em mente que o Python muda consideravelmente de uma principal versão para outra
+ <br/>
+ <br/>
+ Depois, tenha certeza de criar o seu documento XML e hospeda-lo em um lugar que permita você acessa-lo diretamente (
+ <a class="link link--external" href="https://gist.github.com/HermesPasser/c0bad2f954eb8c0d7783e19952666d45/raw/7942407469da767334cac922e60e19c915314f19/update.xml" rel="nofollow ugc noopener" target="_blank">
+  assim
+ </a>
+ ), para isso estarei usando o
+ <a class="link link--external" href="https://gist.github.com" rel="nofollow ugc noopener" target="_blank">
+  Gist GitHub
+ </a>
+ mas creio que o
+ <a class="link link--external" href="https://pastebin.com/" rel="nofollow ugc noopener" target="_blank">
+  Pasterbin
+ </a>
+ e genéricos permitam você fazer o mesmo.
+ <br/>
+ <br/>
+ Igualmente precisará de acesso direto (link direto) ao .zip que terá que hospedar. Isso pode ser obtido com o Dropbox/Google Drive/Microsoft Drive deixando o arquivo publico, estarei usando o GitHub para isso já que tenho um .zip de outro projeto que armazenado (
+ <a class="link link--external" href="https://github.com/HermesPasser/HermesPasser.github.io/blob/master/downloads/HermesMangaDownloader.zip" rel="nofollow ugc noopener" target="_blank">
+  veja o arquivo
+ </a>
+ /
+ <a class="link link--external" href="https://github.com/HermesPasser/HermesPasser.github.io/blob/master/downloads/HermesMangaDownloader.zip?raw=true" rel="nofollow ugc noopener" target="_blank">
+  link direto do arquivo
+ </a>
+ ) que será o que usarei.
+ <br/>
+ <br/>
+ Com isso, nossas preparações estão completas. Let's Code!
+ <br/>
+ <br/>
+ <div style="text-align: center">
+  <b>
+   1º Passo - Main &amp; Zip
+  </b>
+  ​
+ </div>
+ <br/>
+ Antes de qualquer coisa digo que tenho a convenção de colocar "h" antes do nome dos arquivos que tenham nome comum pois me já aconteceu de haver colisões entre meus módulos (nome bonito para arquivo) e os do Python.
+ <br/>
+ <br/>
+ Começaremos criando a rotina para extrair o arquivo .zip: Crie a pasta de seu projeto e os arquivos main.py (que será o ponto de entrada do programa) e hzip.py (responsável pela rotina de extração).
+ <br/>
+ <br/>
+ Em hzip importe
+ <b>
+  zipfile
+ </b>
+ , modulo que manipula arquivos .zip e
+ <b>
+  os
+ </b>
+ , que são diversas interfaces com o sistema operacional.
+ <br/>
+ <br/>
+ <div class="bbCodeBlock bbCodeBlock--screenLimited bbCodeBlock--code">
+  <div class="bbCodeBlock-title">
+   Código:
+  </div>
+  <div class="bbCodeBlock-content" dir="ltr">
+   <pre class="bbCodeCode" data-lang="" data-xf-init="code-block" dir="ltr"><code>import zipfile
+import os</code></pre>
+  </div>
+ </div>
+ <br/>
+ Logo em seguida criaremos a única função desse arquivo, extract, que receberá dois argumentos; um com o local do arquivo .zip e outro com o local onde será extraído:
+ <br/>
+ <br/>
+ <div class="bbCodeBlock bbCodeBlock--screenLimited bbCodeBlock--code">
+  <div class="bbCodeBlock-title">
+   Código:
+  </div>
+  <div class="bbCodeBlock-content" dir="ltr">
+   <pre class="bbCodeCode" data-lang="" data-xf-init="code-block" dir="ltr"><code>def extract(file_url, path_to_extract):
+	# carrega o arquivo .zip especificado 
+	zip_file = zipfile.ZipFile(file_url, 'r')
+	# extrai o conteudo do .zip
+	zip_file.extractall(path_to_extract)
+	# fecha o arquivo (no caminho especificado) e libera os recursos usados
+	zip_file.close()
+	# apaga o arquivo
+	os.remove(file_url)</code></pre>
+  </div>
+ </div>
+ <br/>
+ No main vamos importar o nosso hzip:
+ <br/>
+ <br/>
+ <div class="bbCodeBlock bbCodeBlock--screenLimited bbCodeBlock--code">
+  <div class="bbCodeBlock-title">
+   Código:
+  </div>
+  <div class="bbCodeBlock-content" dir="ltr">
+   <pre class="bbCodeCode" data-lang="" data-xf-init="code-block" dir="ltr"><code>import hzip</code></pre>
+  </div>
+ </div>
+ <br/>
+ Agora você pode fazer um teste para verificar se está funcionando colocando um arquivo .zip na mesma pasta e adicionando o seguinte código:
+ <br/>
+ <br/>
+ <div class="bbCodeBlock bbCodeBlock--screenLimited bbCodeBlock--code">
+  <div class="bbCodeBlock-title">
+   Código:
+  </div>
+  <div class="bbCodeBlock-content" dir="ltr">
+   <pre class="bbCodeCode" data-lang="" data-xf-init="code-block" dir="ltr"><code># extrai o "arquivo".zip na pasta onde está o arquivo.
+hzip.extract('arquivo.zip', '')</code></pre>
+  </div>
+ </div>
+ Para executar, abra o cmd/powershell na pasta do projeto (simplesmente digite cmd ou powershell na barra de endereço do explorer e tecle enter) e escreva
+ <i>
+  python main.py
+ </i>
+ e veja a mágica sendo feita.
+ <br/>
+ <br/>
+ Agora vamos adicionar a função main e adicionar isso dentro (note que mudei o nome do arquivo para um que seja mais coerente, será esse o nome com qual salvaremos o arquivo da internet):
+ <br/>
+ <br/>
+ <div class="bbCodeBlock bbCodeBlock--screenLimited bbCodeBlock--code">
+  <div class="bbCodeBlock-title">
+   Código:
+  </div>
+  <div class="bbCodeBlock-content" dir="ltr">
+   <pre class="bbCodeCode" data-lang="" data-xf-init="code-block" dir="ltr"><code>def main():
+	hzip.extract('update.zip', '')
+
+# Só executa se o arquivo for chamado diretamente ao invés de importado.
+if __name__ == '__main__':
+	main()</code></pre>
+  </div>
+ </div>
+ <br/>
+ <div style="text-align: center">
+  <b>
+   2º Passo - Path
+  </b>
+  ​
+ </div>
+ <br/>
+ Agora criaremos um arquivo para com as rotinas de manipulação de arquivos, o chamarei de hpath.py.
+ <br/>
+ <br/>
+ Iniciemos importando
+ <b>
+  pathlib
+ </b>
+ , para operações com diretórios,
+ <b>
+  shutil
+ </b>
+ , para operações com arquivos e a já conhecida
+ <b>
+  os
+ </b>
+ :
+ <br/>
+ <br/>
+ <div class="bbCodeBlock bbCodeBlock--screenLimited bbCodeBlock--code">
+  <div class="bbCodeBlock-title">
+   Código:
+  </div>
+  <div class="bbCodeBlock-content" dir="ltr">
+   <pre class="bbCodeCode" data-lang="" data-xf-init="code-block" dir="ltr"><code>import pathlib
+import shutil
+import os</code></pre>
+  </div>
+ </div>
+ <br/>
+ Agora criemos a função para criar uma pasta, passando o caminho (+ nome dela) por parâmetro:
+ <br/>
+ <br/>
+ <div class="bbCodeBlock bbCodeBlock--screenLimited bbCodeBlock--code">
+  <div class="bbCodeBlock-title">
+   Código:
+  </div>
+  <div class="bbCodeBlock-content" dir="ltr">
+   <pre class="bbCodeCode" data-lang="" data-xf-init="code-block" dir="ltr"><code>def create_dir(dir):
+	# dir recebe o nome da pasta, sou seja se for passado "pasta1\pasta2" então ele receberá "pasta2"
+	dir = os.path.dirname(dir)
+	# retorna se a pasta não possuir nome
+	if dir == '':
+		return
+	# cria um objeto do tipo path passando o nosso paramêtro (e deixa no formato adequado para o sistema)
+	path = pathlib.Path(dir)
+	# cria a pasta, os parâmetros dizem criar as subpastas e para não fazer nada se ela existir (ou caso jogaria uma exceção)
+	path.mkdir(parents = True, exist_ok = True)</code></pre>
+  </div>
+ </div>
+ <br/>
+ Agora vamos criar a função que verifica se é um arquivo ou uma pasta, recebendo o parâmetro da string a ser verificada:
+ <br/>
+ <br/>
+ Nota: o Python tem funções que fazem isso mas elas funcionam somente com o caminho absoluto, mas ela não convém aqui mesmo se não fosse o caso já que nós definimos que queremos que ele considere pasta uma string que contenha uma barra inversa no final, então convém criarmos essa função.
+ <br/>
+ <br/>
+ <div class="bbCodeBlock bbCodeBlock--screenLimited bbCodeBlock--code">
+  <div class="bbCodeBlock-title">
+   Código:
+  </div>
+  <div class="bbCodeBlock-content" dir="ltr">
+   <pre class="bbCodeCode" data-lang="" data-xf-init="code-block" dir="ltr"><code>def is_folder(text):
+	# retorna verdadeiro se o texto acaba com uma barra inversa e falso se não
+	return text.endswith("\\")</code></pre>
+  </div>
+ </div>
+ <br/>
+ Agora adicionaremos as duas funções que se encarregarão de apagar pastas e arquivos, passando uma string em cada um representando a pasta/arquivo:
+ <br/>
+ <br/>
+ <div class="bbCodeBlock bbCodeBlock--screenLimited bbCodeBlock--code">
+  <div class="bbCodeBlock-title">
+   Código:
+  </div>
+  <div class="bbCodeBlock-content" dir="ltr">
+   <pre class="bbCodeCode" data-lang="" data-xf-init="code-block" dir="ltr"><code>def remove_file(file):
+	# verifica se o arquivo existe
+	if os.path.isfile(file):
+		# apaga o arquivo
+		os.remove(file)
+
+def remove_folder(folder):
+	# verifica se a pasta existe
+	if os.path.isdir(folder):
+		# apaga a pasta (mesmo com arquivos dentro)
+		shutil.rmtree(folder)</code></pre>
+  </div>
+ </div>
+ <br/>
+ E por fim, a função que receberá um array de nomes de arquivos e pasta a serem apagados, darei o nome de delete_files (não confundam com o remove_file que apaga um arquivo):
+ <br/>
+ <br/>
+ <div class="bbCodeBlock bbCodeBlock--screenLimited bbCodeBlock--code">
+  <div class="bbCodeBlock-title">
+   Código:
+  </div>
+  <div class="bbCodeBlock-content" dir="ltr">
+   <pre class="bbCodeCode" data-lang="" data-xf-init="code-block" dir="ltr"><code>def delete_files(files):
+	# navega em cada item de files usando file para representar o valor atual
+	for file in files:
+		# verifica se o valor é uma pasta (função explicada anteriormente)
+		if is_folder(file):
+			# chama a função que remove pastas para apagá-lo
+			remove_folder(file)
+		else:
+			# chama a função que remove arquivos para apagá-lo
+			remove_file(file)</code></pre>
+  </div>
+ </div>
+ <br/>
+ <div style="text-align: center">
+  <b>
+   Aftermath
+  </b>
+  ​
+ </div>
+ <br/>
+ Irei parar por aqui pois o tópico já está ficando grande. Espero que gostem, até a parte dois.
+ <br/>
+ <br/>
+ <br/>
+ <div style="text-align: center">
+  <br/>
+  <b>
+   Parte I
+  </b>
+  
+  <a class="link link--external" href="http://www.condadobraveheart.com/forum/index.php?topic=4346.new#new" rel="nofollow ugc noopener" target="_blank">
+   Parte II
+  </a>
+  
+  <a class="link link--external" href="http://[center" rel="nofollow ugc noopener" target="_blank">
+   <b>
+    Introdução
+   </b>
+  </a>
+  ​
+ </div>
+ <a class="link link--external" href="http://[center" rel="nofollow ugc noopener" target="_blank">
+  <br/>
+  E cá estamos na última parte \o/. Espero que isso tenha ajudado você a entender melhor como o Python funciona, pois me ajudou. Sem mais delongas:
+  <br/>
+  <br/>
+  <div style="text-align: center">
+   <b>
+    4º Passo - Package
+   </b>
+   ​
+  </div>
+  <br/>
+  Agora vamos transformar esse projeto em um package para que ele possa ver usado por outros projetos. Primeiro renomeie o arquivo main para o nome que queres para seu projeto (pois não faz sentido alguém importar o main), o eu será ventura. Depois adicione o nome do projeto (o da pasta) antes do nome de cada importação que fizemos de nossos arquivos. Isso será necessário para que eles possam ser importados mesmo que o caminho onde o programa está rodando é outro. Também remova o import do
+  <b>
+   sys
+  </b>
+  pois não usaremos mais argumentos de linha de comando.
+  <br/>
+  <br/>
+  Outra coisa que faremos é adicionar "_" no nome de cada arquivo exceto o mais para que o usuário saiba que esses arquivos não foram projetados para serem usados por eles.
+  <br/>
+  <br/>
+  Note que a importação do _hxml não tem "ventura." pois nesse caso só um ponto basta.
+  <br/>
+  <br/>
+  ventura.py (antigo main.py)
+  <br/>
+  <div class="bbCodeBlock bbCodeBlock--screenLimited bbCodeBlock--code">
+   <div class="bbCodeBlock-title">
+    Código:
+   </div>
+   <div class="bbCodeBlock-content" dir="ltr">
+    <pre class="bbCodeCode" data-lang="" data-xf-init="code-block" dir="ltr"><code>from ._hxml import VenturaXML
+import ventura._hzip as hzip
+import ventura._hweb as hweb
+import ventura._hpath as hpath</code></pre>
+   </div>
+  </div>
+  <br/>
+  <br/>
+  _hpath.py (antigo hpath.py)
+  <br/>
+  <div class="bbCodeBlock bbCodeBlock--screenLimited bbCodeBlock--code">
+   <div class="bbCodeBlock-title">
+    Código:
+   </div>
+   <div class="bbCodeBlock-content" dir="ltr">
+    <pre class="bbCodeCode" data-lang="" data-xf-init="code-block" dir="ltr"><code>import ventura._hpath as hpath</code></pre>
+   </div>
+  </div>
+  <br/>
+  Agora crie um arquivo chamado __init__.py, este arquivo não precisa conter nada dentro, ele serve para que o diretório seja considerado um package.
+  <br/>
+  <br/>
+  Parabéns! Você criou um package, tente adicionar a pasta dele em seu projeto e importa-lo em um arquivo seu (exemplo:
+  <i>
+   import ventura
+  </i>
+  ).
+  <br/>
+  <br/>
+  <div style="text-align: center">
+   <b>
+    5º Passo - Publicação
+   </b>
+   ​
+  </div>
+  <br/>
+  Agora prepararemos para que este package possa ser publicado [url=https://pypi.org]PyPI
+ </a>
+ , o lugar onde armazena-se packages para que sejam baixados. Mas especificamente publicaremos no
+ <a class="link link--external" href="https://test.pypi.org" rel="nofollow ugc noopener" target="_blank">
+  Test PyPI
+ </a>
+ , subdomínio para testes. Eu me basearei
+ <a class="link link--external" href="https://packaging.python.org/tutorials/packaging-projects" rel="nofollow ugc noopener" target="_blank">
+  neste
+ </a>
+ tutorial.
+ <br/>
+ <br/>
+ Crie uma subpasta com o nome do projeto e mova todos os arquivos para lá, mas fique na pasta onde está pois nela que criaremos os próximos arquivos que precisamos para publicar o projeto.
+ <br/>
+ <br/>
+ Aqueles acostumados com git entenderão bem o que faremos em seguida: crie README.md, LICENSE (arquivo sem extensão) e .gigignore (arquivo sem o nome). No README escreva uma descrição do projeto (
+ <a class="link link--external" href="https://blog.da2k.com.br/2015/02/08/aprenda-markdown/" rel="nofollow ugc noopener" target="_blank">
+  aprenda aqui
+ </a>
+ ), em LICENSE, a licença (que no meu caso usei a
+ <a class="link link--external" href="https://opensource.org/licenses/MIT" rel="nofollow ugc noopener" target="_blank">
+  MIT
+ </a>
+ , ela é só um arquivo de texto normal), o gitignore é onde você escreverá todas as pastas e arquivos que serão ignorados na hora de subir o projeto para o repositório (
+ <a class="link link--external" href="https://pt.stackoverflow.com/questions/237830/configurar-o-gitignore-para-n%C3%A3o-subir-certos-arquivos" rel="nofollow ugc noopener" target="_blank">
+  saiba como
+ </a>
+ ).
+ <br/>
+ <br/>
+ O próximo arquivo que criaremos é o setup.py, este é o responsável por armazenar informações do projeto. Abaixo deixarei um modelo (que não tem todas as informações possíveis mas tem as essenciais).
+ <br/>
+ <br/>
+ <div class="bbCodeBlock bbCodeBlock--screenLimited bbCodeBlock--code">
+  <div class="bbCodeBlock-title">
+   Código:
+  </div>
+  <div class="bbCodeBlock-content" dir="ltr">
+   <pre class="bbCodeCode" data-lang="" data-xf-init="code-block" dir="ltr"><code>from setuptools import setup
+
+# o método que será chamado pelo "empacotador"
+setup(
+      # nome do pacote
+      name = 'ventura',
+      # versão do pacote
+      version = '0.1',
+      # uma descrição, existe um descrição mais completa que podemos fazer em formato 
+      #markdown usando o texto do README mas não usaremos
+      description = 'Simple xml-based updater in python 3.6 with no try-catch statement',
+      # link do projeto, geralmente o repositório do projeto. 
+      url = 'http://github.com/hermespasser/ventura',
+      # nome do autor
+      author = 'Hermes Passer',
+      # email do autor
+      author_email = 'hermespasser@gmail.com',
+      # a licença escolhida para o projeto
+      license = 'MIT',
+      # os pacotes inseridos, ou coloque o mesmo valor que colocou em name ou você pode 
+      # procurar dinamicamente importando o find_packages() do setuptools
+      packages = ['ventura']
+)</code></pre>
+  </div>
+ </div>
+ <br/>
+ Agora vamos iniciar o processo de criar a distribuição e enviar. Rode
+ <i>
+  python -m pip install --user --upgrade setuptools wheel
+ </i>
+ só para ter certeza que o
+ <b>
+  setuptools
+ </b>
+ e
+ <b>
+  wheel
+ </b>
+ estão instalados e devidamente atualizados.
+ <br/>
+ <br/>
+ Agora vamos efetivamente criar a distribuição, para isso devemos está na mesma pasta que o setup.py está instalado. Rode
+ <i>
+  python setup.py sdist bdist_wheel
+ </i>
+ e será criada a pasta dist, que são os arquivos que serão enviados.
+ <br/>
+ <br/>
+ Para subir o package para o Test PyPI precisaremos criar uma conta lá, clique
+ <a class="link link--external" href="https://test.pypi.org/account/register/" rel="nofollow ugc noopener" target="_blank">
+  aqui
+ </a>
+ para fazer isso. Depois precisaremos baixar e atualizar o
+ <b>
+  twine
+ </b>
+ , um utilitário que simplifica o processo de envio:
+ <i>
+  python -m pip install --user --upgrade twine
+ </i>
+ .
+ <br/>
+ <br/>
+ Note: o twine ficará referenciado no PATH do sistema então precisaremos escrever todo o caminho até ele quando fomos usa-lo. Ele fica em
+ <i>
+  c:\users\
+  <b>
+   nome do usuário
+  </b>
+  \appdata\local\programs\python\python36\Scripts
+ </i>
+ .
+ <br/>
+ <br/>
+ Rode
+ <i>
+  c:\users\
+  <b>
+   nome do usuário
+  </b>
+  \appdata\local\programs\python\python36\Scripts\twine upload --repository-url https://test.pypi.org/legacy/ dist/*
+ </i>
+ para que o package seja subido para o PyPI, você precisará digitar o seu usuário e senha.
+ <br/>
+ <br/>
+ \o/ congrats \o/
+ <br/>
+ <br/>
+ Seu package está disponível para download, se você quiser baixa-lo para testar use
+ <i>
+  python -m pip install --index-url https://test.pypi.org/simple/
+  <b>
+   projeto
+  </b>
+ </i>
+ <br/>
+ <br/>
+ Note que que o Test PyPI é para testes e por isso não é incomum que packages e contas sejam deletadas nele, se quer que seu projeto fique permanentemente online então precisará subir para o PyPI normal. Para isso você precisará
+ <a class="link link--external" href="http://" rel="nofollow ugc noopener" target="_blank">
+  registrar-se
+ </a>
+ nele e omitir o
+ <i>
+  --repository-url https://test.pypi.org/legacy/
+ </i>
+ no twine que fez anteriormente para subir o package e
+ <i>
+  --index-url https://test.pypi.org/simple/
+ </i>
+ no comando pip anteriormente feito para baixar o package.
+ <br/>
+ <br/>
+ <div style="text-align: center">
+  <b>
+   Aftermath &amp; Exercícios
+  </b>
+  ​
+ </div>
+ <br/>
+ Parabéns por ter chegado até aqui! Qualquer dúvida é só perguntas nos comentários que tentarei responder.
+ <br/>
+ <br/>
+ Deixarei aqui os links para o projeto, no
+ <a class="link link--external" href="https://pypi.org/project/ventura/" rel="nofollow ugc noopener" target="_blank">
+  PyPI
+ </a>
+ e
+ <a class="link link--external" href="https://github.com/HermesPasser/ventura" rel="nofollow ugc noopener" target="_blank">
+  GitHub
+ </a>
+ . Você pode baixa-lo usando o comando
+ <i>
+  pip install ventura
+ </i>
+ <br/>
+ <br/>
+ Agora deixarei alguns exercícios para você tentar em casa:
+ <br/>
+ <ul>
+  <li data-xf-list-type="ul">
+   Diminuir os efeitos colaterais do projeto usando blocos try-except (diga: retorne falso no update_if_is_need se alguma função vital não está funcionando, como no caso de faltar internet)
+  </li>
+  <li data-xf-list-type="ul">
+   O usuário pode estar versões atrás da atual, então crie um sistema que execute todas as atualizações na frente da sua.
+  </li>
+ </ul>
+ <br/>
+ Bem é isso, até a próxima. Talvez eu faça um vídeo com isso em funcionamento depois.
+ <br/>
+ <br/>
+ <br/>
+ <div style="text-align: center">
+  <br/>
+  <a class="link link--external" href="http://www.condadobraveheart.com/forum/index.php?topic=4341.0" rel="nofollow ugc noopener" target="_blank">
+   Parte I
+  </a>
+  
+  <a class="link link--external" href="http://www.condadobraveheart.com/forum/index.php?topic=4346.0" rel="nofollow ugc noopener" target="_blank">
+   Parte II
+  </a>
+  
+  <a class="link link--external" href="http://www.condadobraveheart.com/forum/index.php?topic=4360.new#new" rel="nofollow ugc noopener" target="_blank">
+   Parte III
+  </a>
+  ​
+ </div>
+</div>
+<hr/>
+<details>
+ <summary>
+  Comentários
+ </summary>
+ <div class="comment">
+  <div class="bbWrapper">
+   Herms, você é uma caixinha de surpresa que sempre me vem com algo sensacional quando apareço por aqui. Parabéns pela iniciativa e tópico, tá bem delicinha isso aqui s2
+   <br/>
+   <br/>
+   Particularmente, sempre achei muito gostosinho Python e queria ter aprendido ele ao invés de C quando tava estudando, mas acho que foi bom para eu desistir e fazer o que to fazendo hoje :kappa:
+   <br/>
+   <br/>
+   No mais, ótimo tópico ajudando como sempre, Heeeerms! :3
+  </div>
+  <small class="author">
+   <a href="https://condadobraveheart.com/members/ninek.148/">
+    NineK
+   </a>
+   em
+   <time datetime="2018-05-26T08:28:30-0300">
+    26 de Maio de 2018 às 8:28.
+   </time>
+   <a href="https://condadobraveheart.com/threads/python-criando-um-updater-parte-1.3874/post-32696">
+    Comentário original
+   </a>
+  </small>
+  <hr/>
+ </div>
+ <div class="comment">
+  <div class="bbWrapper">
+   Olha só, python por aqui. Da hora, vou ver a parte dois agora.
+  </div>
+  <small class="author">
+   <a href="https://condadobraveheart.com/members/eranot.1081/">
+    Eranot
+   </a>
+   em
+   <time datetime="2018-05-26T13:11:00-0300">
+    26 de Maio de 2018 às 13:11.
+   </time>
+   <a href="https://condadobraveheart.com/threads/python-criando-um-updater-parte-1.3874/post-32697">
+    Comentário original
+   </a>
+  </small>
+  <hr/>
+ </div>
+ <div class="comment">
+  <div class="bbWrapper">
+   <a href="https://condadobraveheart.com/members/hermespasser.1086/" title="HermesPasser [old id=1330]">
+    HermesPasser
+   </a>
+   <br/>
+   <br/>
+   Primeiramente,  ?f?o?r?a? ?T?e?m?e?r?  parabéns pelo belo tutorial, ficou bem legal e explicativo, espero ver outras aulas sua como essa!!
+   <br/>
+   <br/>
+   Eu mesmo nunca programei em Python, sei apenas alguns conceitos básicos da linguagem e que ela se parece muito com Ruby, na verdade uma boa parte da arquitetura do Ruby foi desenvolvida com base no Python, pois antes do Ruby, o Python já era uma das linguagens com menos burocracia para desenvolvimento, e isso permite um que os desenvolvedores criem programas de forma mais rápida e fácil e bem organizada (proposta que também foi o foco do Ruby e principalmente do framework Ruby on Rails que é mundialmente conhecido com a utilização no desenvolvimento WEB).
+   <br/>
+   <br/>
+   Por conta da sua facilidade, o Python é muito usado dentro do sistema operacional Linux, em algumas versões o Python já vem até instalado no sistema operacional por padrão.
+   <br/>
+   <br/>
+   A linguagem de programação Python é a preferida da NASA, NSA, Google e CIA por diversos motivos, uma das maiores rasões é a da "interpretação VS compilação", se um programador cria um programa que compila corretamente, não existe a garantia que isso irá quebrar todo o sistema que ele irá executar ou que irá corromper algumas coisas (intencionalmente ou não). Python é uma linguagem interpretada e com algumas heranças de segurança nesse respeito. Muitas empresas tem programas que precisam executar em diferentes sistemas operacionais e o Python permite isso, pois o mesmo script pode executar no Linux e no Windows sem precisar ser compilado.
+   <br/>
+   <br/>
+   Python também é utilizado em muitas outras coisas como:
+   <br/>
+   <br/>
+   Machine Learning (Aprendizado de máquina)
+   <br/>
+   Data Science (Uma área interdisciplinar voltada para o estudo e a análise de dados)
+   <br/>
+   Previsão de Preços (Amplamente utilizada em inventimentos)
+   <br/>
+   Mineração de Bitcoin
+   <br/>
+   Comunicação de Internet
+   <br/>
+   Remote Adminstration Tools (RATs)
+   <br/>
+   GUI (Interface gráfica)
+   <br/>
+   Desenvolvimento de Jogos
+   <br/>
+   <br/>
+   Alguns anos atrás, comprei um livro muito bom, mas que ainda está na minha fila de leitura, esse livro ensina o desenvolvimento de jogos eletrônicos utilizando a engine PyGame.
+   <br/>
+   <br/>
+   <div style="text-align: center">
+    <script class="js-extraPhrases" type="application/json">
+     {
+				"lightbox_close": "Fechar",
+				"lightbox_next": "Next",
+				"lightbox_previous": "Previous",
+				"lightbox_error": "O conteúdo solicitado não pôde ser carregado. Por favor, tente novamente mais tarde.",
+				"lightbox_start_slideshow": "Start slideshow",
+				"lightbox_stop_slideshow": "Stop slideshow",
+				"lightbox_full_screen": "Tela cheia",
+				"lightbox_thumbnails": "Thumbnails",
+				"lightbox_download": "Baixar",
+				"lightbox_share": "Compartilhar",
+				"lightbox_zoom": "Zoom",
+				"lightbox_new_window": "Nova janela",
+				"lightbox_toggle_sidebar": "Toggle sidebar"
+			}
+    </script>
+    <div class="bbImageWrapper js-lbImage" data-lb-caption-extra-html="" data-lb-sidebar-href="" data-single-image="1" data-src="https://s3.novatec.com.br/capas-ampliadas/capa-ampliada-9788575224526.jpg" data-type="image" title="capa-ampliada-9788575224526.jpg">
+     <img alt="capa-ampliada-9788575224526.jpg" class="bbImage" data-url="https://s3.novatec.com.br/capas-ampliadas/capa-ampliada-9788575224526.jpg" data-zoom-target="1" height="" loading="lazy" src="https://s3.novatec.com.br/capas-ampliadas/capa-ampliada-9788575224526.jpg" style="" title="" width=""/>
+    </div>
+   </div>
+   <br/>
+   Já que você está se aventurando nesse mundo do Python, eu ficaria muito feliz em ver um jogo seu mesmo que seja algo básico, que nos mostre como o Python é utilizado para criação de jogos.
+   <br/>
+   <br/>
+   Refente ao seu tutorial, achei muito interessante, gostaria de saber se você já está utilizando ele em algo real.
+   <br/>
+   <br/>
+   Também seria legal a apresentação de alguns conceitos iniciais sobre a linguagem, como o uso de indentação no lugar de chaves.
+   <br/>
+   <br/>
+   Gostaria também de ver uma aula sua sobre Programação Orientada a Objetos, pois seria algo que além de ajudar a comunidade entender, terá grande valor no seu projeto.
+   <br/>
+  </div>
+  <small class="author">
+   <a href="https://condadobraveheart.com/members/resque.634/">
+    Resque
+   </a>
+   em
+   <time datetime="2018-05-28T14:04:15-0300">
+    28 de Maio de 2018 às 14:04.
+   </time>
+   <a href="https://condadobraveheart.com/threads/python-criando-um-updater-parte-1.3874/post-32698">
+    Comentário original
+   </a>
+  </small>
+  <hr/>
+ </div>
+ <div class="comment">
+  <div class="bbWrapper">
+   Primeiramente, OLHA O VÍDEO QUE SAIU! \O/   \O/  \O/
+   <br/>
+   <br/>
+   <div style="text-align: center">
+    <iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" frameborder="0" height="315" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/gHLClU0VyMA" title="YouTube video player" width="560">
+    </iframe>
+    <a src="https://www.youtube.com/watch?v=gHLClU0VyMA">
+     Abrir no Youtube
+    </a>
+    ​
+   </div>
+   <br/>
+   <blockquote class="bbCodeBlock bbCodeBlock--expandable bbCodeBlock--quote js-expandWatch" data-attributes="" data-quote="Resque" data-source="">
+    <div class="bbCodeBlock-title">
+     Resque comentou:
+    </div>
+    <div class="bbCodeBlock-content">
+     <div class="bbCodeBlock-expandContent js-expandContent">
+      <a href="https://condadobraveheart.com/members/hermespasser.1086/" title="HermesPasser [old id=1330]">
+       HermesPasser
+      </a>
+      <br/>
+      Eu mesmo nunca programei em Python, sei apenas alguns conceitos básicos da linguagem e que ela se parece muito com Ruby, na verdade uma boa parte da arquitetura do Ruby foi desenvolvida com base no Python, pois antes do Ruby, o Python já era uma das linguagens com menos burocracia para desenvolvimento, e isso permite um que os desenvolvedores criem programas de forma mais rápida e fácil e bem organizada (proposta que também foi o foco do Ruby e principalmente do framework Ruby on Rails que é mundialmente conhecido com a utilização no desenvolvimento WEB).
+      <br/>
+      <br/>
+      Por conta da sua facilidade, o Python é muito usado dentro do sistema operacional Linux, em algumas versões o Python já vem até instalado no sistema operacional por padrão.
+      <br/>
+      <br/>
+      A linguagem de programação Python é a preferida da NASA, NSA, Google e CIA por diversos motivos, uma das maiores rasões é a da "interpretação VS compilação", se um programador cria um programa que compila corretamente, não existe a garantia que isso irá quebrar todo o sistema que ele irá executar ou que irá corromper algumas coisas (intencionalmente ou não). Python é uma linguagem interpretada e com algumas heranças de segurança nesse respeito. Muitas empresas tem programas que precisam executar em diferentes sistemas operacionais e o Python permite isso, pois o mesmo script pode executar no Linux e no Windows sem precisar ser compilado.
+      <br/>
+      <br/>
+      Python também é utilizado em muitas outras coisas como:
+      <br/>
+      <br/>
+      Machine Learning (Aprendizado de máquina)
+      <br/>
+      Data Science (Uma área interdisciplinar voltada para o estudo e a análise de dados)
+      <br/>
+      Previsão de Preços (Amplamente utilizada em inventimentos)
+      <br/>
+      Mineração de Bitcoin
+      <br/>
+      Comunicação de Internet
+      <br/>
+      Remote Adminstration Tools (RATs)
+      <br/>
+      GUI (Interface gráfica)
+      <br/>
+      Desenvolvimento de Jogos
+     </div>
+     <div class="bbCodeBlock-expandLink js-expandLink">
+      <a role="button" tabindex="0">
+       Clique para expandir...
+      </a>
+     </div>
+    </div>
+   </blockquote>
+   <br/>
+   Estou ciente disso e fico feliz por você ter trazido isso a tona pois minha preguiça com certeza não deixaria eu fazer. hehehe
+   <br/>
+   <br/>
+   <blockquote class="bbCodeBlock bbCodeBlock--expandable bbCodeBlock--quote js-expandWatch" data-attributes="" data-quote="Resque" data-source="">
+    <div class="bbCodeBlock-title">
+     Resque comentou:
+    </div>
+    <div class="bbCodeBlock-content">
+     <div class="bbCodeBlock-expandContent js-expandContent">
+      Alguns anos atrás, comprei um livro muito bom, mas que ainda está na minha fila de leitura, esse livro ensina o desenvolvimento de jogos eletrônicos utilizando a engine PyGame.
+      <br/>
+      <br/>
+      <div style="text-align: center">
+       <div class="bbImageWrapper js-lbImage" data-lb-caption-extra-html="" data-lb-sidebar-href="" data-single-image="1" data-src="https://s3.novatec.com.br/capas-ampliadas/capa-ampliada-9788575224526.jpg" data-type="image" title="capa-ampliada-9788575224526.jpg">
+        <img alt="capa-ampliada-9788575224526.jpg" class="bbImage" data-url="https://s3.novatec.com.br/capas-ampliadas/capa-ampliada-9788575224526.jpg" data-zoom-target="1" height="" loading="lazy" src="https://s3.novatec.com.br/capas-ampliadas/capa-ampliada-9788575224526.jpg" style="" title="" width=""/>
+       </div>
+      </div>
+     </div>
+     <div class="bbCodeBlock-expandLink js-expandLink">
+      <a role="button" tabindex="0">
+       Clique para expandir...
+      </a>
+     </div>
+    </div>
+   </blockquote>
+   Conheço esse autor, tenho um livro (muito bom por sinal) da mesma editora aqui:
+   <br/>
+   <br/>
+   <div style="text-align: center">
+    <div class="bbImageWrapper js-lbImage" data-lb-caption-extra-html="" data-lb-sidebar-href="" data-single-image="1" data-src="https://www.bokkilden.no/servlet/VisBildeServlet?produktId=10532308" data-type="image" title="VisBildeServlet">
+     <img alt="VisBildeServlet" class="bbImage" data-url="https://www.bokkilden.no/servlet/VisBildeServlet?produktId=10532308" data-zoom-target="1" height="" loading="lazy" src="https://www.bokkilden.no/servlet/VisBildeServlet?produktId=10532308" style="" title="" width=""/>
+    </div>
+   </div>
+   <br/>
+   <blockquote class="bbCodeBlock bbCodeBlock--expandable bbCodeBlock--quote js-expandWatch" data-attributes="" data-quote="Resque" data-source="">
+    <div class="bbCodeBlock-title">
+     Resque comentou:
+    </div>
+    <div class="bbCodeBlock-content">
+     <div class="bbCodeBlock-expandContent js-expandContent">
+      Já que você está se aventurando nesse mundo do Python, eu ficaria muito feliz em ver um jogo seu mesmo que seja algo básico, que nos mostre como o Python é utilizado para criação de jogos.
+     </div>
+     <div class="bbCodeBlock-expandLink js-expandLink">
+      <a role="button" tabindex="0">
+       Clique para expandir...
+      </a>
+     </div>
+    </div>
+   </blockquote>
+   <br/>
+   Nunca mexi com isso no python apesar de já ter visto pessoas fazendo. Acho que seria algo grande de mais (mais de três partes) para um simples tutorial, aliás prefiro o gosu do ruby (polemico).
+   <br/>
+   <br/>
+   <blockquote class="bbCodeBlock bbCodeBlock--expandable bbCodeBlock--quote js-expandWatch" data-attributes="" data-quote="Resque" data-source="">
+    <div class="bbCodeBlock-title">
+     Resque comentou:
+    </div>
+    <div class="bbCodeBlock-content">
+     <div class="bbCodeBlock-expandContent js-expandContent">
+      Refente ao seu tutorial, achei muito interessante, gostaria de saber se você já está utilizando ele em algo real.
+     </div>
+     <div class="bbCodeBlock-expandLink js-expandLink">
+      <a role="button" tabindex="0">
+       Clique para expandir...
+      </a>
+     </div>
+    </div>
+   </blockquote>
+   <br/>
+   Não pois não tenho nada em python rodando por aí, ele é uma evolução natural de algo semelhante que fiz em ruby tempos atrás.
+   <br/>
+   <br/>
+   <blockquote class="bbCodeBlock bbCodeBlock--expandable bbCodeBlock--quote js-expandWatch" data-attributes="" data-quote="Resque" data-source="">
+    <div class="bbCodeBlock-title">
+     Resque comentou:
+    </div>
+    <div class="bbCodeBlock-content">
+     <div class="bbCodeBlock-expandContent js-expandContent">
+      Também seria legal a apresentação de alguns conceitos iniciais sobre a linguagem, como o uso de indentação no lugar de chaves.
+     </div>
+     <div class="bbCodeBlock-expandLink js-expandLink">
+      <a role="button" tabindex="0">
+       Clique para expandir...
+      </a>
+     </div>
+    </div>
+   </blockquote>
+   <br/>
+   Pensei em fazer isso, mas acho que alguém que tenha conhecimento da lógica conseguirá entender o code por analise (eu iria é acabar me perdendo em termos e faria um péssimo trabalho).
+   <br/>
+   <br/>
+   <blockquote class="bbCodeBlock bbCodeBlock--expandable bbCodeBlock--quote js-expandWatch" data-attributes="" data-quote="Resque" data-source="">
+    <div class="bbCodeBlock-title">
+     Resque comentou:
+    </div>
+    <div class="bbCodeBlock-content">
+     <div class="bbCodeBlock-expandContent js-expandContent">
+      Gostaria também de ver uma aula sua sobre Programação Orientada a Objetos, pois seria algo que além de ajudar a comunidade entender, terá grande valor no seu projeto.
+     </div>
+     <div class="bbCodeBlock-expandLink js-expandLink">
+      <a role="button" tabindex="0">
+       Clique para expandir...
+      </a>
+     </div>
+    </div>
+   </blockquote>
+   <br/>
+   Se eu fizesse uma seria a mais enxuta possível pois eu iria é acabar me perdendo em termos e faria um péssimo trabalho². Mas quem sabe né? Tô com vontade de mexer com Perl e nunca mexi com OOB lá.
+   <br/>
+   <br/>
+   Desde já agradeço pelo feedback.
+  </div>
+  <small class="author">
+   <a href="https://condadobraveheart.com/members/hermespasser.1086/">
+    HermesPasser
+   </a>
+   em
+   <time datetime="2018-05-28T19:50:35-0300">
+    28 de Maio de 2018 às 19:50.
+   </time>
+   <a href="https://condadobraveheart.com/threads/python-criando-um-updater-parte-1.3874/post-32699">
+    Comentário original
+   </a>
+  </small>
+  <hr/>
+ </div>
+</details>

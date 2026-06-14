@@ -1,0 +1,231 @@
+---
+title: "Condado Braveheart posts - Hermes Shooting System"
+pagename: hermes-shooting-system.3079-pg01.html
+keywords: rpg maker
+show-comments: true
+layout: condado
+---
+<p>
+ Publicado originalmente em
+ <time datetime="2017-12-10T00:09:08-0200">
+  10 de Dezembro de 2017 às 0:09
+ </time>
+ no Condado Braveheart (
+ <a href="https://condadobraveheart.com/threads/hermes-shooting-system.3079/">
+  link
+ </a>
+ ).
+</p>
+<hr/>
+<div class="bbWrapper">
+ <div style="text-align: center">
+  <b>
+   Introdução
+  </b>
+  ​
+ </div>
+ Primeiramente fiz esse sistema para a "Gincana: Fábrica do Noel", ele basicamente é um sistema de tiro que quando você aperta o botão selecionado ele atira no inimigo a sua frente. Se houver algo entre o inimigo e o evento (como uma parece) o tiro para antes de chegar nele, também tem uma barra de hp para cada inimigo.
+ <br/>
+ <br/>
+ Para que o evento seja um inimigo ele precisa ter escrito "enemy" ou "zombie" (esse para manter compatibilidade com o sistema de zumbi) no campo note do evento.
+ <br/>
+ <br/>
+ <div style="text-align: center">
+  <b>
+   Comandos
+  </b>
+  ​
+ </div>
+ Não altere o nome do arquivo pois ele usa parâmetros do plugin manager.
+ <br/>
+ <div class="bbCodeBlock bbCodeBlock--screenLimited bbCodeBlock--code">
+  <div class="bbCodeBlock-title">
+   Código:
+  </div>
+  <div class="bbCodeBlock-content" dir="ltr">
+   <pre class="bbCodeCode" data-lang="" data-xf-init="code-block" dir="ltr"><code>Key Code</code></pre>
+  </div>
+ </div>
+ Tecla a ser apertada para atirar, a padrão é tab.
+ <br/>
+ <br/>
+ <div class="bbCodeBlock bbCodeBlock--screenLimited bbCodeBlock--code">
+  <div class="bbCodeBlock-title">
+   Código:
+  </div>
+  <div class="bbCodeBlock-content" dir="ltr">
+   <pre class="bbCodeCode" data-lang="" data-xf-init="code-block" dir="ltr"><code>Shot SE</code></pre>
+  </div>
+ </div>
+ Som ao atirar. Não deve-se colocar a extensão.
+ <br/>
+ <br/>
+ <div class="bbCodeBlock bbCodeBlock--screenLimited bbCodeBlock--code">
+  <div class="bbCodeBlock-title">
+   Código:
+  </div>
+  <div class="bbCodeBlock-content" dir="ltr">
+   <pre class="bbCodeCode" data-lang="" data-xf-init="code-block" dir="ltr"><code>Hit SE</code></pre>
+  </div>
+ </div>
+ Som o tiro atinge o inimigo. Não deve-se colocar a extensão.
+ <br/>
+ <br/>
+ <div class="bbCodeBlock bbCodeBlock--screenLimited bbCodeBlock--code">
+  <div class="bbCodeBlock-title">
+   Código:
+  </div>
+  <div class="bbCodeBlock-content" dir="ltr">
+   <pre class="bbCodeCode" data-lang="" data-xf-init="code-block" dir="ltr"><code>Miss SE</code></pre>
+  </div>
+ </div>
+ Som o tiro atinge atinge uma parede. Não deve-se colocar a extensão.
+ <br/>
+ <br/>
+ <div class="bbCodeBlock bbCodeBlock--screenLimited bbCodeBlock--code">
+  <div class="bbCodeBlock-title">
+   Código:
+  </div>
+  <div class="bbCodeBlock-content" dir="ltr">
+   <pre class="bbCodeCode" data-lang="" data-xf-init="code-block" dir="ltr"><code>Animation Shot</code></pre>
+  </div>
+ </div>
+ Animação do personagem atirando. Use o id da animação. O padrão é null então nada é feito.
+ <br/>
+ <br/>
+ <div class="bbCodeBlock bbCodeBlock--screenLimited bbCodeBlock--code">
+  <div class="bbCodeBlock-title">
+   Código:
+  </div>
+  <div class="bbCodeBlock-content" dir="ltr">
+   <pre class="bbCodeCode" data-lang="" data-xf-init="code-block" dir="ltr"><code>Animation Hit</code></pre>
+  </div>
+ </div>
+ Animação do inimigo atingido. Use o id da animação.
+ <br/>
+ <br/>
+ <div style="text-align: center">
+  <b>
+   Demonstração
+  </b>
+  ​
+ </div>
+ <div style="text-align: center">
+  <iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" frameborder="0" height="315" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/0g5DCdXzidE" title="YouTube video player" width="560">
+  </iframe>
+  <a src="https://www.youtube.com/watch?v=0g5DCdXzidE">
+   Abrir no Youtube
+  </a>
+  ​
+ </div>
+ <br/>
+ <div style="text-align: center">
+  <b>
+   Código
+  </b>
+  ​
+ </div>
+ <a class="link link--external" href="https://github.com/HermesPasser/RMMV-Plugins/blob/master/Condado%20Braveheart/Christmas%20Event/HermesShootingSystem.js" rel="nofollow ugc noopener" target="_blank">
+  aqui
+ </a>
+ <br/>
+</div>
+<hr/>
+<details>
+ <summary>
+  Comentários
+ </summary>
+ <div class="comment">
+  <div class="bbWrapper">
+   <a href="https://condadobraveheart.com/members/hermespasser.1086/" title="HermesPasser [old id=1330]">
+    HermesPasser
+   </a>
+   <br/>
+   <br/>
+   Gostei bastante da forma em que você definiu as direções utilizando switch.
+   <br/>
+   <br/>
+   <div class="bbCodeBlock bbCodeBlock--screenLimited bbCodeBlock--code">
+    <div class="bbCodeBlock-title">
+     Código:
+    </div>
+    <div class="bbCodeBlock-content" dir="ltr">
+     <pre class="bbCodeCode" data-lang="" data-xf-init="code-block" dir="ltr"><code>var directions  = { down: 2,  left: 4, right: 6, up: 8 };
+
+switch(direction){
+  case directions.down:  posy += 1;  break;
+  case directions.up:    posy += -1; break;
+  case directions.left:  posx += -1; break;
+  case directions.right: posx += 1;  break;
+}</code></pre>
+    </div>
+   </div>
+   <br/>
+   ---------------
+   <br/>
+   <br/>
+   A forma de encapsulamento da chamada de "SE" também ficou muito boa.
+   <br/>
+   <br/>
+   <div class="bbCodeBlock bbCodeBlock--screenLimited bbCodeBlock--code">
+    <div class="bbCodeBlock-title">
+     Código:
+    </div>
+    <div class="bbCodeBlock-content" dir="ltr">
+     <pre class="bbCodeCode" data-lang="" data-xf-init="code-block" dir="ltr"><code>playSe(soundHit);</code></pre>
+    </div>
+   </div>
+   <br/>
+   <div class="bbCodeBlock bbCodeBlock--screenLimited bbCodeBlock--code">
+    <div class="bbCodeBlock-title">
+     Código:
+    </div>
+    <div class="bbCodeBlock-content" dir="ltr">
+     <pre class="bbCodeCode" data-lang="" data-xf-init="code-block" dir="ltr"><code>function playSe(sound){
+   AudioManager.playSe({name: sound, volume: 90, pitch: 100, pan: 0});
+}</code></pre>
+    </div>
+   </div>
+   <br/>
+   --------------
+   <br/>
+   <br/>
+   A declaração de variáveis ficou bem fácil de ler:
+   <br/>
+   <br/>
+   <div class="bbCodeBlock bbCodeBlock--screenLimited bbCodeBlock--code">
+    <div class="bbCodeBlock-title">
+     Código:
+    </div>
+    <div class="bbCodeBlock-content" dir="ltr">
+     <pre class="bbCodeCode" data-lang="" data-xf-init="code-block" dir="ltr"><code>var posx   = 0,
+posy       = 0,
+mapWidth   = $gameMap.width(),
+mapHeight  = $gameMap.height(),
+playerX    = $gamePlayer.x,
+playerY    = $gamePlayer.y,
+direction  = $gamePlayer.direction(),
+directions  = { down: 2,  left: 4, right: 6, up: 8 };</code></pre>
+    </div>
+   </div>
+   <br/>
+   --------------
+   <br/>
+   <br/>
+   O código ficou bem separado em funções, isso permitiu ter uma legibilidade incrível, parabéns!
+  </div>
+  <small class="author">
+   <a href="https://condadobraveheart.com/members/resque.634/">
+    Resque
+   </a>
+   em
+   <time datetime="2017-12-12T00:33:47-0200">
+    12 de Dezembro de 2017 às 0:33.
+   </time>
+   <a href="https://condadobraveheart.com/threads/hermes-shooting-system.3079/post-26703">
+    Comentário original
+   </a>
+  </small>
+  <hr/>
+ </div>
+</details>

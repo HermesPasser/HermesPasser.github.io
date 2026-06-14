@@ -1,0 +1,154 @@
+---
+title: "Condado Braveheart posts - Target Follower"
+pagename: target-follower.4804-pg01.html
+keywords: rpg maker
+show-comments: true
+layout: condado
+---
+<p>
+ Publicado originalmente em
+ <time datetime="2019-07-15T10:59:30-0300">
+  15 de Julho de 2019 às 10:59
+ </time>
+ no Condado Braveheart (
+ <a href="https://condadobraveheart.com/threads/target-follower.4804/">
+  link
+ </a>
+ ).
+</p>
+<hr/>
+<div class="bbWrapper">
+ <div style="text-align: center">
+  <b>
+   Introdução
+  </b>
+  ​
+ </div>
+ Este plugin faz que seu personagem use a função de movimento automático para ir até certo ponto do mapa após pisar num tile da aba tileset R.
+ <br/>
+ <br/>
+ <div style="text-align: center">
+  <script class="js-extraPhrases" type="application/json">
+   {
+				"lightbox_close": "Fechar",
+				"lightbox_next": "Next",
+				"lightbox_previous": "Previous",
+				"lightbox_error": "O conteúdo solicitado não pôde ser carregado. Por favor, tente novamente mais tarde.",
+				"lightbox_start_slideshow": "Start slideshow",
+				"lightbox_stop_slideshow": "Stop slideshow",
+				"lightbox_full_screen": "Tela cheia",
+				"lightbox_thumbnails": "Thumbnails",
+				"lightbox_download": "Baixar",
+				"lightbox_share": "Compartilhar",
+				"lightbox_zoom": "Zoom",
+				"lightbox_new_window": "Nova janela",
+				"lightbox_toggle_sidebar": "Toggle sidebar"
+			}
+  </script>
+  <div class="bbImageWrapper js-lbImage" data-lb-caption-extra-html="" data-lb-sidebar-href="" data-single-image="1" data-src="https://i.imgur.com/2nMGz5t.png" data-type="image" title="2nMGz5t.png">
+   <img alt="2nMGz5t.png" class="bbImage" data-url="https://i.imgur.com/2nMGz5t.png" data-zoom-target="1" height="" loading="lazy" src="https://i.imgur.com/2nMGz5t.png" style="" title="" width=""/>
+  </div>
+  <br/>
+  <span style="font-size: 11px">
+   Esse tileset aqui
+  </span>
+  ​
+ </div>
+ <br/>
+ A motivação desse plugin foi a dolorosa memória de meus tempos de XP quando eu tinha um evento de animação no meio do mapa no qual o personagem tinha que passar por determinado tile para acionar, mas para isso eu precisava fechar as passagem em volta para garantir que ele pisasse no tile certo estragando o design do mapa. Dentre as formas que usei para contornar esse problema na época foram replicar o evento nos células vizinhas (o que era dificultava a manutenção) e botar outros eventos que faziam meu personagem andar para o lugar certo (que eu precisava editar os passos para cada evento). Este plugin permite que você possa fazer mapas mais abertos e livres sem ter que se preocupar com o personagem chegar no lugar certo para ativar os eventos.
+ <br/>
+ <br/>
+ <div style="text-align: center">
+  <div class="bbImageWrapper js-lbImage" data-lb-caption-extra-html="" data-lb-sidebar-href="" data-single-image="1" data-src="https://i.imgur.com/zYkx7nV.png" data-type="image" title="zYkx7nV.png">
+   <img alt="zYkx7nV.png" class="bbImage" data-url="https://i.imgur.com/zYkx7nV.png" data-zoom-target="1" height="" loading="lazy" src="https://i.imgur.com/zYkx7nV.png" style="" title="" width=""/>
+  </div>
+  <br/>
+  <span style="font-size: 11px">
+   Nesse caso foi definido por um comando de plugin que quando o personagem pisar no tile com id 1 ele caminhará até o aquele evento.
+  </span>
+  ​
+ </div>
+ <br/>
+ Você poderá definir vários ids que o levarão para "alvos" diferentes e tais alvos serão descartados assim que o personagem chegar até eles. Vale notar que ele não caminhará até um lugar inválido e que se o caminha até chegar no alvo for muito complexo o personagem tentará um caminho inválido e ficará em loop. Não esqueça de descarta-los ao sair do mapa se planeja usar os mesmos ids em mapas diferentes.
+ <br/>
+ <br/>
+ <div style="text-align: center">
+  <b>
+   Comandos
+  </b>
+  ​
+ </div>
+ <br/>
+ <div class="bbCodeBlock bbCodeBlock--screenLimited bbCodeBlock--code">
+  <div class="bbCodeBlock-title">
+   Código:
+  </div>
+  <div class="bbCodeBlock-content" dir="ltr">
+   <pre class="bbCodeCode" data-lang="" data-xf-init="code-block" dir="ltr"><code>settarget x y tile_id</code></pre>
+  </div>
+ </div>
+ Adiciona um alvo na celula XY ao pisar no tile com ID determinado. A posição deve ser válida e o alvo será descartado após ele pisar no id especificado e caminhar até o alvo.
+ <br/>
+ <br/>
+ <div class="bbCodeBlock bbCodeBlock--screenLimited bbCodeBlock--code">
+  <div class="bbCodeBlock-title">
+   Código:
+  </div>
+  <div class="bbCodeBlock-content" dir="ltr">
+   <pre class="bbCodeCode" data-lang="" data-xf-init="code-block" dir="ltr"><code>deletetarget tile_id</code></pre>
+  </div>
+ </div>
+ Remove o alvo com o ID selecionado sem ter pisado nele e caminhado até o alvo.
+ <br/>
+ <br/>
+ <div class="bbCodeBlock bbCodeBlock--screenLimited bbCodeBlock--code">
+  <div class="bbCodeBlock-title">
+   Código:
+  </div>
+  <div class="bbCodeBlock-content" dir="ltr">
+   <pre class="bbCodeCode" data-lang="" data-xf-init="code-block" dir="ltr"><code>cleartargets</code></pre>
+  </div>
+ </div>
+ Descarta todos os alvos definidos.
+ <br/>
+ <br/>
+ <div style="text-align: center">
+  <b>
+   Multimidia
+  </b>
+  ​
+ </div>
+ <div style="text-align: center">
+  <br/>
+  <iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" frameborder="0" height="315" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/B5EqSA_jho0" title="YouTube video player" width="560">
+  </iframe>
+  <a src="https://www.youtube.com/watch?v=B5EqSA_jho0">
+   Abrir no Youtube
+  </a>
+  ​
+ </div>
+ <br/>
+ <br/>
+ <div style="text-align: center">
+  <b>
+   Download
+  </b>
+  ​
+ </div>
+ <a class="link link--external" href="https://github.com/HermesPasser/RMMV-Plugins/blob/master/Other/TargetFollower.js" rel="nofollow ugc noopener" target="_blank">
+  Aqui no GitHub
+ </a>
+ <br/>
+ <br/>
+ Para mais de meus sistemas clique
+ <a class="link link--external" href="https://gladiocitrico.blogspot.com.br/2017/12/rpg-maker-mv-plugins.html" rel="nofollow ugc noopener" target="_blank">
+  aqui
+ </a>
+ .
+</div>
+<hr/>
+<details>
+ <summary>
+  Comentários
+ </summary>
+</details>

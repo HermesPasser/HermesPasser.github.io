@@ -1,0 +1,490 @@
+---
+title: "Condado Braveheart posts - Python - Criando um updater, parte 2"
+pagename: python-criando-um-updater-parte-2.3879-pg01.html
+keywords: rpg maker
+show-comments: true
+layout: condado
+---
+<p>
+ Publicado originalmente em
+ <time datetime="2018-05-24T19:30:26-0300">
+  24 de Maio de 2018 às 19:30
+ </time>
+ no Condado Braveheart (
+ <a href="https://condadobraveheart.com/threads/python-criando-um-updater-parte-2.3879/">
+  link
+ </a>
+ ).
+</p>
+<hr/>
+<div class="bbWrapper">
+ <div style="text-align: center">
+  <b>
+   Introdução
+  </b>
+  ​
+ </div>
+ E cá estamos novamente! Daremos continuidade a nosso projeto abaixo.
+ <br/>
+ <br/>
+ <br/>
+ <div style="text-align: center">
+  <b>
+   3º Passo - Web
+  </b>
+  ​
+ </div>
+ <br/>
+ Agora comecemos a criar as funções responsáveis pelo acesso a internet, primeiro criemos o arquivo responsável por tal, o nomearei hweb.py.
+ <br/>
+ <br/>
+ Segundo, importe
+ <b>
+  urllib.request
+ </b>
+ , o nosso
+ <b>
+  hpath
+ </b>
+ e o
+ <b>
+  os
+ </b>
+ novamente. Este primeiro será o responsável por nos oferecer acesso à web.
+ <br/>
+ <br/>
+ <div class="bbCodeBlock bbCodeBlock--screenLimited bbCodeBlock--code">
+  <div class="bbCodeBlock-title">
+   Código:
+  </div>
+  <div class="bbCodeBlock-content" dir="ltr">
+   <pre class="bbCodeCode" data-lang="" data-xf-init="code-block" dir="ltr"><code>import urllib.request as req
+import hpath
+import os</code></pre>
+  </div>
+ </div>
+ <br/>
+ Agora, as funções download para fazer o download do arquivo .zip tendo como parâmetros o url do arquivo e o local onde será salvo, e get_page que pegará todo o conteúdo vindo do url provido pelo único parâmetro:
+ <br/>
+ <br/>
+ <div class="bbCodeBlock bbCodeBlock--screenLimited bbCodeBlock--code">
+  <div class="bbCodeBlock-title">
+   Código:
+  </div>
+  <div class="bbCodeBlock-content" dir="ltr">
+   <pre class="bbCodeCode" data-lang="" data-xf-init="code-block" dir="ltr"><code>def download(url, file_name):
+	# acessa a url especificado
+	response = req.urlopen(url)
+
+	# cria a pasta se ela não existir (implementado anteriormente)
+	hpath.create_dir(file_name)
+
+	# cria o arquivo com o nome especificado
+	file = open(file_name,'wb')
+	# lê e salva o conteúdo no arquivo
+	file.write(response.read()) 
+	# fecha o arquivo e libera os rercursos
+	file.close()
+
+def get_page(url):
+	# acessa a url especificado
+	response = req.urlopen(url)
+	# retorna o conteúdo após decodifica-lo em utf8 para que ele 
+	# leia a quebra de linha e outras sequências de escape
+	# se isso não estivesse aqui quando abríssemos o conteúdo em XML
+	# ele jogaria uma exceção por ter caracteres inválidos.
+	return response.read().decode("utf8")</code></pre>
+  </div>
+ </div>
+ <br/>
+ Agora de volta no main, vamos fazer alguns testes. Primeiro importaremos o
+ <b>
+  hweb
+ </b>
+ e
+ <b>
+  sys
+ </b>
+ , essa que nos oferece funções especificas do sistema.
+ <br/>
+ <br/>
+ O que faremos abaixo é usar o
+ <b>
+  sys.argv
+ </b>
+ para receber argumentos de linha de comando, o primeiro argumento sempre será o nome do arquivo que foi passado para ser executado pelo python então usaremos o segundo ([1]). Depois adicionaremos um parâmetro para o main que receberá o url do arquivo para ser baixado. Para isso o arquivo que antes estávamos usando localmente precisará estar disponível online.
+ <br/>
+ <br/>
+ <div class="bbCodeBlock bbCodeBlock--screenLimited bbCodeBlock--code">
+  <div class="bbCodeBlock-title">
+   Código:
+  </div>
+  <div class="bbCodeBlock-content" dir="ltr">
+   <pre class="bbCodeCode" data-lang="" data-xf-init="code-block" dir="ltr"><code>import hweb
+import sys
+
+def main(file_url):
+    # baixa o arquivo do url e salva com o nome de update.zip
+    hweb.download(file_url, 'update.zip')
+
+    # extrai o arquivo baixado na pasta atual 
+    # (você pode fazer ele extrair em outra pasta para não poluir nossa pasta de trabalho
+    # mas deixarei nessa pasta já que ela futuramente será o local do projeto do "utilizador"
+    # do programa, ou seja o local ideal para que as atualizações sejam extraídas).
+    hzip.extract('update.zip', '')
+
+# Só executa se o arquivo for chamado diretamente ao invés de importado.
+if __name__ == '__main__':
+    # passando o argumento que representa, nesse teste o link direto de download
+    main(sys.argv[1])</code></pre>
+  </div>
+ </div>
+ Para executar use o mesmo método explicado anteriormente mas com a adição do link de download como:
+ <i>
+  python main.py https://link.de.download
+ </i>
+ <br/>
+ <br/>
+ <div style="text-align: center">
+  <b>
+   4º Passo - XML
+  </b>
+  ​
+ </div>
+ <br/>
+ Essa será o último arquivo funcional que sera criado. Salve como hxml.py.
+ <br/>
+ <br/>
+ Nesse arquivos iremos fazer algo um pouco diferente, esse arquivo será uma classe. O motivo? Precisaremos guardar alguns valores pois usaremos as funções desse arquivo algumas vezes, mas cada vez que entramos no arquivo suas variáveis são redefinidas. Então criaremos uma classe que será instanciada no nosso main. O código fica mais organizado assim também já que não terá problema de um método ser chamado antes de outro que seja vital para seu funcionamento.
+ <br/>
+ <br/>
+ Iniciaremos importando mais uma vez o
+ <b>
+  os
+ </b>
+ e
+ <b>
+  xml.etree.ElementTree
+ </b>
+ , o responsável por manipulações em XML.
+ <br/>
+ <br/>
+ <div class="bbCodeBlock bbCodeBlock--screenLimited bbCodeBlock--code">
+  <div class="bbCodeBlock-title">
+   Código:
+  </div>
+  <div class="bbCodeBlock-content" dir="ltr">
+   <pre class="bbCodeCode" data-lang="" data-xf-init="code-block" dir="ltr"><code>import xml.etree.ElementTree as ET
+import os</code></pre>
+  </div>
+ </div>
+ <br/>
+ Agora comentarei comentando o construtor, ele receberá dois argumentos, o texto em XML e a versão do programa.
+ <br/>
+ <br/>
+ <div class="bbCodeBlock bbCodeBlock--screenLimited bbCodeBlock--code">
+  <div class="bbCodeBlock-title">
+   Código:
+  </div>
+  <div class="bbCodeBlock-content" dir="ltr">
+   <pre class="bbCodeCode" data-lang="" data-xf-init="code-block" dir="ltr"><code>class VenturaXML:
+	# construtor da classe
+	def __init__(self, xml_text, program_version):
+		# criamos o nosso objeto ElementTree passando o nosso texto xml como argumento e o armazenamos
+		# na propriedade root
+		self.root = ET.fromstring(xml_text)
+		# atribuímos a versão passada como parâmetro para o atributo current_version
+		self.current_version = program_version
+		# define o resto dos atributos da classe que serão necessários em todos os métodos. 
+		# Será explicado em baixo.
+		self.get_last()</code></pre>
+  </div>
+ </div>
+ <br/>
+ O método get_last pega todos os nós de update do documento XML e procura o último, então ele atribui esse nó para o atributo update_node e atribui a versão este (a última versão disponível) para o atributo last_version.
+ <br/>
+ <br/>
+ <div class="bbCodeBlock bbCodeBlock--screenLimited bbCodeBlock--code">
+  <div class="bbCodeBlock-title">
+   Código:
+  </div>
+  <div class="bbCodeBlock-content" dir="ltr">
+   <pre class="bbCodeCode" data-lang="" data-xf-init="code-block" dir="ltr"><code>	def get_last(self):
+		# pega todos os nós de update
+		nodes = self.root.findall('.//update')		
+		# cria um dicionário (ou hash) vazio
+		versions = {}
+		# percorre todos os nós
+		for node in nodes:
+			# variável ver recebe o atributo versão do nó atual
+			ver = node.attrib['version']
+			# é adicionado no dicionário na posição (key) da variável ver, convertida para float, o nó atual
+			versions[float(ver)] = node
+
+		# variável last recebe o maior valor no conjunto de keys do dicionário.		
+		last = max(versions, key=float)
+		# atributo last_version recebe esse valor
+		self.last_version = 
+		# o atributo update_node recebe o nó da posição last (maior posição) do dicionário 
+		self.update_node = versions[last]</code></pre>
+  </div>
+ </div>
+ <br/>
+ Os métodos a baixos são mais enxutos, o primeiro retorna verdadeiro se o programa está atualizado, o segundo pega a lista de arquivos a serem deletados (arquivos inúteis na nova versão do programa) e por fim, um método que retorna o link de download da última versão do programa.
+ <br/>
+ <br/>
+ Se você está confuso com alguma coisa então recomendo ir para a parte 1 e ler o capítulo de Funcionamento, no qual eu explico como o arquivo XML funciona (ou só jogue sua dúvida nos comentários).
+ <br/>
+ <br/>
+ <div class="bbCodeBlock bbCodeBlock--screenLimited bbCodeBlock--code">
+  <div class="bbCodeBlock-title">
+   Código:
+  </div>
+  <div class="bbCodeBlock-content" dir="ltr">
+   <pre class="bbCodeCode" data-lang="" data-xf-init="code-block" dir="ltr"><code>	def is_updated(self):
+		# retorna true se a versão atual for maior ou igual a última versão
+		return self.current_version &gt;= self.last_version
+
+	def get_files_to_delete(self):
+		# pega o texto do nó delete dentro do nó de update_node 
+		# e o divide em uma array usando virgula como separador
+		return self.update_node.find('.//delete').text.split(',')
+
+	def get_link(self):
+		# retorna o texto do nó url dentro do nó de update_node
+		return self.update_node.find('.//url').text</code></pre>
+  </div>
+ </div>
+ <br/>
+ Parabéns, com isso as principais funcionalidades de nosso programa estão completas. \o/
+ <br/>
+ <br/>
+ Agora voltemos para o main e importemos
+ <b>
+  xml
+  <b>
+   também:
+   <br/>
+   <br/>
+   <div class="bbCodeBlock bbCodeBlock--screenLimited bbCodeBlock--code">
+    <div class="bbCodeBlock-title">
+     Código:
+    </div>
+    <div class="bbCodeBlock-content" dir="ltr">
+     <pre class="bbCodeCode" data-lang="" data-xf-init="code-block" dir="ltr"><code>from hxml import VenturaXML</code></pre>
+    </div>
+   </div>
+   <br/>
+   Ademais criaremos o método update_if_is_need que atualizará o programa (não o que estamos criando e sim aquele que usará nosso programa) caso ele não esteja em sua última versão. Mova todo o conteúdo do main para dentro dele e adicione dois atributos, um para a versão atual do projeto e outro o link para o XML. Faremos que esse método retorne verdadeiro se ele conseguir atualizar e false se ele já está atualizado.
+   <br/>
+   <br/>
+   <div class="bbCodeBlock bbCodeBlock--screenLimited bbCodeBlock--code">
+    <div class="bbCodeBlock-title">
+     Código:
+    </div>
+    <div class="bbCodeBlock-content" dir="ltr">
+     <pre class="bbCodeCode" data-lang="" data-xf-init="code-block" dir="ltr"><code>def update_if_is_need(version, xml_url):
+	# baixa e lê o conteúdo do xml 
+	xml_text = hweb.get_page(xml_url)
+
+	# cria a instância de nossa classe que manipula o xml
+	ventura = VenturaXML(xml_text, version)
+
+	# verifica se o programa está atualizado e se estiver 
+	# então retorna false pois não precisa executar o resto
+	if ventura.is_updated():
+		return False
+
+	# apaga os arquivos da versão anterior que são inúteis agora
+	hio.delete_files(ventura.get_files_to_delete())
+
+	# baixa o .zip e salva no diretório atual como o nome de update.zip
+	hweb.download(ventura.get_link(), 'update.zip')
+
+	# extrai o arquivo no diretório atual
+	hzip.extract('update.zip', '')
+
+	# retorna true
+	return True</code></pre>
+    </div>
+   </div>
+   <br/>
+   Agora vamos fazer algumas alterações no código do main para podermos testar:
+   <br/>
+   <br/>
+   <div class="bbCodeBlock bbCodeBlock--screenLimited bbCodeBlock--code">
+    <div class="bbCodeBlock-title">
+     Código:
+    </div>
+    <div class="bbCodeBlock-content" dir="ltr">
+     <pre class="bbCodeCode" data-lang="" data-xf-init="code-block" dir="ltr"><code>def main():
+	# só executa o método se haverem mais de 3 argumentos
+	# já que o primeiro é o próprio arquivo sendo executado
+	# e os outros dois a versão e url do xml
+	if len(sys.argv) &gt;= 3:
+		# chama o método novo passando os argumentos
+		update_if_is_need(float(sys.argv[1]), sys.argv[2])
+	else:
+		# Estou chamando o projeto de ventura
+		# estes são algumas ajudas de linha de comado para ficar bonito
+		print('Ventura by Hermes Passer')
+		print('\targ one : version')
+		print('\targ two : xml link')
+
+if __name__ == '__main__':
+	# sem mais argumentos no main
+	main()</code></pre>
+    </div>
+   </div>
+   Vale notar que para ele atualizar tem de ter um nó de update no XML que tenha um valor maior que o que você passou para esse programa, então se o nó do XML está com o valor de 0.1 convém mudar para 0.2 e passar no programa o 0.1 para o valor ser menor.
+   <br/>
+   <br/>
+   Para executar fala o mesmo de antes só que ao invés de passar o link do arquivo passe a versão (tem de ser float ou int) do programa e o link do xml. Exemplo
+   <i>
+    python main.rb 0.1 https://link.download
+   </i>
+   .
+   <br/>
+   <br/>
+   <div style="text-align: center">
+    <b>
+     Aftermath
+    </b>
+    ​
+   </div>
+   <br/>
+   Por enquanto é isso, no próximo (e possivelmente) último será retirada os comandos de linha de comando e teremos a transformação de nosso projeto em um package apropriado para ser usado em outros projetos. Até lá. o/
+   <br/>
+   <br/>
+   <br/>
+   <div style="text-align: center">
+    <br/>
+    <a class="link link--external" href="http://www.condadobraveheart.com/forum/index.php?topic=4341.0" rel="nofollow ugc noopener" target="_blank">
+     Parte I
+    </a>
+    
+    <b>
+     Parte II
+    </b>
+    
+    <a class="link link--external" href="http://www.condadobraveheart.com/forum/index.php?topic=4360.new#new" rel="nofollow ugc noopener" target="_blank">
+     Parte III
+    </a>
+    ​
+   </div>
+  </b>
+ </b>
+</div>
+<hr/>
+<details>
+ <summary>
+  Comentários
+ </summary>
+ <div class="comment">
+  <div class="bbWrapper">
+   Parabéns pelo tutorial Hermes! :awesome:
+  </div>
+  <small class="author">
+   <a href="https://condadobraveheart.com/members/cleanwater.1408/">
+    CleanWater
+   </a>
+   em
+   <time datetime="2018-05-25T14:38:46-0300">
+    25 de Maio de 2018 às 14:38.
+   </time>
+   <a href="https://condadobraveheart.com/threads/python-criando-um-updater-parte-2.3879/post-32711">
+    Comentário original
+   </a>
+  </small>
+  <hr/>
+ </div>
+ <div class="comment">
+  <div class="bbWrapper">
+   <blockquote class="bbCodeBlock bbCodeBlock--expandable bbCodeBlock--quote js-expandWatch" data-attributes="" data-quote="CleanWater" data-source="">
+    <div class="bbCodeBlock-title">
+     CleanWater comentou:
+    </div>
+    <div class="bbCodeBlock-content">
+     <div class="bbCodeBlock-expandContent js-expandContent">
+      Parabéns pelo tutorial Hermes! :awesome:
+     </div>
+     <div class="bbCodeBlock-expandLink js-expandLink">
+      <a role="button" tabindex="0">
+       Clique para expandir...
+      </a>
+     </div>
+    </div>
+   </blockquote>
+   <br/>
+   Valeu. Amanhã deve sair outro.
+  </div>
+  <small class="author">
+   <a href="https://condadobraveheart.com/members/hermespasser.1086/">
+    HermesPasser
+   </a>
+   em
+   <time datetime="2018-05-25T17:07:51-0300">
+    25 de Maio de 2018 às 17:07.
+   </time>
+   <a href="https://condadobraveheart.com/threads/python-criando-um-updater-parte-2.3879/post-32712">
+    Comentário original
+   </a>
+  </small>
+  <hr/>
+ </div>
+ <div class="comment">
+  <div class="bbWrapper">
+   Curti, só não entendi direito essa parte da lista dos elementos a ser deletados. Isso funcionaria bem se você souber qual versão o usuário têm, mas e se ele pulou uma versão, por exemplo, da 1 para a 3? Possivelmente alguns arquivos não seria deletados da versão 1, já que ele não passou para a 2. Pessoalmente eu acho que uma solução melhor simplesmente deletar uma pasta inteira (por exemplo, a bin) e recriá-la.
+  </div>
+  <small class="author">
+   <a href="https://condadobraveheart.com/members/eranot.1081/">
+    Eranot
+   </a>
+   em
+   <time datetime="2018-05-26T13:23:23-0300">
+    26 de Maio de 2018 às 13:23.
+   </time>
+   <a href="https://condadobraveheart.com/threads/python-criando-um-updater-parte-2.3879/post-32713">
+    Comentário original
+   </a>
+  </small>
+  <hr/>
+ </div>
+ <div class="comment">
+  <div class="bbWrapper">
+   <blockquote class="bbCodeBlock bbCodeBlock--expandable bbCodeBlock--quote js-expandWatch" data-attributes="" data-quote="Eranot" data-source="">
+    <div class="bbCodeBlock-title">
+     Eranot comentou:
+    </div>
+    <div class="bbCodeBlock-content">
+     <div class="bbCodeBlock-expandContent js-expandContent">
+      Curti, só não entendi direito essa parte da lista dos elementos a ser deletados. Isso funcionaria bem se você souber qual versão o usuário têm, mas e se ele pulou uma versão, por exemplo, da 1 para a 3? Possivelmente alguns arquivos não seria deletados da versão 1, já que ele não passou para a 2. Pessoalmente eu acho que uma solução melhor simplesmente deletar uma pasta inteira (por exemplo, a bin) e recriá-la.
+     </div>
+     <div class="bbCodeBlock-expandLink js-expandLink">
+      <a role="button" tabindex="0">
+       Clique para expandir...
+      </a>
+     </div>
+    </div>
+   </blockquote>
+   Afiado como sempre hein,
+   <a href="https://condadobraveheart.com/members/eranot.1081/" title="Eranot [old id=1324]">
+    Eranot
+   </a>
+   .  Eu iria propor isso como exercício para quem tá acompanhando.  Mas a implementação é simples,  eu implementaria algo parecido com o que o Android faz.
+  </div>
+  <small class="author">
+   <a href="https://condadobraveheart.com/members/hermespasser.1086/">
+    HermesPasser
+   </a>
+   em
+   <time datetime="2018-05-26T16:41:30-0300">
+    26 de Maio de 2018 às 16:41.
+   </time>
+   <a href="https://condadobraveheart.com/threads/python-criando-um-updater-parte-2.3879/post-32714">
+    Comentário original
+   </a>
+  </small>
+  <hr/>
+ </div>
+</details>

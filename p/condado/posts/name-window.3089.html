@@ -1,0 +1,120 @@
+---
+title: "Condado Braveheart posts - Name Window"
+pagename: name-window.3089-pg01.html
+keywords: rpg maker
+show-comments: true
+layout: condado
+---
+<p>
+ Publicado originalmente em
+ <time datetime="2017-12-11T10:29:14-0200">
+  11 de Dezembro de 2017 às 10:29
+ </time>
+ no Condado Braveheart (
+ <a href="https://condadobraveheart.com/threads/name-window.3089/">
+  link
+ </a>
+ ).
+</p>
+<hr/>
+<div class="bbWrapper">
+ <div style="text-align: center">
+  <b>
+   Introdução
+  </b>
+  ​
+ </div>
+ Primeiramente fiz esse sistema para a "Gincana: Fábrica do Noel", ele basicamente mostra o nome do evento que está falando em uma janela. A janela some quando o texto é fechado.
+ <br/>
+ <br/>
+ Na primeira linha do "mostrar texto" deve conter
+ <i>
+  #[name/id]
+ </i>
+ sendo que
+ <i>
+  name
+ </i>
+ será o nome exibido e
+ <i>
+  id
+ </i>
+ o id do evento a janela ficará em cima. Coloque -1 no id para que seja em cima do personagem.
+ <br/>
+ <br/>
+ <div style="text-align: center">
+  <b>
+   Comandos de plugin
+  </b>
+  ​
+ </div>
+ Fazendo esse processo por comandos a janela não será fechada até que você ordene.
+ <br/>
+ <br/>
+ <div class="bbCodeBlock bbCodeBlock--screenLimited bbCodeBlock--code">
+  <div class="bbCodeBlock-title">
+   Código:
+  </div>
+  <div class="bbCodeBlock-content" dir="ltr">
+   <pre class="bbCodeCode" data-lang="" data-xf-init="code-block" dir="ltr"><code>NameWindow name eventId</code></pre>
+  </div>
+ </div>
+ Mostra a janela com o "name" para o evento que tenha o "eventId".
+ <br/>
+ <br/>
+ <div class="bbCodeBlock bbCodeBlock--screenLimited bbCodeBlock--code">
+  <div class="bbCodeBlock-title">
+   Código:
+  </div>
+  <div class="bbCodeBlock-content" dir="ltr">
+   <pre class="bbCodeCode" data-lang="" data-xf-init="code-block" dir="ltr"><code>NameWindow player name</code></pre>
+  </div>
+ </div>
+ Mostra a janela com o "name" para o jogador.
+ <br/>
+ <br/>
+ <div class="bbCodeBlock bbCodeBlock--screenLimited bbCodeBlock--code">
+  <div class="bbCodeBlock-title">
+   Código:
+  </div>
+  <div class="bbCodeBlock-content" dir="ltr">
+   <pre class="bbCodeCode" data-lang="" data-xf-init="code-block" dir="ltr"><code>NameWindow off</code></pre>
+  </div>
+ </div>
+ Desliga a janela.
+ <br/>
+ <br/>
+ <div style="text-align: center">
+  <b>
+   Demonstração
+  </b>
+  ​
+ </div>
+ <div style="text-align: center">
+  <iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" frameborder="0" height="315" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/kuSR69E4hvM" title="YouTube video player" width="560">
+  </iframe>
+  <a src="https://www.youtube.com/watch?v=kuSR69E4hvM">
+   Abrir no Youtube
+  </a>
+  ​
+ </div>
+ No vídeo eu uso o nome antigo do sistema (EventName)
+ <br/>
+ <br/>
+ <div style="text-align: center">
+  <b>
+   Código
+  </b>
+  ​
+ </div>
+ <a class="link link--external" href="https://github.com/HermesPasser/RMMV-Plugins/blob/master/Condado%20Braveheart/Christmas%20Event/NameWindow.js" rel="nofollow ugc noopener" target="_blank">
+  Aqui
+ </a>
+ <br/>
+</div>
+<hr/>
+<details>
+ <summary>
+  Comentários
+ </summary>
+</details>

@@ -1,0 +1,89 @@
+---
+title: "Condado Braveheart posts - Chamando um website de dentro seu jogo"
+pagename: chamando-um-website-de-dentro-seu-jogo.3796-pg01.html
+keywords: rpg maker
+show-comments: true
+layout: condado
+---
+<p>
+ Publicado originalmente em
+ <time datetime="2018-04-28T21:05:16-0300">
+  28 de Abril de 2018 às 21:05
+ </time>
+ no Condado Braveheart (
+ <a href="https://condadobraveheart.com/threads/chamando-um-website-de-dentro-seu-jogo.3796/">
+  link
+ </a>
+ ).
+</p>
+<hr/>
+<div class="bbWrapper">
+ <b>
+  Introdução
+ </b>
+ <br/>
+ <br/>
+ Hoje eu estava a brincar um pouco com requisições web e chamadas do sistema operacional em ruby e pensei: why not no rpg maker? E resolvi postar algumas das coisas que fiz aqui.
+ <br/>
+ Para este post mostrarei como chamar um website usando o seu navegador padrão pelo seu jogo contanto que seja um dos RMs que usem ruby.
+ <br/>
+ <br/>
+ <b>
+  Comecemos
+ </b>
+ <br/>
+ <br/>
+ Vamos lá então, crie um "chamar script" ou chame ele por um script qualquer:
+ <br/>
+ <div class="bbCodeBlock bbCodeBlock--screenLimited bbCodeBlock--code">
+  <div class="bbCodeBlock-title">
+   Código:
+  </div>
+  <div class="bbCodeBlock-content" dir="ltr">
+   <pre class="bbCodeCode" data-lang="" data-xf-init="code-block" dir="ltr"><code>system "start protocolo://url"</code></pre>
+  </div>
+ </div>
+ <br/>
+ Uma breve explicação:
+ <br/>
+ <ul>
+  <li data-xf-list-type="ul">
+   <i>
+    system
+   </i>
+   é um método do ruby que executa um comando como se fosse o cmd.
+  </li>
+  <li data-xf-list-type="ul">
+   <i>
+    start
+   </i>
+   é um comando do windows que executa um comando, arquivo de lote ou um programa. Se ele ver que o argumento passado começa com um protocolo (como https://) então ele o abre no navegador padrão. Note que seria possível abrir arquivos locais no navegador usando "file:///" ou qualquer outro programa/comando.
+  </li>
+  <li data-xf-list-type="ul">
+   Como podem ver no vídeo abaixo, sendo um comando do cmd ele abre o cmd (ou o powershell) antes de abrir o navegador. Isso pode ser evitado usando scripts em VB não mostrarei como fazer aqui já que pararia de ser uma "brincadeira descompromissada"
+  </li>
+ </ul>
+ <br/>
+ Veja abaixo um vídeo disso funcionando:
+ <br/>
+ <details class="spoiler" title="Clique para revelar ou ocultar">
+  <summary>
+   Spoiler
+  </summary>
+  <div class="details-body">
+   <iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" frameborder="0" height="315" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/ntkX-yib_h4" title="YouTube video player" width="560">
+   </iframe>
+   <a src="https://www.youtube.com/watch?v=ntkX-yib_h4">
+    Abrir no Youtube
+   </a>
+  </div>
+ </details>
+ <br/>
+ Bem é isso, vejo vocês na próxima "brincada" o/
+</div>
+<hr/>
+<details>
+ <summary>
+  Comentários
+ </summary>
+</details>

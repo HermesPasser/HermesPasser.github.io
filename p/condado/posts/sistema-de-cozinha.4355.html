@@ -1,0 +1,132 @@
+---
+title: "Condado Braveheart posts - Sistema de cozinha"
+pagename: sistema-de-cozinha.4355-pg01.html
+keywords: rpg maker
+show-comments: true
+layout: condado
+---
+<p>
+ Publicado originalmente em
+ <time datetime="2018-12-11T14:34:53-0200">
+  11 de Dezembro de 2018 às 14:34
+ </time>
+ no Condado Braveheart (
+ <a href="https://condadobraveheart.com/threads/sistema-de-cozinha.4355/">
+  link
+ </a>
+ ).
+</p>
+<hr/>
+<div class="bbWrapper">
+ <div style="text-align: center">
+  <b>
+   Introdução
+  </b>
+  ​
+ </div>
+ <br/>
+ Sistema de cozinha para o evento de natal do condado. Ele permite que você defina produtos a serem cozinhados e receitas para serem usadas, além de uma maneira elegante de observar as receitas (cena livro de cozinha).
+ <br/>
+ <br/>
+ <div style="text-align: center">
+  <b>
+   Instruções
+  </b>
+  ​
+ </div>
+ <br/>
+ Adicione um notação JSON como na mostrada abaixo no item que você quer que seja produzido usando o sistema:
+ <br/>
+ <br/>
+ <div class="bbCodeBlock bbCodeBlock--screenLimited bbCodeBlock--code">
+  <div class="bbCodeBlock-title">
+   Código:
+  </div>
+  <div class="bbCodeBlock-content" dir="ltr">
+   <pre class="bbCodeCode" data-lang="" data-xf-init="code-block" dir="ltr"><code>[  
+   { "id": 01, "qnt": 1 , "txt": "%qnt colheres de %item"},
+   { "id": 02, "qnt": 99, "name": "açucar" }
+]</code></pre>
+  </div>
+ </div>
+ <br/>
+ Note que a notação acima é a única coisa que deve ser adiciona no campo notas.
+ <br/>
+ <br/>
+ Cada array (conteúdo dentro dos {}) é um ingrediente, você pode colocar o quantos quiser.
+ <br/>
+ <b>
+  "id"
+ </b>
+ é referente ao id do item que você quer usar como ingrediente, note que o número não é posto em entre aspas por ser um número. Um id inválido exibirá um erro.
+ <br/>
+ <br/>
+ <b>
+  "qnt"
+ </b>
+ é a quantidade necessária para se produzir o alimento.
+ <br/>
+ <br/>
+ <b>
+  "name"
+ </b>
+ caso que você queira que outro nome que não seja o nome do banco de dados apareça no livro de cozinha. É opcional, se omitido ficará o nome do item.
+ <br/>
+ <br/>
+ <b>
+  "txt"
+ </b>
+ é um texto customizado para aparecer no livro de receitas, %qnt será substituído pela quantidade necessária e %item pelo nome do item. É opcional, se omitido ficará "%qnt of %item".
+ <br/>
+ <br/>
+ <b>
+  Comandos de plugin
+ </b>
+ :
+ <br/>
+ <br/>
+ <i>
+  cook book id
+ </i>
+ mostra a receita no livro de receitas, sendo que "id" deve ser trocado pelo id do item com a receita. Se o item não tiver uma receita um erro será exibido.
+ <br/>
+ <br/>
+ <i>
+  cook id
+ </i>
+ verifica se você tem os ingredientes em quantidades suficientes e se sim lhe retorna o produto debitando a quantidade de ingredientes usados de seu inventário. Nada ocorrerá que não houverem ingredientes o suficientes no inventário.
+ <br/>
+ <br/>
+ <div style="text-align: center">
+  <b>
+   Multimidia
+  </b>
+  <br/>
+  <br/>
+  <iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" frameborder="0" height="315" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/WmyZX0WV0nM" title="YouTube video player" width="560">
+  </iframe>
+  <a src="https://www.youtube.com/watch?v=WmyZX0WV0nM">
+   Abrir no Youtube
+  </a>
+  ​
+ </div>
+ <br/>
+ <br/>
+ <div style="text-align: center">
+  <b>
+   Código-fonte
+  </b>
+  ​
+ </div>
+ <br/>
+ <a class="link link--external" href="https://github.com/HermesPasser/RMMV-Plugins/blob/master/Condado%20Braveheart/Christmas%20Event/CookSystem.js" rel="nofollow ugc noopener" target="_blank">
+  Aqui
+ </a>
+ .
+</div>
+<hr/>
+<details>
+ <summary>
+  Comentários
+ </summary>
+</details>

@@ -1,0 +1,98 @@
+---
+title: "Condado Braveheart posts - Problemas com a codificação de caracteres (?)"
+pagename: problemas-com-a-codificacao-de-caracteres.2121-pg01.html
+keywords: rpg maker
+show-comments: true
+layout: condado
+---
+<p>
+ Publicado originalmente em
+ <time datetime="2017-04-26T10:53:19-0300">
+  26 de Abril de 2017 às 10:53
+ </time>
+ no Condado Braveheart (
+ <a href="https://condadobraveheart.com/threads/problemas-com-a-codificacao-de-caracteres.2121/">
+  link
+ </a>
+ ).
+</p>
+<hr/>
+<div class="bbWrapper">
+ Em meus testes percebi que os carácteres latinos eram trocado pelo ?, logo pensei em tentar as tags abaixo para corrigir o fato,
+ <br/>
+ <i>
+  <br/>
+  &lt;meta http-equiv="Content-Type" content="text/html; charset=UTF-8"&gt;
+  <br/>
+  &lt;meta http-equiv="Content-Language" content="pt-br"&gt;
+  <br/>
+  &lt;meta charset="UTF-8"&gt;
+  <br/>
+  &lt;html lang=pt-br&gt;
+  <br/>
+ </i>
+ <br/>
+ mas não fizeram efeito, alguém tem uma solução para isso?
+</div>
+<hr/>
+<details>
+ <summary>
+  Comentários
+ </summary>
+ <div class="comment">
+  <div class="bbWrapper">
+   Onde que deu o erro?
+   <br/>
+   <br/>
+   Foi quando você exportou pra alguma plataforma?
+   <br/>
+   <br/>
+   Aqui os caracteres pegam normal, testando e exportando pra Windows.
+  </div>
+  <small class="author">
+   <a href="https://condadobraveheart.com/members/felipefalcon.11/">
+    FelipeFalcon
+   </a>
+   em
+   <time datetime="2017-04-26T11:27:25-0300">
+    26 de Abril de 2017 às 11:27.
+   </time>
+   <a href="https://condadobraveheart.com/threads/problemas-com-a-codificacao-de-caracteres.2121/post-18154">
+    Comentário original
+   </a>
+  </small>
+  <hr/>
+ </div>
+ <div class="comment">
+  <div class="bbWrapper">
+   <a href="https://condadobraveheart.com/members/felipefalcon.11/" title="FelipeFalcon [old id=8]">
+    FelipeFalcon
+   </a>
+   , Descobri o erro, era o seguinte:
+   <br/>
+   Em meu game criei um sistema que lê um .txt e imprime o conteúdo na tela, mas esse .txt estava em ANSI e não em UTF-8, por isso por mais que eu pudesse ver os caracteres bonitinhos no notepad, no game ele mostrava do jeito que "certo" ou seja com a codificação errada.
+   <br/>
+   Alias, o meu index atualmente usa a iso-8859-1.
+   <br/>
+   <br/>
+   Na dúvida, sempre use
+   <a class="link link--external" href="https://wiki.locaweb.com.br/pt-br/C%C3%B3digos_HTML_para_caracteres_acentuados" rel="nofollow ugc noopener" target="_blank">
+    os códigos para caracteres latinos
+   </a>
+   .
+  </div>
+  <small class="author">
+   <a href="https://condadobraveheart.com/members/hermespasser.1086/">
+    HermesPasser
+   </a>
+   em
+   <time datetime="2017-04-26T11:32:15-0300">
+    26 de Abril de 2017 às 11:32.
+   </time>
+   <a href="https://condadobraveheart.com/threads/problemas-com-a-codificacao-de-caracteres.2121/post-18155">
+    Comentário original
+   </a>
+  </small>
+  <hr/>
+ </div>
+</details>

@@ -1,0 +1,284 @@
+---
+title: "Condado Braveheart posts - Comentando o downloader do thumblr em Ruby"
+pagename: comentando-o-downloader-do-thumblr-em-ruby.3591-pg01.html
+keywords: rpg maker
+show-comments: true
+layout: condado
+---
+<p>
+ Publicado originalmente em
+ <time datetime="2018-02-28T17:46:37-0300">
+  28 de Fevereiro de 2018 às 17:46
+ </time>
+ no Condado Braveheart (
+ <a href="https://condadobraveheart.com/threads/comentando-o-downloader-do-thumblr-em-ruby.3591/">
+  link
+ </a>
+ ).
+</p>
+<hr/>
+<div class="bbWrapper">
+ <div style="text-align: center">
+  <b>
+   Introdução
+  </b>
+  ​
+ </div>
+ <br/>
+ A uns tempos atrás postei aqui na academia um
+ <a class="link link--external" href="http://www.condadobraveheart.com/forum/index.php?topic=3776.0" rel="nofollow ugc noopener" target="_blank">
+  vídeo
+ </a>
+ meu criando um downloader, hoje resolvi
+ <s>
+  ao invés de trabalhar em meu jogo
+ </s>
+ comentar método-a-método para aqueles que não entenderam plenamente o que fiz. Isso requirirá conhecimentos mínimos em ruby.
+ <br/>
+ O código completo se encontra
+ <a class="link link--external" href="https://github.com/HermesPasser/rb-scripts/blob/master/Tumbget/tumbget.rb" rel="nofollow ugc noopener" target="_blank">
+  aqui
+ </a>
+ e sim, eu sei, de nada.
+ <br/>
+ <br/>
+ <div style="text-align: center">
+  <b>
+   Comentando
+  </b>
+  ​
+ </div>
+ <br/>
+ Aqui temos os dois principais módulos, o
+ <b>
+  OpenURI
+ </b>
+ é um wrapper para o
+ <b>
+  Net::HTTP
+ </b>
+ e este ultimo serve para criação de user agents e realizar acessos a internet.
+ <br/>
+ <div class="bbCodeBlock bbCodeBlock--screenLimited bbCodeBlock--code">
+  <div class="bbCodeBlock-title">
+   Código:
+  </div>
+  <div class="bbCodeBlock-content" dir="ltr">
+   <pre class="bbCodeCode" data-lang="" data-xf-init="code-block" dir="ltr"><code>require 'open-uri'
+require 'net/http'</code></pre>
+  </div>
+ </div>
+ <br/>
+ Esse método retorna o html de uma página.
+ <br/>
+ <b>
+  Net::HTTP.get
+ </b>
+ pega o html de uma página usando um objeto URI.
+ <b>
+  URI
+  <b>
+   converte a minha string
+   <b>
+    url
+   </b>
+   .
+   <br/>
+   <div class="bbCodeBlock bbCodeBlock--screenLimited bbCodeBlock--code">
+    <div class="bbCodeBlock-title">
+     Código:
+    </div>
+    <div class="bbCodeBlock-content" dir="ltr">
+     <pre class="bbCodeCode" data-lang="" data-xf-init="code-block" dir="ltr"><code>def get_url url
+	Net::HTTP.get(URI(url))
+end</code></pre>
+    </div>
+   </div>
+   <br/>
+   Esse método usa expressões regulares para pegar o html dentro da tag
+   <b>
+    div
+   </b>
+   que tenha como classe "body-text" que é onde fica o conteúdo das postagens do thumbl usado.
+   <br/>
+   As variáveis usadas estão aí somente para ficar mais fácil a visualização.
+   <br/>
+   O
+   <b>
+    text.match
+   </b>
+   retorna o conteúdo em
+   <b>
+    MatchData
+   </b>
+   e
+   <b>
+    to_s
+   </b>
+   converte-o para string.
+   <br/>
+   <div class="bbCodeBlock bbCodeBlock--screenLimited bbCodeBlock--code">
+    <div class="bbCodeBlock-title">
+     Código:
+    </div>
+    <div class="bbCodeBlock-content" dir="ltr">
+     <pre class="bbCodeCode" data-lang="" data-xf-init="code-block" dir="ltr"><code>def get_body_content text
+	beginwith = "&lt;div class=\"body-text\"&gt;"
+	endwith = "&lt;/div&gt;"
+	text.match("\\#{beginwith}(.*?)#{endwith}").to_s
+end</code></pre>
+    </div>
+   </div>
+   <br/>
+   Aqui eu faço como em cima mas pego todas as ocorrências de textos que estejam depois de "https" e antes de "aspas (")".
+   <br/>
+   Algo interessante é que a engine do regex não funciona neste caso sse eu passar como parâmetro uma string (""), só se eu usar notação de expressão regular (//) diferente do acima.
+   <br/>
+   <div class="bbCodeBlock bbCodeBlock--screenLimited bbCodeBlock--code">
+    <div class="bbCodeBlock-title">
+     Código:
+    </div>
+    <div class="bbCodeBlock-content" dir="ltr">
+     <pre class="bbCodeCode" data-lang="" data-xf-init="code-block" dir="ltr"><code>def get_page_links text
+	# begin with 'https:' and end with '" '
+	text.scan(/(?&lt;=https:)(.*?)(?=" )/)
+end</code></pre>
+    </div>
+   </div>
+   <br/>
+   Aqui faço o download da image.
+   <br/>
+   <b>
+    File.open(path, 'wb')
+   </b>
+   cria o arquivo com o nome armazenado em
+   <b>
+    path
+   </b>
+   ;
+   <br/>
+   <b>
+    open("http:#{url}").read)
+   </b>
+   acessa o
+   <b>
+    url
+   </b>
+   e lê seus bites;
+   <br/>
+   <b>
+    file.write
+   </b>
+   escreve a imagem no arquivo.
+   <br/>
+   <div class="bbCodeBlock bbCodeBlock--screenLimited bbCodeBlock--code">
+    <div class="bbCodeBlock-title">
+     Código:
+    </div>
+    <div class="bbCodeBlock-content" dir="ltr">
+     <pre class="bbCodeCode" data-lang="" data-xf-init="code-block" dir="ltr"><code>def download_image url, path
+	File.open(path, 'wb') do |file|
+		file.write(open("http:#{url}").read)
+	end
+end</code></pre>
+    </div>
+   </div>
+   <br/>
+   Aqui temos o
+   <b>
+    urls
+   </b>
+   que é um array de strings com os links das imagens então ele para cada link ele faz o download (via
+   <b>
+    download_image
+   </b>
+   ) e salvando como o nome armazenado em
+   <b>
+    path
+   </b>
+   +
+   <b>
+    iterator
+   </b>
+   .
+   <br/>
+   <div class="bbCodeBlock bbCodeBlock--screenLimited bbCodeBlock--code">
+    <div class="bbCodeBlock-title">
+     Código:
+    </div>
+    <div class="bbCodeBlock-content" dir="ltr">
+     <pre class="bbCodeCode" data-lang="" data-xf-init="code-block" dir="ltr"><code>def download_all urls, path
+	iterator = 1
+	urls.each do |url|
+		download_image(url[0], "#{path}\\#{iterator}.jpg")	
+		puts "downloading #{url[0]} as #{path}\\#{iterator}.jpg"
+		iterator += 1
+	end
+end</code></pre>
+    </div>
+   </div>
+   <br/>
+   Aqui é o
+   <b>
+    main
+   </b>
+   do programa que precisa receber dois argumentos, o link do post e o local + nome de onde será salvo.
+   <br/>
+   <b>
+    ARGV
+   </b>
+   armazena os argumentos de linha de comando.
+   <br/>
+   <b>
+    url
+   </b>
+   recebe o primeiro argumento (link) e path o segundo (caminho).
+   <br/>
+   <br/>
+   Seguindo ele adiciona https:// ao inicio do link se não houve já que o Net::HTTP.get teria problemas para acessar se não tiver, e "pega" o html da página usando o get_url e armazena em
+   <b>
+    text
+   </b>
+   . Daí nós extraímos o conteúdo (dentro daquela div) e pegamos todos os links de imagens dentro desta div. Por fim, fazemos o download de todas usando o
+   <b>
+    download_all
+   </b>
+   e passando esse (agora) array
+   <b>
+    text
+   </b>
+   o caminho
+   <b>
+    path
+   </b>
+   .
+   <br/>
+   <br/>
+   <div class="bbCodeBlock bbCodeBlock--screenLimited bbCodeBlock--code">
+    <div class="bbCodeBlock-title">
+     Código:
+    </div>
+    <div class="bbCodeBlock-content" dir="ltr">
+     <pre class="bbCodeCode" data-lang="" data-xf-init="code-block" dir="ltr"><code>if ARGV.length == 2
+	url = ARGV[0]
+	path = ARGV[1]
+
+	url = url.include?("https://") ? url : "https://#{url}"
+
+	text = get_url(url)
+	text = get_body_content(text)
+	text = get_page_links(text)
+	download_all(text, path)
+	puts "complete"
+end</code></pre>
+    </div>
+   </div>
+  </b>
+ </b>
+</div>
+<hr/>
+<details>
+ <summary>
+  Comentários
+ </summary>
+</details>

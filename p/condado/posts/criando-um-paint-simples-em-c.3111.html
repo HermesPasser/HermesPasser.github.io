@@ -1,0 +1,749 @@
+---
+title: "Condado Braveheart posts - Criando um paint simples em C#"
+pagename: criando-um-paint-simples-em-c.3111-pg01.html
+keywords: rpg maker
+show-comments: true
+layout: condado
+---
+<p>
+ Publicado originalmente em
+ <time datetime="2017-12-15T12:55:40-0200">
+  15 de Dezembro de 2017 às 12:55
+ </time>
+ no Condado Braveheart (
+ <a href="https://condadobraveheart.com/threads/criando-um-paint-simples-em-c.3111/">
+  link
+ </a>
+ ).
+</p>
+<hr/>
+<div class="bbWrapper">
+ <div style="text-align: center">
+  <b>
+   Introdução
+  </b>
+  ​
+ </div>
+ Como vão, hoje irei fazer uma breve introdução à biblioteca System.Drawing do .NET através da criação de um simples paint em C#. Usarei como base um
+ <a class="link link--external" href="https://www.youtube.com/watch?v=CL6Z7Jqjcls" rel="nofollow ugc noopener" target="_blank">
+  vídeo
+ </a>
+ que gravei uns meses atrás e que teve alguns (muitos) problemas de produção.
+ <br/>
+ <br/>
+ O código fonte se encontra em meu github
+ <a class="link link--external" href="https://github.com/HermesPasser/CSPaint" rel="nofollow ugc noopener" target="_blank">
+  aqui
+ </a>
+ .
+ <br/>
+ <br/>
+ Aproveitem que a
+ <a href="https://condadobraveheart.com/members/mayleone.716/" title="Mayleone [old id=895]">
+  Mayleone
+ </a>
+ está on fire escrevendo vários tutoriais introdutórios sobre C# e aprenda o básico se não souber.
+ <br/>
+ <br/>
+ <div style="text-align: center">
+  <b>
+   1 - Criação do projeto
+  </b>
+  ​
+ </div>
+ Primeiramente vamos criar o projeto.
+ <br/>
+ <details class="spoiler" title="Clique para revelar ou ocultar">
+  <summary>
+   Spoiler
+  </summary>
+  <div class="details-body">
+   <script class="js-extraPhrases" type="application/json">
+    {
+				"lightbox_close": "Fechar",
+				"lightbox_next": "Next",
+				"lightbox_previous": "Previous",
+				"lightbox_error": "O conteúdo solicitado não pôde ser carregado. Por favor, tente novamente mais tarde.",
+				"lightbox_start_slideshow": "Start slideshow",
+				"lightbox_stop_slideshow": "Stop slideshow",
+				"lightbox_full_screen": "Tela cheia",
+				"lightbox_thumbnails": "Thumbnails",
+				"lightbox_download": "Baixar",
+				"lightbox_share": "Compartilhar",
+				"lightbox_zoom": "Zoom",
+				"lightbox_new_window": "Nova janela",
+				"lightbox_toggle_sidebar": "Toggle sidebar"
+			}
+   </script>
+   <div class="bbImageWrapper js-lbImage" data-lb-caption-extra-html="" data-lb-sidebar-href="" data-single-image="1" data-src="https://2.bp.blogspot.com/-2AMKi3L8uUc/WjPYRabXPQI/AAAAAAAAHmk/wIp26Xy3F-c8CLNAaW5hFEE9SeGtzV2JgCLcBGAs/s1600/01.png" data-type="image" title="01.png">
+    <img alt="01.png" class="bbImage" data-url="https://2.bp.blogspot.com/-2AMKi3L8uUc/WjPYRabXPQI/AAAAAAAAHmk/wIp26Xy3F-c8CLNAaW5hFEE9SeGtzV2JgCLcBGAs/s1600/01.png" data-zoom-target="1" height="" loading="lazy" src="https://2.bp.blogspot.com/-2AMKi3L8uUc/WjPYRabXPQI/AAAAAAAAHmk/wIp26Xy3F-c8CLNAaW5hFEE9SeGtzV2JgCLcBGAs/s1600/01.png" style="" title="" width=""/>
+   </div>
+  </div>
+ </details>
+ <br/>
+ Não esqueçam de colocar Visual C#/Windows Forms.
+ <br/>
+ <details class="spoiler" title="Clique para revelar ou ocultar">
+  <summary>
+   Spoiler
+  </summary>
+  <div class="details-body">
+   <div class="bbImageWrapper js-lbImage" data-lb-caption-extra-html="" data-lb-sidebar-href="" data-single-image="1" data-src="https://4.bp.blogspot.com/-jYPC8Gp7-oA/WjPYRe2dl4I/AAAAAAAAHmg/XCW4eLZ3WMw__-j2fSBogM-qgnlXhvPegCLcBGAs/s1600/02.png" data-type="image" title="02.png">
+    <img alt="02.png" class="bbImage" data-url="https://4.bp.blogspot.com/-jYPC8Gp7-oA/WjPYRe2dl4I/AAAAAAAAHmg/XCW4eLZ3WMw__-j2fSBogM-qgnlXhvPegCLcBGAs/s1600/02.png" data-zoom-target="1" height="" loading="lazy" src="https://4.bp.blogspot.com/-jYPC8Gp7-oA/WjPYRe2dl4I/AAAAAAAAHmg/XCW4eLZ3WMw__-j2fSBogM-qgnlXhvPegCLcBGAs/s1600/02.png" style="" title="" width=""/>
+   </div>
+  </div>
+ </details>
+ <br/>
+ <div style="text-align: center">
+  <b>
+   2 - Criação da interface
+  </b>
+  ​
+ </div>
+ Primeiro aumentem o tamanho do formulário, depois adicione um panel que será onde ficará a imagem.
+ <br/>
+ <details class="spoiler" title="Clique para revelar ou ocultar">
+  <summary>
+   Spoiler
+  </summary>
+  <div class="details-body">
+   <div class="bbImageWrapper js-lbImage" data-lb-caption-extra-html="" data-lb-sidebar-href="" data-single-image="1" data-src="https://2.bp.blogspot.com/-lAzzKRMiTgE/WjPYRVoh2DI/AAAAAAAAHmc/4XREj8OZbnYFgNSti7mBE1_AnlDvhFp2wCLcBGAs/s1600/03.png" data-type="image" title="03.png">
+    <img alt="03.png" class="bbImage" data-url="https://2.bp.blogspot.com/-lAzzKRMiTgE/WjPYRVoh2DI/AAAAAAAAHmc/4XREj8OZbnYFgNSti7mBE1_AnlDvhFp2wCLcBGAs/s1600/03.png" data-zoom-target="1" height="" loading="lazy" src="https://2.bp.blogspot.com/-lAzzKRMiTgE/WjPYRVoh2DI/AAAAAAAAHmc/4XREj8OZbnYFgNSti7mBE1_AnlDvhFp2wCLcBGAs/s1600/03.png" style="" title="" width=""/>
+   </div>
+   <br/>
+   <div class="bbImageWrapper js-lbImage" data-lb-caption-extra-html="" data-lb-sidebar-href="" data-single-image="1" data-src="https://2.bp.blogspot.com/-3-QlMzyigxw/WjPYSX5vCBI/AAAAAAAAHmo/fKFM_ZukBSAru2hiZQ-xNiPMHIASVp0mACLcBGAs/s1600/04.png" data-type="image" title="04.png">
+    <img alt="04.png" class="bbImage" data-url="https://2.bp.blogspot.com/-3-QlMzyigxw/WjPYSX5vCBI/AAAAAAAAHmo/fKFM_ZukBSAru2hiZQ-xNiPMHIASVp0mACLcBGAs/s1600/04.png" data-zoom-target="1" height="" loading="lazy" src="https://2.bp.blogspot.com/-3-QlMzyigxw/WjPYSX5vCBI/AAAAAAAAHmo/fKFM_ZukBSAru2hiZQ-xNiPMHIASVp0mACLcBGAs/s1600/04.png" style="" title="" width=""/>
+   </div>
+  </div>
+ </details>
+ <br/>
+ Acionemos agora um Flow Layout Panel para que nossas ferramentas fiquem organizadas horizontalmente com a mesma margem sem a necessidade de fazê-lo manualmente para cada nova inserção.
+ <br/>
+ <details class="spoiler" title="Clique para revelar ou ocultar">
+  <summary>
+   Spoiler
+  </summary>
+  <div class="details-body">
+   <div class="bbImageWrapper js-lbImage" data-lb-caption-extra-html="" data-lb-sidebar-href="" data-single-image="1" data-src="https://1.bp.blogspot.com/-S4rN2mW9oFQ/WjPYScSQu6I/AAAAAAAAHms/wl_peYLZhPA55_hWL2HxEpP7ZvVyKKtcgCLcBGAs/s1600/05.png" data-type="image" title="05.png">
+    <img alt="05.png" class="bbImage" data-url="https://1.bp.blogspot.com/-S4rN2mW9oFQ/WjPYScSQu6I/AAAAAAAAHms/wl_peYLZhPA55_hWL2HxEpP7ZvVyKKtcgCLcBGAs/s1600/05.png" data-zoom-target="1" height="" loading="lazy" src="https://1.bp.blogspot.com/-S4rN2mW9oFQ/WjPYScSQu6I/AAAAAAAAHms/wl_peYLZhPA55_hWL2HxEpP7ZvVyKKtcgCLcBGAs/s1600/05.png" style="" title="" width=""/>
+   </div>
+   <br/>
+   <div class="bbImageWrapper js-lbImage" data-lb-caption-extra-html="" data-lb-sidebar-href="" data-single-image="1" data-src="https://4.bp.blogspot.com/-NaEIMEPlLPE/WjPYScVGJQI/AAAAAAAAHmw/--LNrXmedOoz4-E7FyRnQbvNLwDdvmm0wCLcBGAs/s1600/06.png" data-type="image" title="06.png">
+    <img alt="06.png" class="bbImage" data-url="https://4.bp.blogspot.com/-NaEIMEPlLPE/WjPYScVGJQI/AAAAAAAAHmw/--LNrXmedOoz4-E7FyRnQbvNLwDdvmm0wCLcBGAs/s1600/06.png" data-zoom-target="1" height="" loading="lazy" src="https://4.bp.blogspot.com/-NaEIMEPlLPE/WjPYScVGJQI/AAAAAAAAHmw/--LNrXmedOoz4-E7FyRnQbvNLwDdvmm0wCLcBGAs/s1600/06.png" style="" title="" width=""/>
+   </div>
+  </div>
+ </details>
+ <br/>
+ Agora, adicionemos as PictureBox, jogue a primeira no panel e clique na seta em Encaixar no Contêiner Pai para que ela ocupe todo o Panel.
+ <br/>
+ <details class="spoiler" title="Clique para revelar ou ocultar">
+  <summary>
+   Spoiler
+  </summary>
+  <div class="details-body">
+   <div class="bbImageWrapper js-lbImage" data-lb-caption-extra-html="" data-lb-sidebar-href="" data-single-image="1" data-src="https://1.bp.blogspot.com/--TSyhLmxuMg/WjPYSh8qHTI/AAAAAAAAHm0/Fn6x9xEcQFwtjt9_XJwWdTwyFmfFLrEawCLcBGAs/s1600/07.png" data-type="image" title="07.png">
+    <img alt="07.png" class="bbImage" data-url="https://1.bp.blogspot.com/--TSyhLmxuMg/WjPYSh8qHTI/AAAAAAAAHm0/Fn6x9xEcQFwtjt9_XJwWdTwyFmfFLrEawCLcBGAs/s1600/07.png" data-zoom-target="1" height="" loading="lazy" src="https://1.bp.blogspot.com/--TSyhLmxuMg/WjPYSh8qHTI/AAAAAAAAHm0/Fn6x9xEcQFwtjt9_XJwWdTwyFmfFLrEawCLcBGAs/s1600/07.png" style="" title="" width=""/>
+   </div>
+  </div>
+ </details>
+ <br/>
+ A próxima será a PictureBox onde ficará a cor selecionada, para esta coloquei um tamanho de 50x50.
+ <br/>
+ <details class="spoiler" title="Clique para revelar ou ocultar">
+  <summary>
+   Spoiler
+  </summary>
+  <div class="details-body">
+   <div class="bbImageWrapper js-lbImage" data-lb-caption-extra-html="" data-lb-sidebar-href="" data-single-image="1" data-src="https://3.bp.blogspot.com/-9AJFyZdtvFc/WjPYS66PZ0I/AAAAAAAAHm4/3FRZLOAw1kErmiZvK5u8LqYVwNDVVHzhgCLcBGAs/s1600/08.png" data-type="image" title="08.png">
+    <img alt="08.png" class="bbImage" data-url="https://3.bp.blogspot.com/-9AJFyZdtvFc/WjPYS66PZ0I/AAAAAAAAHm4/3FRZLOAw1kErmiZvK5u8LqYVwNDVVHzhgCLcBGAs/s1600/08.png" data-zoom-target="1" height="" loading="lazy" src="https://3.bp.blogspot.com/-9AJFyZdtvFc/WjPYS66PZ0I/AAAAAAAAHm4/3FRZLOAw1kErmiZvK5u8LqYVwNDVVHzhgCLcBGAs/s1600/08.png" style="" title="" width=""/>
+   </div>
+  </div>
+ </details>
+ <br/>
+ Agora, vamos adicionar as caixas de diálogo, usaremos a ColorDialog, a OpenFileDialog e a SaveFileDialog.
+ <br/>
+ <details class="spoiler" title="Clique para revelar ou ocultar">
+  <summary>
+   Spoiler
+  </summary>
+  <div class="details-body">
+   <div class="bbImageWrapper js-lbImage" data-lb-caption-extra-html="" data-lb-sidebar-href="" data-single-image="1" data-src="https://2.bp.blogspot.com/-e0FUSCEE6Ig/WjPYS7bA-pI/AAAAAAAAHm8/8Doj3b5RkM0WD5kkI4IT74qiAvJDo5ATQCLcBGAs/s1600/09.png" data-type="image" title="09.png">
+    <img alt="09.png" class="bbImage" data-url="https://2.bp.blogspot.com/-e0FUSCEE6Ig/WjPYS7bA-pI/AAAAAAAAHm8/8Doj3b5RkM0WD5kkI4IT74qiAvJDo5ATQCLcBGAs/s1600/09.png" data-zoom-target="1" height="" loading="lazy" src="https://2.bp.blogspot.com/-e0FUSCEE6Ig/WjPYS7bA-pI/AAAAAAAAHm8/8Doj3b5RkM0WD5kkI4IT74qiAvJDo5ATQCLcBGAs/s1600/09.png" style="" title="" width=""/>
+   </div>
+  </div>
+ </details>
+ <br/>
+ Adicione quatro botões no Flow Layout Panel, eles serão o botão de mudar de cor, limpar imagem, caneta e balde de tinta.
+ <br/>
+ <details class="spoiler" title="Clique para revelar ou ocultar">
+  <summary>
+   Spoiler
+  </summary>
+  <div class="details-body">
+   <div class="bbImageWrapper js-lbImage" data-lb-caption-extra-html="" data-lb-sidebar-href="" data-single-image="1" data-src="https://4.bp.blogspot.com/-n4VRHjNRb00/WjPYTA-AlEI/AAAAAAAAHnA/OI9Dpss7X-4Qt47pAVtkYw2JNSVXfi1pwCLcBGAs/s1600/10.png" data-type="image" title="10.png">
+    <img alt="10.png" class="bbImage" data-url="https://4.bp.blogspot.com/-n4VRHjNRb00/WjPYTA-AlEI/AAAAAAAAHnA/OI9Dpss7X-4Qt47pAVtkYw2JNSVXfi1pwCLcBGAs/s1600/10.png" data-zoom-target="1" height="" loading="lazy" src="https://4.bp.blogspot.com/-n4VRHjNRb00/WjPYTA-AlEI/AAAAAAAAHnA/OI9Dpss7X-4Qt47pAVtkYw2JNSVXfi1pwCLcBGAs/s1600/10.png" style="" title="" width=""/>
+   </div>
+  </div>
+ </details>
+ <br/>
+ Agora adicione um MenuStrip e adicione os seguintes itens nele: Salvar como... e Carregar.
+ <br/>
+ <details class="spoiler" title="Clique para revelar ou ocultar">
+  <summary>
+   Spoiler
+  </summary>
+  <div class="details-body">
+   <div class="bbImageWrapper js-lbImage" data-lb-caption-extra-html="" data-lb-sidebar-href="" data-single-image="1" data-src="https://1.bp.blogspot.com/-RwWZMKuO-SA/WjPYTVN-gUI/AAAAAAAAHnE/YnUBYukLJJALXOjRtZEwZoaQDTFU5fJTQCLcBGAs/s1600/11.png" data-type="image" title="11.png">
+    <img alt="11.png" class="bbImage" data-url="https://1.bp.blogspot.com/-RwWZMKuO-SA/WjPYTVN-gUI/AAAAAAAAHnE/YnUBYukLJJALXOjRtZEwZoaQDTFU5fJTQCLcBGAs/s1600/11.png" data-zoom-target="1" height="" loading="lazy" src="https://1.bp.blogspot.com/-RwWZMKuO-SA/WjPYTVN-gUI/AAAAAAAAHnE/YnUBYukLJJALXOjRtZEwZoaQDTFU5fJTQCLcBGAs/s1600/11.png" style="" title="" width=""/>
+   </div>
+  </div>
+ </details>
+ <br/>
+ <div style="text-align: center">
+  <b>
+   3  Código da interface
+  </b>
+  ​
+ </div>
+ Selecione a PictureBox que está dentro do panel e então vá em suas propriedades/eventos e procure pelos eventos do mouse. Adicione eventos para:  MouseDown, MouseMove e MouseUp. Respectivamente os nomeei como pictureBox1_MouseDown, pictureBox1_MouseMove e pictureBox1_MouseUp.
+ <br/>
+ <details class="spoiler" title="Clique para revelar ou ocultar">
+  <summary>
+   Spoiler
+  </summary>
+  <div class="details-body">
+   <div class="bbImageWrapper js-lbImage" data-lb-caption-extra-html="" data-lb-sidebar-href="" data-single-image="1" data-src="https://4.bp.blogspot.com/--Nve_sTqhEE/WjPYTjHMu0I/AAAAAAAAHnI/70n06R5dIbUpeohlJHn7PLA2nBT3feruwCLcBGAs/s1600/12.png" data-type="image" title="12.png">
+    <img alt="12.png" class="bbImage" data-url="https://4.bp.blogspot.com/--Nve_sTqhEE/WjPYTjHMu0I/AAAAAAAAHnI/70n06R5dIbUpeohlJHn7PLA2nBT3feruwCLcBGAs/s1600/12.png" data-zoom-target="1" height="" loading="lazy" src="https://4.bp.blogspot.com/--Nve_sTqhEE/WjPYTjHMu0I/AAAAAAAAHnI/70n06R5dIbUpeohlJHn7PLA2nBT3feruwCLcBGAs/s1600/12.png" style="" title="" width=""/>
+   </div>
+  </div>
+ </details>
+ <br/>
+ Agora abra o código do formulário as bibliotecas que usaremos:
+ <br/>
+ <div class="bbCodeBlock bbCodeBlock--screenLimited bbCodeBlock--code">
+  <div class="bbCodeBlock-title">
+   Código:
+  </div>
+  <div class="bbCodeBlock-content" dir="ltr">
+   <pre class="bbCodeCode" data-lang="" data-xf-init="code-block" dir="ltr"><code>using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.Threading;
+using System.Windows.Forms;</code></pre>
+  </div>
+ </div>
+ System.Collections.Generic é responsável por prover tipos de lista que serão mais úteis que as arrays normais como Stack.
+ <br/>
+ System.Drawing é responsável por tudo relacionado desenho e manipulação de imagens;
+ <br/>
+ System.Threading é responsável pela concorrência (threads);
+ <br/>
+ E System.Windows.Forms trabalha com a interface gráfica.
+ <br/>
+ <br/>
+ E então adicione o enumerador ToolBox, ele será usado para saber qual ferramenta está selecionada. Por agora teremos pen (caneta) e paintBucket (balde de tinta).
+ <br/>
+ Enumeradores são representações de algo, geralmente por meio de um inteiro. Eles servem para deixar o código mais legível, por exemplo se você usar verificações de string você pode escrever errado ou se você usar inteiros para representar estados em um laço, pode ficar difícil de saber o que cada número representa.
+ <br/>
+ <div class="bbCodeBlock bbCodeBlock--screenLimited bbCodeBlock--code">
+  <div class="bbCodeBlock-title">
+   Código:
+  </div>
+  <div class="bbCodeBlock-content" dir="ltr">
+   <pre class="bbCodeCode" data-lang="" data-xf-init="code-block" dir="ltr"><code>enum ToolBox
+{
+     pen, paintBucket
+}</code></pre>
+  </div>
+ </div>
+ <br/>
+ E adicione estes atributos dentro da classe:
+ <br/>
+ <div class="bbCodeBlock bbCodeBlock--screenLimited bbCodeBlock--code">
+  <div class="bbCodeBlock-title">
+   Código:
+  </div>
+  <div class="bbCodeBlock-content" dir="ltr">
+   <pre class="bbCodeCode" data-lang="" data-xf-init="code-block" dir="ltr"><code>private ToolBox toolBox = ToolBox.pen;
+
+private Color colorA = Color.Black;
+
+private int prevX;
+private int prevY;
+private bool canDraw       = false;
+
+private Thread thread = null;</code></pre>
+  </div>
+ </div>
+ O toolBox referência o enumerador criado acima, ele inicialmente recebe a caneta (pen);
+ <br/>
+ colorA será a cor selecionada (note que tem um A em seu nome pois pode-se adicionar uma cor secundaria B como em outros programas) e ela inicialmente recebe a cor preta;
+ <br/>
+ prevY e prevX guardarão a  posição anterior do mouse quando clicado na imagem;
+ <br/>
+ canDraw diz se pode ou não desenhar algo na tela com a caneta e similares, ele inicialmente recebe false;
+ <br/>
+ E finalmente, thread será a thread paralela a thread da interface e será usada para rotinas de desenho (de outra forma o loop principal da interface seria interrompido enquanto algo é desenhado e poderia aparecer a mensagem não respondendo no programa). Inicialmente recebe null.
+ <br/>
+ <br/>
+ Agora de duplo clique nos dois itens que adicionou no MenuStrip para adicionar o evento Click neles. Os métodos que foram adicionados aqui ficaram com os nomes de saveAsToolStripMenuItem_Click e loadToolStripMenuItem_Click.
+ <br/>
+ Faça o mesmo com os quatro botões. Aqui deixe seus nomes como button1_Click, button2_Click, button3_Click e button4_Click.
+ <br/>
+ O evento Click ocorre quando você clica no detentor dele, no caso, os botões e itens.
+ <br/>
+ <br/>
+ Já que os métodos dos botões e do MenuStrip usam códigos que serão criados na próxima secção então deixarei para criar a lógica deles lá.
+ <br/>
+ <br/>
+ <div style="text-align: center">
+  <b>
+   4 - Rotinas de desenho
+  </b>
+  ​
+ </div>
+ Agora vamos mexer nas rotinas do mouse que foram feitas acima, a começar pelo pictureBox1_MouseDown:
+ <br/>
+ O evento MouseDown é ativado quando você clica em alguma área do PictureBox, ao pressionar do clique, não ao soltar.
+ <div class="bbCodeBlock bbCodeBlock--screenLimited bbCodeBlock--code">
+  <div class="bbCodeBlock-title">
+   Código:
+  </div>
+  <div class="bbCodeBlock-content" dir="ltr">
+   <pre class="bbCodeCode" data-lang="" data-xf-init="code-block" dir="ltr"><code>private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
+{
+	prevX = e.X;
+	prevY = e.Y;
+	canDraw = true;
+
+	switch (toolBox)
+	{
+		case ToolBox.paintBucket:
+			break;
+	}
+}</code></pre>
+  </div>
+ </div>
+ O parâmetro e é do tipo MouseEventArgs, este tipo contém as coordenadas em que a imagem foi clicada. Então prevX recebe o atributo X enquanto prevY recebe o atributo Y do mesmo. Logicamente estes referem-se as coordenadas x e y.
+ <br/>
+ Logo após canDraw recebe true para que o programa sabe que a partir daqui ele pode começar a desenhar com qualquer ferramenta que exija movimento do mouse e a utilização dos outros dois eventos.
+ <br/>
+ O switch verifica qual é a ferramenta selecionada e o único caso adicionado é o do balde de tinta pois das nossas ferramentas ele é o único que somente no MouseDown, já que ele somente precisa saber onde ele começará a pintar, sua lógica será adicionada mais para frente já que sua dificuldade é avançada.
+ <br/>
+ <br/>
+ Agora, pictureBox1_MouseMove:
+ <br/>
+ O evento MouseMove é acionado toda vez que o mouse se movimente por cima do PictureBox.
+ <br/>
+ <div class="bbCodeBlock bbCodeBlock--screenLimited bbCodeBlock--code">
+  <div class="bbCodeBlock-title">
+   Código:
+  </div>
+  <div class="bbCodeBlock-content" dir="ltr">
+   <pre class="bbCodeCode" data-lang="" data-xf-init="code-block" dir="ltr"><code>private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
+{
+	switch (toolBox)
+	{
+		case ToolBox.pen:
+			if (!canDraw)
+				break;
+
+			Bitmap b = pictureBox1.Image as Bitmap;
+			pictureBox1.Image = Pen(b, e);
+}
+
+	prevX = e.X;
+	prevY = e.Y;
+}</code></pre>
+  </div>
+ </div>
+ Basicamente se o mouse for movido ele irá procurar a ferramenta selecionada (no caso a única disponível é a caneta) e irá chamar o método dela (que será criado mais a frente).
+ <br/>
+ No caso da caneta, se ela estiver selecionada e canDraw for false então ele simplesmente sai do switch sem desenhar nada. Caso contrário ele pegará a Image (imagem) da pictureBox1 (a que está dentro do panel e aquela em que vamos desenhar) e vamos fazer um casting  (que é basicamente uma conversão de tipo, o as bitmap no código) para converte-la em uma bitmap, que é mais prática de se manipular, e armazená-la na variável b. Logo após isso nós fazemos que a própria Image da pictureBox1 seja atualizada pelo retorno do método Pen passando o parâmetro b, que é a bitmap ainda não manipulada e e que é o MouseEventArgs e que dará as coordenadas atuais do mouse.
+ <br/>
+ Após isso preX e prevY serão atualizados com os valores atuais de e (ou seja, as posições anteriores serão atualizadas com a posição atual).
+ <br/>
+ <br/>
+ E por último, pictureBox1_MouseUp:
+ <br/>
+ O evento MouseUp será acionado quando o botão deixar de ser pressionado.
+ <br/>
+ <div class="bbCodeBlock bbCodeBlock--screenLimited bbCodeBlock--code">
+  <div class="bbCodeBlock-title">
+   Código:
+  </div>
+  <div class="bbCodeBlock-content" dir="ltr">
+   <pre class="bbCodeCode" data-lang="" data-xf-init="code-block" dir="ltr"><code>private void pictureBox1_MouseUp(object sender, MouseEventArgs e)
+{
+	canDraw = false;          
+}</code></pre>
+  </div>
+ </div>
+ A única coisa que ele faz é definir canDraw como false, assim fazendo o programa saber quando ele deve parar de desenhar na tela com a caneta e similares (já que o MouseMove sempre será chamado e consequentemente a caneta também se ela estiver selecionada, e por isso que colocaremos uma condição posteriormente).
+ <br/>
+ <br/>
+ E finalmente chegamos ao método Pen:
+ <br/>
+ Antes de tudo é importante dizer que dois dos tipos usados aqui em baixo (Pen e Graphics) implementam IDisposable que precisa que seus recursos sejam limpos da memória usando o método Dispose, mas usando eles em um bloco de código using podemos omiti-lo.
+ <br/>
+ <div class="bbCodeBlock bbCodeBlock--screenLimited bbCodeBlock--code">
+  <div class="bbCodeBlock-title">
+   Código:
+  </div>
+  <div class="bbCodeBlock-content" dir="ltr">
+   <pre class="bbCodeCode" data-lang="" data-xf-init="code-block" dir="ltr"><code>private Bitmap Pen(Bitmap bmp, MouseEventArgs e)
+{
+	using (var pen = new Pen(colorA, 1))
+	{
+		using (var g = Graphics.FromImage(bmp))
+		{
+			g.DrawLine(pen, prevX, prevY, e.X, e.Y);
+		}
+	}
+	return bmp;
+}</code></pre>
+  </div>
+ </div>
+ Este método cria uma Pen (caneta), que existem na biblioteca System.Drawing e a iniciar um a cor de colorA e com espessura 1, ela ficará armazenada na variável local pen. Após isso instanciamos um Graphics usando o nosso bitmap e então desenhamos uma linha usando a pen (criada acima), prevX e prevY como ponto inicial da linha e e.X e e.Y como ponto final da linha e então nosso bitmap será retornada.
+ <br/>
+ Note que em momento nenhum neste método foi necessário um Bitmap, o método FromImage usa uma Image, mas se precisarmos voltar a mexer aqui é bom ter um tipo mais flexível.
+ <br/>
+ <br/>
+ Espere um pouco Hermes, a pictureBox1 está com o atributo imagem nulo já que não atribuímos nada a ele anteriormente, então isso não vai jogar uma exceção na nossa cara? 
+ <br/>
+ Bem percebido meu jovem maker, por isso que iremos adicionar uma imagem a ela no construtor da classe:
+ <br/>
+ <div class="bbCodeBlock bbCodeBlock--screenLimited bbCodeBlock--code">
+  <div class="bbCodeBlock-title">
+   Código:
+  </div>
+  <div class="bbCodeBlock-content" dir="ltr">
+   <pre class="bbCodeCode" data-lang="" data-xf-init="code-block" dir="ltr"><code>public Form1()
+{
+	InitializeComponent();
+	pictureBox1.Image = CreateEmptyBmp(Color.White, panel1.Width, panel1.Height);
+	pictureBox2.Image = CreateEmptyBmp(colorA, pictureBox2.Width, pictureBox2.Height);
+}</code></pre>
+  </div>
+ </div>
+ Este método CreateEmptyBmp, que será criado abaixo, retorna uma imagem vazia inteiramente de uma cor e com um certo tamanho.
+ <br/>
+ No caso, atribuímos uma imagem branca com o tamanho do panel para a pictureBox1, e uma com a cor armazenada em colorA e com tamanho da pictureBox2 para imagem da pictureBox2 (a que mostra a cor selecionada).
+ <br/>
+ <br/>
+ CreateEmptyBmp:
+ <br/>
+ <div class="bbCodeBlock bbCodeBlock--screenLimited bbCodeBlock--code">
+  <div class="bbCodeBlock-title">
+   Código:
+  </div>
+  <div class="bbCodeBlock-content" dir="ltr">
+   <pre class="bbCodeCode" data-lang="" data-xf-init="code-block" dir="ltr"><code>        private Bitmap CreateEmptyBmp(Color c, int width, int height)
+        {
+            Bitmap bmp = new Bitmap(width, height);
+
+            using (var g = Graphics.FromImage(bmp))
+            {
+                g.Clear(c);
+            }
+
+            return bmp;
+        }</code></pre>
+  </div>
+ </div>
+ Esse código cria um novo Bitmap com o width e height que foram passados como parâmetro, e então é instanciado um Graphics usando este bitmap vazia e então seu método Clear é chamado passando a Color c como parâmetro, isso faz a Bitmap inteira seja pintada desta cor e por fim, ele retorna esse Bitmap.
+ <br/>
+ <br/>
+ Agora que o método CreateEmptyBmp foi explicado podemos seguir adiante e ver o código dos métodos Click. Começaremos com os itens do MenuStrip primeiro:
+ <br/>
+ <br/>
+ saveAsToolStripMenuItem_Click:
+ <br/>
+ <div class="bbCodeBlock bbCodeBlock--screenLimited bbCodeBlock--code">
+  <div class="bbCodeBlock-title">
+   Código:
+  </div>
+  <div class="bbCodeBlock-content" dir="ltr">
+   <pre class="bbCodeCode" data-lang="" data-xf-init="code-block" dir="ltr"><code>private void saveAsToolStripMenuItem_Click(object sender, EventArgs e)
+{
+	if (saveFileDialog1.ShowDialog() != DialogResult.OK)
+		return;
+
+	pictureBox1.Image.Save(saveFileDialog1.FileName);
+	saveFileDialog1 = new SaveFileDialog();
+}</code></pre>
+  </div>
+ </div>
+ O saveFileDialog1 é nossa instancia de SaveFileDialog, e seu método ShowDialog mostra a caixa de diálogo para salvar. Quando você coloca um nome, escolhe um local e aperta o botão salvar, este método retorna o valor OK do enumerador DialogResult, então nós fazemos a checagem se o valor retornado é qualquer coisa que não seja OK e se for então ele retorna e o método para.
+ <br/>
+ Caso ele tenha clicado em salvar então nós chamamos método Save da Image do pictureBox1 e passamos como parâmetro o atributo FileName da saveFileDialog1 que nos retorna o caminho e nome onde salvamos o arquivo na caixa de diálogo. E por fim fazemos saveFileDialog1 receber uma nova instancia para que seus valores sejam zerados.
+ <br/>
+ <br/>
+ loadToolStripMenuItem_Click:
+ <br/>
+ <div class="bbCodeBlock bbCodeBlock--screenLimited bbCodeBlock--code">
+  <div class="bbCodeBlock-title">
+   Código:
+  </div>
+  <div class="bbCodeBlock-content" dir="ltr">
+   <pre class="bbCodeCode" data-lang="" data-xf-init="code-block" dir="ltr"><code>private void loadToolStripMenuItem_Click(object sender, EventArgs e)
+{
+	if (openFileDialog1.ShowDialog() != DialogResult.OK)
+		return;
+
+	Image img = Image.FromFile(openFileDialog1.FileName);
+	pictureBox1.Image = img;
+	pictureBox1.Width = img.Width;
+	pictureBox1.Height = img.Height;
+	panel1.AutoScrollMinSize = new Size(img.Width, img.Height);
+	openFileDialog1 = new OpenFileDialog();	
+}</code></pre>
+  </div>
+ </div>
+ Inicialmente fazemos a mesma checagem de antes só que com openFileDialog1 agora.
+ <br/>
+ Então carregamos a imagem do computador usando o método FromFile de Image com o atributo FileName de openFileDialog1, então atribuímos essa imagem para a imagem da pictureBox1, outra coisa que devemos fazer é definir a largura e altura do pictureBox1 como a mesma da imagem carregada, assim fazemos que a imagem não seja cortada. É importante que a imagem esteja encaixada no Panel pois de outra forma ela também pode ficar cortada.
+ <br/>
+ AutoScrollMinSize vai fazer com que a barra de rolagem do panel1 vá até o final da imagem, assim sendo se ela for maior que o panel1 você poderá usar a barra de rolagem para ver e manipular a parte que não está visível dela. O atributo AutoScrollMinSize do panel1 recebe um Size, então nós criamos um novo Size usando o tamanho da imagem carregada. Nós fazemos isso ao invés de alterar o tamanho do Panel para que ele não fique maior que o Form (formulário).
+ <br/>
+ <br/>
+ Voltando para o construtor, vamos adicionar essas linhas:
+ <br/>
+ <div class="bbCodeBlock bbCodeBlock--screenLimited bbCodeBlock--code">
+  <div class="bbCodeBlock-title">
+   Código:
+  </div>
+  <div class="bbCodeBlock-content" dir="ltr">
+   <pre class="bbCodeCode" data-lang="" data-xf-init="code-block" dir="ltr"><code>saveFileDialog1.Filter = "Image files (*.gif, *.bmp, *.jpg, *.jpeg, *.jpe, *.jfif, *.png) | *.gif; *bmp; *.jpg; *.jpeg; *.jpe; *.jfif; *.png";
+openFileDialog1.Filter = "Image files | *.gif; *bmp; *.jpg; *.jpeg; *.jpe; *.jfif; *.png";</code></pre>
+  </div>
+ </div>
+ Este atributo Filter (filtro) delimita quais os tipos que essas caixas de diálogos podem manipular.
+ <br/>
+ No primeiro caso vemos que a string é separada em duas pelo caractere |, do lado esquerdo é o texto que será exibido na caixa de diálogo e o outro lado são os formatos suportados.
+ <br/>
+ <details class="spoiler" title="Clique para revelar ou ocultar">
+  <summary>
+   Spoiler
+  </summary>
+  <div class="details-body">
+   <div class="bbImageWrapper js-lbImage" data-lb-caption-extra-html="" data-lb-sidebar-href="" data-single-image="1" data-src="https://1.bp.blogspot.com/-eoRu_kciEh4/WjPYTp0TnGI/AAAAAAAAHnM/sEbHT3trYak0E-Bll_L_zv4NLeyO3uy1gCLcBGAs/s1600/13.png" data-type="image" title="13.png">
+    <img alt="13.png" class="bbImage" data-url="https://1.bp.blogspot.com/-eoRu_kciEh4/WjPYTp0TnGI/AAAAAAAAHnM/sEbHT3trYak0E-Bll_L_zv4NLeyO3uy1gCLcBGAs/s1600/13.png" data-zoom-target="1" height="" loading="lazy" src="https://1.bp.blogspot.com/-eoRu_kciEh4/WjPYTp0TnGI/AAAAAAAAHnM/sEbHT3trYak0E-Bll_L_zv4NLeyO3uy1gCLcBGAs/s1600/13.png" style="" title="" width=""/>
+   </div>
+  </div>
+ </details>
+ <br/>
+ O quadrado vermelho na imagem mostra o texto que fica do lado esquerdo da string do filtro.
+ <br/>
+ <br/>
+ Agora vamos falar com os métodos dos botões.
+ <br/>
+ Primeiro o método do botão de mudar a cor, o button1_Click:
+ <br/>
+ <div class="bbCodeBlock bbCodeBlock--screenLimited bbCodeBlock--code">
+  <div class="bbCodeBlock-title">
+   Código:
+  </div>
+  <div class="bbCodeBlock-content" dir="ltr">
+   <pre class="bbCodeCode" data-lang="" data-xf-init="code-block" dir="ltr"><code>private void button1_Click(object sender, EventArgs e)
+{
+	if (colorDialog1.ShowDialog() != DialogResult.OK)
+		return;
+
+	colorA = colorDialog1.Color;      
+	pictureBox2.Image = CreateEmptyBmp(colorA, pictureBox2.Width, pictureBox2.Height);
+}</code></pre>
+  </div>
+ </div>
+ Primeiro nós fazemos aquela checagem anterior novamente com o colorDialog1, depois nós atribuímos a variável colorA o valor do atributo Color de colorDialog1, que é onde fica armazenado a cor que você escolhe ao abrir o ShowDialog.
+ <br/>
+ E por fim, pintamos a imagem da pictureBox2 usando o método CreateEmptyBmp passando como parâmetro a colorA e o tamanho da própria pictureBox2.
+ <br/>
+ <br/>
+ Botão de limpar a imagem, o button2_Click:
+ <br/>
+ <div class="bbCodeBlock bbCodeBlock--screenLimited bbCodeBlock--code">
+  <div class="bbCodeBlock-title">
+   Código:
+  </div>
+  <div class="bbCodeBlock-content" dir="ltr">
+   <pre class="bbCodeCode" data-lang="" data-xf-init="code-block" dir="ltr"><code>private void button2_Click(object sender, EventArgs e)
+{
+	pictureBox1.Image = CreateEmptyBmp(Color.White, panel1.Width, panel1.Height);
+}</code></pre>
+  </div>
+ </div>
+ Esse método atribui a imagem de pictureBox1 uma imagem em branco com o tamanho do panel1 por meio do CreateEmptyBmp.
+ <br/>
+ <br/>
+ O button3_Click é muito simples, ele atribui a pen para nossa toolBox.
+ <br/>
+ <div class="bbCodeBlock bbCodeBlock--screenLimited bbCodeBlock--code">
+  <div class="bbCodeBlock-title">
+   Código:
+  </div>
+  <div class="bbCodeBlock-content" dir="ltr">
+   <pre class="bbCodeCode" data-lang="" data-xf-init="code-block" dir="ltr"><code>private void button3_Click(object sender, EventArgs e)
+{
+	toolBox = ToolBox.pen;
+}</code></pre>
+  </div>
+ </div>
+ <br/>
+ O button4_Click faz o mesmo, mas adicionando o paintBucket.
+ <br/>
+ <div class="bbCodeBlock bbCodeBlock--screenLimited bbCodeBlock--code">
+  <div class="bbCodeBlock-title">
+   Código:
+  </div>
+  <div class="bbCodeBlock-content" dir="ltr">
+   <pre class="bbCodeCode" data-lang="" data-xf-init="code-block" dir="ltr"><code>private void button4_Click(object sender, EventArgs e)
+{
+	toolBox = ToolBox.paintBucket;
+}</code></pre>
+  </div>
+ </div>
+ <br/>
+ E por fim, vamos falar da nossa última ferramenta antes de mexer com concorrência, o balde de tinta:
+ <br/>
+ <div class="bbCodeBlock bbCodeBlock--screenLimited bbCodeBlock--code">
+  <div class="bbCodeBlock-title">
+   Código:
+  </div>
+  <div class="bbCodeBlock-content" dir="ltr">
+   <pre class="bbCodeCode" data-lang="" data-xf-init="code-block" dir="ltr"><code>private Bitmap PaintBucket(Bitmap bmp, Color pC, Point point)
+{
+	Stack&lt;Point&gt; stack = new Stack&lt;Point&gt;();
+	stack.Push(point);
+
+	while (stack.Count &gt; 0)
+	{
+		Point p = stack.Pop();
+
+		if (p.X &gt;= 0 &amp;&amp; p.X &lt; bmp.Width &amp;&amp; p.Y &gt;= 0 &amp;&amp; p.Y &lt; bmp.Height)
+		{
+			if (bmp.GetPixel(p.X, p.Y) != pC)
+				continue;
+
+			bmp.SetPixel(p.X, p.Y, colorA);
+			stack.Push(new Point(p.X + 1, p.Y));
+			stack.Push(new Point(p.X - 1, p.Y));
+			stack.Push(new Point(p.X, p.Y + 1));
+			stack.Push(new Point(p.X, p.Y - 1));
+		}
+	}
+	return bmp;
+}</code></pre>
+  </div>
+ </div>
+ Originalmente esse método deveria usar recursividade, mas devido ao limite de chamadas recursivas do .NET uma exceção era chamada, então vamos usar uma técnica que emula essa recursividade, preparem o coração pois a explicação será um saco.
+ <br/>
+ Começando com os parâmetros, temos nosso Bitmap bmp como que é onde que será desenhado, seguindo temos um Color pC que armazena a cor anterior que será substituída pela cor de colorA. Por fim temos Point (ponto) point que guarda dois valores, X e Y, seu valor passado será onde na tela que foi clicado e será o ponto de origem para trocar todos os pixels da cor de pC para a colorA.
+ <br/>
+ Iniciando nosso método, criamos uma Stack de Points. Uma Stack (pilha) é um tipo de array que só se pode tirar e remover elementos do topo, neste caso somente elementos do tipo Point podem ser adicionados. Usamos o método Push para adicionar nosso Point p inicial na stack (stack nossa variável, não Stack tipo). Então entramos no while que ficará rodando enquanto está pilha não estiver vazia.
+ <br/>
+ A primeira coisa que fazemos dentro do laço é criamos uma variável temporária p do tipo Point que receberá o Point removido da stack pelo método Pop, seguindo isso tem a checagem que verifica se esse Point em X e Y não é maior que o tamanho da imagem, ou menor que zero já que dessa forma não tem como desenhar na imagem pois os valores estariam fora do limite da matriz dela.
+ <br/>
+ Já dentro do condicional, usa-se o método GetPixel do Bitmap para pegar o pixel com os valores do Point p, esse método não está disponível em Image e por isso que usamos Bitmap. Com este pixel em mãos, verificamos se ele tem uma cor diferente do pC, se for então pulamos para a próxima interação do laço usando o continue. Já se o pixel ter a mesma cor mesmo que o pC então logo em baixo esse pixel é pintado com a cor de colorA nessa mesma posição usando o método SetPixel, outro somente disponível no Bitmap.
+ <br/>
+ Em seguida, nós adicionamos para a stack Points que estão em volta deste Pointp fazendo que o laço rode até que todos os Points que contenha a mesma cor que pC estejam pintados com a colorA, e com a checagem de cor já vista em cima nós resolvemos o problema de ele pintar algo com outra cor.
+ <br/>
+ E por fim, retornamos o Bitmap alterado.
+ <br/>
+ <br/>
+ <br/>
+ <div style="text-align: center">
+  <b>
+   5 - Concorrência
+  </b>
+  ​
+ </div>
+ Agora só precisamos chamar o método PaintBucket em nosso switch no pictureBox1_MouseDown, mas a execução do PaintBucket é lenta e isso travará nossa interface até que o método termine já que a interface e o método rodam no mesmo thread, por isso precisamos chamar outro thread para executar esse método em paralelo. No começo do tutorial nós criamos essa propriedade.
+ <br/>
+ <div class="bbCodeBlock bbCodeBlock--screenLimited bbCodeBlock--code">
+  <div class="bbCodeBlock-title">
+   Código:
+  </div>
+  <div class="bbCodeBlock-content" dir="ltr">
+   <pre class="bbCodeCode" data-lang="" data-xf-init="code-block" dir="ltr"><code>case ToolBox.paintBucket:
+
+	thread = new Thread(() =&gt;
+	{
+			flowLayoutPanel1.Enabled = false;
+			Bitmap b = pictureBox1.Image as Bitmap;
+			Color c = b.GetPixel(e.X, e.Y);
+			pictureBox1.Image = PaintBucket(b, c, new Point(e.X, e.Y));
+			flowLayoutPanel1.Enabled = true;
+	});
+	thread.Start();
+	break;</code></pre>
+  </div>
+ </div>
+ Já a primeira instrução do case ele já atribui uma nova Thread para a propriedade thread, seguindo nos desativamos o flowLayoutPanel1 que é onde estão nossas ferramentas, já que o processo é lento e não queremos tentar desenhar na tela com a caneta enquanto o balde de tinta tentar pintar e se embola com os pixels que foram alterados em outro thread. Logo após nós criamos um Bitmap b e atribuímos a imagem da pictureBox1 para ela, criamos um Color c que recebe o pixel do Bitmap b na posição da PictureBox em que foi clicado (lembre-se do MouseEventArgs e) e atribuimos para a imagem da pictureBox1 o retorno de PaintBucket com o Bitmap b, a Color c e um novo Point com os valores de onde foi clicado passados como parâmetro. Já chegando na última linha desse thread, flowLayoutPanel1 novamente será ativado para que você possa interagir com ele.
+ <br/>
+ Então iniciamos esse thread com o método Start.
+ <br/>
+ <br/>
+ Mas Hermes, ocorreu uma exceção aqui ao entrar dentro do thread
+ <br/>
+ Meu jovem maker, isso ocorre, pois, a nosso Thread não pode alterar componentes do Thread da interface gráfica, por isso criaremos um método que faz isso para nós:
+ <br/>
+ <div class="bbCodeBlock bbCodeBlock--screenLimited bbCodeBlock--code">
+  <div class="bbCodeBlock-title">
+   Código:
+  </div>
+  <div class="bbCodeBlock-content" dir="ltr">
+   <pre class="bbCodeCode" data-lang="" data-xf-init="code-block" dir="ltr"><code>private void UIThread(MethodInvoker code)
+{
+	if (this.InvokeRequired) this.Invoke(code);
+	else code.Invoke();
+}</code></pre>
+  </div>
+ </div>
+ Este método basicamente verifica a interface está requisitando o Invoke e se estiver então ele chama o Invoke de nosso formulário passando nosso código como parâmetro, senão ele chama o Invoke do próprio code. Não irei aqui explicar como o Invoke funciona, leiam esse
+ <a class="link link--external" href="https://msdn.microsoft.com/pt-br/library/system.windows.forms.control.invokerequired(v=vs.110).aspx" rel="nofollow ugc noopener" target="_blank">
+  artigo
+ </a>
+ se quiserem entender melhor.
+ <br/>
+ <br/>
+ Voltando para o nosso pictureBox1_MouseDown adicionemos chamadas para o recém-criado UIThread passando delegates com o código da interface.
+ <br/>
+ <div class="bbCodeBlock bbCodeBlock--screenLimited bbCodeBlock--code">
+  <div class="bbCodeBlock-title">
+   Código:
+  </div>
+  <div class="bbCodeBlock-content" dir="ltr">
+   <pre class="bbCodeCode" data-lang="" data-xf-init="code-block" dir="ltr"><code>case ToolBox.paintBucket:	
+
+	thread = new Thread(() =&gt;
+	{
+		UIThread(delegate { flowLayoutPanel1.Enabled = false; });
+		Bitmap b = pictureBox1.Image as Bitmap;
+		Color c = b.GetPixel(e.X, e.Y);
+		UIThread(delegate 
+		{		
+			pictureBox1.Image = PaintBucket(b, c, new Point(e.X, e.Y));
+			flowLayoutPanel1.Enabled = true;
+		});
+	});
+	thread.Start();
+	break;</code></pre>
+  </div>
+ </div>
+ <br/>
+ <div style="text-align: center">
+  <div class="bbImageWrapper js-lbImage" data-lb-caption-extra-html="" data-lb-sidebar-href="" data-single-image="1" data-src="https://2.bp.blogspot.com/-I11SG_qEkeo/WjPYUi2nrgI/AAAAAAAAHnQ/bOAMyt1CP_c-P0oO-x_IjRpOL8UqQU98gCLcBGAs/s1600/14.PNG" data-type="image" title="14.PNG">
+   <img alt="14.PNG" class="bbImage" data-url="https://2.bp.blogspot.com/-I11SG_qEkeo/WjPYUi2nrgI/AAAAAAAAHnQ/bOAMyt1CP_c-P0oO-x_IjRpOL8UqQU98gCLcBGAs/s1600/14.PNG" data-zoom-target="1" height="" loading="lazy" src="https://2.bp.blogspot.com/-I11SG_qEkeo/WjPYUi2nrgI/AAAAAAAAHnQ/bOAMyt1CP_c-P0oO-x_IjRpOL8UqQU98gCLcBGAs/s1600/14.PNG" style="" title="" width=""/>
+  </div>
+ </div>
+ <br/>
+ E com isso nós encerramos essa introdução, estarei no aguardo de questionamentos e possíveis correções.
+ <br/>
+</div>
+<hr/>
+<details>
+ <summary>
+  Comentários
+ </summary>
+</details>

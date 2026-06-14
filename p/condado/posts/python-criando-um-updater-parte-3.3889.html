@@ -1,0 +1,401 @@
+---
+title: "Condado Braveheart posts - Python - Criando um updater, parte 3"
+pagename: python-criando-um-updater-parte-3.3889-pg01.html
+keywords: rpg maker
+show-comments: true
+layout: condado
+---
+<p>
+ Publicado originalmente em
+ <time datetime="2018-05-26T21:35:42-0300">
+  26 de Maio de 2018 às 21:35
+ </time>
+ no Condado Braveheart (
+ <a href="https://condadobraveheart.com/threads/python-criando-um-updater-parte-3.3889/">
+  link
+ </a>
+ ).
+</p>
+<hr/>
+<div class="bbWrapper">
+ <div style="text-align: center">
+  <b>
+   Introdução
+  </b>
+  ​
+ </div>
+ E cá estamos na última parte \o/. Espero que isso tenha ajudado você a entender melhor como o Python funciona, pois me ajudou. Sem mais delongas:
+ <br/>
+ <br/>
+ <div style="text-align: center">
+  <b>
+   4º Passo - Package
+  </b>
+  ​
+ </div>
+ <br/>
+ Agora vamos transformar esse projeto em um package para que ele possa ver usado por outros projetos. Primeiro renomeie o arquivo main para o nome que queres para seu projeto (pois não faz sentido alguém importar o main), o eu será ventura. Depois adicione o nome do projeto (o da pasta) antes do nome de cada importação que fizemos de nossos arquivos. Isso será necessário para que eles possam ser importados mesmo que o caminho onde o programa está rodando é outro. Também remova o import do
+ <b>
+  sys
+ </b>
+ pois não usaremos mais argumentos de linha de comando.
+ <br/>
+ <br/>
+ Outra coisa que faremos é adicionar "_" no nome de cada arquivo exceto o mais para que o usuário saiba que esses arquivos não foram projetados para serem usados por eles.
+ <br/>
+ <br/>
+ Note que a importação do _hxml não tem "ventura." pois nesse caso só um ponto basta.
+ <br/>
+ <br/>
+ ventura.py (antigo main.py)
+ <br/>
+ <div class="bbCodeBlock bbCodeBlock--screenLimited bbCodeBlock--code">
+  <div class="bbCodeBlock-title">
+   Código:
+  </div>
+  <div class="bbCodeBlock-content" dir="ltr">
+   <pre class="bbCodeCode" data-lang="" data-xf-init="code-block" dir="ltr"><code>from ._hxml import VenturaXML
+import ventura._hzip as hzip
+import ventura._hweb as hweb
+import ventura._hpath as hpath</code></pre>
+  </div>
+ </div>
+ <br/>
+ <br/>
+ _hpath.py (antigo hpath.py)
+ <br/>
+ <div class="bbCodeBlock bbCodeBlock--screenLimited bbCodeBlock--code">
+  <div class="bbCodeBlock-title">
+   Código:
+  </div>
+  <div class="bbCodeBlock-content" dir="ltr">
+   <pre class="bbCodeCode" data-lang="" data-xf-init="code-block" dir="ltr"><code>import ventura._hpath as hpath</code></pre>
+  </div>
+ </div>
+ <br/>
+ Agora crie um arquivo chamado __init__.py, este arquivo não precisa conter nada dentro, ele serve para que o diretório seja considerado um package.
+ <br/>
+ <br/>
+ Parabéns! Você criou um package, tente adicionar a pasta dele em seu projeto e importa-lo em um arquivo seu (exemplo:
+ <i>
+  import ventura
+ </i>
+ ).
+ <br/>
+ <br/>
+ <div style="text-align: center">
+  <b>
+   5º Passo - Publicação
+  </b>
+  ​
+ </div>
+ <br/>
+ Agora prepararemos para que este package possa ser publicado
+ <a class="link link--external" href="https://pypi.org" rel="nofollow ugc noopener" target="_blank">
+  PyPI
+ </a>
+ , o lugar onde armazena-se packages para que sejam baixados. Mas especificamente publicaremos no
+ <a class="link link--external" href="https://test.pypi.org" rel="nofollow ugc noopener" target="_blank">
+  Test PyPI
+ </a>
+ , subdomínio para testes. Eu me basearei
+ <a class="link link--external" href="https://packaging.python.org/tutorials/packaging-projects" rel="nofollow ugc noopener" target="_blank">
+  neste
+ </a>
+ tutorial.
+ <br/>
+ <br/>
+ Crie uma subpasta com o nome do projeto e mova todos os arquivos para lá, mas fique na pasta onde está pois nela que criaremos os próximos arquivos que precisamos para publicar o projeto.
+ <br/>
+ <br/>
+ Aqueles acostumados com git entenderão bem o que faremos em seguida: crie README.md, LICENSE (arquivo sem extensão) e .gigignore (arquivo sem o nome). No README escreva uma descrição do projeto (
+ <a class="link link--external" href="https://blog.da2k.com.br/2015/02/08/aprenda-markdown/" rel="nofollow ugc noopener" target="_blank">
+  aprenda aqui
+ </a>
+ ), em LICENSE, a licença (que no meu caso usei a
+ <a class="link link--external" href="https://opensource.org/licenses/MIT" rel="nofollow ugc noopener" target="_blank">
+  MIT
+ </a>
+ , ela é só um arquivo de texto normal), o gitignore é onde você escreverá todas as pastas e arquivos que serão ignorados na hora de subir o projeto para o repositório (
+ <a class="link link--external" href="https://pt.stackoverflow.com/questions/237830/configurar-o-gitignore-para-n%C3%A3o-subir-certos-arquivos" rel="nofollow ugc noopener" target="_blank">
+  saiba como
+ </a>
+ ).
+ <br/>
+ <br/>
+ O próximo arquivo que criaremos é o setup.py, este é o responsável por armazenar informações do projeto. Abaixo deixarei um modelo (que não tem todas as informações possíveis mas tem as essenciais).
+ <br/>
+ <br/>
+ <div class="bbCodeBlock bbCodeBlock--screenLimited bbCodeBlock--code">
+  <div class="bbCodeBlock-title">
+   Código:
+  </div>
+  <div class="bbCodeBlock-content" dir="ltr">
+   <pre class="bbCodeCode" data-lang="" data-xf-init="code-block" dir="ltr"><code>from setuptools import setup
+
+# o método que será chamado pelo "empacotador"
+setup(
+      # nome do pacote
+      name = 'ventura',
+      # versão do pacote
+      version = '0.1',
+      # uma descrição, existe um descrição mais completa que podemos fazer em formato 
+      #markdown usando o texto do README mas não usaremos
+      description = 'Simple xml-based updater in python 3.6 with no try-catch statement',
+      # link do projeto, geralmente o repositório do projeto. 
+      url = 'http://github.com/hermespasser/ventura',
+      # nome do autor
+      author = 'Hermes Passer',
+      # email do autor
+      author_email = 'hermespasser@gmail.com',
+      # a licença escolhida para o projeto
+      license = 'MIT',
+      # os pacotes inseridos, ou coloque o mesmo valor que colocou em name ou você pode 
+      # procurar dinamicamente importando o find_packages() do setuptools
+      packages = ['ventura']
+)</code></pre>
+  </div>
+ </div>
+ <br/>
+ Agora vamos iniciar o processo de criar a distribuição e enviar. Rode
+ <i>
+  python -m pip install --user --upgrade setuptools wheel
+ </i>
+ só para ter certeza que o
+ <b>
+  setuptools
+ </b>
+ e
+ <b>
+  wheel
+ </b>
+ estão instalados e devidamente atualizados.
+ <br/>
+ <br/>
+ Agora vamos efetivamente criar a distribuição, para isso devemos está na mesma pasta que o setup.py está instalado. Rode
+ <i>
+  python setup.py sdist bdist_wheel
+ </i>
+ e será criada a pasta dist, que são os arquivos que serão enviados.
+ <br/>
+ <br/>
+ Para subir o package para o Test PyPI precisaremos criar uma conta lá, clique
+ <a class="link link--external" href="https://test.pypi.org/account/register/" rel="nofollow ugc noopener" target="_blank">
+  aqui
+ </a>
+ para fazer isso. Depois precisaremos baixar e atualizar o
+ <b>
+  twine
+ </b>
+ , um utilitário que simplifica o processo de envio:
+ <i>
+  python -m pip install --user --upgrade twine
+ </i>
+ .
+ <br/>
+ <br/>
+ Note: o twine ficará referenciado no PATH do sistema então precisaremos escrever todo o caminho até ele quando fomos usa-lo. Ele fica em
+ <i>
+  c:\users\
+  <b>
+   nome do usuário
+  </b>
+  \appdata\local\programs\python\python36\Scripts
+ </i>
+ .
+ <br/>
+ <br/>
+ Rode
+ <i>
+  c:\users\
+  <b>
+   nome do usuário
+  </b>
+  \appdata\local\programs\python\python36\Scripts\twine upload --repository-url https://test.pypi.org/legacy/ dist/*
+ </i>
+ para que o package seja subido para o PyPI, você precisará digitar o seu usuário e senha.
+ <br/>
+ <br/>
+ \o/ congrats \o/
+ <br/>
+ <br/>
+ Seu package está disponível para download, se você quiser baixa-lo para testar use
+ <i>
+  python -m pip install --index-url https://test.pypi.org/simple/
+  <b>
+   projeto
+  </b>
+ </i>
+ <br/>
+ <br/>
+ Note que que o Test PyPI é para testes e por isso não é incomum que packages e contas sejam deletadas nele, se quer que seu projeto fique permanentemente online então precisará subir para o PyPI normal. Para isso você precisará
+ <a class="link link--external" href="http://" rel="nofollow ugc noopener" target="_blank">
+  registrar-se
+ </a>
+ nele e omitir o
+ <i>
+  --repository-url https://test.pypi.org/legacy/
+ </i>
+ no twine que fez anteriormente para subir o package e
+ <i>
+  --index-url https://test.pypi.org/simple/
+ </i>
+ no comando pip anteriormente feito para baixar o package.
+ <br/>
+ <br/>
+ <div style="text-align: center">
+  <b>
+   Aftermath &amp; Exercícios
+  </b>
+  ​
+ </div>
+ <br/>
+ Parabéns por ter chegado até aqui! Qualquer dúvida é só perguntas nos comentários que tentarei responder.
+ <br/>
+ <br/>
+ Deixarei aqui os links para o projeto, no
+ <a class="link link--external" href="https://pypi.org/project/ventura/" rel="nofollow ugc noopener" target="_blank">
+  PyPI
+ </a>
+ e
+ <a class="link link--external" href="https://github.com/HermesPasser/ventura/tree/a20cee17274d246d2cea45679f329d1b87783c0f" rel="nofollow ugc noopener" target="_blank">
+  GitHub
+ </a>
+ . Você pode baixa-lo usando o comando
+ <i>
+  pip install ventura
+ </i>
+ <br/>
+ <br/>
+ Agora deixarei alguns exercícios para você tentar em casa:
+ <br/>
+ <ul>
+  <li data-xf-list-type="ul">
+   Diminuir os efeitos colaterais do projeto usando blocos try-except (diga: retorne falso no update_if_is_need se alguma função vital não está funcionando, como no caso de faltar internet)
+  </li>
+  <li data-xf-list-type="ul">
+   O usuário pode estar versões atrás da atual, então crie um sistema que execute todas as atualizações na frente da sua.
+  </li>
+ </ul>
+ <br/>
+ Bem é isso, até a próxima. Talvez eu faça um vídeo com isso em funcionamento depois.
+ <br/>
+ <br/>
+ <br/>
+ <div style="text-align: center">
+  <br/>
+  <a class="link link--external" href="http://www.condadobraveheart.com/forum/index.php?topic=4341.0" rel="nofollow ugc noopener" target="_blank">
+   Parte I
+  </a>
+  
+  <a class="link link--external" href="http://www.condadobraveheart.com/forum/index.php?topic=4346.0" rel="nofollow ugc noopener" target="_blank">
+   Parte II
+  </a>
+  
+  <b>
+   Parte III
+  </b>
+  ​
+ </div>
+</div>
+<hr/>
+<details>
+ <summary>
+  Comentários
+ </summary>
+ <div class="comment">
+  <div class="bbWrapper">
+   Interessante, mesmo já tendo mexido com o python eu não sabia dessa parte de criar packages e do PyPi. Não farei os exercícios pois tenho coisas para codar pra facul, mas boa sorte pra quem fizer.
+   <br/>
+   <br/>
+   Ótima iniciativa Passarinho.
+  </div>
+  <small class="author">
+   <a href="https://condadobraveheart.com/members/eranot.1081/">
+    Eranot
+   </a>
+   em
+   <time datetime="2018-05-26T22:07:00-0300">
+    26 de Maio de 2018 às 22:07.
+   </time>
+   <a href="https://condadobraveheart.com/threads/python-criando-um-updater-parte-3.3889/post-32788">
+    Comentário original
+   </a>
+  </small>
+  <hr/>
+ </div>
+ <div class="comment">
+  <div class="bbWrapper">
+   passando aqui só pra deixar aquele coração, uashuashauhsaushasha
+  </div>
+  <small class="author">
+   <a href="https://condadobraveheart.com/members/cross-maker.537/">
+    Cross Maker
+   </a>
+   em
+   <time datetime="2018-05-26T23:10:56-0300">
+    26 de Maio de 2018 às 23:10.
+   </time>
+   <a href="https://condadobraveheart.com/threads/python-criando-um-updater-parte-3.3889/post-32789">
+    Comentário original
+   </a>
+  </small>
+  <hr/>
+ </div>
+ <div class="comment">
+  <div class="bbWrapper">
+   <blockquote class="bbCodeBlock bbCodeBlock--expandable bbCodeBlock--quote js-expandWatch" data-attributes="" data-quote="Eranot" data-source="">
+    <div class="bbCodeBlock-title">
+     Eranot comentou:
+    </div>
+    <div class="bbCodeBlock-content">
+     <div class="bbCodeBlock-expandContent js-expandContent">
+      Interessante, mesmo já tendo mexido com o python eu não sabia dessa parte de criar packages e do PyPi. Não farei os exercícios pois tenho coisas para codar pra facul, mas boa sorte pra quem fizer.
+      <br/>
+      <br/>
+      Ótima iniciativa Passarinho.
+     </div>
+     <div class="bbCodeBlock-expandLink js-expandLink">
+      <a role="button" tabindex="0">
+       Clique para expandir...
+      </a>
+     </div>
+    </div>
+   </blockquote>
+   <br/>
+   Obrigado. Se eu achar mais coisas legais para fazer dou uma postada.
+   <br/>
+   <br/>
+   <blockquote class="bbCodeBlock bbCodeBlock--expandable bbCodeBlock--quote js-expandWatch" data-attributes="" data-quote="Cross Maker" data-source="">
+    <div class="bbCodeBlock-title">
+     Cross Maker comentou:
+    </div>
+    <div class="bbCodeBlock-content">
+     <div class="bbCodeBlock-expandContent js-expandContent">
+      passando aqui só pra deixar aquele coração, uashuashauhsaushasha
+     </div>
+     <div class="bbCodeBlock-expandLink js-expandLink">
+      <a role="button" tabindex="0">
+       Clique para expandir...
+      </a>
+     </div>
+    </div>
+   </blockquote>
+   <br/>
+   Valeu o/
+  </div>
+  <small class="author">
+   <a href="https://condadobraveheart.com/members/hermespasser.1086/">
+    HermesPasser
+   </a>
+   em
+   <time datetime="2018-05-27T14:46:14-0300">
+    27 de Maio de 2018 às 14:46.
+   </time>
+   <a href="https://condadobraveheart.com/threads/python-criando-um-updater-parte-3.3889/post-32790">
+    Comentário original
+   </a>
+  </small>
+  <hr/>
+ </div>
+</details>

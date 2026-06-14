@@ -1,0 +1,319 @@
+---
+title: "Condado Braveheart posts - Opção de cancelar nos menus & Botão flutuante de cancelar (mobile)"
+pagename: opcao-de-cancelar-nos-menus-botao-flutuante-de-cancelar-mobile.3815-pg01.html
+keywords: rpg maker
+show-comments: true
+layout: condado
+---
+<p>
+ Publicado originalmente em
+ <time datetime="2018-05-01T19:46:46-0300">
+  01 de Maio de 2018 às 19:46
+ </time>
+ no Condado Braveheart (
+ <a href="https://condadobraveheart.com/threads/opcao-de-cancelar-nos-menus-botao-flutuante-de-cancelar-mobile.3815/">
+  link
+ </a>
+ ).
+</p>
+<hr/>
+<div class="bbWrapper">
+ <div style="text-align: center">
+  <b>
+   Introdução
+  </b>
+  ​
+ </div>
+ Respondendo a esse
+ <a class="link link--external" href="http://www.condadobraveheart.com/forum/index.php?topic=4273.msg33163#msg33163" rel="nofollow ugc noopener" target="_blank">
+  pedido
+ </a>
+ venho aqui criar esses dois plugins, o primeiro (MenuCancelOption) que adiciona botões de sair em todos os menus que não tem e o segundo (MenuButtonCancel), adiciona um botão flutuante para cancelar os menus além de cancelar o double touch.
+ <br/>
+ <br/>
+ Para a mesma função na tela de títulos veja meu plugin
+ <a class="link link--external" href="http://www.condadobraveheart.com/forum/index.php?topic=3893.0" rel="nofollow ugc noopener" target="_blank">
+  Opção sair na tela de títulos
+ </a>
+ .
+ <br/>
+ <br/>
+ <div style="text-align: center">
+  <b>
+   Comandos
+  </b>
+  ​
+ </div>
+ <br/>
+ MenuCancelOption:
+ <br/>
+ <div class="bbCodeBlock bbCodeBlock--screenLimited bbCodeBlock--code">
+  <div class="bbCodeBlock-title">
+   Código:
+  </div>
+  <div class="bbCodeBlock-content" dir="ltr">
+   <pre class="bbCodeCode" data-lang="" data-xf-init="code-block" dir="ltr"><code>Cancel Text</code></pre>
+  </div>
+ </div>
+ Texto que aparece na opção de cancelar. Recomendo usar o mesmo que use em cancelar no menu de "fim de jogo" para manter a coerência.
+ <br/>
+ <br/>
+ MenuButtonOption:
+ <br/>
+ <div class="bbCodeBlock bbCodeBlock--screenLimited bbCodeBlock--code">
+  <div class="bbCodeBlock-title">
+   Código:
+  </div>
+  <div class="bbCodeBlock-content" dir="ltr">
+   <pre class="bbCodeCode" data-lang="" data-xf-init="code-block" dir="ltr"><code>Image</code></pre>
+  </div>
+ </div>
+ Nome da imagem (75x75) para servir de botão,se permanecer none então ele não usará uma. Precisa estar na pasta system e não deve conter uma extensão.
+ <br/>
+ <br/>
+ <div style="text-align: center">
+  <b>
+   Imagens
+  </b>
+  ​
+ </div>
+ Demonstram os menus alterados e como ficaram.
+ <br/>
+ <br/>
+ <details class="spoiler" title="Clique para revelar ou ocultar">
+  <summary>
+   Spoiler: MenuCancelOption
+  </summary>
+  <div class="details-body">
+   <script class="js-extraPhrases" type="application/json">
+    {
+				"lightbox_close": "Fechar",
+				"lightbox_next": "Next",
+				"lightbox_previous": "Previous",
+				"lightbox_error": "O conteúdo solicitado não pôde ser carregado. Por favor, tente novamente mais tarde.",
+				"lightbox_start_slideshow": "Start slideshow",
+				"lightbox_stop_slideshow": "Stop slideshow",
+				"lightbox_full_screen": "Tela cheia",
+				"lightbox_thumbnails": "Thumbnails",
+				"lightbox_download": "Baixar",
+				"lightbox_share": "Compartilhar",
+				"lightbox_zoom": "Zoom",
+				"lightbox_new_window": "Nova janela",
+				"lightbox_toggle_sidebar": "Toggle sidebar"
+			}
+   </script>
+   <div class="bbImageWrapper js-lbImage" data-lb-caption-extra-html="" data-lb-sidebar-href="" data-single-image="1" data-src="https://i.imgur.com/HioMeBt.png" data-type="image" title="HioMeBt.png">
+    <img alt="HioMeBt.png" class="bbImage" data-url="https://i.imgur.com/HioMeBt.png" data-zoom-target="1" height="" loading="lazy" src="https://i.imgur.com/HioMeBt.png" style="" title="" width=""/>
+   </div>
+   <br/>
+   <div class="bbImageWrapper js-lbImage" data-lb-caption-extra-html="" data-lb-sidebar-href="" data-single-image="1" data-src="https://i.imgur.com/rqUPILw.png" data-type="image" title="rqUPILw.png">
+    <img alt="rqUPILw.png" class="bbImage" data-url="https://i.imgur.com/rqUPILw.png" data-zoom-target="1" height="" loading="lazy" src="https://i.imgur.com/rqUPILw.png" style="" title="" width=""/>
+   </div>
+   <br/>
+   <div class="bbImageWrapper js-lbImage" data-lb-caption-extra-html="" data-lb-sidebar-href="" data-single-image="1" data-src="https://i.imgur.com/D9rYZMM.png" data-type="image" title="D9rYZMM.png">
+    <img alt="D9rYZMM.png" class="bbImage" data-url="https://i.imgur.com/D9rYZMM.png" data-zoom-target="1" height="" loading="lazy" src="https://i.imgur.com/D9rYZMM.png" style="" title="" width=""/>
+   </div>
+   <br/>
+   <div class="bbImageWrapper js-lbImage" data-lb-caption-extra-html="" data-lb-sidebar-href="" data-single-image="1" data-src="https://i.imgur.com/uXdrrPU.png" data-type="image" title="uXdrrPU.png">
+    <img alt="uXdrrPU.png" class="bbImage" data-url="https://i.imgur.com/uXdrrPU.png" data-zoom-target="1" height="" loading="lazy" src="https://i.imgur.com/uXdrrPU.png" style="" title="" width=""/>
+   </div>
+   <br/>
+   <div class="bbImageWrapper js-lbImage" data-lb-caption-extra-html="" data-lb-sidebar-href="" data-single-image="1" data-src="https://i.imgur.com/rS2a73j.png" data-type="image" title="rS2a73j.png">
+    <img alt="rS2a73j.png" class="bbImage" data-url="https://i.imgur.com/rS2a73j.png" data-zoom-target="1" height="" loading="lazy" src="https://i.imgur.com/rS2a73j.png" style="" title="" width=""/>
+   </div>
+   <br/>
+   <div class="bbImageWrapper js-lbImage" data-lb-caption-extra-html="" data-lb-sidebar-href="" data-single-image="1" data-src="https://i.imgur.com/sejZrud.png" data-type="image" title="sejZrud.png">
+    <img alt="sejZrud.png" class="bbImage" data-url="https://i.imgur.com/sejZrud.png" data-zoom-target="1" height="" loading="lazy" src="https://i.imgur.com/sejZrud.png" style="" title="" width=""/>
+   </div>
+   <br/>
+   <div class="bbImageWrapper js-lbImage" data-lb-caption-extra-html="" data-lb-sidebar-href="" data-single-image="1" data-src="https://i.imgur.com/3eLkK6Y.png" data-type="image" title="3eLkK6Y.png">
+    <img alt="3eLkK6Y.png" class="bbImage" data-url="https://i.imgur.com/3eLkK6Y.png" data-zoom-target="1" height="" loading="lazy" src="https://i.imgur.com/3eLkK6Y.png" style="" title="" width=""/>
+   </div>
+   <br/>
+   <div class="bbImageWrapper js-lbImage" data-lb-caption-extra-html="" data-lb-sidebar-href="" data-single-image="1" data-src="https://i.imgur.com/rW5qILO.png" data-type="image" title="rW5qILO.png">
+    <img alt="rW5qILO.png" class="bbImage" data-url="https://i.imgur.com/rW5qILO.png" data-zoom-target="1" height="" loading="lazy" src="https://i.imgur.com/rW5qILO.png" style="" title="" width=""/>
+   </div>
+   <br/>
+   <div class="bbImageWrapper js-lbImage" data-lb-caption-extra-html="" data-lb-sidebar-href="" data-single-image="1" data-src="https://i.imgur.com/YKadeMU.png" data-type="image" title="YKadeMU.png">
+    <img alt="YKadeMU.png" class="bbImage" data-url="https://i.imgur.com/YKadeMU.png" data-zoom-target="1" height="" loading="lazy" src="https://i.imgur.com/YKadeMU.png" style="" title="" width=""/>
+   </div>
+  </div>
+ </details>
+ <br/>
+ <details class="spoiler" title="Clique para revelar ou ocultar">
+  <summary>
+   Spoiler: MenuButtonOption
+  </summary>
+  <div class="details-body">
+   Fiquei com preguiça de mostrar todos então só deixarei uma imagem mas fique claro que ele atua em todos os menus que o outro atua e nos que ele não atua:
+   <br/>
+   <br/>
+   <div class="bbImageWrapper js-lbImage" data-lb-caption-extra-html="" data-lb-sidebar-href="" data-single-image="1" data-src="https://i.imgur.com/6KPw0Hn.png" data-type="image" title="6KPw0Hn.png">
+    <img alt="6KPw0Hn.png" class="bbImage" data-url="https://i.imgur.com/6KPw0Hn.png" data-zoom-target="1" height="" loading="lazy" src="https://i.imgur.com/6KPw0Hn.png" style="" title="" width=""/>
+   </div>
+   <br/>
+   <div class="bbImageWrapper js-lbImage" data-lb-caption-extra-html="" data-lb-sidebar-href="" data-single-image="1" data-src="https://i.imgur.com/Ziu1XNq.png" data-type="image" title="Ziu1XNq.png">
+    <img alt="Ziu1XNq.png" class="bbImage" data-url="https://i.imgur.com/Ziu1XNq.png" data-zoom-target="1" height="" loading="lazy" src="https://i.imgur.com/Ziu1XNq.png" style="" title="" width=""/>
+   </div>
+  </div>
+ </details>
+ <br/>
+ <div style="text-align: center">
+  <b>
+   Download
+  </b>
+  ​
+ </div>
+ MenuCancelOption no
+ <a class="link link--external" href="https://github.com/HermesPasser/RMMV-Plugins/blob/master/Other/MenuCancelOption.js" rel="nofollow ugc noopener" target="_blank">
+  GitHub
+ </a>
+ <br/>
+ MenuButtonOption no
+ <a class="link link--external" href="https://github.com/HermesPasser/RMMV-Plugins/blob/master/Other/MenuButtonCancel.js" rel="nofollow ugc noopener" target="_blank">
+  GitHub
+ </a>
+ <br/>
+ <br/>
+ Para mais de meus sistemas clique
+ <a class="link link--external" href="https://gladiocitrico.blogspot.com.br/2017/12/rpg-maker-mv-plugins.html" rel="nofollow ugc noopener" target="_blank">
+  aqui
+ </a>
+ .
+</div>
+<hr/>
+<details>
+ <summary>
+  Comentários
+ </summary>
+ <div class="comment">
+  <div class="bbWrapper">
+   quase o que eu queria, mas ele fica escondido em alguns menus
+   <img alt=":(" class="smilie smilie--emoji" data-shortname=":(" data-smilie="3" height="64" loading="lazy" src="https://cdn.jsdelivr.net/joypixels/assets/8.0/png/unicode/64/1f641.png" title="Frown    :(" width="64"/>
+   <br/>
+   O que atrapalha na hora que estiver no Touch Screen.
+   <br/>
+   <br/>
+   Outro bug que percebi: o Jogo se atrapalhou em algumas opções, por exemplo:
+   <br/>
+   Se eu selecionei a opção "Equipar" no menu "Itens" eu fico preso (mesmo selecionando outro Item).
+   <br/>
+   O Mesmo ocorre em "Habilidade".
+   <br/>
+   Se fizer o teste no Script usando somente o mouse (como se fosse o toque) irá entender o que digo.
+  </div>
+  <small class="author">
+   <a href="https://condadobraveheart.com/members/gvgl94.1798/">
+    gvgl94
+   </a>
+   em
+   <time datetime="2018-05-01T21:46:46-0300">
+    01 de Maio de 2018 às 21:46.
+   </time>
+   <a href="https://condadobraveheart.com/threads/opcao-de-cancelar-nos-menus-botao-flutuante-de-cancelar-mobile.3815/post-32283">
+    Comentário original
+   </a>
+  </small>
+  <hr/>
+ </div>
+ <div class="comment">
+  <div class="bbWrapper">
+   Eu retirei a opção que bloqueia o touch para impedir isso de acontecer e estou a criar um botão flutuante que cancela os menus no lugar.
+  </div>
+  <small class="author">
+   <a href="https://condadobraveheart.com/members/hermespasser.1086/">
+    HermesPasser
+   </a>
+   em
+   <time datetime="2018-05-02T18:06:31-0300">
+    02 de Maio de 2018 às 18:06.
+   </time>
+   <a href="https://condadobraveheart.com/threads/opcao-de-cancelar-nos-menus-botao-flutuante-de-cancelar-mobile.3815/post-32284">
+    Comentário original
+   </a>
+  </small>
+  <hr/>
+ </div>
+ <div class="comment">
+  <div class="bbWrapper">
+   É isso mesmo que eu quero, você captou o que eu pedi, um botão lá sempre!!
+   <img alt=":P" class="smilie smilie--emoji" data-shortname=":P" data-smilie="7" height="64" loading="lazy" src="https://cdn.jsdelivr.net/joypixels/assets/8.0/png/unicode/64/1f61b.png" title="Stick out tongue    :P" width="64"/>
+   almas:
+   <br/>
+   <s>
+    Só que deu ruim lá... Eu clico/toco e não acontece nada :c e não consigo voltar pelo botão X do teclado tbm...
+    <img :<br="" src="https://condadobraveheart.com/styles/default/xenforo/smilies/Roy/crying.gif" title=":Chorar"/>
+   </s>
+   <br/>
+   RESOLVI!! O tamanho da fonte que deu ruim
+   <img alt=":P" class="smilie smilie--emoji" data-shortname=":P" data-smilie="7" height="64" loading="lazy" src="https://cdn.jsdelivr.net/joypixels/assets/8.0/png/unicode/64/1f61b.png" title="Stick out tongue    :P" width="64"/>
+   (Divergência com o YEP Core Engine)
+   <br/>
+   Porém não é mais possível voltar pelo teclado, mas não me atrapalha!  :
+   <img alt="^^'" class="smilie" data-shortname="^^'" loading="lazy" src="https://condadobraveheart.com/styles/default/xenforo/smilies/Roy/^^'.gif" title="Gota de Suor    ^^'"/>
+   :
+   <br/>
+   <br/>
+   Uma sugestão: Poder escolher uma imagem para ficar no lugar do "?". tipo a que está em anexo
+   <br/>
+   <br/>
+   Mas se não tiver como já está Ótimo!!
+   <br/>
+   <br/>
+  </div>
+  <small class="author">
+   <a href="https://condadobraveheart.com/members/gvgl94.1798/">
+    gvgl94
+   </a>
+   em
+   <time datetime="2018-05-03T23:26:56-0300">
+    03 de Maio de 2018 às 23:26.
+   </time>
+   <a href="https://condadobraveheart.com/threads/opcao-de-cancelar-nos-menus-botao-flutuante-de-cancelar-mobile.3815/post-32285">
+    Comentário original
+   </a>
+  </small>
+  <hr/>
+ </div>
+ <div class="comment">
+  <div class="bbWrapper">
+   Aee
+  </div>
+  <small class="author">
+   <a href="https://condadobraveheart.com/members/gvgl94.1798/">
+    gvgl94
+   </a>
+   em
+   <time datetime="2018-05-04T19:06:20-0300">
+    04 de Maio de 2018 às 19:06.
+   </time>
+   <a href="https://condadobraveheart.com/threads/opcao-de-cancelar-nos-menus-botao-flutuante-de-cancelar-mobile.3815/post-32286">
+    Comentário original
+   </a>
+  </small>
+  <hr/>
+ </div>
+ <div class="comment">
+  <div class="bbWrapper">
+   Herms, tu é ninja demais! COMOPODE!?! :O
+   <br/>
+   <br/>
+   Parabéns pelo ótimo trabalho e desenvolvimento dos plugins! :3
+   <br/>
+   Ty pela força ajudando o membro também! \o
+  </div>
+  <small class="author">
+   <a href="https://condadobraveheart.com/members/ninek.148/">
+    NineK
+   </a>
+   em
+   <time datetime="2018-05-05T08:39:22-0300">
+    05 de Maio de 2018 às 8:39.
+   </time>
+   <a href="https://condadobraveheart.com/threads/opcao-de-cancelar-nos-menus-botao-flutuante-de-cancelar-mobile.3815/post-32287">
+    Comentário original
+   </a>
+  </small>
+  <hr/>
+ </div>
+</details>

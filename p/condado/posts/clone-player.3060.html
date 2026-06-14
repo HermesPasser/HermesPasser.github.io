@@ -1,0 +1,133 @@
+---
+title: "Condado Braveheart posts - Clone Player"
+pagename: clone-player.3060-pg01.html
+keywords: rpg maker
+show-comments: true
+layout: condado
+---
+<p>
+ Publicado originalmente em
+ <time datetime="2017-12-08T11:39:02-0200">
+  08 de Dezembro de 2017 às 11:39
+ </time>
+ no Condado Braveheart (
+ <a href="https://condadobraveheart.com/threads/clone-player.3060/">
+  link
+ </a>
+ ).
+</p>
+<hr/>
+<div class="bbWrapper">
+ <div style="text-align: center">
+  <b>
+   Introdução
+  </b>
+  ​
+ </div>
+ Primeiramente fiz esse sistema para a "Gincana: Fábrica do Noel", ele basicamente cria um clone do personagem no mapa que se move aleatóriamente.
+ <br/>
+ <br/>
+ <div style="text-align: center">
+  <b>
+   Comandos de Plugin
+  </b>
+  ​
+ </div>
+ <div class="bbCodeBlock bbCodeBlock--screenLimited bbCodeBlock--code">
+  <div class="bbCodeBlock-title">
+   Código:
+  </div>
+  <div class="bbCodeBlock-content" dir="ltr">
+   <pre class="bbCodeCode" data-lang="" data-xf-init="code-block" dir="ltr"><code>Clone &lt;id do evento&gt;</code></pre>
+  </div>
+ </div>
+ O evento que tem o id colocado no comando tornará-se o clone do personagem.
+ <br/>
+ <br/>
+ <div style="text-align: center">
+  <b>
+   Demonstração
+  </b>
+  ​
+ </div>
+ <div style="text-align: center">
+  <iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" frameborder="0" height="315" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/oKv7Fk4pAh0" title="YouTube video player" width="560">
+  </iframe>
+  <a src="https://www.youtube.com/watch?v=oKv7Fk4pAh0">
+   Abrir no Youtube
+  </a>
+  ​
+ </div>
+ <br/>
+ <div style="text-align: center">
+  <b>
+   Código
+  </b>
+  ​
+ </div>
+ <a class="link link--external" href="https://github.com/HermesPasser/RMMV-Plugins/blob/master/Condado%20Braveheart/Christmas%20Event/half%20useless/ClonePlayer.js" rel="nofollow ugc noopener" target="_blank">
+  aqui
+ </a>
+</div>
+<hr/>
+<details>
+ <summary>
+  Comentários
+ </summary>
+ <div class="comment">
+  <div class="bbWrapper">
+   <a href="https://condadobraveheart.com/members/hermespasser.1086/" title="HermesPasser [old id=1330]">
+    HermesPasser
+   </a>
+   <br/>
+   <br/>
+   O script ficou muito booom!!!
+   <br/>
+   <br/>
+   O código ficou simples e legível.
+   <br/>
+   <br/>
+   Apenas um ponto que notei, foi o uso de chaves quando se tem apenas uma instrução dentro do "IF".
+   <br/>
+   <br/>
+   <div class="bbCodeBlock bbCodeBlock--screenLimited bbCodeBlock--code">
+    <div class="bbCodeBlock-title">
+     Código:
+    </div>
+    <div class="bbCodeBlock-content" dir="ltr">
+     <pre class="bbCodeCode" data-lang="" data-xf-init="code-block" dir="ltr"><code>    if (command === 'Clone') {
+      createClone(parseInt(args[0]));
+        }</code></pre>
+    </div>
+   </div>
+   <br/>
+   Você poderia  omitir a chave quando se tem apenas uma instrução:
+   <br/>
+   <br/>
+   <div class="bbCodeBlock bbCodeBlock--screenLimited bbCodeBlock--code">
+    <div class="bbCodeBlock-title">
+     Código:
+    </div>
+    <div class="bbCodeBlock-content" dir="ltr">
+     <pre class="bbCodeCode" data-lang="" data-xf-init="code-block" dir="ltr"><code>    if (command === 'Clone')
+      createClone(parseInt(args[0]));</code></pre>
+    </div>
+   </div>
+   <br/>
+   Não vou retirar pontos por isso, pois não tem impacto na performance ou erro de codificação, é apenas uma melhoria na legibilidade do código.
+  </div>
+  <small class="author">
+   <a href="https://condadobraveheart.com/members/resque.634/">
+    Resque
+   </a>
+   em
+   <time datetime="2017-12-08T18:48:22-0200">
+    08 de Dezembro de 2017 às 18:48.
+   </time>
+   <a href="https://condadobraveheart.com/threads/clone-player.3060/post-26648">
+    Comentário original
+   </a>
+  </small>
+  <hr/>
+ </div>
+</details>

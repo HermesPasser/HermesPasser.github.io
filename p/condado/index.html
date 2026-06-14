@@ -1,0 +1,52 @@
+---
+title: Condado Braveheart posts
+pagename: condado-posts
+keywords: rpg maker
+description: Backups from my posts on the Condado Braveheart forum
+show-comments: true
+
+layout: condado
+---
+
+<label for="postSelector">Filtre por categoria (deixe vazio para listar todos)</label>
+<select id="postSelector" onchange="select(event)" multiple></select>
+<div id="postsWrapper"></div>
+
+<script>
+	void (async function () {
+		const r = await fetch("./posts.json");
+		const posts = await r.json();
+		const categories = new Set();
+		for (const post of posts) {
+			for (const category of post.categories) {
+				categories.add(category);
+			}
+
+			const p = document.createElement("p");
+			p["data-categories"] = post.categories.join(",");
+			const a = document.createElement("a");
+			a["href"] = post.file;
+			a.innerHTML = post.title;
+			p.append(a);
+			postsWrapper.append(p);
+		}
+
+		for (const category of categories) {
+			const option = document.createElement("option");
+			option.innerText = category;
+			postSelector.append(option);
+		}
+	})();
+
+	function select(event) {
+		const selectedCategories = Array.from(event.target.options)
+			.filter((o) => o.selected)
+			.map((o) => o.value);
+
+		for (const p of postsWrapper.getElementsByTagName("p")) {
+			const postCategories = p["data-categories"].split(",");
+			const match = selectedCategories.length === 0 || selectedCategories.some((s) => postCategories.includes(s));
+			p.hidden = !match;
+		}
+	}
+</script>

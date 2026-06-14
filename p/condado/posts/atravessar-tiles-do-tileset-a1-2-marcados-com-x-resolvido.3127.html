@@ -1,0 +1,243 @@
+---
+title: "Condado Braveheart posts - Atravessar tiles do tileset A1-2 marcados com X (resolvido)"
+pagename: atravessar-tiles-do-tileset-a1-2-marcados-com-x-resolvido.3127-pg01.html
+keywords: rpg maker
+show-comments: true
+layout: condado
+---
+<p>
+ Publicado originalmente em
+ <time datetime="2017-12-19T11:03:29-0200">
+  19 de Dezembro de 2017 às 11:03
+ </time>
+ no Condado Braveheart (
+ <a href="https://condadobraveheart.com/threads/atravessar-tiles-do-tileset-a1-2-marcados-com-x-resolvido.3127/">
+  link
+ </a>
+ ).
+</p>
+<hr/>
+<div class="bbWrapper">
+ Estou tentando reproduzir meus antigos mapas do XP no MV mas me deparei com um problema, a opção "quadrado" que tinha no XP não está mais disponível. Ela emulava uma parede permitindo que o personagem a passar por trás da parte de cima do tile mas não pela de baixo
+ <br/>
+ <div style="text-align: center">
+  <script class="js-extraPhrases" type="application/json">
+   {
+				"lightbox_close": "Fechar",
+				"lightbox_next": "Next",
+				"lightbox_previous": "Previous",
+				"lightbox_error": "O conteúdo solicitado não pôde ser carregado. Por favor, tente novamente mais tarde.",
+				"lightbox_start_slideshow": "Start slideshow",
+				"lightbox_stop_slideshow": "Stop slideshow",
+				"lightbox_full_screen": "Tela cheia",
+				"lightbox_thumbnails": "Thumbnails",
+				"lightbox_download": "Baixar",
+				"lightbox_share": "Compartilhar",
+				"lightbox_zoom": "Zoom",
+				"lightbox_new_window": "Nova janela",
+				"lightbox_toggle_sidebar": "Toggle sidebar"
+			}
+  </script>
+  <div class="bbImageWrapper js-lbImage" data-lb-caption-extra-html="" data-lb-sidebar-href="" data-single-image="1" data-src="https://3.bp.blogspot.com/-b2oUCEqlaog/WjkHBYII1jI/AAAAAAAAHnw/Z6TOudPfb_wPTNlNFRxf8FuwE316LcsxQCLcBGAs/s1600/Sem%2Bt%25C3%25ADtulo.png" data-type="image" title="Sem%2Bt%25C3%25ADtulo.png">
+   <img alt="Sem%2Bt%25C3%25ADtulo.png" class="bbImage" data-url="https://3.bp.blogspot.com/-b2oUCEqlaog/WjkHBYII1jI/AAAAAAAAHnw/Z6TOudPfb_wPTNlNFRxf8FuwE316LcsxQCLcBGAs/s1600/Sem%2Bt%25C3%25ADtulo.png" data-zoom-target="1" height="" loading="lazy" src="https://3.bp.blogspot.com/-b2oUCEqlaog/WjkHBYII1jI/AAAAAAAAHnw/Z6TOudPfb_wPTNlNFRxf8FuwE316LcsxQCLcBGAs/s1600/Sem%2Bt%25C3%25ADtulo.png" style="" title="" width=""/>
+  </div>
+ </div>
+ <br/>
+ Eu tentei resolver isso alterando as direções que ele pode andar no tile, mas a opção não está disponível para tilesets A1-2.
+ <br/>
+ <div style="text-align: center">
+  <div class="bbImageWrapper js-lbImage" data-lb-caption-extra-html="" data-lb-sidebar-href="" data-single-image="1" data-src="https://2.bp.blogspot.com/-GlU13pyjsJE/WjkJJefLaoI/AAAAAAAAHn8/YWne1Ujo1_QP1EjTF__yyp-PgISIkyW2gCLcBGAs/s1600/Sem%2Bt%25C3%25ADtulo2.png" data-type="image" title="Sem%2Bt%25C3%25ADtulo2.png">
+   <img alt="Sem%2Bt%25C3%25ADtulo2.png" class="bbImage" data-url="https://2.bp.blogspot.com/-GlU13pyjsJE/WjkJJefLaoI/AAAAAAAAHn8/YWne1Ujo1_QP1EjTF__yyp-PgISIkyW2gCLcBGAs/s1600/Sem%2Bt%25C3%25ADtulo2.png" data-zoom-target="1" height="" loading="lazy" src="https://2.bp.blogspot.com/-GlU13pyjsJE/WjkJJefLaoI/AAAAAAAAHn8/YWne1Ujo1_QP1EjTF__yyp-PgISIkyW2gCLcBGAs/s1600/Sem%2Bt%25C3%25ADtulo2.png" style="" title="" width=""/>
+  </div>
+  <br/>
+  Veja que a opção é presente para os autotiles do xp, mas não os seus "substitutos" no mv.​
+ </div>
+ <br/>
+ Por fim tentei usar o tile com o "X" mesmo, mas colocando por cima um evento passável, que basicamente é um evento que usa um tile passável do tileset como gráfico (com a opacidade em 0, claro).
+ <br/>
+ <div style="text-align: center">
+  <div class="bbImageWrapper js-lbImage" data-lb-caption-extra-html="" data-lb-sidebar-href="" data-single-image="1" data-src="https://4.bp.blogspot.com/-nD3zhdmj-WA/WjkNU7iwlRI/AAAAAAAAHoI/s7OGrMBUNEEpNQzI3up35fdmWbB7x24rgCLcBGAs/s1600/Sem%2Bt%25C3%25ADtulo3.png" data-type="image" title="Sem%2Bt%25C3%25ADtulo3.png">
+   <img alt="Sem%2Bt%25C3%25ADtulo3.png" class="bbImage" data-url="https://4.bp.blogspot.com/-nD3zhdmj-WA/WjkNU7iwlRI/AAAAAAAAHoI/s7OGrMBUNEEpNQzI3up35fdmWbB7x24rgCLcBGAs/s1600/Sem%2Bt%25C3%25ADtulo3.png" data-zoom-target="1" height="" loading="lazy" src="https://4.bp.blogspot.com/-nD3zhdmj-WA/WjkNU7iwlRI/AAAAAAAAHoI/s7OGrMBUNEEpNQzI3up35fdmWbB7x24rgCLcBGAs/s1600/Sem%2Bt%25C3%25ADtulo3.png" style="" title="" width=""/>
+  </div>
+ </div>
+ <br/>
+ Visto isso existe alguma maneira de eu poder fazer que o personagem passe por tiles com "X" sem ter que coloca-lo para "atravessar" (pois desse jeito ele atravessará qualquer coisa) e assim emular o efeito do "quadrado" do XP?
+</div>
+<hr/>
+<details>
+ <summary>
+  Comentários
+ </summary>
+ <div class="comment">
+  <div class="bbWrapper">
+   Você poderia fazer via Picture.
+   <br/>
+   É só cortar a parte do tile e colocar por cima, em um programa de edição de imagem.
+   <br/>
+   O problema é que seria um trabalho um pouco maior para colocar em um detalhe. Agora, se você pretende fazer isso em grande escala (se em muitos mapas você pretende fazer isso), acho que valeria a pena.
+   <br/>
+  </div>
+  <small class="author">
+   <a href="https://condadobraveheart.com/members/9155gabrielgap.918/">
+    9155gabrielgap
+   </a>
+   em
+   <time datetime="2017-12-19T12:19:30-0200">
+    19 de Dezembro de 2017 às 12:19.
+   </time>
+   <a href="https://condadobraveheart.com/threads/atravessar-tiles-do-tileset-a1-2-marcados-com-x-resolvido.3127/post-26928">
+    Comentário original
+   </a>
+  </small>
+  <hr/>
+ </div>
+ <div class="comment">
+  <div class="bbWrapper">
+   Realmente
+   <a href="https://condadobraveheart.com/members/9155gabrielgap.918/" title="9155gabrielgap [old id=1138]">
+    9155gabrielgap
+   </a>
+   , se essa for minha unica opção então é eu rever os meus level designs.
+   <br/>
+   Talvez eu tenha que pegar esses tiles e jogar no tileset B ou C e usar a moda antiga colocando por cima do resto, mas aí ocuparia um espaço desnecessário.
+  </div>
+  <small class="author">
+   <a href="https://condadobraveheart.com/members/hermespasser.1086/">
+    HermesPasser
+   </a>
+   em
+   <time datetime="2017-12-19T12:22:01-0200">
+    19 de Dezembro de 2017 às 12:22.
+   </time>
+   <a href="https://condadobraveheart.com/threads/atravessar-tiles-do-tileset-a1-2-marcados-com-x-resolvido.3127/post-26929">
+    Comentário original
+   </a>
+  </small>
+  <hr/>
+ </div>
+ <div class="comment">
+  <div class="bbWrapper">
+   Olá! Boa tarde!
+   <br/>
+   <br/>
+   <div style="text-align: justify">
+    <br/>
+    Tive o mesmo problema que você narra, no meu caso, eu consegui resolver com um "
+    <i>
+     plugin
+    </i>
+    ":
+    <a class="link link--external" href="http://yanfly.moe/2015/10/20/yep-18-region-restrictions/" rel="noopener" target="_blank">
+     Yanfly Region Restrictions
+    </a>
+    . Em suma, esse "
+    <i>
+     plugin
+    </i>
+    " permite que você determine a permissão de um "
+    <i>
+     tile
+    </i>
+    " por meio do "
+    <i>
+     Region ID
+    </i>
+    ", podendo ainda especificar que a permissão é para o jogador ou eventos.
+    <br/>
+    <br/>
+    Tem um vídeo que explica como o plugin funciona no próprio site do autor. Está em inglês.
+    <br/>
+    Qualquer dúvida estou a disposição.​
+   </div>
+   <br/>
+   <br/>
+   <div style="text-align: center">
+    <b>
+     Abraço.
+    </b>
+    ​
+   </div>
+  </div>
+  <small class="author">
+   <a href="https://condadobraveheart.com/members/dobberman.1102/">
+    Dobberman
+   </a>
+   em
+   <time datetime="2017-12-19T12:37:16-0200">
+    19 de Dezembro de 2017 às 12:37.
+   </time>
+   <a href="https://condadobraveheart.com/threads/atravessar-tiles-do-tileset-a1-2-marcados-com-x-resolvido.3127/post-26930">
+    Comentário original
+   </a>
+  </small>
+  <hr/>
+ </div>
+ <div class="comment">
+  <div class="bbWrapper">
+   Caro
+   <a href="https://condadobraveheart.com/members/dobberman.1102/" title="Dobberman [old id=1349]">
+    Dobberman
+   </a>
+   , eu literalmente estava programando isso agora, saber que alguém já programou isso antes irá matar meu trabalho. Desde já agradeço.
+   <br/>
+   <br/>
+   Edit: Metade do problema foi resolvido com
+   <a class="link link--external" href="http://www.condadobraveheart.com/forum/index.php?topic=3528" rel="nofollow ugc noopener" target="_blank">
+    isto
+   </a>
+   . Quando achar uma forma de forçar o tile a sobrepor o personagem aviso aqui.
+  </div>
+  <small class="author">
+   <a href="https://condadobraveheart.com/members/hermespasser.1086/">
+    HermesPasser
+   </a>
+   em
+   <time datetime="2017-12-19T12:38:43-0200">
+    19 de Dezembro de 2017 às 12:38.
+   </time>
+   <a href="https://condadobraveheart.com/threads/atravessar-tiles-do-tileset-a1-2-marcados-com-x-resolvido.3127/post-26931">
+    Comentário original
+   </a>
+  </small>
+  <hr/>
+ </div>
+ <div class="comment">
+  <div class="bbWrapper">
+   O problema foi resolvido por meio do plugin citado no meu comentário acima. Favor trancar o tópico
+  </div>
+  <small class="author">
+   <a href="https://condadobraveheart.com/members/hermespasser.1086/">
+    HermesPasser
+   </a>
+   em
+   <time datetime="2017-12-21T15:51:57-0200">
+    21 de Dezembro de 2017 às 15:51.
+   </time>
+   <a href="https://condadobraveheart.com/threads/atravessar-tiles-do-tileset-a1-2-marcados-com-x-resolvido.3127/post-26932">
+    Comentário original
+   </a>
+  </small>
+  <hr/>
+ </div>
+ <div class="comment">
+  <div class="bbWrapper">
+   O tópico foi trancado pois o problema foi solucionado.
+   <br/>
+   <br/>
+   Obrigada a todos que ajudaram de alguma forma :3
+  </div>
+  <small class="author">
+   <a href="https://condadobraveheart.com/members/ninek.148/">
+    NineK
+   </a>
+   em
+   <time datetime="2017-12-21T16:04:11-0200">
+    21 de Dezembro de 2017 às 16:04.
+   </time>
+   <a href="https://condadobraveheart.com/threads/atravessar-tiles-do-tileset-a1-2-marcados-com-x-resolvido.3127/post-26933">
+    Comentário original
+   </a>
+  </small>
+  <hr/>
+ </div>
+</details>

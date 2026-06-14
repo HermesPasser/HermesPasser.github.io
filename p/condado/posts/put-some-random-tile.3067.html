@@ -1,0 +1,214 @@
+---
+title: "Condado Braveheart posts - Put Some Random Tile"
+pagename: put-some-random-tile.3067-pg01.html
+keywords: rpg maker
+show-comments: true
+layout: condado
+---
+<p>
+ Publicado originalmente em
+ <time datetime="2017-12-09T09:25:43-0200">
+  09 de Dezembro de 2017 às 9:25
+ </time>
+ no Condado Braveheart (
+ <a href="https://condadobraveheart.com/threads/put-some-random-tile.3067/">
+  link
+ </a>
+ ).
+</p>
+<hr/>
+<div class="bbWrapper">
+ <div style="text-align: center">
+  <b>
+   Introdução
+  </b>
+  ​
+ </div>
+ Primeiramente fiz esse sistema para a "Gincana: Fábrica do Noel", ele basicamente adiciona um tile aleatório em um lugar aleatório do mapa. Ele não tem aplicação prática mais satisfaz os requisitos "Criar um script que clone ou adicione uma tile em qualquer lugar do mapa."
+ <br/>
+ <br/>
+ <div style="text-align: center">
+  <b>
+   Demonstração
+  </b>
+  ​
+ </div>
+ <div style="text-align: center">
+  <iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" frameborder="0" height="315" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/sUAdlFu8Uvg" title="YouTube video player" width="560">
+  </iframe>
+  <a src="https://www.youtube.com/watch?v=sUAdlFu8Uvg">
+   Abrir no Youtube
+  </a>
+  ​
+ </div>
+ <br/>
+ <div style="text-align: center">
+  <b>
+   Código
+  </b>
+  ​
+ </div>
+ <a class="link link--external" href="https://github.com/HermesPasser/RMMV-Plugins/blob/master/Condado%20Braveheart/Christmas%20Event/useless/PutSomeRandomTile.js" rel="nofollow ugc noopener" target="_blank">
+  aqui
+ </a>
+</div>
+<hr/>
+<details>
+ <summary>
+  Comentários
+ </summary>
+ <div class="comment">
+  <div class="bbWrapper">
+   <a href="https://condadobraveheart.com/members/hermespasser.1086/" title="HermesPasser [old id=1330]">
+    HermesPasser
+   </a>
+   <br/>
+   <br/>
+   Gostei bastante do script, achei bem legal, simples e fácil.
+   <br/>
+   <br/>
+   Notei alguns pontos que podem ser melhorados em relação ao código.
+   <br/>
+   <br/>
+   <div class="bbCodeBlock bbCodeBlock--screenLimited bbCodeBlock--code">
+    <div class="bbCodeBlock-title">
+     Código:
+    </div>
+    <div class="bbCodeBlock-content" dir="ltr">
+     <pre class="bbCodeCode" data-lang="" data-xf-init="code-block" dir="ltr"><code>Tilemap.prototype._readMapData = function(x, y, z) {
+    if (this._mapData) {
+      var width = this._mapWidth;
+      var height = this._mapHeight;
+
+      if (this.horizontalWrap) {
+        x = x.mod(width);
+      }
+      if (this.verticalWrap) {
+        y = y.mod(height);
+      }
+      if (x &gt;= 0 &amp;&amp; x &lt; width &amp;&amp; y &gt;= 0 &amp;&amp; y &lt; height) {
+        
+        // This do the magic, baby...
+        if (xToBeChanged &gt;= 0 &amp;&amp; xToBeChanged &lt; width &amp;&amp; yToBeChanged &gt;= 0 &amp;&amp; yToBeChanged &lt; height)
+          if (x == xToBeChanged &amp;&amp; y == yToBeChanged)
+            return tileId;
+        
+        return this._mapData[(z * height + y) * width + x] || 0;
+      } else {
+        return 0;
+      }
+    } else {
+      return 0;
+    }
+  };</code></pre>
+    </div>
+   </div>
+   <br/>
+   No código acima, você poderia retirar toda a lógica do "if (this._mapData)" deixando apenas o retorno (return 0) caso a condição seja falsa.
+   <br/>
+   <br/>
+   EX:
+   <br/>
+   <br/>
+   <div class="bbCodeBlock bbCodeBlock--screenLimited bbCodeBlock--code">
+    <div class="bbCodeBlock-title">
+     Código:
+    </div>
+    <div class="bbCodeBlock-content" dir="ltr">
+     <pre class="bbCodeCode" data-lang="" data-xf-init="code-block" dir="ltr"><code>Tilemap.prototype._readMapData = function(x, y, z) {
+  if (!this._mapData)
+    return 0
+
+  var width = this._mapWidth;
+  var height = this._mapHeight;
+  ...</code></pre>
+    </div>
+   </div>
+   <br/>
+   --------------------
+   <br/>
+   <br/>
+   Você também poderia usar mais funções para partes do código que sejam responsáveis por lógicas de processamento.
+   <br/>
+   <br/>
+   <div class="bbCodeBlock bbCodeBlock--screenLimited bbCodeBlock--code">
+    <div class="bbCodeBlock-title">
+     Código:
+    </div>
+    <div class="bbCodeBlock-content" dir="ltr">
+     <pre class="bbCodeCode" data-lang="" data-xf-init="code-block" dir="ltr"><code>if (x &gt;= 0 &amp;&amp; x &lt; width &amp;&amp; y &gt;= 0 &amp;&amp; y &lt; height) {       
+  // This do the magic, baby...
+  if (xToBeChanged &gt;= 0 &amp;&amp; xToBeChanged &lt; width &amp;&amp; yToBeChanged &gt;= 0 &amp;&amp; yToBeChanged &lt; height)
+    if (x == xToBeChanged &amp;&amp; y == yToBeChanged)
+      return tileId;
+  
+  return this._mapData[(z * height + y) * width + x] || 0;
+} else {
+  return 0;
+}</code></pre>
+    </div>
+   </div>
+   <br/>
+   Você poderia alterar o código acima para:
+   <br/>
+   <br/>
+   <div class="bbCodeBlock bbCodeBlock--screenLimited bbCodeBlock--code">
+    <div class="bbCodeBlock-title">
+     Código:
+    </div>
+    <div class="bbCodeBlock-content" dir="ltr">
+     <pre class="bbCodeCode" data-lang="" data-xf-init="code-block" dir="ltr"><code>  Tilemap.prototype._readMapData = function(x, y, z) {
+    if (this._mapData) {
+      var width = this._mapWidth;
+      var height = this._mapHeight;
+
+      if (this.horizontalWrap)
+        x = x.mod(width);
+
+      if (this.verticalWrap) {
+        y = y.mod(height);
+      
+      cloneTile(x, y, width, height, z);
+    } else {
+      return 0;
+    }
+  };</code></pre>
+    </div>
+   </div>
+   <br/>
+   <div class="bbCodeBlock bbCodeBlock--screenLimited bbCodeBlock--code">
+    <div class="bbCodeBlock-title">
+     Código:
+    </div>
+    <div class="bbCodeBlock-content" dir="ltr">
+     <pre class="bbCodeCode" data-lang="" data-xf-init="code-block" dir="ltr"><code>function cloneTile(x, y, width, height, z){
+  if (x &gt;= 0 &amp;&amp; x &lt; width &amp;&amp; y &gt;= 0 &amp;&amp; y &lt; height) {
+      
+      // This do the magic, baby...
+      if (xToBeChanged &gt;= 0 &amp;&amp; xToBeChanged &lt; width &amp;&amp; yToBeChanged &gt;= 0 &amp;&amp; yToBeChanged &lt; height)
+        if (x == xToBeChanged &amp;&amp; y == yToBeChanged)
+          return tileId;
+      
+      return this._mapData[(z * height + y) * width + x] || 0;
+    } else {
+      return 0;
+    }
+}</code></pre>
+    </div>
+   </div>
+  </div>
+  <small class="author">
+   <a href="https://condadobraveheart.com/members/resque.634/">
+    Resque
+   </a>
+   em
+   <time datetime="2017-12-10T15:58:55-0200">
+    10 de Dezembro de 2017 às 15:58.
+   </time>
+   <a href="https://condadobraveheart.com/threads/put-some-random-tile.3067/post-26672">
+    Comentário original
+   </a>
+  </small>
+  <hr/>
+ </div>
+</details>

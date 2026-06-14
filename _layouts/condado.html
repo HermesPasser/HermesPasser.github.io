@@ -1,0 +1,13 @@
+---
+layout: default
+---
+
+<link rel="stylesheet" type="text/css" href="{{site.url}}/{{site.baseurl}}css/condado.css" />
+<br />
+<br />
+
+{% if page.url contains "/posts/" %}
+<a href="../">Back to posts</a>
+{% endif %}
+
+<div lang="pt-br">{{ content }}</div>

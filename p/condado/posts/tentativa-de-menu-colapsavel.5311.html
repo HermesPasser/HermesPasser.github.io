@@ -1,0 +1,470 @@
+---
+title: "Condado Braveheart posts - Tentativa de menu colapsável"
+pagename: tentativa-de-menu-colapsavel.5311-pg01.html
+keywords: rpg maker
+show-comments: true
+layout: condado
+---
+<p>
+ Publicado originalmente em
+ <time datetime="2020-02-17T19:15:03-0300">
+  17 de Fevereiro de 2020 às 19:15
+ </time>
+ no Condado Braveheart (
+ <a href="https://condadobraveheart.com/threads/tentativa-de-menu-colapsavel.5311/">
+  link
+ </a>
+ ).
+</p>
+<hr/>
+<div class="bbWrapper">
+ Então, recentemente eu resolvi tentar criar um meno colapsável como o do FF, já que não defini a arquitetura do menu bem e o código ta bem bagunçado (preciso refatorar) e para instancia-lo é mais um boilerplate. Ele ainda ta incompleto e bastante quebrado mas ainda acho legal compartilhar com vocês o meu progresso enquanto faço ele de alguma forma funcional.
+ <br/>
+ <br/>
+ Fiz ele baseado em windowskin igual o RM:
+ <br/>
+ <div style="text-align: center">
+  <script class="js-extraPhrases" type="application/json">
+   {
+				"lightbox_close": "Fechar",
+				"lightbox_next": "Next",
+				"lightbox_previous": "Previous",
+				"lightbox_error": "O conteúdo solicitado não pôde ser carregado. Por favor, tente novamente mais tarde.",
+				"lightbox_start_slideshow": "Start slideshow",
+				"lightbox_stop_slideshow": "Stop slideshow",
+				"lightbox_full_screen": "Tela cheia",
+				"lightbox_thumbnails": "Thumbnails",
+				"lightbox_download": "Baixar",
+				"lightbox_share": "Compartilhar",
+				"lightbox_zoom": "Zoom",
+				"lightbox_new_window": "Nova janela",
+				"lightbox_toggle_sidebar": "Toggle sidebar"
+			}
+  </script>
+  <div class="bbImageWrapper js-lbImage" data-lb-caption-extra-html="" data-lb-sidebar-href="" data-single-image="1" data-src="https://i.imgur.com/prMmYmc.png" data-type="image" title="prMmYmc.png">
+   <img alt="prMmYmc.png" class="bbImage" data-url="https://i.imgur.com/prMmYmc.png" data-zoom-target="1" height="" loading="lazy" src="https://i.imgur.com/prMmYmc.png" style="" title="" width=""/>
+  </div>
+  <br/>
+  A windowskin
+  <br/>
+  ​
+ </div>
+ <br/>
+ <div style="text-align: center">
+  <div class="bbImageWrapper js-lbImage" data-lb-caption-extra-html="" data-lb-sidebar-href="" data-single-image="1" data-src="https://i.imgur.com/6wv28VP.png" data-type="image" title="6wv28VP.png">
+   <img alt="6wv28VP.png" class="bbImage" data-url="https://i.imgur.com/6wv28VP.png" data-zoom-target="1" height="" loading="lazy" src="https://i.imgur.com/6wv28VP.png" style="" title="" width=""/>
+  </div>
+  <br/>
+  O menu
+  <br/>
+  ​
+ </div>
+ <br/>
+ A próxima coisa que irei fazer é colocar uma seta indicando que uma opção tem submenus e refatorar (para me guiar vou ver como o RM implementa o dele)
+ <br/>
+ <br/>
+ <a class="link link--external" href="https://hermespasser.github.io/p/ramu/norepo/menu/menu.html?d=d" rel="nofollow ugc noopener" target="_blank">
+  Aqui
+ </a>
+ você pode brincar com o menu,
+ <b>
+  AWSD
+ </b>
+ move o cursor,
+ <b>
+  Q
+ </b>
+ seleciona e
+ <b>
+  E
+ </b>
+ cancela. Note que tem algum bug na implementação (ou na engine, how knows) que faz com que você tenha que apertar o botão duas vezes para pressionar o botão.
+ <br/>
+ <br/>
+ Por sinal, eu absolutamente não planejo usar esse menu em absolutamente nenhum lugar e nem acredito que alguém (com bom senso) vá usá-lo, o que faz todo o meu esforço puro masoquismo
+</div>
+<hr/>
+<details>
+ <summary>
+  Comentários
+ </summary>
+ <div class="comment">
+  <div class="bbWrapper">
+   Acho que levei o verbo BRINCAR muito a sério e sai apertando quase tudo aqui. Descobri que quando presisono o Q, o navegador mostra um popup com o nome do comando e pressiono E, o menu some para nowhere!! Hahahahaha
+   <br/>
+   <br/>
+   Achei bacana você estar se guiando pelo funcionamento dos menus do RM!
+  </div>
+  <small class="author">
+   <a href="https://condadobraveheart.com/members/eliyud.2357/">
+    Eliyud
+   </a>
+   em
+   <time datetime="2020-02-18T08:46:23-0300">
+    18 de Fevereiro de 2020 às 8:46.
+   </time>
+   <a href="https://condadobraveheart.com/threads/tentativa-de-menu-colapsavel.5311/post-41546">
+    Comentário original
+   </a>
+  </small>
+  <hr/>
+ </div>
+ <div class="comment">
+  <div class="bbWrapper">
+   <blockquote class="bbCodeBlock bbCodeBlock--expandable bbCodeBlock--quote js-expandWatch" data-attributes="" data-quote="Eliyud" data-source="">
+    <div class="bbCodeBlock-title">
+     Eliyud comentou:
+    </div>
+    <div class="bbCodeBlock-content">
+     <div class="bbCodeBlock-expandContent js-expandContent">
+      Descobri que quando presisono o Q, o navegador mostra um popup com o nome do comando e pressiono E, o menu some para nowhere!! Hahahahaha
+     </div>
+     <div class="bbCodeBlock-expandLink js-expandLink">
+      <a role="button" tabindex="0">
+       Clique para expandir...
+      </a>
+     </div>
+    </div>
+   </blockquote>
+   <br/>
+   É que setei E para acionar o evento de cancelamento, e isso fecha o menu atualmente aberto, deixando vazio hehe
+   <br/>
+   <br/>
+   <br/>
+   <br/>
+   Dei uma mexida, melhorei um pouco a base de código e adicionei o indicador de que uma opção tem um sub menu.
+   <br/>
+   <br/>
+   <div style="text-align: center">
+    <div class="bbImageWrapper js-lbImage" data-lb-caption-extra-html="" data-lb-sidebar-href="" data-single-image="1" data-src="https://i.imgur.com/sJnZi5L.png" data-type="image" title="sJnZi5L.png">
+     <img alt="sJnZi5L.png" class="bbImage" data-url="https://i.imgur.com/sJnZi5L.png" data-zoom-target="1" height="" loading="lazy" src="https://i.imgur.com/sJnZi5L.png" style="" title="" width=""/>
+    </div>
+    <br/>
+    ​
+   </div>
+   <br/>
+   Para a próxima mexida quero adicionar alguma animação para o menu e para o indicador, mais opções de customização na windowskin e suporte ao mouse também
+  </div>
+  <small class="author">
+   <a href="https://condadobraveheart.com/members/hermespasser.1086/">
+    HermesPasser
+   </a>
+   em
+   <time datetime="2020-02-18T16:22:33-0300">
+    18 de Fevereiro de 2020 às 16:22.
+   </time>
+   <a href="https://condadobraveheart.com/threads/tentativa-de-menu-colapsavel.5311/post-41547">
+    Comentário original
+   </a>
+  </small>
+  <hr/>
+ </div>
+ <div class="comment">
+  <div class="bbWrapper">
+   Confesso que eu, curiosamente, tentei clicar nos comandos com o mouse! HAHAHAHA
+   <br/>
+   <br/>
+   Esse menu vai ser utilizado em algum software ou você só está praticando?
+  </div>
+  <small class="author">
+   <a href="https://condadobraveheart.com/members/eliyud.2357/">
+    Eliyud
+   </a>
+   em
+   <time datetime="2020-02-18T17:24:43-0300">
+    18 de Fevereiro de 2020 às 17:24.
+   </time>
+   <a href="https://condadobraveheart.com/threads/tentativa-de-menu-colapsavel.5311/post-41548">
+    Comentário original
+   </a>
+  </small>
+  <hr/>
+ </div>
+ <div class="comment">
+  <div class="bbWrapper">
+   Não tá rodando no meu navegador ._.
+  </div>
+  <small class="author">
+   <a href="https://condadobraveheart.com/members/eranot.1081/">
+    Eranot
+   </a>
+   em
+   <time datetime="2020-02-18T18:40:36-0300">
+    18 de Fevereiro de 2020 às 18:40.
+   </time>
+   <a href="https://condadobraveheart.com/threads/tentativa-de-menu-colapsavel.5311/post-41549">
+    Comentário original
+   </a>
+  </small>
+  <hr/>
+ </div>
+ <div class="comment">
+  <div class="bbWrapper">
+   <blockquote class="bbCodeBlock bbCodeBlock--expandable bbCodeBlock--quote js-expandWatch" data-attributes="" data-quote="Eliyud" data-source="">
+    <div class="bbCodeBlock-title">
+     Eliyud comentou:
+    </div>
+    <div class="bbCodeBlock-content">
+     <div class="bbCodeBlock-expandContent js-expandContent">
+      Confesso que eu, curiosamente, tentei clicar nos comandos com o mouse! HAHAHAHA
+      <br/>
+      <br/>
+      Esse menu vai ser utilizado em algum software ou você só está praticando?
+     </div>
+     <div class="bbCodeBlock-expandLink js-expandLink">
+      <a role="button" tabindex="0">
+       Clique para expandir...
+      </a>
+     </div>
+    </div>
+   </blockquote>
+   <br/>
+   Não, eu absolutamente não tenho nenhum plano de usar ele. Comecei a faze-lo pois tenho muito tempo livre na faculdade (além de que ser pego codando algo não relacionado a matéria é muito melhor do que  jogando brutal doom).
+   <br/>
+   <br/>
+   Mas se o resultado acabar sendo muito bom posso acabar incorporando esse menu no
+   <a class="link link--external" href="http://goo.gl/tmYjpE" rel="nofollow ugc noopener" target="_blank">
+    ApathyCloud
+   </a>
+   (
+   <a class="link link--external" href="https://youtu.be/rYPvj3JWyBc?t=43" rel="nofollow ugc noopener" target="_blank">
+    este
+   </a>
+   ), mesmo que ache que o estilos de menu que programei para ele seja muito mais apelativo mesmo que mais simplista.
+   <br/>
+   <br/>
+   <br/>
+   <br/>
+   <a href="https://condadobraveheart.com/members/eranot.1081/" title="Eranot [old id=1324]">
+    Eranot
+   </a>
+   <br/>
+   <br/>
+   O eranão poderia me dizer qual o seu navegador? Nesse projeto em especifico usei e abusei de funções novas do js que talvez não estejam disponíveis na versão atual do seu navegador. Via de regra sempre acabo escrevendo códigos chrome-first e se realmente quero distribuí-lo passo em um babel mas esse aqui foi só algo que fiz para matar o tempo.
+  </div>
+  <small class="author">
+   <a href="https://condadobraveheart.com/members/hermespasser.1086/">
+    HermesPasser
+   </a>
+   em
+   <time datetime="2020-02-18T20:28:15-0300">
+    18 de Fevereiro de 2020 às 20:28.
+   </time>
+   <a href="https://condadobraveheart.com/threads/tentativa-de-menu-colapsavel.5311/post-41550">
+    Comentário original
+   </a>
+  </small>
+  <hr/>
+ </div>
+ <div class="comment">
+  <div class="bbWrapper">
+   Acabei de atualizar meu Chrome pra versão 80.algumacoisa, mas tô rodando ele no Debian, então talvez seja isso (mas não deveria ._.)
+  </div>
+  <small class="author">
+   <a href="https://condadobraveheart.com/members/eranot.1081/">
+    Eranot
+   </a>
+   em
+   <time datetime="2020-02-18T21:06:26-0300">
+    18 de Fevereiro de 2020 às 21:06.
+   </time>
+   <a href="https://condadobraveheart.com/threads/tentativa-de-menu-colapsavel.5311/post-41551">
+    Comentário original
+   </a>
+  </small>
+  <hr/>
+ </div>
+ <div class="comment">
+  <div class="bbWrapper">
+   <blockquote class="bbCodeBlock bbCodeBlock--expandable bbCodeBlock--quote js-expandWatch" data-attributes="" data-quote="Eranot" data-source="">
+    <div class="bbCodeBlock-title">
+     Eranot comentou:
+    </div>
+    <div class="bbCodeBlock-content">
+     <div class="bbCodeBlock-expandContent js-expandContent">
+      Acabei de atualizar meu Chrome pra versão 80.algumacoisa, mas tô rodando ele no Debian, então talvez seja isso (mas não deveria ._.)
+     </div>
+     <div class="bbCodeBlock-expandLink js-expandLink">
+      <a role="button" tabindex="0">
+       Clique para expandir...
+      </a>
+     </div>
+    </div>
+   </blockquote>
+   <br/>
+   Pior que não é a primeira vez que você me relata de minhas demos não funcionando. Poderia mostrar o stacktrace na próxima vez?
+   <br/>
+   <br/>
+   <br/>
+   <br/>
+   <b>
+    EDIT:
+   </b>
+   Adicionado suporte ao mouse!
+   <br/>
+   <br/>
+   Adicionar suporte ao mouse foi relativamente fácil já que eu já tinha uma interface para isso porém eu to começando a ter que estender a arquitetura da ramu para ela se adequar a forma que quero manter o menu e isso ta virando um boilerplate. Só faltou adicionar a opção de cancelar ao clicar com o botão direito que só esqueci que existia.
+   <br/>
+   <br/>
+   Por sinal,
+   <a class="link link--external" href="https://github.com/HermesPasser/ramuscripts/tree/develop/menu" rel="nofollow ugc noopener" target="_blank">
+    aqui está o source
+   </a>
+  </div>
+  <small class="author">
+   <a href="https://condadobraveheart.com/members/hermespasser.1086/">
+    HermesPasser
+   </a>
+   em
+   <time datetime="2020-02-19T17:18:45-0300">
+    19 de Fevereiro de 2020 às 17:18.
+   </time>
+   <a href="https://condadobraveheart.com/threads/tentativa-de-menu-colapsavel.5311/post-41552">
+    Comentário original
+   </a>
+  </small>
+  <hr/>
+ </div>
+ <div class="comment">
+  <div class="bbWrapper">
+   Atualizei o menu, agora
+   <br/>
+   -  Se pode definir o bg pela windowskin
+   <br/>
+   - O menu não seleciona "opções vazias"
+   <br/>
+   <br/>
+   Ele está assim agora:
+   <br/>
+   <div class="bbImageWrapper js-lbImage" data-lb-caption-extra-html="" data-lb-sidebar-href="" data-single-image="1" data-src="https://i.imgur.com/PnqRh7x.png" data-type="image" title="PnqRh7x.png">
+    <img alt="PnqRh7x.png" class="bbImage" data-url="https://i.imgur.com/PnqRh7x.png" data-zoom-target="1" height="" loading="lazy" src="https://i.imgur.com/PnqRh7x.png" style="" title="" width=""/>
+   </div>
+   <br/>
+   <br/>
+   E a windowskin assim:
+   <br/>
+   <div class="bbImageWrapper js-lbImage" data-lb-caption-extra-html="" data-lb-sidebar-href="" data-single-image="1" data-src="https://i.imgur.com/lEP9Rjn.png" data-type="image" title="lEP9Rjn.png">
+    <img alt="lEP9Rjn.png" class="bbImage" data-url="https://i.imgur.com/lEP9Rjn.png" data-zoom-target="1" height="" loading="lazy" src="https://i.imgur.com/lEP9Rjn.png" style="" title="" width=""/>
+   </div>
+   <br/>
+   <br/>
+   Coisas que eu gostaria de fazer:
+   <br/>
+   - Fazer o botão direito do mouse cancelar assim como acontece com o botão
+   <b>
+    E
+   </b>
+   <br/>
+   -  Arrumar o bug que não permite que você selecione a opção pré selecionada com o mouse até você move-lo para outra e voltar
+   <br/>
+   - Desenhar as bordas das opções individualmente e não por windowskin (para elas não esticarem)
+   <br/>
+   - Melhorar a base de código e arranjar uma forma mais prática de criar os botões
+   <br/>
+   <br/>
+   Dificilmente vou fazer qualquer uma dessas coisas anyway já que estou meio satisfeito com o resultado
+  </div>
+  <small class="author">
+   <a href="https://condadobraveheart.com/members/hermespasser.1086/">
+    HermesPasser
+   </a>
+   em
+   <time datetime="2020-02-25T10:30:01-0300">
+    25 de Fevereiro de 2020 às 10:30.
+   </time>
+   <a href="https://condadobraveheart.com/threads/tentativa-de-menu-colapsavel.5311/post-41553">
+    Comentário original
+   </a>
+  </small>
+  <hr/>
+ </div>
+ <div class="comment">
+  <div class="bbWrapper">
+   Opa, agora sim tá funcionando aqui, sendo que não mudei nada no navegador ._.
+   <br/>
+   Achei bacana, só tive um bugzinho que as vezes o Voltar no submenu não tava funcionando.
+  </div>
+  <small class="author">
+   <a href="https://condadobraveheart.com/members/eranot.1081/">
+    Eranot
+   </a>
+   em
+   <time datetime="2020-02-25T15:28:37-0300">
+    25 de Fevereiro de 2020 às 15:28.
+   </time>
+   <a href="https://condadobraveheart.com/threads/tentativa-de-menu-colapsavel.5311/post-41554">
+    Comentário original
+   </a>
+  </small>
+  <hr/>
+ </div>
+ <div class="comment">
+  <div class="bbWrapper">
+   <blockquote class="bbCodeBlock bbCodeBlock--expandable bbCodeBlock--quote js-expandWatch" data-attributes="" data-quote="Eranot" data-source="">
+    <div class="bbCodeBlock-title">
+     Eranot comentou:
+    </div>
+    <div class="bbCodeBlock-content">
+     <div class="bbCodeBlock-expandContent js-expandContent">
+      Opa, agora sim tá funcionando aqui, sendo que não mudei nada no navegador ._.
+      <br/>
+      Achei bacana, só tive um bugzinho que as vezes o Voltar no submenu não tava funcionando.
+     </div>
+     <div class="bbCodeBlock-expandLink js-expandLink">
+      <a role="button" tabindex="0">
+       Clique para expandir...
+      </a>
+     </div>
+    </div>
+   </blockquote>
+   <br/>
+   É, vi que ele ta bugando com o mouse.  Provavelmente é alguma coisa estupida que deixei passar (se pá fiz algo de errado no calculo que encontra a área clicada no canvas).
+   <br/>
+   <br/>
+   Agora o do porque de estar funcionando é um dos grandes mistérios do mundo. Vou dar um diff no que mudou desde o último post para ver se acho alguma pista.
+  </div>
+  <small class="author">
+   <a href="https://condadobraveheart.com/members/hermespasser.1086/">
+    HermesPasser
+   </a>
+   em
+   <time datetime="2020-02-25T16:33:17-0300">
+    25 de Fevereiro de 2020 às 16:33.
+   </time>
+   <a href="https://condadobraveheart.com/threads/tentativa-de-menu-colapsavel.5311/post-41555">
+    Comentário original
+   </a>
+  </small>
+  <hr/>
+ </div>
+ <div class="comment">
+  <div class="bbWrapper">
+   Voltei \o/
+   <br/>
+   <br/>
+   Algo que totalmente faltou e só percebi recentemente foi... o áudio.  Afinal, um menu sem áudio não tem graça. A implementação do áudio foi a coisa mais desgraçado que fiz em muito tempo e tenho que dar meus obrigados ao @Masked por ter solucionado o problema.
+   <br/>
+   <br/>
+   Também adicionei uma opção que impede de fechar a janela root
+   <br/>
+   <br/>
+   __
+   <br/>
+   <br/>
+   fora o problema que é implementar esse grande boilerplate acho que ja até da para mim usar isso em algum projeto.
+  </div>
+  <small class="author">
+   <a href="https://condadobraveheart.com/members/hermespasser.1086/">
+    HermesPasser
+   </a>
+   em
+   <time datetime="2020-05-27T16:17:09-0300">
+    27 de Maio de 2020 às 16:17.
+   </time>
+   <a href="https://condadobraveheart.com/threads/tentativa-de-menu-colapsavel.5311/post-43202">
+    Comentário original
+   </a>
+  </small>
+  <hr/>
+ </div>
+</details>

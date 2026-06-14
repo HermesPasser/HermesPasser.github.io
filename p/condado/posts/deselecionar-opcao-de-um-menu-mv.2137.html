@@ -1,0 +1,194 @@
+---
+title: "Condado Braveheart posts - RPG Maker MV - \"deselecionar\" opção de um menu [MV]"
+pagename: deselecionar-opcao-de-um-menu-mv.2137-pg01.html
+keywords: rpg maker
+show-comments: true
+layout: condado
+---
+<p>
+ Publicado originalmente em
+ <time datetime="2017-04-28T13:55:50-0300">
+  28 de Abril de 2017 às 13:55
+ </time>
+ no Condado Braveheart (
+ <a href="https://condadobraveheart.com/threads/deselecionar-opcao-de-um-menu-mv.2137/">
+  link
+ </a>
+ ).
+</p>
+<hr/>
+<div class="bbWrapper">
+ Eu estava criando tentando criar um menu com três opções, sendo que dois deles alteravam uma variável, eu estou planejando usar em um sistema de leitura de livros, mas percebi que quando seleciono uma das opções a window trava. Alguém save como impedir que ela trave após uma opção ser selecionada ou um jeito de destrava-lá?
+ <br/>
+ <br/>
+ Código (para chamar isso, o comando é book):
+ <br/>
+ <div class="bbCodeBlock bbCodeBlock--screenLimited bbCodeBlock--code">
+  <div class="bbCodeBlock-title">
+   Código:
+  </div>
+  <div class="bbCodeBlock-content" dir="ltr">
+   <pre class="bbCodeCode" data-lang="" data-xf-init="code-block" dir="ltr"><code>//-----------------------------------------------------------------------------
+// 
+//=============================================================================
+
+/*:
+ * @plugindesc 
+ * @author Hermes Passer
+ */
+
+(function() {
+
+	//------ Game Interpreter
+
+    var game_Interpreter = Game_Interpreter.prototype.pluginCommand;
+    
+	Game_Interpreter.prototype.pluginCommand = function(command, args) {		
+		game_Interpreter.call(this, command, args);
+		if (command === 'Book') {
+			SceneManager.push(Scene_Book);
+        }
+    };
+
+	//------ Scene
+
+	var scene_MenuBase_createBackground = Scene_MenuBase.prototype.createBackground;
+	var window_command;
+	var index = 0;
+
+    function Scene_Book() {
+        this.initialize.apply(this, arguments);
+    }
+
+    Scene_Book.prototype = Object.create(Scene_MenuBase.prototype);
+    Scene_Book.prototype.constructor = Scene_Book;
+
+    Scene_Book.prototype.create = function() {
+        Scene_MenuBase.prototype.create.call(this);
+    };
+
+    Scene_Book.prototype.initialize = function() {
+        Scene_MenuBase.prototype.initialize.call(this);
+		window_command = new Window_Cmd();
+		window_command.setHandler('prev',   this.priviousPage.bind(this));
+		window_command.setHandler('next',   this.nextPage.bind(this));
+		window_command.setHandler('cancel', this.cancel.bind(this));
+		this.addChild(window_command);
+    };
+
+	var scenebook_update = Scene_Book.prototype.update;
+	Scene_Book.prototype.update = function() {
+		scenebook_update.call(this);
+	}
+
+	Scene_Book.prototype.createBackground = function() {
+	};
+
+	Scene_Book.prototype.cancel = function() {
+		SceneManager.push(Scene_Map);
+	}
+
+	Scene_Book.prototype.priviousPage = function() {		
+		index--; 
+	}
+
+	Scene_Book.prototype.nextPage = function() {
+		index++; 
+	}
+
+	//------ Window Command
+
+	function Window_Cmd() {
+		this.initialize.apply(this, arguments);
+	}
+
+	Window_Cmd.prototype = Object.create(Window_HorzCommand.prototype);
+	Window_Cmd.prototype.constructor = Window_Cmd;
+
+	Window_Cmd.prototype.initialize = function() {
+		Window_HorzCommand.prototype.initialize.call(this, 0, 0);
+		this.updatePlacement();
+		this.openness = 0;
+		this.height = 65;
+		this.open();
+	};
+
+	Window_Cmd.prototype.windowWidth = function() {
+		return 200;
+	};
+
+	Window_Cmd.prototype.updatePlacement = function() {
+		this.x = 0;
+		this.y = Graphics.boxHeight - 65;
+	};
+
+	Window_Cmd.prototype.makeCommandList = function() {
+		this.addCommand("&lt;", 'prev');
+		this.addCommand("&gt;", 'next');
+		this.addCommand("x", 'cancel');
+	}
+})();</code></pre>
+  </div>
+ </div>
+</div>
+<hr/>
+<details>
+ <summary>
+  Comentários
+ </summary>
+ <div class="comment">
+  <div class="bbWrapper">
+   Ela não trava, apenas fica desativada. Para reativa-la novamente basta chamar o método
+   <u>
+    activate
+   </u>
+   nas funções handlers. Exemplo:
+   <br/>
+   <div class="bbCodeBlock bbCodeBlock--screenLimited bbCodeBlock--code">
+    <div class="bbCodeBlock-title">
+     Código:
+    </div>
+    <div class="bbCodeBlock-content" dir="ltr">
+     <pre class="bbCodeCode" data-lang="" data-xf-init="code-block" dir="ltr"><code>Scene_Book.prototype.nextPage = function() {
+	window_command.activate();
+	index++; 
+}</code></pre>
+    </div>
+   </div>
+  </div>
+  <small class="author">
+   <a href="https://condadobraveheart.com/members/fogomax.328/">
+    Fogomax
+   </a>
+   em
+   <time datetime="2017-04-28T15:36:35-0300">
+    28 de Abril de 2017 às 15:36.
+   </time>
+   <a href="https://condadobraveheart.com/threads/deselecionar-opcao-de-um-menu-mv.2137/post-18240">
+    Comentário original
+   </a>
+  </small>
+  <hr/>
+ </div>
+ <div class="comment">
+  <div class="bbWrapper">
+   <a href="https://condadobraveheart.com/members/fogomax.328/" title="Fogomax [old id=408]">
+    Fogomax
+   </a>
+   . Valeu, agora está funcionando.
+  </div>
+  <small class="author">
+   <a href="https://condadobraveheart.com/members/hermespasser.1086/">
+    HermesPasser
+   </a>
+   em
+   <time datetime="2017-04-28T16:13:04-0300">
+    28 de Abril de 2017 às 16:13.
+   </time>
+   <a href="https://condadobraveheart.com/threads/deselecionar-opcao-de-um-menu-mv.2137/post-18241">
+    Comentário original
+   </a>
+  </small>
+  <hr/>
+ </div>
+</details>
