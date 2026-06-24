@@ -1,6 +1,6 @@
 source "https://rubygems.org"
 
-ruby "3.2.6"
+ruby "3.2.3"
 
 # https://jekyllrb.com/docs/installation/windows/#auto-regeneration
 gem "wdm", "~> 0.2.0", :install_if => Gem.win_platform?
