@@ -1,34 +1,28 @@
 ---
-title: "Condado Braveheart posts - RPG Maker MV - \"deselecionar\" opção de um menu [MV]"
+title: 'Condado Braveheart posts - RPG Maker MV - "deselecionar" opção de um menu [MV]'
 pagename: deselecionar-opcao-de-um-menu-mv.2137-pg01.html
 keywords: rpg maker
 show-comments: true
 layout: condado
 ---
-<p>
- Publicado originalmente em
- <time datetime="2017-04-28T13:55:50-0300">
-  28 de Abril de 2017 às 13:55
- </time>
- no Condado Braveheart (
- <a href="https://condadobraveheart.com/threads/deselecionar-opcao-de-um-menu-mv.2137/">
-  link
- </a>
- ).
-</p>
-<hr/>
+
 <div class="bbWrapper">
- Eu estava criando tentando criar um menu com três opções, sendo que dois deles alteravam uma variável, eu estou planejando usar em um sistema de leitura de livros, mas percebi que quando seleciono uma das opções a window trava. Alguém save como impedir que ela trave após uma opção ser selecionada ou um jeito de destrava-lá?
- <br/>
- <br/>
- Código (para chamar isso, o comando é book):
- <br/>
- <div class="bbCodeBlock bbCodeBlock--screenLimited bbCodeBlock--code">
-  <div class="bbCodeBlock-title">
-   Código:
-  </div>
-  <div class="bbCodeBlock-content" dir="ltr">
-   <pre class="bbCodeCode" data-lang="" data-xf-init="code-block" dir="ltr"><code>//-----------------------------------------------------------------------------
+  Eu estava criando tentando criar um menu com três opções, sendo que dois deles
+  alteravam uma variável, eu estou planejando usar em um sistema de leitura de
+  livros, mas percebi que quando seleciono uma das opções a window trava. Alguém
+  save como impedir que ela trave após uma opção ser selecionada ou um jeito de
+  destrava-lá? <br />
+  <br />
+  Código (para chamar isso, o comando é book):<br />
+  <div class="bbCodeBlock bbCodeBlock--screenLimited bbCodeBlock--code">
+    <div class="bbCodeBlock-title">Código:</div>
+    <div class="bbCodeBlock-content" dir="ltr">
+      <pre
+        class="bbCodeCode"
+        data-lang=""
+        data-xf-init="code-block"
+        dir="ltr"
+      ><code>//-----------------------------------------------------------------------------
 // 
 //=============================================================================
 
@@ -128,67 +122,75 @@ layout: condado
 		this.addCommand("x", 'cancel');
 	}
 })();</code></pre>
-  </div>
- </div>
-</div>
-<hr/>
-<details>
- <summary>
-  Comentários
- </summary>
- <div class="comment">
-  <div class="bbWrapper">
-   Ela não trava, apenas fica desativada. Para reativa-la novamente basta chamar o método
-   <u>
-    activate
-   </u>
-   nas funções handlers. Exemplo:
-   <br/>
-   <div class="bbCodeBlock bbCodeBlock--screenLimited bbCodeBlock--code">
-    <div class="bbCodeBlock-title">
-     Código:
     </div>
-    <div class="bbCodeBlock-content" dir="ltr">
-     <pre class="bbCodeCode" data-lang="" data-xf-init="code-block" dir="ltr"><code>Scene_Book.prototype.nextPage = function() {
+  </div>
+</div>
+<small class="footnote"
+  >Publicado originalmente em
+  <time datetime="2017-04-28T13:55:50-0300">28 de Abril de 2017 às 13:55</time>
+  no Condado Braveheart
+  <a
+    href="https://condadobraveheart.com/threads/deselecionar-opcao-de-um-menu-mv.2137/"
+    >(link)</a
+  >.</small
+>
+<hr />
+<details>
+  <summary>Comentários</summary>
+  <div class="comment">
+    <div class="bbWrapper">
+      Ela não trava, apenas fica desativada. Para reativa-la novamente basta
+      chamar o método <u>activate</u> nas funções handlers. Exemplo:<br />
+      <div class="bbCodeBlock bbCodeBlock--screenLimited bbCodeBlock--code">
+        <div class="bbCodeBlock-title">Código:</div>
+        <div class="bbCodeBlock-content" dir="ltr">
+          <pre
+            class="bbCodeCode"
+            data-lang=""
+            data-xf-init="code-block"
+            dir="ltr"
+          ><code>Scene_Book.prototype.nextPage = function() {
 	window_command.activate();
 	index++; 
 }</code></pre>
+        </div>
+      </div>
     </div>
-   </div>
+    <small class="author">
+      <a href="https://condadobraveheart.com/members/fogomax.328/">Fogomax</a>
+      em
+      <time datetime="2017-04-28T15:36:35-0300"
+        >28 de Abril de 2017 às 15:36.</time
+      >
+      <a
+        href="https://condadobraveheart.com/threads/deselecionar-opcao-de-um-menu-mv.2137/post-18240"
+        >Comentário original</a
+      >
+    </small>
+    <hr />
   </div>
-  <small class="author">
-   <a href="https://condadobraveheart.com/members/fogomax.328/">
-    Fogomax
-   </a>
-   em
-   <time datetime="2017-04-28T15:36:35-0300">
-    28 de Abril de 2017 às 15:36.
-   </time>
-   <a href="https://condadobraveheart.com/threads/deselecionar-opcao-de-um-menu-mv.2137/post-18240">
-    Comentário original
-   </a>
-  </small>
-  <hr/>
- </div>
- <div class="comment">
-  <div class="bbWrapper">
-   <a href="https://condadobraveheart.com/members/fogomax.328/" title="Fogomax [old id=408]">
-    Fogomax
-   </a>
-   . Valeu, agora está funcionando.
+  <div class="comment">
+    <div class="bbWrapper">
+      <a
+        class="mention"
+        href="https://condadobraveheart.com/members/fogomax.328/"
+        title="Fogomax [old id=408]"
+        >Fogomax</a
+      >. Valeu, agora está funcionando.
+    </div>
+    <small class="author">
+      <a href="https://condadobraveheart.com/members/hermespasser.1086/"
+        >HermesPasser</a
+      >
+      em
+      <time datetime="2017-04-28T16:13:04-0300"
+        >28 de Abril de 2017 às 16:13.</time
+      >
+      <a
+        href="https://condadobraveheart.com/threads/deselecionar-opcao-de-um-menu-mv.2137/post-18241"
+        >Comentário original</a
+      >
+    </small>
+    <hr />
   </div>
-  <small class="author">
-   <a href="https://condadobraveheart.com/members/hermespasser.1086/">
-    HermesPasser
-   </a>
-   em
-   <time datetime="2017-04-28T16:13:04-0300">
-    28 de Abril de 2017 às 16:13.
-   </time>
-   <a href="https://condadobraveheart.com/threads/deselecionar-opcao-de-um-menu-mv.2137/post-18241">
-    Comentário original
-   </a>
-  </small>
-  <hr/>
- </div>
 </details>

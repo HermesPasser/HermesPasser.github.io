@@ -8,7 +8,41 @@ show-comments: true
 layout: condado
 ---
 
-<label for="postSelector">Filtre por categoria (deixe vazio para listar todos)</label>
+<style>
+	select {
+		display: block;
+	}
+
+	/* This must be ugly on mobile. Fix some day */
+	p {
+		width: 70%;
+	}
+
+	#postsWrapper {
+		display: grid;
+		grid-template-columns: auto auto auto;
+	}
+</style>
+
+<p>
+	A seguir, é possível conferir o arquivamento das minhas postagens no fórum Condado Braveheart. A principal motivação
+	para arquivá-las foram as diversas mudanças no fórum (especialmente a engine) que não apenas quebraram os links do
+	meu outro blog que apontavam para lá.
+</p>
+<p>
+	Além disso, notei que o sistema de BBcodes e emojis foi alterado algumas vezes sem que o conteúdo antigo fosse
+	migrado corretamente. Com isso, algumas de minhas postagens ficaram quebradas, exibindo diretamente um BBCode ou um
+	emoji onde o HTML deveria ter sido gerado.
+</p>
+<p>
+	Tentei, ao máximo, restaurar as postagens a uma forma o mais próxima possível daquela em que as escrevi. Como fiz
+	todo esse trabalho, decidi migrar todas as minhas postagens e comentários arquivados, em vez de apenas as que
+	estavam claramente vinculadas no meu blog.
+</p>
+
+<hr />
+
+<label for="postSelector">Filtre por categoria (deixe vazio para listar todos) </label>
 <select id="postSelector" onchange="select(event)" multiple></select>
 <div id="postsWrapper"></div>
 
@@ -17,7 +51,7 @@ layout: condado
 		const r = await fetch("./posts.json");
 		const posts = await r.json();
 		const categories = new Set();
-		for (const post of posts) {
+		for (const post of posts.toSorted((a, b) => a.title.localeCompare(b.title))) {
 			for (const category of post.categories) {
 				categories.add(category);
 			}
