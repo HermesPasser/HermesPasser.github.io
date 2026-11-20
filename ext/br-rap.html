@@ -1,0 +1,106 @@
+---
+title: Brazillian Rap table widget
+pagename: br-rap
+keywords: brazillian rap, rap, rap nacional,
+description: A widget with a list of brazillian rap albuns
+show-comments: false
+---
+
+<style>
+	table {
+		border-collapse: collapse;
+		border: 2px solid rgb(140 140 140);
+		font-family: sans-serif;
+		font-size: 0.8rem;
+		letter-spacing: 1px;
+		width: 100%;
+	}
+
+	caption {
+		caption-side: bottom;
+		padding: 10px;
+		font-weight: bold;
+	}
+
+	thead,
+	tfoot {
+		background-color: rgb(63, 47, 47);
+	}
+
+	th,
+	td {
+		border: 1px solid rgb(100, 74, 74);
+		padding: 8px 10px;
+	}
+
+	td:last-of-type {
+		text-align: center;
+	}
+
+	tbody tr:nth-child(even of :not([hidden])) {
+		background-color: rgb(100, 74, 74);
+	}
+
+	tfoot th {
+		text-align: right;
+	}
+
+	tfoot td {
+		font-weight: bold;
+	}
+</style>
+<script>
+	function filterAlbuns(event) {
+		const authorsSelected = Array.from(event.srcElement.selectedOptions).map((o) => o.value);
+
+		for (const tr of document.querySelectorAll("[data-year]")) {
+			const artists = Object.entries(tr.dataset)
+				.filter(([key]) => key.startsWith("artist"))
+				.map(([key]) => tr.dataset[key]);
+			const shouldDisplay = artists.some((a) => authorsSelected.includes(a));
+			tr.hidden = !shouldDisplay;
+		}
+	}
+</script>
+
+{% assign artists = site.data.br_rap_list | list_artists %}
+<select id="authorSelect" onchange="filterAlbuns(event)" lang="pt-BR" multiple>
+	{% for artist in artists %}
+	<option value="{{ artist | escape }}">{{ artist | escape }}</option>
+	{% endfor %}
+</select>
+
+<table id="rapTable" lang="pt-BR">
+	<caption>
+		Lista não exaustiva de todos os albuns do rap nacional.
+	</caption>
+	<tfoot>
+		<tr>
+			<th scope="row" colspan="2">Quantidade</th>
+			<td>{{site.data.br_rap_list | size}}</td>
+		</tr>
+	</tfoot>
+	<thead>
+		<tr>
+			<th scope="col">Ano</th>
+			<th scope="col">Interpretes</th>
+			<th scope="col">Álbum</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for album_data in site.data.br_rap_list %}
+		<tr 
+			data-year="{{album_data.year}}"
+			{% for artist in album_data.artists %}
+			    data-artist-{{ forloop.index0 }}="{{ artist | escape }}"
+			{% endfor %}
+		>
+			<th>{{ album_data.year }}</th>
+			<th>
+				{{ album_data.artists | format_artists }}
+			</th>
+			<th>{{ album_data.album | escape }}</th>
+		</tr>
+		{% endfor %}
+	</tbody>
+</table>
